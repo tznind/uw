@@ -39,4 +39,5 @@ https://your_name.github.io/your_repository_name/cs.html
 ```
 
 You can read more about Powered by the Apocalypse, including their permissive license terms, here:
+
 https://lumpley.games/2023/11/22/what-is-pbta/
