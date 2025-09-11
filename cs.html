@@ -58,6 +58,7 @@ body {
 }
 
 </style>
+
 </head>
 <body>
 
@@ -68,39 +69,145 @@ body {
 <div class="hex-row">
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input type="text" placeholder="Hex 1">
+    <input name="mettle" type="text" placeholder="METTLE">
   </div>
-  <div class="hex-title">Title 1</div>
+  <div class="hex-title">METTLE</div>
 </div>
 
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input type="text" placeholder="Hex 2">
+    <input name="physique" type="text" placeholder="PHYSIQUE">
   </div>
-  <div class="hex-title">Title 2</div>
+  <div class="hex-title">PHYSIQUE</div>
 </div>
 
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input type="text" placeholder="Hex 3">
+    <input name="influence" type="text" placeholder="INFLUENCE">
   </div>
-  <div class="hex-title">Title 3</div>
+  <div class="hex-title">INFLUENCE</div>
 </div>
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input type="text" placeholder="Hex 3">
+    <input name="expertise" type="text" placeholder="EXPERTISE">
   </div>
-  <div class="hex-title">Title 3</div>
+  <div class="hex-title">EXPERTISE</div>
 </div>
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input type="text" placeholder="Hex 3">
+    <input  name="conviction" type="text" placeholder="Conviction">
   </div>
-  <div class="hex-title">Title 3</div>
+  <div class="hex-title">Conviction</div>
 </div>
 </div>
+
 <hr/>
 
+<p>Moves:</p>
+
+<div id="moves-container"></div>
 </form>
+
+
+<script>
+  // Array of all moves
+  const moves = [
+    {
+      title: "Chart the Immaterium (+Conviction)",
+      outcomes: [
+        { range: "≥ 10", text: "The passage is smooth and precise. You emerge exactly where intended.", bullets: [] },
+        { range: "7–9", text: "You reach the destination, but choose one:", bullets: [
+          "The voyage takes longer than expected",
+          "The ship suffers debility or damage",
+          "You attract unwanted attention"
+        ]},
+        { range: "≤ 6", text: "GM chooses one:", bullets: [
+          "You emerge off-course",
+          "The voyage has taken far too long",
+          "A warp intrusion threatens the ship",
+          "Your mind or soul suffers strain; mark 1 Debility or permanent stigma."
+        ]}
+      ]
+    },
+    {
+      title: "Scan the Astropathic Beacon",
+      outcomes: [
+        { range: "≥ 10", text: "You receive a clear psychic signal.", bullets: [] },
+        { range: "7–9", text: "The signal is fuzzy, choose one:", bullets: [
+          "You misinterpret part of the message",
+          "The beacon signals a false location"
+        ]},
+        { range: "≤ 6", text: "The signal is incomprehensible:", bullets: [
+          "You feel psychic backlash",
+          "Your mind is shaken, mark 1 Debility"
+        ]}
+      ]
+    },
+    {
+      title: "Navigate the Warp Currents",
+      outcomes: [
+        { range: "≥ 10", text: "Your navigation is flawless.", bullets: [] },
+        { range: "7–9", text: "Partial success:", bullets: [
+          "You drift slightly off course",
+          "Minor strain on crew"
+        ]},
+        { range: "≤ 6", text: "Catastrophic:", bullets: [
+          "Major warp disruption",
+          "Crew suffers stress and debility"
+        ]}
+      ]
+    }
+  ];
+
+  // Available moves (index => checked status)
+  const available = { 1: true, 2: true }; 
+  // Move at index 0 (first move) is not available
+
+  const container = document.getElementById("moves-container");
+
+  Object.keys(available).forEach(key => {
+    const idx = parseInt(key);
+    const move = moves[idx];
+    if (!move) return; // safety check
+
+    const moveDiv = document.createElement("div");
+    moveDiv.className = "move";
+
+    // Checkbox and title
+    const label = document.createElement("label");
+    label.className = "move-title";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = available[idx]; // set checked based on available array
+    label.appendChild(checkbox);
+    label.append(" " + move.title);
+    moveDiv.appendChild(label);
+
+    // Outcomes
+    move.outcomes.forEach(outcome => {
+      const outcomeDiv = document.createElement("div");
+      outcomeDiv.className = "outcome";
+
+      const p = document.createElement("p");
+      p.innerHTML = `<strong>${outcome.range}:</strong> ${outcome.text}`;
+      outcomeDiv.appendChild(p);
+
+      if (outcome.bullets.length > 0) {
+        const ul = document.createElement("ul");
+        outcome.bullets.forEach(bullet => {
+          const li = document.createElement("li");
+          li.textContent = bullet;
+          ul.appendChild(li);
+        });
+        outcomeDiv.appendChild(ul);
+      }
+
+      moveDiv.appendChild(outcomeDiv);
+    });
+
+    container.appendChild(moveDiv);
+  });
+</script>
+
 </body>
 </html>
