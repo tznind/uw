@@ -16,7 +16,13 @@ This allows each player to keep track of their own state and share with others r
 
 ## Using it yourself
 
-- Clone the repository
-- Update [data.js](./data.js) with your own roles and moves
+To create your own rule set with moves and roles, create a new repository using this as a template:
 
+<img width="264" height="163" alt="image" src="https://github.com/user-attachments/assets/6c97f925-6db8-4687-ba26-101705bf736e" />
 
+Then update [data.js](./data.js).
+
+To see the page live ensure that GitHub Pages is enabled under Settings and visit your url:
+```
+https://your_name.github.io/your_repository_name/cs.html
+```
