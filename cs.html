@@ -64,7 +64,12 @@ body {
 
    <form>
         <label for="role">Role:</label>
-        <input type="text" id="role" id="role" placeholder="Role">
+		<select id="role" name="role">
+		  <option value="">Select role...</option>
+		  <option value="Navigator">Navigator</option>
+		  <option value="Mech Adept">Mech Adept</option>
+		  <option value="Lord Commander">Lord Commander</option>
+		</select>
 <hr/>
 <div class="hex-row">
 <div class="hex-container">
@@ -89,7 +94,7 @@ body {
 </div>
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input id=="expertise" type="text" placeholder="EXPERTISE">
+    <input id="expertise" type="text" placeholder="EXPERTISE">
   </div>
   <div class="hex-title">EXPERTISE</div>
 </div>
@@ -119,27 +124,48 @@ body {
   renderMoves('moves-container', available);
 </script>
 
+
 <script>
 const form = document.querySelector('form');
 const textInputs = form.querySelectorAll('input[type="text"]');
+const roleSelect = document.getElementById('role');
 
-// Save text input values to URL whenever they change
-textInputs.forEach(input => {
-  input.addEventListener('input', () => {
-    const params = new URLSearchParams(location.search);
-    params.set(input.id, input.value || '');
-    history.replaceState({}, '', '?' + params);
-  });
-});
-
-// Load text input values from URL on page load
+// Load values from URL on page load
 const params = new URLSearchParams(location.search);
+
+// Restore Role
+if (params.has('role')) {
+  roleSelect.value = params.get('role');
+}
+
+// Restore hex stats
 textInputs.forEach(input => {
   if (params.has(input.id)) {
     input.value = params.get(input.id);
   }
 });
+
+// Save function: updates URL with Role + all hex stats
+function saveToURL() {
+  const params = new URLSearchParams(location.search);
+
+  // Save Role
+  params.set('role', roleSelect.value);
+
+  // Save hex stats
+  textInputs.forEach(input => {
+    params.set(input.id, input.value || '');
+  });
+
+  // Update URL without reloading
+  history.replaceState({}, '', '?' + params);
+}
+
+// Event listeners
+roleSelect.addEventListener('change', saveToURL);
+textInputs.forEach(input => input.addEventListener('input', saveToURL));
 </script>
+
 
 
 </body>
