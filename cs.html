@@ -71,7 +71,7 @@ body {
 		  <option value="Mech Adept">Mech Adept</option>
 		  <option value="Lord Commander">Lord Commander</option>
 		</select>
-		
+		<button type="button" id="copy-url-button" style="margin-left:5px;">Copy URL</button>
 		<button type="button" id="clear-button" style="margin-left:10px;">Clear</button>
 		</span>
 <hr/>
@@ -170,6 +170,7 @@ roleSelect.addEventListener('change', () => {
 textInputs.forEach(input => input.addEventListener('input', saveToURL));
 
 const clearButton = document.getElementById('clear-button');
+const copyUrlButton = document.getElementById('copy-url-button');
 
 clearButton.addEventListener('click', () => {
   // Reset role
@@ -184,6 +185,16 @@ clearButton.addEventListener('click', () => {
   // Re-render moves (none will show since no role)
   updateMoves();
 });
+
+copyUrlButton.addEventListener('click', () => {
+  const url = window.location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    alert('URL copied to clipboard!');
+  }).catch(err => {
+    console.error('Failed to copy URL:', err);
+  });
+});
+
 
 </script>
 
