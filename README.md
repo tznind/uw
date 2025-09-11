@@ -1,5 +1,5 @@
 # LC
-This repository is a template for building interactive PbtA-style character sheets.
+This repository is a template for building interactive [PbtA-style](https://en.wikipedia.org/wiki/Powered_by_the_Apocalypse?utm_source=chatgpt.com) character sheets.
 
 <a href="https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&influence=%2B2&expertise=0&conviction=%2B1&name=Selene+Vortrix&player=Thomas">
 <img width="478" height="286" alt="image" src="https://github.com/user-attachments/assets/02a1f67c-de79-4e7e-a043-8e90e0f645f2" />
