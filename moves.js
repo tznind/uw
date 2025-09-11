@@ -37,9 +37,14 @@ function renderMoves(containerId, available, movesArray) {
       const outcomeDiv = document.createElement("div");
       outcomeDiv.className = "outcome";
 
-      const p = document.createElement("p");
-      p.innerHTML = `<strong>${outcome.range}:</strong> ${outcome.text}`;
-      outcomeDiv.appendChild(p);
+	const p = document.createElement("p");
+		if (outcome.range && outcome.range.trim() !== "") {
+		  p.innerHTML = `<strong>${outcome.range}:</strong> ${outcome.text}`;
+		} else {
+		  p.innerHTML = outcome.text;
+		}
+		outcomeDiv.appendChild(p);
+
 
       if (outcome.bullets.length) {
         const ul = document.createElement("ul");
@@ -55,6 +60,14 @@ function renderMoves(containerId, available, movesArray) {
     });
 
     container.appendChild(moveDiv);
+
+	const hr = document.createElement("hr");
+	hr.style.border = "0";                 // remove default border
+	hr.style.height = "2px";               // make it thin
+	hr.style.backgroundColor = "#ccc";     // light gray color
+	moveDiv.appendChild(hr);
+
+	  
 
     // Persist to URL on change
     checkbox.addEventListener("change", () => {

@@ -1,6 +1,10 @@
 // Map roles → move IDs → initial checked state
 window.availableMap = {
-  "Navigator": { "a1b2c3": true, "d4e5f6": false, "g7h8i9": true },
+  "Navigator": {
+	  "a1b2c3": true, 
+	  "d4e5f6": false, 
+	  "g7h8i9": true ,
+	  "1587dd":false},
   "Mech Adept": { "m1a2b3": false, "m4c5d6": true, "m7e8f9": false },
   "Lord Commander": { "l1a2b3": true, "l4c5d6": true, "l7e8f9": true }
 };
@@ -55,5 +59,16 @@ window.moves = [
           "Crew suffers stress and debility"
         ]}
       ]
-    }
+    },
+	{
+	  id: "1587dd",
+	  title: "Blighted Eye - Your eye is a weapon inflicting moderate damage",
+	    outcomes: [
+		{ range: "", 
+		text: "Pick one", bullets: [
+		  "Area",
+          "Messy"] }
+	  ]
+	}
+	
   ];
