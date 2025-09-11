@@ -65,10 +65,11 @@ window.moves = [
 	  title: "Blighted Eye - Your eye is a weapon inflicting moderate damage",
 	    outcomes: [
 		{ range: "", 
-		text: "Pick one", bullets: [
-		  "Area",
-          "Messy"] }
+		text: "Pick one"
+		}],
+		 pick: [
+      "Area",
+      "Messy"
 	  ]
 	}
-	
   ];
