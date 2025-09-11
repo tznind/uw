@@ -64,38 +64,38 @@ body {
 
    <form>
         <label for="role">Role:</label>
-        <input type="text" id="role" name="role" placeholder="Role">
+        <input type="text" id="role" id="role" placeholder="Role">
 <hr/>
 <div class="hex-row">
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input name="mettle" type="text" placeholder="METTLE">
+    <input id="mettle" type="text" placeholder="METTLE">
   </div>
   <div class="hex-title">METTLE</div>
 </div>
 
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input name="physique" type="text" placeholder="PHYSIQUE">
+    <input id="physique" type="text" placeholder="PHYSIQUE">
   </div>
   <div class="hex-title">PHYSIQUE</div>
 </div>
 
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input name="influence" type="text" placeholder="INFLUENCE">
+    <input id="influence" type="text" placeholder="INFLUENCE">
   </div>
   <div class="hex-title">INFLUENCE</div>
 </div>
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input name="expertise" type="text" placeholder="EXPERTISE">
+    <input id=="expertise" type="text" placeholder="EXPERTISE">
   </div>
   <div class="hex-title">EXPERTISE</div>
 </div>
 <div class="hex-container">
   <div class="hex-input-wrapper">
-    <input  name="conviction" type="text" placeholder="Conviction">
+    <input id="conviction" type="text" placeholder="Conviction">
   </div>
   <div class="hex-title">Conviction</div>
 </div>
@@ -118,6 +118,29 @@ body {
   };
   renderMoves('moves-container', available);
 </script>
+
+<script>
+const form = document.querySelector('form');
+const textInputs = form.querySelectorAll('input[type="text"]');
+
+// Save text input values to URL whenever they change
+textInputs.forEach(input => {
+  input.addEventListener('input', () => {
+    const params = new URLSearchParams(location.search);
+    params.set(input.id, input.value || '');
+    history.replaceState({}, '', '?' + params);
+  });
+});
+
+// Load text input values from URL on page load
+const params = new URLSearchParams(location.search);
+textInputs.forEach(input => {
+  if (params.has(input.id)) {
+    input.value = params.get(input.id);
+  }
+});
+</script>
+
 
 </body>
 </html>
