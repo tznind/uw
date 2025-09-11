@@ -1,11 +1,15 @@
 # LC
 This is a template repository for creating interactive PbtA style character sheets.
 
+<a href="https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&influence=%2B2&expertise=0&conviction=%2B1&name=Selene+Vortrix&player=Thomas">
 <img width="478" height="286" alt="image" src="https://github.com/user-attachments/assets/02a1f67c-de79-4e7e-a043-8e90e0f645f2" />
+</a>
 
-You can try it out at:
+_Try it out by clicking the image above (it will take you to GitHub Pages), or follow the link below:_
 
+```
 https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&influence=%2B2&expertise=0&conviction=%2B1&name=Selene+Vortrix&player=Thomas
+```
 
 ## Features
 
