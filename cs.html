@@ -67,9 +67,6 @@ body {
         <label for="role">Role:</label>
 		<select id="role" name="role">
 		  <option value="">Select role...</option>
-		  <option value="Navigator">Navigator</option>
-		  <option value="Mech Adept">Mech Adept</option>
-		  <option value="Lord Commander">Lord Commander</option>
 		</select>
 		<button type="button" id="copy-url-button" style="margin-left:5px;">Copy URL</button>
 		<button type="button" id="clear-button" style="margin-left:10px;">Clear</button>
@@ -111,6 +108,14 @@ function saveToURL() {
 
   history.replaceState({}, '', '?' + params);
 }
+
+// Populate role options dynamically
+Object.keys(window.availableMap).forEach(role => {
+  const option = document.createElement('option');
+  option.value = role;
+  option.textContent = role;
+  roleSelect.appendChild(option);
+});
 
 // Render moves according to role
 function updateMoves() {
@@ -166,6 +171,9 @@ copyUrlButton.addEventListener('click', () => {
   });
 });
 
+
+// Restore role from URL after options exist
+if (params.has('role')) roleSelect.value = params.get('role');
 
 </script>
 
