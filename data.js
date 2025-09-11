@@ -1,3 +1,13 @@
+
+// Hex stats template
+window.hexStats = [
+  { id: "mettle", title: "METTLE" },
+  { id: "physique", title: "PHYSIQUE" },
+  { id: "influence", title: "INFLUENCE" },
+  { id: "expertise", title: "EXPERTISE" },
+  { id: "conviction", title: "CONVICTION" }
+];
+
 // Map roles → move IDs → initial checked state
 window.availableMap = {
     "Navigator": {

@@ -75,41 +75,7 @@ body {
 		<button type="button" id="clear-button" style="margin-left:10px;">Clear</button>
 		</span>
 <hr/>
-<div class="hex-row">
-<div class="hex-container">
-  <div class="hex-input-wrapper">
-    <input id="mettle" type="text" placeholder="METTLE">
-  </div>
-  <div class="hex-title">METTLE</div>
-</div>
-
-<div class="hex-container">
-  <div class="hex-input-wrapper">
-    <input id="physique" type="text" placeholder="PHYSIQUE">
-  </div>
-  <div class="hex-title">PHYSIQUE</div>
-</div>
-
-<div class="hex-container">
-  <div class="hex-input-wrapper">
-    <input id="influence" type="text" placeholder="INFLUENCE">
-  </div>
-  <div class="hex-title">INFLUENCE</div>
-</div>
-<div class="hex-container">
-  <div class="hex-input-wrapper">
-    <input id="expertise" type="text" placeholder="EXPERTISE">
-  </div>
-  <div class="hex-title">EXPERTISE</div>
-</div>
-<div class="hex-container">
-  <div class="hex-input-wrapper">
-    <input id="conviction" type="text" placeholder="CONVICTION">
-  </div>
-  <div class="hex-title">CONVICTION</div>
-</div>
-</div>
-
+<div id="stats-container"></div>
 <hr/>
 
 <p>Moves:</p>
@@ -117,10 +83,15 @@ body {
 <div id="moves-container"></div>
 </form>
 
+
+<script src="stats.js"></script>
 <script src="moves.js"></script>
 <script src="data.js"></script>
 
 <script>
+  // Render stats
+  window.renderStats("#stats-container", window.hexStats);
+
 const roleSelect = document.getElementById('role');
 const movesContainer = 'moves-container';
 const form = document.querySelector('form');
