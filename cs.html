@@ -63,6 +63,7 @@ body {
 <body>
 
    <form>
+   <span>
         <label for="role">Role:</label>
 		<select id="role" name="role">
 		  <option value="">Select role...</option>
@@ -70,6 +71,9 @@ body {
 		  <option value="Mech Adept">Mech Adept</option>
 		  <option value="Lord Commander">Lord Commander</option>
 		</select>
+		
+		<button type="button" id="clear-button" style="margin-left:10px;">Clear</button>
+		</span>
 <hr/>
 <div class="hex-row">
 <div class="hex-container">
@@ -164,6 +168,23 @@ roleSelect.addEventListener('change', () => {
   updateMoves(); 
 });
 textInputs.forEach(input => input.addEventListener('input', saveToURL));
+
+const clearButton = document.getElementById('clear-button');
+
+clearButton.addEventListener('click', () => {
+  // Reset role
+  roleSelect.value = '';
+
+  // Reset hex inputs
+  textInputs.forEach(input => input.value = '');
+
+  // Clear URL params
+  history.replaceState({}, '', location.pathname);
+
+  // Re-render moves (none will show since no role)
+  updateMoves();
+});
+
 </script>
 
 
