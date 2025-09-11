@@ -1,7 +1,7 @@
 # LC
 This is a template repository for creating interactive PbtA style character sheets.
 
-<img width="956" height="573" alt="image" src="https://github.com/user-attachments/assets/02a1f67c-de79-4e7e-a043-8e90e0f645f2" />
+<img width="478" height="286" alt="image" src="https://github.com/user-attachments/assets/02a1f67c-de79-4e7e-a043-8e90e0f645f2" />
 
 You can try it out at:
 
