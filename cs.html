@@ -110,10 +110,14 @@ body {
 
 <script src="moves.js"></script>
 <script>
-  const available = { 2: true };
+  // Optional: default available moves using IDs
+  const available = {
+    a1b2c3: true,
+    d4e5f6: false,
+    g7h8i9: true
+  };
   renderMoves('moves-container', available);
 </script>
-
 
 </body>
 </html>
