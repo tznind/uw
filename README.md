@@ -1,11 +1,11 @@
 # LC
-This is a template repository for creating interactive PbtA style character sheets.
+This repository is a template for building interactive PbtA-style character sheets.
 
 <a href="https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&influence=%2B2&expertise=0&conviction=%2B1&name=Selene+Vortrix&player=Thomas">
 <img width="478" height="286" alt="image" src="https://github.com/user-attachments/assets/02a1f67c-de79-4e7e-a043-8e90e0f645f2" />
 </a>
 
-_Try it out by clicking the image above (it will take you to GitHub Pages), or follow the link below:_
+_Click the image above to try out a live example on GitHub Pages, or use the link below:_
 
 ```
 https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&influence=%2B2&expertise=0&conviction=%2B1&name=Selene+Vortrix&player=Thomas
@@ -13,20 +13,27 @@ https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&
 
 ## Features
 
-### Persists changes to URL
-Changes made to the character sheet update the url (address). Bookmarking or saving the address saves the current state of the character sheet.
+### State stored in the URL
+Any changes you make to a sheet are automatically reflected in the page’s URL.  
+This means your players can:
 
-This allows each player to keep track of their own state and share with others remotely by sending them the url
+- Bookmark or save the URL to preserve a character’s state.  
+- Share the URL with others so they can see the same sheet.  
 
-## Using it yourself
+Each player can track their own sheet independently by keeping their own link.
 
-To create your own rule set with moves and roles, create a new repository using this as a template:
+## Create your own
 
-<img width="264" height="163" alt="image" src="https://github.com/user-attachments/assets/6c97f925-6db8-4687-ba26-101705bf736e" />
+To make your own rule set with custom moves and roles:
 
-Then update [data.js](./data.js).
+1. Create a new repository from this template:  
 
-To see the page live ensure that GitHub Pages is enabled under Settings and visit your url:
+   <img width="264" height="163" alt="GitHub template button" src="https://github.com/user-attachments/assets/6c97f925-6db8-4687-ba26-101705bf736e" />
+
+2. Update [`data.js`](./data.js) with your content.  
+3. Enable **GitHub Pages** in your repository settings.  
+4. Visit your sheet at:  
+
 ```
 https://your_name.github.io/your_repository_name/cs.html
 ```
