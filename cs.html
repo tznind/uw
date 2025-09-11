@@ -114,56 +114,65 @@ body {
 </form>
 
 <script src="moves.js"></script>
-<script>
-  // Optional: default available moves using IDs
-  const available = {
-    "a1b2c3": true,
-    "g7h8i9": true
-  };
-  renderMoves('moves-container', available);
-</script>
 
-
+<script src="moves.js"></script>
 <script>
+const roleSelect = document.getElementById('role');
+const movesContainer = 'moves-container';
 const form = document.querySelector('form');
 const textInputs = form.querySelectorAll('input[type="text"]');
-const roleSelect = document.getElementById('role');
 
-// Load values from URL on page load
-const params = new URLSearchParams(location.search);
+// Map roles → move IDs → initial checked state
+const availableMap = {
+  "Navigator": { "a1b2c3": true, "d4e5f6": false, "g7h8i9": true },
+  "Mech Adept": { "m1a2b3": false, "m4c5d6": true, "m7e8f9": false },
+  "Lord Commander": { "l1a2b3": true, "l4c5d6": true, "l7e8f9": true }
+};
 
-// Restore Role
-if (params.has('role')) {
-  roleSelect.value = params.get('role');
-}
-
-// Restore hex stats
-textInputs.forEach(input => {
-  if (params.has(input.id)) {
-    input.value = params.get(input.id);
-  }
-});
-
-// Save function: updates URL with Role + all hex stats
+// Save Role + hex stats to URL
 function saveToURL() {
   const params = new URLSearchParams(location.search);
 
-  // Save Role
+  // Role
   params.set('role', roleSelect.value);
 
-  // Save hex stats
+  // Hex stats
   textInputs.forEach(input => {
     params.set(input.id, input.value || '');
   });
 
-  // Update URL without reloading
   history.replaceState({}, '', '?' + params);
 }
 
+// Render moves according to role
+function updateMoves() {
+  const selectedRole = roleSelect.value;
+  const available = selectedRole && availableMap[selectedRole] ? availableMap[selectedRole] : {};
+
+  const container = document.getElementById(movesContainer);
+  container.innerHTML = '';
+
+  renderMoves(movesContainer, available);
+}
+
+// Restore values from URL
+const params = new URLSearchParams(location.search);
+if (params.has('role')) roleSelect.value = params.get('role');
+textInputs.forEach(input => {
+  if (params.has(input.id)) input.value = params.get(input.id);
+});
+
+// Initial render of moves
+updateMoves();
+
 // Event listeners
-roleSelect.addEventListener('change', saveToURL);
+roleSelect.addEventListener('change', () => { 
+  saveToURL(); 
+  updateMoves(); 
+});
 textInputs.forEach(input => input.addEventListener('input', saveToURL));
 </script>
+
 
 
 
