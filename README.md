@@ -3,7 +3,7 @@ This is a template repository for creating PbtA style character sheets.
 
 You can try it out at:
 
-https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&influence=%2B2&expertise=0&conviction=%2B1
+https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&influence=%2B2&expertise=0&conviction=%2B1&name=Selene+Vortrix&player=Thomas
 
 ## Features
 
