@@ -114,20 +114,13 @@ body {
 </form>
 
 <script src="moves.js"></script>
+<script src="data.js"></script>
 
-<script src="moves.js"></script>
 <script>
 const roleSelect = document.getElementById('role');
 const movesContainer = 'moves-container';
 const form = document.querySelector('form');
 const textInputs = form.querySelectorAll('input[type="text"]');
-
-// Map roles → move IDs → initial checked state
-const availableMap = {
-  "Navigator": { "a1b2c3": true, "d4e5f6": false, "g7h8i9": true },
-  "Mech Adept": { "m1a2b3": false, "m4c5d6": true, "m7e8f9": false },
-  "Lord Commander": { "l1a2b3": true, "l4c5d6": true, "l7e8f9": true }
-};
 
 // Save Role + hex stats to URL
 function saveToURL() {
@@ -147,12 +140,12 @@ function saveToURL() {
 // Render moves according to role
 function updateMoves() {
   const selectedRole = roleSelect.value;
-  const available = selectedRole && availableMap[selectedRole] ? availableMap[selectedRole] : {};
+  const available = selectedRole && window.availableMap[selectedRole] ? window.availableMap[selectedRole] : {};
 
   const container = document.getElementById(movesContainer);
   container.innerHTML = '';
 
-  renderMoves(movesContainer, available);
+  renderMoves(movesContainer, available, window.moves);
 }
 
 // Restore values from URL
