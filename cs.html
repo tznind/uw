@@ -61,6 +61,12 @@
   // Update moves when role changes
   function updateMoves() {
     const selectedRole = roleSelect.value;
+    
+    // First restore any learned moves from URL to availableMap
+    if (selectedRole && window.restoreLearnedMoves) {
+      window.restoreLearnedMoves();
+    }
+    
     const available = selectedRole && window.availableMap[selectedRole] 
       ? window.availableMap[selectedRole] : {};
     
@@ -69,6 +75,13 @@
     
     window.renderMoves(movesContainer, available, window.moves);
     window.Persistence.refreshPersistence(form, handleStateChange);
+    
+    // Restore takefrom dropdown selections after DOM is updated
+    if (window.restoreTakeFromSelections) {
+      setTimeout(() => {
+        window.restoreTakeFromSelections();
+      }, 100);
+    }
   }
   
   // Handle state changes (role updates)
@@ -82,6 +95,12 @@
   window.Persistence.loadFromURL(form);
   updateMoves();
   window.Persistence.setupAutoPersistence(form, handleStateChange);
+  
+  // Listen for availableMap updates from takefrom selections
+  window.addEventListener('availableMapUpdated', (event) => {
+    // Re-render moves when availableMap changes
+    updateMoves();
+  });
   
   // Button event listeners
   document.getElementById('clear-button').addEventListener('click', () => {
