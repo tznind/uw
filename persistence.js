@@ -58,10 +58,15 @@ window.Persistence = (function() {
                 if (input.checked) {
                     params.set(input.id, '1');
                 } else {
-                    // For move checkboxes, explicitly save unchecked state to override defaults
-                    // For other checkboxes, remove to keep URL clean
+                    // For move checkboxes, only save unchecked state if it overrides a default
                     if (input.id.startsWith('move_')) {
-                        params.set(input.id, '0');
+                        // Check if this move has a default 'true' state that we're overriding
+                        const needsExplicitZero = checkIfDefaultIsTrue(input.id);
+                        if (needsExplicitZero) {
+                            params.set(input.id, '0');
+                        } else {
+                            params.delete(input.id); // Remove unchecked non-defaults
+                        }
                     } else {
                         params.delete(input.id);
                     }
@@ -179,6 +184,32 @@ window.Persistence = (function() {
         });
     }
 
+    /**
+     * Check if a move has a default 'true' state in availableMap
+     * @param {string} inputId - The input ID (e.g. 'move_a1b2c3')
+     * @returns {boolean} True if this move defaults to checked
+     */
+    function checkIfDefaultIsTrue(inputId) {
+        if (!inputId.startsWith('move_') || !window.availableMap) return false;
+        
+        // Extract move ID, handling multiple instances (move_id_1 -> move_id)
+        const moveId = inputId.replace('move_', '').replace(/_\d+$/, '').replace(/_pick_\d+$/, '');
+        const currentRole = getCurrentRole();
+        
+        if (currentRole && window.availableMap[currentRole]) {
+            return window.availableMap[currentRole][moveId] === true;
+        }
+        return false;
+    }
+    
+    /**
+     * Get current role (helper function)
+     */
+    function getCurrentRole() {
+        const roleSelect = document.getElementById('role');
+        return roleSelect ? roleSelect.value : null;
+    }
+    
     /**
      * Refresh persistence after dynamic content changes
      * @param {HTMLFormElement} form - The form to refresh
