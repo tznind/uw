@@ -40,96 +40,70 @@
 <script src="stats.js"></script>
 <script src="moves.js"></script>
 <script src="data.js"></script>
+<script src="persistence.js"></script>
 
 <script>
+  // Get form reference
+  const form = document.querySelector('form');
+  const roleSelect = document.getElementById('role');
+  const movesContainer = 'moves-container';
+  const clearButton = document.getElementById('clear-button');
+  const copyUrlButton = document.getElementById('copy-url-button');
+
   // Render stats
   window.renderStats("#stats-container", window.hexStats);
 
-const roleSelect = document.getElementById('role');
-const movesContainer = 'moves-container';
-const form = document.querySelector('form');
-const textInputs = form.querySelectorAll('input[type="text"]');
-
-// Save Role + hex stats to URL
-function saveToURL() {
-  const params = new URLSearchParams(location.search);
-
-  // Role
-  params.set('role', roleSelect.value);
-
-  // Hex stats
-  textInputs.forEach(input => {
-    params.set(input.id, input.value || '');
+  // Populate role options dynamically
+  Object.keys(window.availableMap).forEach(role => {
+    const option = document.createElement('option');
+    option.value = role;
+    option.textContent = role;
+    roleSelect.appendChild(option);
   });
 
-  history.replaceState({}, '', '?' + params);
-}
+  // Render moves according to role
+  function updateMoves() {
+    const selectedRole = roleSelect.value;
+    const available = selectedRole && window.availableMap[selectedRole] ? window.availableMap[selectedRole] : {};
 
-// Populate role options dynamically
-Object.keys(window.availableMap).forEach(role => {
-  const option = document.createElement('option');
-  option.value = role;
-  option.textContent = role;
-  roleSelect.appendChild(option);
-});
+    const container = document.getElementById(movesContainer);
+    container.innerHTML = '';
 
-// Render moves according to role
-function updateMoves() {
-  const selectedRole = roleSelect.value;
-  const available = selectedRole && window.availableMap[selectedRole] ? window.availableMap[selectedRole] : {};
+    renderMoves(movesContainer, available, window.moves);
+  }
 
-  const container = document.getElementById(movesContainer);
-  container.innerHTML = '';
+  // Load initial state from URL
+  window.Persistence.loadFromURL(form);
 
-  renderMoves(movesContainer, available, window.moves);
-}
-
-// Restore values from URL
-const params = new URLSearchParams(location.search);
-if (params.has('role')) roleSelect.value = params.get('role');
-textInputs.forEach(input => {
-  if (params.has(input.id)) input.value = params.get(input.id);
-});
-
-// Initial render of moves
-updateMoves();
-
-// Event listeners
-roleSelect.addEventListener('change', () => { 
-  saveToURL(); 
-  updateMoves(); 
-});
-textInputs.forEach(input => input.addEventListener('input', saveToURL));
-
-const clearButton = document.getElementById('clear-button');
-const copyUrlButton = document.getElementById('copy-url-button');
-
-clearButton.addEventListener('click', () => {
-  // Reset role
-  roleSelect.value = '';
-
-  // Reset hex inputs
-  textInputs.forEach(input => input.value = '');
-
-  // Clear URL params
-  history.replaceState({}, '', location.pathname);
-
-  // Re-render moves (none will show since no role)
+  // Initial render of moves (after loading from URL)
   updateMoves();
-});
 
-copyUrlButton.addEventListener('click', () => {
-  const url = window.location.href;
-  navigator.clipboard.writeText(url).then(() => {
-    alert('URL copied to clipboard!');
-  }).catch(err => {
-    console.error('Failed to copy URL:', err);
+  // Set up automatic persistence with callback for role changes
+  window.Persistence.setupAutoPersistence(form, (inputId, value) => {
+    // If role changed, update moves
+    if (inputId === 'role') {
+      updateMoves();
+    }
   });
-});
 
+  // Clear button functionality
+  clearButton.addEventListener('click', () => {
+    // Use persistence module to clear everything
+    window.Persistence.clearState(form);
+    
+    // Re-render moves (none will show since no role)
+    updateMoves();
+  });
 
-// Restore role from URL after options exist
-if (params.has('role')) roleSelect.value = params.get('role');
+  // Copy URL button functionality  
+  copyUrlButton.addEventListener('click', () => {
+    window.Persistence.copyURLToClipboard().then((url) => {
+      alert('URL copied to clipboard!');
+    }).catch(err => {
+      console.error('Failed to copy URL:', err);
+      alert('Failed to copy URL to clipboard');
+    });
+  });
 
 </script>
 
