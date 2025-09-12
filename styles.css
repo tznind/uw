@@ -109,10 +109,23 @@ button:focus {
   border: none;
   outline: none;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   background: transparent;
   color: #333;
+}
+
+/* Placeholder text styling to fit in hexagon */
+.hex-input-wrapper input::placeholder {
+  color: #999;
+  font-size: clamp(7px, 1.2vw, 9px); /* Smaller to fit CONVICTION */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2px; /* Even tighter spacing */
+  opacity: 0.7;
+  line-height: 1.1;
+  max-width: 80px; /* Constrain to hex width */
+  word-wrap: break-word;
 }
 
 /* Remove focus outline specifically for hex inputs */
