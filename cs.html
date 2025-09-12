@@ -9,33 +9,32 @@
 </head>
 <body>
 
-   <form>
-     <div style="margin-bottom:10px;">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
-	</div>
-     <div style="margin-bottom:10px;">
-	<label for="player">Player:</label>
-    <input type="text" id="player" name="player" style="margin-right:15px;">
-	</div>
-	
-   <span>
-        <label for="role">Role:</label>
-		<select id="role" name="role">
-		  <option value="">Select role...</option>
-		</select>
-		<button type="button" id="copy-url-button" style="margin-left:5px;">Copy URL</button>
-		<button type="button" id="clear-button" style="margin-left:10px;">Clear</button>
-	</span>
-<hr/>
-<div id="stats-container"></div>
-<hr/>
-
-<p>Moves:</p>
-
-<div id="moves-container"></div>
-</form>
-
+  <form>
+    <div class="form-field">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+    </div>
+    
+    <div class="form-field">
+      <label for="player">Player:</label>
+      <input type="text" id="player" name="player">
+    </div>
+    
+    <div class="form-controls">
+      <label for="role">Role:</label>
+      <select id="role" name="role">
+        <option value="">Select role...</option>
+      </select>
+      <button type="button" id="copy-url-button">Copy URL</button>
+      <button type="button" id="clear-button">Clear</button>
+    </div>
+    <hr>
+    <div id="stats-container"></div>
+    <hr>
+    
+    <h3>Moves:</h3>
+    <div id="moves-container"></div>
+  </form>
 
 <script src="utils.js"></script>
 <script src="stats.js"></script>
@@ -44,79 +43,61 @@
 <script src="persistence.js"></script>
 
 <script>
-  // Get form reference
   const form = document.querySelector('form');
   const roleSelect = document.getElementById('role');
   const movesContainer = 'moves-container';
-  const clearButton = document.getElementById('clear-button');
-  const copyUrlButton = document.getElementById('copy-url-button');
-
+  
   // Render stats
-  window.renderStats("#stats-container", window.hexStats);
-
-  // Populate role options dynamically
+  window.renderStats('#stats-container', window.hexStats);
+  
+  // Populate role options
   Object.keys(window.availableMap).forEach(role => {
     const option = document.createElement('option');
     option.value = role;
     option.textContent = role;
     roleSelect.appendChild(option);
   });
-
-  // Render moves according to role
+  
+  // Update moves when role changes
   function updateMoves() {
     const selectedRole = roleSelect.value;
-    const available = selectedRole && window.availableMap[selectedRole] ? window.availableMap[selectedRole] : {};
-
+    const available = selectedRole && window.availableMap[selectedRole] 
+      ? window.availableMap[selectedRole] : {};
+    
     const container = document.getElementById(movesContainer);
     container.innerHTML = '';
-
-    renderMoves(movesContainer, available, window.moves);
     
-    // Refresh persistence for newly created move checkboxes
-    window.Persistence.refreshPersistence(form, (inputId, value) => {
-      if (inputId === 'role') {
-        updateMoves();
-      }
-    });
+    window.renderMoves(movesContainer, available, window.moves);
+    window.Persistence.refreshPersistence(form, handleStateChange);
   }
-
-  // Load initial state from URL
-  window.Persistence.loadFromURL(form);
-
-  // Initial render of moves (after loading from URL)
-  updateMoves();
-
-  // Set up automatic persistence with callback for role changes
-  window.Persistence.setupAutoPersistence(form, (inputId, value) => {
-    // If role changed, update moves
+  
+  // Handle state changes (role updates)
+  function handleStateChange(inputId, value) {
     if (inputId === 'role') {
       updateMoves();
     }
-  });
-
-  // Clear button functionality
-  clearButton.addEventListener('click', () => {
-    // Use persistence module to clear everything
+  }
+  
+  // Initialize
+  window.Persistence.loadFromURL(form);
+  updateMoves();
+  window.Persistence.setupAutoPersistence(form, handleStateChange);
+  
+  // Button event listeners
+  document.getElementById('clear-button').addEventListener('click', () => {
     window.Persistence.clearState(form);
-    
-    // Re-render moves (none will show since no role)
     updateMoves();
   });
-
-  // Copy URL button functionality  
-  copyUrlButton.addEventListener('click', () => {
-    window.Persistence.copyURLToClipboard().then((url) => {
-      alert('URL copied to clipboard!');
-    }).catch(err => {
-      console.error('Failed to copy URL:', err);
-      alert('Failed to copy URL to clipboard');
-    });
+  
+  document.getElementById('copy-url-button').addEventListener('click', () => {
+    window.Persistence.copyURLToClipboard()
+      .then(() => alert('URL copied to clipboard!'))
+      .catch(err => {
+        console.error('Failed to copy URL:', err);
+        alert('Failed to copy URL to clipboard');
+      });
   });
-
 </script>
-
-
-
 
 </body>
 </html>

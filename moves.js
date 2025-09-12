@@ -3,7 +3,7 @@
  */
 
 // Create move checkbox with proper ID and persistence
-function createMoveCheckbox(move, available) {
+function createMoveCheckbox(move, available, urlParams) {
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.id = `move_${move.id}`;
@@ -11,12 +11,9 @@ function createMoveCheckbox(move, available) {
     checkbox.setAttribute('aria-label', `Toggle ${move.title}`);
     
     // Check if there's a saved state in URL first
-    const params = new URLSearchParams(location.search);
-    if (params.has(`move_${move.id}`)) {
-        // Use saved state from URL
-        checkbox.checked = params.get(`move_${move.id}`) === '1';
+    if (urlParams.has(`move_${move.id}`)) {
+        checkbox.checked = urlParams.get(`move_${move.id}`) === '1';
     } else {
-        // Use default state from available map only if no saved state
         checkbox.checked = available[move.id] || false;
     }
     
@@ -62,7 +59,7 @@ function createOutcome(outcome) {
 }
 
 // Create pick options section
-function createPickOptions(move) {
+function createPickOptions(move, urlParams) {
     const pickDiv = document.createElement("div");
     pickDiv.className = "pick-options";
     
@@ -81,12 +78,9 @@ function createPickOptions(move) {
         pickCheckbox.setAttribute('aria-label', `Pick option: ${option}`);
         
         // Check if there's a saved state in URL first
-        const params = new URLSearchParams(location.search);
-        if (params.has(`move_${move.id}_pick_${index}`)) {
-            // Use saved state from URL
-            pickCheckbox.checked = params.get(`move_${move.id}_pick_${index}`) === '1';
+        if (urlParams.has(`move_${move.id}_pick_${index}`)) {
+            pickCheckbox.checked = urlParams.get(`move_${move.id}_pick_${index}`) === '1';
         } else {
-            // Default to unchecked for pick options (no defaults needed)
             pickCheckbox.checked = false;
         }
 
@@ -99,7 +93,7 @@ function createPickOptions(move) {
 }
 
 // Create complete move element
-function createMoveElement(move, available) {
+function createMoveElement(move, available, urlParams) {
     if (!move || !move.id || !move.title) {
         console.warn('Invalid move data:', move);
         return null;
@@ -110,7 +104,7 @@ function createMoveElement(move, available) {
     moveDiv.setAttribute('data-move-id', move.id);
 
     // Create and add title with checkbox
-    const checkbox = createMoveCheckbox(move, available);
+    const checkbox = createMoveCheckbox(move, available, urlParams);
     const titleLabel = createMoveTitle(move, checkbox);
     moveDiv.appendChild(titleLabel);
 
@@ -126,7 +120,7 @@ function createMoveElement(move, available) {
 
     // Add pick options if they exist
     if (move.pick && Array.isArray(move.pick) && move.pick.length > 0) {
-        const pickElement = createPickOptions(move);
+        const pickElement = createPickOptions(move, urlParams);
         moveDiv.appendChild(pickElement);
     }
 
@@ -153,6 +147,9 @@ function renderMoves(containerId, available, movesArray) {
 
     const moves = Array.isArray(movesArray) ? movesArray : [];
     
+    // Parse URL parameters once for efficiency
+    const urlParams = new URLSearchParams(location.search);
+    
     // Clear existing content
     container.innerHTML = '';
 
@@ -172,13 +169,11 @@ function renderMoves(containerId, available, movesArray) {
 
     // Create and add move elements
     availableMoves.forEach(move => {
-        const moveElement = createMoveElement(move, available);
+        const moveElement = createMoveElement(move, available, urlParams);
         if (moveElement) {
             container.appendChild(moveElement);
         }
     });
-
-    console.log(`Rendered ${availableMoves.length} moves for role`);
 }
 
 // Export to global scope

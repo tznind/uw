@@ -26,6 +26,23 @@ label {
   margin-right: 10px;
 }
 
+/* Form field containers */
+.form-field {
+  margin-bottom: 10px;
+}
+
+.form-controls {
+  margin-bottom: 15px;
+}
+
+.form-controls input[type="text"] {
+  margin-right: 15px;
+}
+
+.form-controls button {
+  margin-left: 5px;
+}
+
 input[type="text"], select {
   padding: 8px 12px;
   border: 2px solid #e1e5e9;
@@ -209,6 +226,14 @@ button:focus {
 .pick-options input[type="checkbox"] {
   margin-right: 10px;
   transform: scale(1.1);
+}
+
+/* === SECTION STYLING === */
+h3 {
+  color: #2c3e50;
+  font-size: 1.2em;
+  margin: 20px 0 15px 0;
+  font-weight: 600;
 }
 
 /* === DIVIDERS === */
