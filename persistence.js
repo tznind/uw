@@ -58,7 +58,13 @@ window.Persistence = (function() {
                 if (input.checked) {
                     params.set(input.id, '1');
                 } else {
-                    params.delete(input.id); // Remove unchecked checkboxes to keep URL clean
+                    // For move checkboxes, explicitly save unchecked state to override defaults
+                    // For other checkboxes, remove to keep URL clean
+                    if (input.id.startsWith('move_')) {
+                        params.set(input.id, '0');
+                    } else {
+                        params.delete(input.id);
+                    }
                 }
             } else {
                 // Handle regular inputs
@@ -93,6 +99,7 @@ window.Persistence = (function() {
                 
                 if (input.type === 'checkbox') {
                     // For checkboxes, set checked state
+                    // Handle both '1' (checked) and '0' (explicitly unchecked)
                     input.checked = value === '1';
                     loadedValues[input.id] = input.checked;
                 } else {

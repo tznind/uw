@@ -10,8 +10,15 @@ function createMoveCheckbox(move, available) {
     checkbox.name = `move_${move.id}`;
     checkbox.setAttribute('aria-label', `Toggle ${move.title}`);
     
-    // Set default state from available map (persistence.js will handle loading saved state)
-    checkbox.checked = available[move.id] || false;
+    // Check if there's a saved state in URL first
+    const params = new URLSearchParams(location.search);
+    if (params.has(`move_${move.id}`)) {
+        // Use saved state from URL
+        checkbox.checked = params.get(`move_${move.id}`) === '1';
+    } else {
+        // Use default state from available map only if no saved state
+        checkbox.checked = available[move.id] || false;
+    }
     
     return checkbox;
 }
@@ -72,6 +79,16 @@ function createPickOptions(move) {
         pickCheckbox.name = `move_${move.id}_pick_${index}`;
         pickCheckbox.value = option;
         pickCheckbox.setAttribute('aria-label', `Pick option: ${option}`);
+        
+        // Check if there's a saved state in URL first
+        const params = new URLSearchParams(location.search);
+        if (params.has(`move_${move.id}_pick_${index}`)) {
+            // Use saved state from URL
+            pickCheckbox.checked = params.get(`move_${move.id}_pick_${index}`) === '1';
+        } else {
+            // Default to unchecked for pick options (no defaults needed)
+            pickCheckbox.checked = false;
+        }
 
         label.appendChild(pickCheckbox);
         label.appendChild(document.createTextNode(option));
