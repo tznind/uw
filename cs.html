@@ -71,6 +71,13 @@
     container.innerHTML = '';
 
     renderMoves(movesContainer, available, window.moves);
+    
+    // Refresh persistence for newly created move checkboxes
+    window.Persistence.refreshPersistence(form, (inputId, value) => {
+      if (inputId === 'role') {
+        updateMoves();
+      }
+    });
   }
 
   // Load initial state from URL

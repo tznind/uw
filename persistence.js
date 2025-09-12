@@ -22,6 +22,7 @@ window.Persistence = (function() {
             'input[type="search"]',
             'input[type="password"]',
             'input[type="hidden"]',
+            'input[type="checkbox"]',
             'select',
             'textarea'
         ];
@@ -49,12 +50,25 @@ window.Persistence = (function() {
         const inputs = getPersistableInputs(form);
         
         inputs.forEach(input => {
-            const value = input.value || '';
-            if (value) {
-                params.set(input.id, value);
+            let value;
+            
+            // Handle checkboxes differently - use checked state
+            if (input.type === 'checkbox') {
+                value = input.checked ? '1' : '0';
+                if (input.checked) {
+                    params.set(input.id, '1');
+                } else {
+                    params.delete(input.id); // Remove unchecked checkboxes to keep URL clean
+                }
             } else {
-                // Remove empty values from URL to keep it clean
-                params.delete(input.id);
+                // Handle regular inputs
+                value = input.value || '';
+                if (value) {
+                    params.set(input.id, value);
+                } else {
+                    // Remove empty values from URL to keep it clean
+                    params.delete(input.id);
+                }
             }
         });
         
@@ -76,8 +90,16 @@ window.Persistence = (function() {
         inputs.forEach(input => {
             if (params.has(input.id)) {
                 const value = params.get(input.id);
-                input.value = value;
-                loadedValues[input.id] = value;
+                
+                if (input.type === 'checkbox') {
+                    // For checkboxes, set checked state
+                    input.checked = value === '1';
+                    loadedValues[input.id] = input.checked;
+                } else {
+                    // For regular inputs, set value
+                    input.value = value;
+                    loadedValues[input.id] = value;
+                }
             }
         });
         
@@ -93,7 +115,11 @@ window.Persistence = (function() {
         
         // Clear form inputs
         inputs.forEach(input => {
-            input.value = '';
+            if (input.type === 'checkbox') {
+                input.checked = false;
+            } else {
+                input.value = '';
+            }
         });
         
         // Clear URL parameters
@@ -110,12 +136,18 @@ window.Persistence = (function() {
         
         // Set up event listeners for automatic saving
         inputs.forEach(input => {
-            const eventType = input.tagName.toLowerCase() === 'select' ? 'change' : 'input';
+            let eventType;
+            if (input.tagName.toLowerCase() === 'select' || input.type === 'checkbox') {
+                eventType = 'change';
+            } else {
+                eventType = 'input';
+            }
             
             input.addEventListener(eventType, () => {
                 saveToURL(form);
                 if (onStateChange) {
-                    onStateChange(input.id, input.value);
+                    const value = input.type === 'checkbox' ? input.checked : input.value;
+                    onStateChange(input.id, value);
                 }
             });
         });
@@ -140,12 +172,25 @@ window.Persistence = (function() {
         });
     }
 
+    /**
+     * Refresh persistence after dynamic content changes
+     * @param {HTMLFormElement} form - The form to refresh
+     * @param {Function} onStateChange - Optional callback when state changes
+     */
+    function refreshPersistence(form, onStateChange) {
+        // Re-setup event listeners for any new inputs
+        setupAutoPersistence(form, onStateChange);
+        // Load existing state for any new checkboxes/inputs
+        loadFromURL(form);
+    }
+
     // Public API
     return {
         saveToURL: saveToURL,
         loadFromURL: loadFromURL,
         clearState: clearState,
         setupAutoPersistence: setupAutoPersistence,
+        refreshPersistence: refreshPersistence,
         getCurrentURL: getCurrentURL,
         copyURLToClipboard: copyURLToClipboard,
         getPersistableInputs: getPersistableInputs
