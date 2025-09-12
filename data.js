@@ -27,7 +27,7 @@ window.availableMap = {
         "l1a2b3": false,
         "l4c5d6": false,
         "l7e8f9": false,
-        "lc001": false,
+        "lc001": true,
         "adapt1": false
     }
 };

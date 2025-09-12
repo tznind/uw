@@ -135,6 +135,7 @@ function createTakeFromSection(move, urlParams) {
     moveSelect.id = `takefrom_${move.id}_move`;
     moveSelect.name = `takefrom_${move.id}_move`;
     moveSelect.disabled = true; // Initially disabled
+    console.log('Created move select with id:', moveSelect.id);
     
     // Add default option
     const defaultMoveOption = document.createElement("option");
@@ -160,12 +161,25 @@ function createTakeFromSection(move, urlParams) {
     
     // Event listener for role change
     roleSelect.addEventListener('change', () => {
+        console.log('Role dropdown changed to:', roleSelect.value);
         updateMoveOptions(roleSelect, moveSelect, move.id);
         // Clear move selection when role changes
         moveSelect.value = '';
         handleTakeFromSelection(roleSelect, moveSelect, move.id);
         
-        // Trigger persistence save to store the role selection in URL
+        // Manually update URL with the role selection
+        const params = new URLSearchParams(location.search);
+        if (roleSelect.value) {
+            params.set(roleSelect.id, roleSelect.value);
+        } else {
+            params.delete(roleSelect.id);
+        }
+        // Also clear the move selection from URL since we reset it
+        params.delete(moveSelect.id);
+        const newUrl = params.toString() ? '?' + params.toString() : location.pathname;
+        history.replaceState({}, '', newUrl);
+        
+        // Also trigger the normal persistence save
         setTimeout(() => {
             const form = document.querySelector('form');
             if (form && window.Persistence) {
@@ -176,9 +190,27 @@ function createTakeFromSection(move, urlParams) {
     
     // Event listener for move selection
     moveSelect.addEventListener('change', () => {
+        console.log('Move dropdown changed to:', moveSelect.value);
+        
+        // FIRST: Update URL synchronously
+        const params = new URLSearchParams(location.search);
+        console.log('Move select ID:', moveSelect.id, 'Value:', moveSelect.value);
+        if (moveSelect.value) {
+            params.set(moveSelect.id, moveSelect.value);
+            console.log('Added parameter:', moveSelect.id, '=', moveSelect.value);
+        } else {
+            params.delete(moveSelect.id);
+            console.log('Removed parameter:', moveSelect.id);
+        }
+        const newUrl = params.toString() ? '?' + params.toString() : location.pathname;
+        console.log('About to update URL to:', newUrl);
+        history.replaceState({}, '', newUrl);
+        console.log('Updated URL, current location:', window.location.href);
+        
+        // THEN: Handle the selection change (which may trigger re-render)
         handleTakeFromSelection(roleSelect, moveSelect, move.id);
         
-        // Trigger persistence save to store the selection in URL
+        // Also trigger the normal persistence save
         setTimeout(() => {
             const form = document.querySelector('form');
             if (form && window.Persistence) {
@@ -280,9 +312,17 @@ function handleTakeFromSelection(roleSelect, moveSelect, takeFromMoveId) {
         }
     }
     
-    // Add newly selected move to available moves
+    // Add newly selected move to available moves (but don't trigger re-render immediately)
     if (selectedMove && currentRole) {
-        addLearnedMove(currentRole, selectedMove);
+        addLearnedMoveQuiet(currentRole, selectedMove);
+        
+        // Trigger a delayed re-render to show the new learned move
+        setTimeout(() => {
+            const event = new CustomEvent('availableMapUpdated', {
+                detail: { role: currentRole, addedMove: selectedMove }
+            });
+            window.dispatchEvent(event);
+        }, 100); // Delay to allow URL update to complete first
     } else if (!selectedMove && !previousMove) {
         // No selection change, don't trigger re-render
         return;
@@ -333,24 +373,36 @@ function restoreTakeFromSelections() {
     const urlParams = new URLSearchParams(location.search);
     const currentRole = getCurrentRole();
     
+    console.log('Restoring takefrom selections from URL:', location.search);
+    console.log('Current role:', currentRole);
+    
     // Method 1: Restore from explicit URL parameters
     for (const [key, value] of urlParams.entries()) {
         if (key.includes('takefrom_') && value) {
+            console.log('Found takefrom parameter:', key, '=', value);
             const element = document.getElementById(key);
+            console.log('Found element:', element ? element.tagName : 'NOT FOUND');
+            
             if (element && element.tagName === 'SELECT') {
                 element.value = value;
+                console.log('Set', key, 'to value:', value, 'actual value now:', element.value);
                 
                 // If this is a role select, also update the move options
                 if (key.endsWith('_role')) {
                     const moveId = key.replace('takefrom_', '').replace('_role', '');
                     const moveSelect = document.getElementById(`takefrom_${moveId}_move`);
+                    console.log('Role select detected, updating move options for:', moveId);
+                    
                     if (moveSelect) {
                         updateMoveOptions(element, moveSelect, moveId);
                         // Restore move selection with a small delay
                         setTimeout(() => {
                             const moveKey = `takefrom_${moveId}_move`;
                             if (urlParams.has(moveKey)) {
-                                moveSelect.value = urlParams.get(moveKey);
+                                const moveValue = urlParams.get(moveKey);
+                                console.log('Restoring move selection:', moveKey, '=', moveValue);
+                                moveSelect.value = moveValue;
+                                console.log('Move select value is now:', moveSelect.value);
                             }
                         }, 50);
                     }
@@ -375,14 +427,17 @@ function restoreTakeFromSelections() {
                         const learnedMoveId = key.replace('move_', '').replace(/_\d+$/, '');
                         
                         // Check which role this move originally belongs to
+                        console.log('Looking for learned move:', learnedMoveId, 'in availableMap');
                         for (const [role, moves] of Object.entries(window.availableMap || {})) {
+                            console.log('Checking role:', role, 'moves:', Object.keys(moves));
                             if (role !== currentRole && moves.hasOwnProperty(learnedMoveId)) {
+                                console.log('Found match! Setting dropdown to:', role, learnedMoveId);
                                 // This move belongs to this role, set the dropdown
                                 roleSelect.value = role;
                                 updateMoveOptions(roleSelect, moveSelect, moveId);
                                 setTimeout(() => {
                                     moveSelect.value = learnedMoveId;
-                                    // console.log('Inferred dropdown selections:', role, learnedMoveId);
+                                    console.log('Set dropdown values:', roleSelect.value, moveSelect.value);
                                 }, 100);
                                 return; // Exit the loop once we find a match
                             }
