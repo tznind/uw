@@ -168,9 +168,38 @@ button:focus {
   gap: 10px;
 }
 
+.move-title label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .move-title input[type="checkbox"] {
   transform: scale(1.2);
-  margin-right: 8px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Multiple checkboxes styling */
+.move-title-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.move-checkboxes {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.move-checkboxes input[type="checkbox"] {
+  margin: 0;
+  padding: 0;
+  transform: scale(1.2);
+  cursor: pointer;
 }
 
 /* === OUTCOMES === */
@@ -261,6 +290,14 @@ hr {
   
   .move {
     padding: 15px;
+  }
+  
+  .move-checkboxes {
+    gap: 1px;
+  }
+  
+  .move-checkboxes input[type="checkbox"] {
+    transform: scale(1.0);
   }
 }
 

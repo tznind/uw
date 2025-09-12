@@ -2,34 +2,71 @@
  * Moves Rendering Module - Modular approach for rendering RPG moves
  */
 
-// Create move checkbox with proper ID and persistence
-function createMoveCheckbox(move, available, urlParams) {
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.id = `move_${move.id}`;
-    checkbox.name = `move_${move.id}`;
-    checkbox.setAttribute('aria-label', `Toggle ${move.title}`);
+// Create move checkboxes (single or multiple)
+function createMoveCheckboxes(move, available, urlParams) {
+    const checkboxCount = move.multiple || 1;
+    const checkboxes = [];
     
-    // Check if there's a saved state in URL first
-    if (urlParams.has(`move_${move.id}`)) {
-        checkbox.checked = urlParams.get(`move_${move.id}`) === '1';
-    } else {
-        checkbox.checked = available[move.id] || false;
+    for (let i = 0; i < checkboxCount; i++) {
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        
+        if (checkboxCount === 1) {
+            // Single checkbox - use original ID format
+            checkbox.id = `move_${move.id}`;
+            checkbox.name = `move_${move.id}`;
+            checkbox.setAttribute('aria-label', `Toggle ${move.title}`);
+        } else {
+            // Multiple checkboxes - add instance number
+            checkbox.id = `move_${move.id}_${i + 1}`;
+            checkbox.name = `move_${move.id}_${i + 1}`;
+            checkbox.setAttribute('aria-label', `${move.title} - Instance ${i + 1}`);
+        }
+        
+        // Check if there's a saved state in URL first
+        if (urlParams.has(checkbox.id)) {
+            checkbox.checked = urlParams.get(checkbox.id) === '1';
+        } else {
+            // For multiple checkboxes, only check the first one if default is true
+            checkbox.checked = (i === 0 && available[move.id]) || false;
+        }
+        
+        checkboxes.push(checkbox);
     }
     
-    return checkbox;
+    return checkboxes;
 }
 
-// Create move title label
-function createMoveTitle(move, checkbox) {
-    const label = document.createElement("label");
-    label.className = "move-title";
-    label.setAttribute('for', checkbox.id);
+// Create move title with checkboxes
+function createMoveTitle(move, checkboxes) {
+    const titleContainer = document.createElement("div");
+    titleContainer.className = "move-title";
     
-    label.appendChild(checkbox);
-    label.appendChild(document.createTextNode(move.title));
+    if (checkboxes.length === 1) {
+        // Single checkbox - use label as before
+        const label = document.createElement("label");
+        label.setAttribute('for', checkboxes[0].id);
+        label.appendChild(checkboxes[0]);
+        label.appendChild(document.createTextNode(move.title));
+        titleContainer.appendChild(label);
+    } else {
+        // Multiple checkboxes - put checkboxes inline before title
+        const checkboxContainer = document.createElement("div");
+        checkboxContainer.className = "move-checkboxes";
+        
+        checkboxes.forEach((checkbox, index) => {
+            checkboxContainer.appendChild(checkbox);
+        });
+        
+        const titleText = document.createElement("span");
+        titleText.className = "move-title-text";
+        titleText.textContent = move.title;
+        
+        titleContainer.appendChild(checkboxContainer);
+        titleContainer.appendChild(titleText);
+    }
     
-    return label;
+    return titleContainer;
 }
 
 // Create outcome display
@@ -103,10 +140,10 @@ function createMoveElement(move, available, urlParams) {
     moveDiv.className = "move";
     moveDiv.setAttribute('data-move-id', move.id);
 
-    // Create and add title with checkbox
-    const checkbox = createMoveCheckbox(move, available, urlParams);
-    const titleLabel = createMoveTitle(move, checkbox);
-    moveDiv.appendChild(titleLabel);
+    // Create and add title with checkbox(es)
+    const checkboxes = createMoveCheckboxes(move, available, urlParams);
+    const titleContainer = createMoveTitle(move, checkboxes);
+    moveDiv.appendChild(titleContainer);
 
     // Add outcomes if they exist
     if (move.outcomes && Array.isArray(move.outcomes) && move.outcomes.length > 0) {
