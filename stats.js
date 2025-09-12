@@ -2,14 +2,25 @@
 // Render hex stats inside a container
 window.renderStats = function(containerSelector, hexStats) {
   const container = document.querySelector(containerSelector);
-  if (!container) return;
+  if (!container) {
+    console.error('Stats container not found:', containerSelector);
+    return;
+  }
 
-  const params = new URLSearchParams(location.search);
+  if (!hexStats || !Array.isArray(hexStats)) {
+    console.error('Invalid hexStats data provided');
+    return;
+  }
 
   const hexRow = document.createElement("div");
   hexRow.className = "hex-row";
 
   hexStats.forEach(stat => {
+    if (!stat || !stat.id || !stat.title) {
+      console.warn('Invalid stat data:', stat);
+      return;
+    }
+
     const hexContainer = document.createElement("div");
     hexContainer.className = "hex-container";
 
@@ -19,10 +30,11 @@ window.renderStats = function(containerSelector, hexStats) {
     const input = document.createElement("input");
     input.type = "text";
     input.id = stat.id;
+    input.name = stat.id;
     input.placeholder = stat.title;
-
-    // Restore value from URL if exists
-    if (params.has(stat.id)) input.value = params.get(stat.id);
+    input.setAttribute('aria-label', stat.title);
+    
+    // Note: persistence.js will handle loading/saving values
 
     wrapper.appendChild(input);
     hexContainer.appendChild(wrapper);
