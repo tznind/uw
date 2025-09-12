@@ -33,19 +33,20 @@
     <hr>
     
     <h3>Moves:</h3>
-    <div id="moves-container"></div>
+    <div id="moves"></div>
   </form>
 
 <script src="utils.js"></script>
-<script src="stats.js"></script>
-<script src="moves.js"></script>
 <script src="data.js"></script>
 <script src="persistence.js"></script>
+<script src="stats.js"></script>
+<script src="moves/moves-core.js"></script>
+<script src="moves/takefrom.js"></script>
+<script src="moves/moves.js"></script>
 
 <script>
   const form = document.querySelector('form');
   const roleSelect = document.getElementById('role');
-  const movesContainer = 'moves-container';
   
   // Render stats
   window.renderStats('#stats-container', window.hexStats);
@@ -58,54 +59,37 @@
     roleSelect.appendChild(option);
   });
   
-  // Update moves when role changes
-  function updateMoves() {
-    const selectedRole = roleSelect.value;
-    
-    // First restore any learned moves from URL to availableMap
-    if (selectedRole && window.restoreLearnedMoves) {
-      window.restoreLearnedMoves();
-    }
-    
-    const available = selectedRole && window.availableMap[selectedRole] 
-      ? window.availableMap[selectedRole] : {};
-    
-    const container = document.getElementById(movesContainer);
-    container.innerHTML = '';
-    
-    window.renderMoves(movesContainer, available, window.moves);
-    window.Persistence.refreshPersistence(form, handleStateChange);
-    
-    // Restore takefrom dropdown selections after DOM is updated
-    if (window.restoreTakeFromSelections) {
-      setTimeout(() => {
-        window.restoreTakeFromSelections();
-      }, 100);
-    }
-  }
-  
   // Handle state changes (role updates)
   function handleStateChange(inputId, value) {
-    if (inputId === 'role') {
-      updateMoves();
-    }
+    // The new Moves module handles role changes automatically
+    // No need to manually call updateMoves here
   }
   
-  // Initialize
-  window.Persistence.loadFromURL(form);
-  updateMoves();
+  // Initialize persistence first
   window.Persistence.setupAutoPersistence(form, handleStateChange);
   
-  // Listen for availableMap updates from takefrom selections
-  window.addEventListener('availableMapUpdated', (event) => {
-    // Re-render moves when availableMap changes
-    updateMoves();
-  });
+  // Load initial state from URL
+  window.Persistence.loadFromURL(form);
+  
+  // Render initial moves based on selected role
+  const initialRole = roleSelect.value;
+  if (initialRole && window.Moves) {
+    window.Moves.renderMovesForRole(initialRole);
+    
+    // Refresh persistence after moves are rendered to capture new checkboxes
+    setTimeout(() => {
+      window.Persistence.refreshPersistence(form, handleStateChange);
+    }, 100);
+  }
   
   // Button event listeners
   document.getElementById('clear-button').addEventListener('click', () => {
     window.Persistence.clearState(form);
-    updateMoves();
+    // Clear moves display
+    const movesContainer = document.getElementById('moves');
+    if (movesContainer) {
+      movesContainer.innerHTML = '';
+    }
   });
   
   document.getElementById('copy-url-button').addEventListener('click', () => {

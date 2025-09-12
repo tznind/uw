@@ -303,6 +303,46 @@ button:focus {
   cursor: not-allowed;
 }
 
+/* === LEARNED MOVE DISPLAY === */
+.learned-move-container {
+  margin-top: 15px;
+}
+
+.learned-move {
+  background: #f0f8ff;
+  border: 2px solid #1976d2;
+  border-radius: 6px;
+  padding: 15px;
+  position: relative;
+}
+
+.learned-move::before {
+  content: "Learned Move:";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #f0f8ff;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.learned-move .move-title {
+  margin-bottom: 10px;
+}
+
+.learned-move .outcome {
+  background: #ffffff;
+  border-left: 4px solid #1976d2;
+  margin: 8px 0;
+}
+
+.learned-move .pick-options {
+  background: #e3f2fd;
+  border: 1px solid #1976d2;
+}
+
 /* === SECTION STYLING === */
 h3 {
   color: #2c3e50;

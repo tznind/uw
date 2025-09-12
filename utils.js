@@ -116,13 +116,87 @@ window.Utils = (function() {
         }
     }
 
+    /**
+     * Get current role from the form
+     * @returns {string|null} Current selected role or null
+     */
+    function getCurrentRole() {
+        const roleSelect = safeQuerySelector('#role');
+        return roleSelect ? roleSelect.value : null;
+    }
+
+    /**
+     * Check if any checkbox for a move is checked (handles single and multiple checkboxes)
+     * @param {string} moveId - The move ID to check
+     * @returns {boolean} True if any checkbox for this move is checked
+     */
+    function isAnyMoveCheckboxChecked(moveId) {
+        // Check for single checkbox
+        const singleCheckbox = safeQuerySelector(`#move_${moveId}`);
+        if (singleCheckbox && singleCheckbox.checked) {
+            return true;
+        }
+        
+        // Check for multiple checkboxes (move_id_1, move_id_2, etc.)
+        let index = 1;
+        while (true) {
+            const multiCheckbox = safeQuerySelector(`#move_${moveId}_${index}`);
+            if (!multiCheckbox) break; // No more checkboxes
+            
+            if (multiCheckbox.checked) {
+                return true;
+            }
+            index++;
+        }
+        
+        return false;
+    }
+
+    /**
+     * Safely dispatch custom event
+     * @param {string} eventName - Name of the event
+     * @param {Object} detail - Event detail object
+     * @param {Element} target - Target element (defaults to window)
+     */
+    function dispatchCustomEvent(eventName, detail = {}, target = window) {
+        try {
+            const event = new CustomEvent(eventName, { detail });
+            target.dispatchEvent(event);
+        } catch (error) {
+            console.error('Error dispatching custom event:', eventName, error);
+        }
+    }
+
+    /**
+     * Throttle function to limit function calls
+     * @param {Function} func - Function to throttle
+     * @param {number} limit - Limit in milliseconds
+     * @returns {Function} Throttled function
+     */
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+
     // Public API
     return {
         debounce,
+        throttle,
         createElement,
         safeQuerySelector,
         validateData,
         showMessage,
-        getFriendlyErrorMessage
+        getFriendlyErrorMessage,
+        getCurrentRole,
+        isAnyMoveCheckboxChecked,
+        dispatchCustomEvent
     };
 })();

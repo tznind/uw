@@ -138,31 +138,51 @@ window.Persistence = (function() {
         history.replaceState({}, '', location.pathname);
     }
 
+    // Track if we've already set up delegation
+    let delegationSetup = false;
+    
     /**
-     * Set up automatic persistence for a form
+     * Set up automatic persistence for a form using event delegation
      * @param {HTMLFormElement} form - The form to monitor
      * @param {Function} onStateChange - Optional callback when state changes
      */
     function setupAutoPersistence(form, onStateChange) {
-        const inputs = getPersistableInputs(form);
-        
-        // Set up event listeners for automatic saving
-        inputs.forEach(input => {
-            let eventType;
-            if (input.tagName.toLowerCase() === 'select' || input.type === 'checkbox') {
-                eventType = 'change';
-            } else {
-                eventType = 'input';
-            }
-            
-            input.addEventListener(eventType, () => {
-                saveToURL(form);
-                if (onStateChange) {
-                    const value = input.type === 'checkbox' ? input.checked : input.value;
-                    onStateChange(input.id, value);
+        // Set up event delegation only once
+        if (!delegationSetup) {
+            // Use event delegation on the form to handle all input changes
+            form.addEventListener('change', (event) => {
+                const target = event.target;
+                if (target.id && shouldPersist(target)) {
+                    saveToURL(form);
+                    if (onStateChange) {
+                        const value = target.type === 'checkbox' ? target.checked : target.value;
+                        onStateChange(target.id, value);
+                    }
                 }
             });
-        });
+            
+            form.addEventListener('input', (event) => {
+                const target = event.target;
+                if (target.id && shouldPersist(target) && target.type !== 'checkbox' && target.tagName.toLowerCase() !== 'select') {
+                    saveToURL(form);
+                    if (onStateChange) {
+                        onStateChange(target.id, target.value);
+                    }
+                }
+            });
+            
+            delegationSetup = true;
+        }
+    }
+    
+    /**
+     * Check if an input should be persisted
+     */
+    function shouldPersist(input) {
+        const persistableTypes = ['text', 'number', 'email', 'url', 'tel', 'search', 'password', 'hidden', 'checkbox'];
+        const persistableElements = ['select', 'textarea'];
+        
+        return (persistableTypes.includes(input.type) || persistableElements.includes(input.tagName.toLowerCase())) && input.id;
     }
 
     /**
@@ -216,9 +236,8 @@ window.Persistence = (function() {
      * @param {Function} onStateChange - Optional callback when state changes
      */
     function refreshPersistence(form, onStateChange) {
-        // Re-setup event listeners for any new inputs
-        setupAutoPersistence(form, onStateChange);
-        // Load existing state for any new checkboxes/inputs
+        // With event delegation, we don't need to re-setup listeners
+        // Just load existing state for any new checkboxes/inputs
         loadFromURL(form);
     }
 

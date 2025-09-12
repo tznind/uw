@@ -116,6 +116,32 @@ window.moves = [{
         ]
     },
     {
+        id: "nav001",
+        title: "Navigator's Intuition - Sense warp disturbances",
+        outcomes: [{
+            range: "≥ 10",
+            text: "Your third eye perceives all warp fluctuations clearly. You see the path forward.",
+            bullets: []
+        },
+        {
+            range: "7–9",
+            text: "You sense the disturbance, but:",
+            bullets: [
+                "The vision is clouded or confusing",
+                "You also attract unwanted attention from warp entities"
+            ]
+        },
+        {
+            range: "≤ 6",
+            text: "The warp's touch overwhelms you:",
+            bullets: [
+                "You're stunned by psychic backlash",
+                "False visions mislead you",
+                "Mark 1 Debility from warp strain"
+            ]
+        }]
+    },
+    {
         id: "1587dd",
         title: "Blighted Eye - Your eye is a weapon inflicting moderate damage",
         outcomes: [{
