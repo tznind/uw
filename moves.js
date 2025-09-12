@@ -298,15 +298,32 @@ function getCurrentRole() {
 // Restore all learned moves from URL on page load/role change
 function restoreLearnedMoves() {
     const currentRole = getCurrentRole();
-    if (!currentRole) return;
+    if (!currentRole || !window.availableMap || !window.availableMap[currentRole]) return;
     
     const urlParams = new URLSearchParams(location.search);
+    const originalAvailable = {...window.availableMap[currentRole]}; // Copy original moves
     
-    // Find all takefrom selections in URL and add them to availableMap
+    // Method 1: Find explicit takefrom selections in URL
     for (const [key, value] of urlParams.entries()) {
         if (key.includes('takefrom_') && key.endsWith('_move') && value) {
-            // Add this learned move to the current role's available moves
             addLearnedMoveQuiet(currentRole, value);
+        }
+    }
+    
+    // Method 2: Infer learned moves from checked moves that aren't originally available
+    for (const [key, value] of urlParams.entries()) {
+        if (key.startsWith('move_') && value === '1') {
+            const moveId = key.replace('move_', '').replace(/_\d+$/, ''); // Remove _1, _2 suffixes
+            
+            // If this move is checked but wasn't originally available to this role, it must be learned
+            if (!originalAvailable.hasOwnProperty(moveId)) {
+                // Check if this move exists and is available to other roles
+                const moveExists = window.moves && window.moves.find(m => m.id === moveId);
+                if (moveExists) {
+                    // console.log('Inferred learned move:', moveId, 'for role:', currentRole);
+                    addLearnedMoveQuiet(currentRole, moveId);
+                }
+            }
         }
     }
 }
@@ -314,8 +331,9 @@ function restoreLearnedMoves() {
 // Restore takefrom dropdown selections (called after DOM is updated)
 function restoreTakeFromSelections() {
     const urlParams = new URLSearchParams(location.search);
+    const currentRole = getCurrentRole();
     
-    // Find all takefrom dropdowns and restore their values
+    // Method 1: Restore from explicit URL parameters
     for (const [key, value] of urlParams.entries()) {
         if (key.includes('takefrom_') && value) {
             const element = document.getElementById(key);
@@ -339,6 +357,40 @@ function restoreTakeFromSelections() {
                 }
             }
         }
+    }
+    
+    // Method 2: Infer dropdown selections from learned moves
+    if (currentRole) {
+        // Find takefrom moves that are checked but don't have explicit dropdown settings
+        const takefromMoves = document.querySelectorAll('[id^="takefrom_"][id$="_role"]');
+        takefromMoves.forEach(roleSelect => {
+            const moveId = roleSelect.id.replace('takefrom_', '').replace('_role', '');
+            const moveSelect = document.getElementById(`takefrom_${moveId}_move`);
+            
+            // If role is not set but we have a learned move, try to infer it
+            if (roleSelect.value === '' && moveSelect) {
+                // Look for learned moves in the URL
+                for (const [key, value] of urlParams.entries()) {
+                    if (key.startsWith('move_') && value === '1') {
+                        const learnedMoveId = key.replace('move_', '').replace(/_\d+$/, '');
+                        
+                        // Check which role this move originally belongs to
+                        for (const [role, moves] of Object.entries(window.availableMap || {})) {
+                            if (role !== currentRole && moves.hasOwnProperty(learnedMoveId)) {
+                                // This move belongs to this role, set the dropdown
+                                roleSelect.value = role;
+                                updateMoveOptions(roleSelect, moveSelect, moveId);
+                                setTimeout(() => {
+                                    moveSelect.value = learnedMoveId;
+                                    // console.log('Inferred dropdown selections:', role, learnedMoveId);
+                                }, 100);
+                                return; // Exit the loop once we find a match
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
 }
 
