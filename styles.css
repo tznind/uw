@@ -257,6 +257,52 @@ button:focus {
   transform: scale(1.1);
 }
 
+/* === TAKEFROM OPTIONS === */
+.takefrom-options {
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.takefrom-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.takefrom-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.takefrom-controls select {
+  min-width: 150px;
+  padding: 6px 10px;
+  border: 2px solid #90caf9;
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+}
+
+.takefrom-controls select:focus {
+  border-color: #1976d2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.takefrom-controls select:disabled {
+  background: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
 /* === SECTION STYLING === */
 h3 {
   color: #2c3e50;
@@ -298,6 +344,22 @@ hr {
   
   .move-checkboxes input[type="checkbox"] {
     transform: scale(1.0);
+  }
+  
+  .takefrom-controls {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .takefrom-controls label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .takefrom-controls select {
+    min-width: 100%;
   }
 }
 

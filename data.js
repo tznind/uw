@@ -15,7 +15,7 @@ window.availableMap = {
         "d4e5f6": false,
         "g7h8i9": true,
         "1587dd": false,
-        "85757e": false
+        "nav001": false
     },
     "Mech Adept": {
         "m1a2b3": false,
@@ -26,7 +26,9 @@ window.availableMap = {
     "Lord Commander": {
         "l1a2b3": false,
         "l4c5d6": false,
-        "l7e8f9": false
+        "l7e8f9": false,
+        "lc001": false,
+        "adapt1": false
     }
 };
 
@@ -135,7 +137,7 @@ window.moves = [{
             "Reliable",
             "Precise",
             "Terrifying",
-            "Messy",
+            "Messy"
         ]
     }
 ];
@@ -311,5 +313,39 @@ window.moves.push(
                 ]
             }
         ]
+    },
+    {
+        id: "lc001",
+        title: "Tactical Superiority - Each time taken, add +1 die to tactical rolls",
+        multiple: 2,
+        outcomes: [{
+            range: "≥ 10",
+            text: "Your strategic insight is flawless. Enemies fall into your carefully laid traps.",
+            bullets: []
+        },
+        {
+            range: "7–9",
+            text: "Your tactics succeed, but choose one:",
+            bullets: [
+                "Victory comes at higher cost than expected",
+                "You reveal your strategic approach to watching enemies",
+                "Success breeds overconfidence in your ranks"
+            ]
+        },
+        {
+            range: "≤ 6",
+            text: "Your tactics backfire:",
+            bullets: [
+                "The enemy anticipated your move and counterattacks",
+                "Your forces are caught out of position",
+                "Morale suffers as troops question your leadership"
+            ]
+        }]
+    },
+    {
+        id: "adapt1",
+        title: "Adaptable - Learn techniques from other roles",
+        takefrom: ["Navigator", "Mech Adept"]
+    
     }
 );
