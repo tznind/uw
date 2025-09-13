@@ -7,7 +7,7 @@
   "patternProperties": {
     "^[A-Za-z ]+$": {
       "type": "object",
-      "description": "A role name (e.g., 'Navigator', 'Mech Adept', 'Lord Commander')",
+      "description": "A role name mapping to move availability",
       "patternProperties": {
         "^[a-zA-Z0-9]+$": {
           "type": "boolean",

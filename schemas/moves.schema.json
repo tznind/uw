@@ -9,7 +9,7 @@
     "properties": {
       "id": {
         "type": "string",
-        "description": "Unique identifier for the move",
+        "description": "Unique identifier for the move (must be unique across all moves)",
         "pattern": "^[a-zA-Z0-9]+$"
       },
       "title": {
@@ -61,8 +61,7 @@
             "type": "array",
             "description": "List of roles this move can be taken from",
             "items": {
-              "type": "string",
-              "enum": ["Navigator", "Mech Adept", "Lord Commander"]
+              "type": "string"
             }
           },
           "cost": {
@@ -74,14 +73,6 @@
         "required": ["roles"],
         "additionalProperties": false
       },
-      "tags": {
-        "type": "array",
-        "description": "Optional tags for categorizing moves",
-        "items": {
-          "type": "string",
-          "enum": ["combat", "social", "technical", "psychic", "navigation", "leadership"]
-        }
-      }
     },
     "required": ["id", "title"],
     "additionalProperties": false

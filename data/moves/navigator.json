@@ -3,7 +3,6 @@
     "id": "a1b2c3",
     "title": "Chart the Immaterium (+Conviction)",
     "description": "Plot a course through the warp using your navigator's gift and the ship's instruments. Roll +Conviction to pierce the veil between reality and the immaterium.",
-    "tags": ["navigation", "psychic"],
     "outcomes": [
       {
         "range": "≥ 10",
@@ -34,7 +33,6 @@
   {
     "id": "d4e5f6",
     "title": "Scan the Astropathic Beacon",
-    "tags": ["psychic", "technical"],
     "outcomes": [
       {
         "range": "≥ 10",
@@ -62,7 +60,6 @@
   {
     "id": "g7h8i9",
     "title": "Navigate the Warp Currents",
-    "tags": ["navigation", "psychic"],
     "outcomes": [
       {
         "range": "≥ 10",
@@ -91,7 +88,6 @@
     "id": "nav001",
     "title": "Navigator's Intuition - Sense warp disturbances",
     "description": "Use your third eye to peer into the warp and detect supernatural threats or phenomena. Your navigator heritage allows you to sense what others cannot.",
-    "tags": ["psychic", "navigation"],
     "outcomes": [
       {
         "range": "≥ 10",
@@ -120,7 +116,6 @@
   {
     "id": "1587dd",
     "title": "Blighted Eye - Your eye is a weapon inflicting moderate damage",
-    "tags": ["combat", "psychic"],
     "outcomes": [
       {
         "range": "",

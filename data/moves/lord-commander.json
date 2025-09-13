@@ -2,7 +2,6 @@
   {
     "id": "l1a2b3",
     "title": "Rally the Cohort (+Influence)",
-    "tags": ["leadership", "social"],
     "outcomes": [
       {
         "range": "≥ 10",
@@ -32,7 +31,6 @@
   {
     "id": "l4c5d6",
     "title": "Strategic Gambit (+Expertise)",
-    "tags": ["leadership"],
     "outcomes": [
       {
         "range": "≥ 10",
@@ -62,7 +60,6 @@
   {
     "id": "l7e8f9",
     "title": "Voice of Dominion (+Mettle)",
-    "tags": ["leadership", "social"],
     "outcomes": [
       {
         "range": "≥ 10",
@@ -92,7 +89,6 @@
   {
     "id": "lc001",
     "title": "Tactical Superiority - Each time taken, add +1 die to tactical rolls",
-    "tags": ["leadership"],
     "outcomes": [
       {
         "range": "≥ 10",
@@ -122,7 +118,6 @@
   {
     "id": "adapt1",
     "title": "Adaptable - Learn techniques from other roles",
-    "tags": ["leadership"],
     "takefrom": {
       "roles": ["Navigator", "Mech Adept"]
     }
