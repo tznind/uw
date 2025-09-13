@@ -126,39 +126,10 @@ window.Moves = (function() {
         });
     }
 
-    /**
-     * Get list of checked moves for current role
-     */
-    function getCheckedMoves() {
-        const checkedMoves = [];
-        const urlParams = new URLSearchParams(location.search);
-        
-        for (const [key, value] of urlParams) {
-            if (key.startsWith('move_') && value === '1') {
-                const moveId = extractMoveId(key);
-                checkedMoves.push(moveId);
-            }
-        }
-        
-        return checkedMoves;
-    }
-
-    /**
-     * Public API for external access
-     */
-    function renderMoves() {
-        const currentRole = window.Utils.getCurrentRole();
-        if (currentRole) {
-            renderMovesForRole(currentRole);
-        }
-    }
-
     // Public API
     return {
         initialize,
-        renderMovesForRole,
-        renderMoves,
-        getCheckedMoves
+        renderMovesForRole
     };
 })();
 

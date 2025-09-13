@@ -70,14 +70,8 @@
       roleSelect.appendChild(option);
     });
     
-    // Handle state changes (role updates)
-    function handleStateChange(inputId, value) {
-      // The new Moves module handles role changes automatically
-      // No need to manually call updateMoves here
-    }
-    
     // Initialize persistence first
-    window.Persistence.setupAutoPersistence(form, handleStateChange);
+    window.Persistence.setupAutoPersistence(form);
     
     // Load initial state from URL
     window.Persistence.loadFromURL(form);
@@ -89,7 +83,7 @@
       
       // Refresh persistence after moves are rendered to capture new checkboxes
       setTimeout(() => {
-        window.Persistence.refreshPersistence(form, handleStateChange);
+        window.Persistence.refreshPersistence(form);
       }, 100);
     }
   }
