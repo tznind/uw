@@ -54,9 +54,9 @@ window.JsonLoader = (function() {
      */
     async function loadAllRoleMoves() {
         const roleConfigs = [
-            { filePath: 'data/navigator.json', variableName: 'NavigatorMoves' },
-            { filePath: 'data/mech-adept.json', variableName: 'MechAdeptMoves' },
-            { filePath: 'data/lord-commander.json', variableName: 'LordCommanderMoves' }
+            { filePath: 'data/moves/navigator.json', variableName: 'NavigatorMoves' },
+            { filePath: 'data/moves/mech-adept.json', variableName: 'MechAdeptMoves' },
+            { filePath: 'data/moves/lord-commander.json', variableName: 'LordCommanderMoves' }
         ];
 
         return loadMultipleJsonData(roleConfigs);

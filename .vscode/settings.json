@@ -2,9 +2,7 @@
   "json.schemas": [
     {
       "fileMatch": [
-        "data/navigator.json",
-        "data/mech-adept.json", 
-        "data/lord-commander.json"
+        "data/moves/*.json"
       ],
       "url": "./schemas/moves.schema.json"
     },
