@@ -1,27 +1,22 @@
 [
   {
     "id": "mettle",
-    "title": "METTLE",
-    "description": "Your courage, determination, and force of will in the face of danger"
+    "title": "METTLE"
   },
   {
     "id": "physique",
-    "title": "PHYSIQUE",
-    "description": "Your physical strength, endurance, and bodily prowess"
+    "title": "PHYSIQUE"
   },
   {
     "id": "influence",
-    "title": "INFLUENCE",
-    "description": "Your social standing, charisma, and ability to command others"
+    "title": "INFLUENCE"
   },
   {
     "id": "expertise",
-    "title": "EXPERTISE",
-    "description": "Your knowledge, technical skills, and professional competence"
+    "title": "EXPERTISE"
   },
   {
     "id": "conviction",
-    "title": "CONVICTION",
-    "description": "Your faith, spiritual strength, and resistance to corruption"
+    "title": "CONVICTION"
   }
 ]

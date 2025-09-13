@@ -17,19 +17,15 @@ window.initializeMovesData = async function() {
         // Load all game data
         await window.JsonLoader.loadAllGameData();
         
-        // Combine moves from all roles
+        // Combine moves from all roles (dynamically discover loaded move variables)
         window.moves = [];
         
-        if (window.NavigatorMoves) {
-            window.moves = window.moves.concat(window.NavigatorMoves);
-        }
-        
-        if (window.MechAdeptMoves) {
-            window.moves = window.moves.concat(window.MechAdeptMoves);
-        }
-        
-        if (window.LordCommanderMoves) {
-            window.moves = window.moves.concat(window.LordCommanderMoves);
+        // Look for all variables ending with "Moves" and combine them
+        for (const key in window) {
+            if (key.endsWith('Moves') && Array.isArray(window[key])) {
+                console.log(`Found move data: ${key} with ${window[key].length} moves`);
+                window.moves = window.moves.concat(window[key]);
+            }
         }
         
         console.log('All game data initialized:', window.moves.length, 'moves loaded');

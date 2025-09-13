@@ -49,15 +49,67 @@ window.JsonLoader = (function() {
     }
 
     /**
-     * Load all role move files
+     * Discover JSON files in the data/moves directory
+     * @returns {Promise<Array>} Promise that resolves to array of filenames
+     */
+    async function discoverMoveFiles() {
+        try {
+            // Try to fetch the directory listing (this works with some servers)
+            // As fallback, we'll try common patterns
+            const response = await fetch('data/moves/');
+            if (response.ok) {
+                const html = await response.text();
+                // Extract .json filenames from directory listing HTML
+                const matches = html.match(/href="([^"]+\.json)"/g) || [];
+                return matches.map(match => match.match(/"([^"]+)"/)[1]);
+            }
+        } catch (error) {
+            console.warn('Could not auto-discover move files, trying known patterns:', error);
+        }
+        
+        // Fallback: try to load common filename patterns
+        const commonPatterns = [
+            'navigator.json', 'mech-adept.json', 'lord-commander.json',
+            'rogue-trader.json', 'seneschal.json', 'explorator.json',
+            'missionary.json', 'arch-militant.json', 'void-master.json'
+        ];
+        
+        const existingFiles = [];
+        for (const filename of commonPatterns) {
+            try {
+                const response = await fetch(`data/moves/${filename}`, { method: 'HEAD' });
+                if (response.ok) {
+                    existingFiles.push(filename);
+                }
+            } catch (error) {
+                // File doesn't exist, continue
+            }
+        }
+        
+        return existingFiles;
+    }
+
+    /**
+     * Load all role move files by discovering JSON files in data/moves/
      * @returns {Promise} Promise that resolves when all role moves are loaded
      */
     async function loadAllRoleMoves() {
-        const roleConfigs = [
-            { filePath: 'data/moves/navigator.json', variableName: 'NavigatorMoves' },
-            { filePath: 'data/moves/mech-adept.json', variableName: 'MechAdeptMoves' },
-            { filePath: 'data/moves/lord-commander.json', variableName: 'LordCommanderMoves' }
-        ];
+        // Get list of JSON files in the moves directory
+        const moveFiles = await discoverMoveFiles();
+        
+        const roleConfigs = moveFiles.map(fileName => {
+            // Convert filename to variable name (e.g., "navigator.json" -> "NavigatorMoves")
+            const baseName = fileName.replace('.json', '');
+            const variableName = baseName
+                .split('-')
+                .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+                .join('') + 'Moves';
+            
+            return {
+                filePath: `data/moves/${fileName}`,
+                variableName: variableName
+            };
+        });
 
         return loadMultipleJsonData(roleConfigs);
     }

@@ -16,10 +16,6 @@
         "type": "string",
         "description": "Display title of the stat (usually uppercase)"
       },
-      "description": {
-        "type": "string",
-        "description": "Optional description of what this stat represents"
-      },
       "max": {
         "type": "integer",
         "description": "Maximum value for this stat",
