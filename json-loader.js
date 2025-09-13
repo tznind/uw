@@ -8,11 +8,17 @@ window.JsonLoader = (function() {
 
     /**
      * Load a JSON file and assign it to a window variable
+     * For file:// URLs, we need to load the data via script tags instead of fetch
      * @param {string} filePath - Path to the JSON file
      * @param {string} variableName - Name of the window variable to assign to
      * @returns {Promise} Promise that resolves when the JSON is loaded
      */
     async function loadJsonData(filePath, variableName) {
+        // Check if we're running from file:// protocol
+        if (location.protocol === 'file:') {
+            throw new Error(`Cannot use fetch with file:// protocol for ${filePath}. Use embedded data instead.`);
+        }
+        
         try {
             const response = await fetch(filePath);
             if (!response.ok) {
@@ -21,7 +27,7 @@ window.JsonLoader = (function() {
             
             const data = await response.json();
             window[variableName] = data;
-            console.log(`Loaded ${variableName} from ${filePath}:`, data.length, 'items');
+            console.log(`Loaded ${variableName} from ${filePath}:`, data.length || 'object', typeof data === 'object' ? 'loaded' : 'items');
             return data;
         } catch (error) {
             console.error(`Error loading ${filePath}:`, error);

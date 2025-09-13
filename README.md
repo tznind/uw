@@ -25,6 +25,23 @@ This means your players can:
 
 Each player can track their own sheet independently by keeping their own link.
 
+## Running Locally
+
+Due to browser CORS restrictions, you need to run a local server to test changes:
+
+```powershell
+# Python
+python -m http.server 8000
+
+# Node.js
+npx serve .
+
+# PHP  
+php -S localhost:8000
+```
+
+Then visit `http://localhost:8000/cs.html`
+
 ## Create your own
 
 To make your own rule set with custom moves and roles:
@@ -33,7 +50,7 @@ To make your own rule set with custom moves and roles:
 
    <img width="264" height="163" alt="GitHub template button" src="https://github.com/user-attachments/assets/6c97f925-6db8-4687-ba26-101705bf736e" />
 
-2. Update [`data.js`](./data/data.js) with your content.  
+2. Update the JSON files in the `data/` folder with your content.  
 3. Enable **GitHub Pages** in your repository settings (Settings=>Pages).  
 4. Visit your sheet at:  
 
