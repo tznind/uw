@@ -1,0 +1,24 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "data/navigator.json",
+        "data/mech-adept.json", 
+        "data/lord-commander.json"
+      ],
+      "url": "./schemas/moves.schema.json"
+    },
+    {
+      "fileMatch": [
+        "data/stats.json"
+      ],
+      "url": "./schemas/stats.schema.json"
+    },
+    {
+      "fileMatch": [
+        "data/availability.json"
+      ],
+      "url": "./schemas/availability.schema.json"
+    }
+  ]
+}

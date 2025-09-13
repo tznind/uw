@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://roguetrader.local/schemas/moves.schema.json",
+  "title": "Rogue Trader Moves",
+  "description": "Schema for Rogue Trader character moves data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the move",
+        "pattern": "^[a-zA-Z0-9]+$"
+      },
+      "title": {
+        "type": "string",
+        "description": "Display title of the move"
+      },
+      "description": {
+        "type": "string",
+        "description": "Detailed description of when and how to use this move"
+      },
+      "outcomes": {
+        "type": "array",
+        "description": "Array of possible outcomes based on dice roll ranges",
+        "items": {
+          "type": "object",
+          "properties": {
+            "range": {
+              "type": "string",
+              "description": "Dice roll range (e.g., '≥ 10', '7–9', '≤ 6')"
+            },
+            "text": {
+              "type": "string",
+              "description": "Description of what happens on this outcome"
+            },
+            "bullets": {
+              "type": "array",
+              "description": "Optional bullet points for choices or effects",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["range", "text"],
+          "additionalProperties": false
+        }
+      },
+      "pick": {
+        "type": "array",
+        "description": "Array of options for pick-one moves",
+        "items": {
+          "type": "string"
+        }
+      },
+      "takefrom": {
+        "type": "object",
+        "description": "Configuration for moves that can be learned from other roles",
+        "properties": {
+          "roles": {
+            "type": "array",
+            "description": "List of roles this move can be taken from",
+            "items": {
+              "type": "string",
+              "enum": ["Navigator", "Mech Adept", "Lord Commander"]
+            }
+          },
+          "cost": {
+            "type": "integer",
+            "description": "Experience cost to learn this move",
+            "minimum": 0
+          }
+        },
+        "required": ["roles"],
+        "additionalProperties": false
+      },
+      "tags": {
+        "type": "array",
+        "description": "Optional tags for categorizing moves",
+        "items": {
+          "type": "string",
+          "enum": ["combat", "social", "technical", "psychic", "navigation", "leadership"]
+        }
+      }
+    },
+    "required": ["id", "title"],
+    "additionalProperties": false
+  }
+}
