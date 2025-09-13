@@ -25,7 +25,13 @@
       <select id="role" name="role">
         <option value="">Select role...</option>
       </select>
-      <button type="button" id="copy-url-button">Copy URL</button>
+      <button type="button" id="copy-url-button">
+        <span class="button-text">Copy URL</span>
+        <span class="success-text">
+          <span class="checkmark"></span>
+          Copied!
+        </span>
+      </button>
       <button type="button" id="clear-button">Clear</button>
     </div>
     <hr>
@@ -104,8 +110,18 @@
   });
   
   document.getElementById('copy-url-button').addEventListener('click', () => {
+    const button = document.getElementById('copy-url-button');
+    
     window.Persistence.copyURLToClipboard()
-      .then(() => alert('URL copied to clipboard!'))
+      .then(() => {
+        // Show success state
+        button.classList.add('success');
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+          button.classList.remove('success');
+        }, 2000);
+      })
       .catch(err => {
         console.error('Failed to copy URL:', err);
         alert('Failed to copy URL to clipboard');

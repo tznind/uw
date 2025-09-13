@@ -77,6 +77,69 @@ button:focus {
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
 }
 
+/* === COPY BUTTON STATES === */
+#copy-url-button {
+  position: relative;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+#copy-url-button.success {
+  background: #28a745;
+  color: white;
+}
+
+#copy-url-button.success:hover {
+  background: #218838;
+}
+
+#copy-url-button .button-text {
+  transition: opacity 0.2s ease;
+}
+
+#copy-url-button .success-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+}
+
+#copy-url-button.success .button-text {
+  opacity: 0;
+}
+
+#copy-url-button.success .success-text {
+  opacity: 1;
+}
+
+/* Checkmark icon using CSS */
+.checkmark {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkmark::after {
+  content: '';
+  width: 4px;
+  height: 8px;
+  border: 2px solid #28a745;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
 /* === HEX STATS SECTION === */
 .hex-container {
   display: flex;
