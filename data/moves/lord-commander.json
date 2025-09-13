@@ -89,6 +89,7 @@
   {
     "id": "lc001",
     "title": "Tactical Superiority - Each time taken, add +1 die to tactical rolls",
+    "multiple": 2,
     "outcomes": [
       {
         "range": "≥ 10",
