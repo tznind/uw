@@ -30,7 +30,7 @@ To make your own rule set with custom moves and roles:
 
    <img width="264" height="163" alt="GitHub template button" src="https://github.com/user-attachments/assets/6c97f925-6db8-4687-ba26-101705bf736e" />
 
-2. Update [`data.js`](./data.js) with your content.  
+2. Update [`data.js`](./data/data.js) with your content.  
 3. Enable **GitHub Pages** in your repository settings (Settings=>Pages).  
 4. Visit your sheet at:  
 
