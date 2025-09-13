@@ -118,8 +118,6 @@
   {
     "id": "adapt1",
     "title": "Adaptable - Learn techniques from other roles",
-    "takefrom": {
-      "roles": ["Navigator", "Mech Adept"]
-    }
+    "takefrom": ["Navigator", "Mech Adept"]
   }
 ]

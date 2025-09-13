@@ -54,24 +54,11 @@
         }
       },
       "takefrom": {
-        "type": "object",
-        "description": "Configuration for moves that can be learned from other roles",
-        "properties": {
-          "roles": {
-            "type": "array",
-            "description": "List of roles this move can be taken from",
-            "items": {
-              "type": "string"
-            }
-          },
-          "cost": {
-            "type": "integer",
-            "description": "Experience cost to learn this move",
-            "minimum": 0
-          }
-        },
-        "required": ["roles"],
-        "additionalProperties": false
+        "type": "array",
+        "description": "List of roles this move can be taken from",
+        "items": {
+          "type": "string"
+        }
       },
     },
     "required": ["id", "title"],
