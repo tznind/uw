@@ -6,6 +6,7 @@ window.NavigatorMoves = [
     {
         id: "a1b2c3",
         title: "Chart the Immaterium (+Conviction)",
+        description: "Plot a course through the warp using your navigator's gift and the ship's instruments. Roll +Conviction to pierce the veil between reality and the immaterium.",
         outcomes: [{
                 range: "≥ 10",
                 text: "The passage is smooth and precise. You emerge exactly where intended.",
@@ -87,6 +88,7 @@ window.NavigatorMoves = [
     {
         id: "nav001",
         title: "Navigator's Intuition - Sense warp disturbances",
+        description: "Use your third eye to peer into the warp and detect supernatural threats or phenomena. Your navigator heritage allows you to sense what others cannot.",
         outcomes: [{
             range: "≥ 10",
             text: "Your third eye perceives all warp fluctuations clearly. You see the path forward.",
