@@ -44,3 +44,17 @@ https://your_name.github.io/your_repository_name/cs.html
 You can read more about Powered by the Apocalypse, including their permissive license terms, here:
 
 https://lumpley.games/2023/11/22/what-is-pbta/
+
+## Sync changes
+
+If after using the template, if find new features have been added that you want to sync into your repository run the following to sync changes:
+
+```
+git remote add upstream https://github.com/tznind/lc
+git fetch upstream
+
+git checkout main
+git merge upstream/main --allow-unrelated-histories
+```
+
+(for merge conflicts e.g. in data folder - always keep your own changes and discard incoming)
