@@ -25,23 +25,6 @@ This means your players can:
 
 Each player can track their own sheet independently by keeping their own link.
 
-## Running Locally
-
-Due to browser CORS restrictions, you need to run a local server to test changes:
-
-```powershell
-# Python
-python -m http.server 8000
-
-# Node.js
-npx serve .
-
-# PHP  
-php -S localhost:8000
-```
-
-Then visit `http://localhost:8000/cs.html`
-
 ## Create your own
 
 To make your own rule set with custom moves and roles:
@@ -75,3 +58,21 @@ git merge upstream/main --allow-unrelated-histories
 ```
 
 (for merge conflicts e.g. in data folder - always keep your own changes and discard incoming)
+
+## Running Locally
+
+To run the page locally (i.e. not in GitHub Pages) you can use any of:
+
+```powershell
+# Python
+python -m http.server 8000
+
+# Node.js
+npx serve .
+
+# PHP  
+php -S localhost:8000
+```
+
+Then visit `http://localhost:8000/cs.html`
+
