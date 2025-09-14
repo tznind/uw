@@ -128,6 +128,19 @@
         alert('Failed to copy URL to clipboard');
       });
   });
+  
+  // Listen for hide untaken moves checkbox changes
+  document.getElementById('hide_untaken').addEventListener('change', () => {
+    const currentRole = roleSelect.value;
+    if (currentRole && window.Moves) {
+      window.Moves.renderMovesForRole(currentRole);
+      
+      // Refresh persistence after re-render
+      setTimeout(() => {
+        window.Persistence.refreshPersistence(form);
+      }, 50);
+    }
+  });
 </script>
 
 </body>

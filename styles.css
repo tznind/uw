@@ -436,16 +436,6 @@ button:focus {
   border: 1px solid #1976d2;
 }
 
-/* === HIDE UNTAKEN MOVES === */
-/* When hide-untaken-moves is checked, hide moves that have no checked boxes */
-#hide-untaken-moves:checked ~ #moves .move:not(.move-taken) {
-  display: none;
-}
-
-/* A move is considered taken if any of its checkboxes are checked */
-.move:has(input[type="checkbox"]:checked) {
-  /* This selector will be applied by JavaScript since :has() isn't fully supported */
-}
 
 /* === SECTION STYLING === */
 h3 {
@@ -455,10 +445,6 @@ h3 {
   font-weight: 600;
 }
 
-/* Category headers should always be visible when hiding untaken moves */
-#hide-untaken-moves:checked ~ #moves .category-header {
-  display: block;
-}
 
 /* === DIVIDERS === */
 hr {
