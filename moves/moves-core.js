@@ -213,6 +213,41 @@ window.MovesCore = (function() {
     }
 
     /**
+     * Create category header element
+     */
+    function createCategoryHeader(categoryName) {
+        const headerElement = document.createElement("h3");
+        headerElement.className = "category-header";
+        headerElement.textContent = categoryName;
+        return headerElement;
+    }
+
+    /**
+     * Group moves by category
+     */
+    function groupMovesByCategory(moves, available) {
+        const groups = {
+            uncategorized: [], // Moves without category go here
+            categorized: new Map() // Map of category name to moves
+        };
+        
+        moves.forEach(move => {
+            if (available.hasOwnProperty(move.id)) {
+                if (!move.category) {
+                    groups.uncategorized.push(move);
+                } else {
+                    if (!groups.categorized.has(move.category)) {
+                        groups.categorized.set(move.category, []);
+                    }
+                    groups.categorized.get(move.category).push(move);
+                }
+            }
+        });
+        
+        return groups;
+    }
+
+    /**
      * Render all moves for a role
      */
     function renderMovesForRole(role) {
@@ -228,12 +263,31 @@ window.MovesCore = (function() {
         const available = window.availableMap[role];
         const urlParams = new URLSearchParams(location.search);
         
-        // Filter and render available moves
-        window.moves.forEach(move => {
-            if (available.hasOwnProperty(move.id)) {
+        // Group moves by category
+        const groups = groupMovesByCategory(window.moves, available);
+        
+        // First render uncategorized moves under "Moves" header
+        if (groups.uncategorized.length > 0) {
+            const movesHeader = createCategoryHeader("Moves");
+            movesContainer.appendChild(movesHeader);
+            
+            groups.uncategorized.forEach(move => {
                 const moveElement = renderMove(move, available, urlParams);
                 movesContainer.appendChild(moveElement);
-            }
+            });
+        }
+        
+        // Then render categorized moves with their category headers
+        const sortedCategories = Array.from(groups.categorized.keys()).sort();
+        sortedCategories.forEach(categoryName => {
+            const categoryHeader = createCategoryHeader(categoryName);
+            movesContainer.appendChild(categoryHeader);
+            
+            const categoryMoves = groups.categorized.get(categoryName);
+            categoryMoves.forEach(move => {
+                const moveElement = renderMove(move, available, urlParams);
+                movesContainer.appendChild(moveElement);
+            });
         });
     }
 
@@ -244,6 +298,8 @@ window.MovesCore = (function() {
         createDescription,
         createOutcome,
         createPickOptions,
+        createCategoryHeader,
+        groupMovesByCategory,
         renderMove,
         renderMovesForRole
     };
