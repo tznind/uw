@@ -17,6 +17,9 @@ window.Moves = (function() {
         
         // Listen for availableMap updates
         setupAvailableMapUpdateListener();
+        
+        // Set up hide untaken moves toggle
+        setupHideUntakenMovesToggle();
     }
 
     /**
@@ -96,6 +99,8 @@ window.Moves = (function() {
                     // Add a small delay to ensure DOM is fully updated
                     setTimeout(() => {
                         window.Persistence.refreshPersistence(form);
+                        // Update move-taken classifications after persistence is set up
+                        updateMoveTakenClasses();
                     }, 50);
                 }
             }
@@ -126,10 +131,65 @@ window.Moves = (function() {
         });
     }
 
+    /**
+     * Check if a move is "taken" (has any checked checkboxes)
+     */
+    function iMoveTaken(moveElement) {
+        // Check for regular move checkboxes
+        const moveCheckboxes = moveElement.querySelectorAll('input[type="checkbox"][id^="move_"]:not([id*="_pick_"])');
+        for (const checkbox of moveCheckboxes) {
+            if (checkbox.checked) {
+                return true;
+            }
+        }
+        
+        // Check for pick option checkboxes
+        const pickCheckboxes = moveElement.querySelectorAll('input[type="checkbox"][id*="_pick_"]');
+        for (const checkbox of pickCheckboxes) {
+            if (checkbox.checked) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    /**
+     * Update move-taken class for all moves
+     */
+    function updateMoveTakenClasses() {
+        const moves = document.querySelectorAll('.move');
+        moves.forEach(moveElement => {
+            if (iMoveTaken(moveElement)) {
+                moveElement.classList.add('move-taken');
+            } else {
+                moveElement.classList.remove('move-taken');
+            }
+        });
+    }
+
+    /**
+     * Set up hide untaken moves toggle functionality
+     */
+    function setupHideUntakenMovesToggle() {
+        // Update move-taken classes whenever any checkbox changes
+        document.addEventListener('change', (event) => {
+            if (event.target.type === 'checkbox' && 
+                (event.target.id.startsWith('move_') || event.target.id.includes('_pick_'))) {
+                // Small delay to ensure persistence has processed the change first
+                setTimeout(updateMoveTakenClasses, 10);
+            }
+        });
+        
+        // Initial classification when moves are rendered
+        setTimeout(updateMoveTakenClasses, 50);
+    }
+
     // Public API
     return {
         initialize,
-        renderMovesForRole
+        renderMovesForRole,
+        updateMoveTakenClasses
     };
 })();
 
