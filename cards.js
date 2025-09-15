@@ -134,9 +134,9 @@ window.Cards = (function() {
         // Clear existing cards
         container.innerHTML = '';
 
-        // Get card list for this role
-        const cardIds = getCardsForRole(role);
-        if (!cardIds || cardIds.length === 0) {
+        // Get card definitions for this role
+        const cardDefs = getCardsForRole(role);
+        if (!cardDefs || cardDefs.length === 0) {
             // Hide container if no cards
             container.style.display = 'none';
             return;
@@ -147,12 +147,12 @@ window.Cards = (function() {
 
         try {
             // Load and render each card
-            for (const cardId of cardIds) {
-                const cardData = await loadCard(cardId);
+            for (const cardDef of cardDefs) {
+                const cardData = await loadCard(cardDef.id);
                 
                 const cardWrapper = document.createElement('div');
                 cardWrapper.className = 'card-wrapper';
-                cardWrapper.setAttribute('data-card-id', cardId);
+                cardWrapper.setAttribute('data-card-id', cardDef.id);
                 cardWrapper.innerHTML = cardData.html;
                 container.appendChild(cardWrapper);
             }
@@ -174,37 +174,48 @@ window.Cards = (function() {
     }
 
     /**
-     * Get list of card IDs for a role from availability data
+     * Get list of card definitions for a role from cards data
      * @param {string} role - The role to get cards for
-     * @returns {string[]} Array of card IDs
+     * @returns {Array} Array of card objects with id and path
      */
     function getCardsForRole(role) {
-        if (!window.availableMap || !window.availableMap[role]) {
+        if (!window.cardsData || !window.cardsData[role]) {
             return [];
         }
 
-        const roleData = window.availableMap[role];
-        return roleData._cards || [];
+        return window.cardsData[role] || [];
     }
 
     /**
      * Add a card to a role (useful for moves that grant cards)
      * @param {string} role - The role to add the card to
-     * @param {string} cardId - ID of the card to add
+     * @param {string|object} cardIdOrDef - Card ID (string) or card definition object {id, path}
      */
-    function addCardToRole(role, cardId) {
-        if (!window.availableMap || !window.availableMap[role]) {
-            console.error(`Role not found: ${role}`);
+    function addCardToRole(role, cardIdOrDef) {
+        if (!window.cardsData) {
+            console.error('Cards data not loaded');
             return;
         }
-
-        const roleData = window.availableMap[role];
-        if (!roleData._cards) {
-            roleData._cards = [];
+        
+        if (!window.cardsData[role]) {
+            window.cardsData[role] = [];
         }
 
-        if (!roleData._cards.includes(cardId)) {
-            roleData._cards.push(cardId);
+        // Handle both string IDs and card objects
+        let cardDef;
+        if (typeof cardIdOrDef === 'string') {
+            cardDef = {
+                id: cardIdOrDef,
+                path: `data/cards/${cardIdOrDef}`
+            };
+        } else {
+            cardDef = cardIdOrDef;
+        }
+
+        // Check if card is already present
+        const existingCard = window.cardsData[role].find(card => card.id === cardDef.id);
+        if (!existingCard) {
+            window.cardsData[role].push(cardDef);
             
             // Trigger re-render if this is the current role
             const currentRole = getCurrentRole();
@@ -220,14 +231,13 @@ window.Cards = (function() {
      * @param {string} cardId - ID of the card to remove
      */
     function removeCardFromRole(role, cardId) {
-        if (!window.availableMap || !window.availableMap[role] || !window.availableMap[role]._cards) {
+        if (!window.cardsData || !window.cardsData[role]) {
             return;
         }
 
-        const roleData = window.availableMap[role];
-        const index = roleData._cards.indexOf(cardId);
+        const index = window.cardsData[role].findIndex(card => card.id === cardId);
         if (index > -1) {
-            roleData._cards.splice(index, 1);
+            window.cardsData[role].splice(index, 1);
             
             // Trigger re-render if this is the current role
             const currentRole = getCurrentRole();
@@ -271,15 +281,22 @@ window.Cards = (function() {
     }
 
     /**
-     * List all available cards (scans data/cards directory)
-     * This is a helper for development - in production you'd know your card IDs
-     * @returns {Promise<string[]>} Array of available card IDs
+     * List all available cards from the cards data
+     * @returns {string[]} Array of unique card IDs across all roles
      */
-    async function listAvailableCards() {
-        // This is a simplified version - in a real implementation you might
-        // want to have a cards registry or scan the filesystem
-        const knownCards = ['ship', 'crew']; // Add more as needed
-        return knownCards;
+    function listAvailableCards() {
+        if (!window.cardsData) {
+            console.warn('Cards data not loaded');
+            return [];
+        }
+        
+        const allCards = new Set();
+        for (const role in window.cardsData) {
+            const roleCards = window.cardsData[role] || [];
+            roleCards.forEach(card => allCards.add(card.id));
+        }
+        
+        return Array.from(allCards);
     }
 
     /**

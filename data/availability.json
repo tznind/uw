@@ -1,7 +1,6 @@
 {
   "Navigator": {
     "_movesFile": "data/moves/navigator.json",
-    "_cards": [],
     "a1b2c3": true,
     "d4e5f6": false,
     "g7h8i9": true,
@@ -10,7 +9,6 @@
   },
   "Mech Adept": {
     "_movesFile": "data/moves/mech-adept.json",
-    "_cards": [],
     "m1a2b3": false,
     "m4c5d6": false,
     "m7e8f9": false,
@@ -19,7 +17,6 @@
   },
   "Lord Commander": {
     "_movesFile": "data/moves/lord-commander.json",
-    "_cards": ["ship"],
     "l1a2b3": false,
     "l4c5d6": false,
     "l7e8f9": false,

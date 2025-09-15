@@ -1,0 +1,15 @@
+{
+  "Navigator": [],
+  "Mech Adept": [
+    {
+      "id": "robotic-companion",
+      "path": "data/cards/robotic-companion"
+    }
+  ],
+  "Lord Commander": [
+    {
+      "id": "ship",
+      "path": "data/cards/ship"
+    }
+  ]
+}
