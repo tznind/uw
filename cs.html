@@ -90,23 +90,23 @@
     // Render initial moves and cards based on selected role
     const initialRole = roleSelect.value;
     if (initialRole) {
-      // Render cards first
+      // Render cards first (async)
       if (window.Cards) {
-        window.Cards.renderCardsForRole(initialRole);
+        await window.Cards.renderCardsForRole(initialRole);
       }
       
-      // Then render moves
+      // Then render moves (without persistence refresh)
       if (window.Moves) {
-        window.Moves.renderMovesForRole(initialRole);
+        window.Moves.renderMovesForRole(initialRole, false);
       }
       if (window.GrantCard) {
         window.GrantCard.handleRoleChange(initialRole);
       }
       
-      // Refresh persistence after everything loads
+      // Refresh persistence after everything loads to restore card values
       setTimeout(() => {
         window.Persistence.refreshPersistence(form);
-      }, 300);
+      }, 500);
     }
   }
   
@@ -153,12 +153,7 @@
   document.getElementById('hide_untaken').addEventListener('change', () => {
     const currentRole = roleSelect.value;
     if (currentRole) {
-      // Render cards first
-      if (window.Cards) {
-        window.Cards.renderCardsForRole(currentRole);
-      }
-      
-      // Then render moves
+      // Only re-render moves, not cards (cards shouldn't change when hiding/showing moves)
       if (window.Moves) {
         window.Moves.renderMovesForRole(currentRole);
       }
@@ -166,9 +161,10 @@
         window.GrantCard.handleRoleChange(currentRole);
       }
       
+      // Refresh persistence after moves are re-rendered
       setTimeout(() => {
         window.Persistence.refreshPersistence(form);
-      }, 250);
+      }, 100);
     }
   });
 </script>

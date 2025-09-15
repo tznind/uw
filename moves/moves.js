@@ -78,16 +78,16 @@ window.Moves = (function() {
     function setupRoleChangeListener() {
         const roleSelect = document.getElementById('role');
         if (roleSelect) {
-        roleSelect.addEventListener('change', (event) => {
+        roleSelect.addEventListener('change', async (event) => {
             const selectedRole = event.target.value;
             
-            // Render cards first
+            // Render cards first and wait for completion
             if (selectedRole && window.Cards) {
-                window.Cards.renderCardsForRole(selectedRole);
+                await window.Cards.renderCardsForRole(selectedRole);
             }
             
             // Then render moves
-            renderMovesForRole(selectedRole);
+            renderMovesForRole(selectedRole, false); // Don't refresh persistence yet
             
             // Restore any learned moves from the URL
             restoreLearnedMoves(selectedRole);
@@ -95,6 +95,16 @@ window.Moves = (function() {
             // Handle card grants for the new role
             if (window.GrantCard) {
                 window.GrantCard.handleRoleChange(selectedRole);
+            }
+            
+            // Now refresh persistence after everything is loaded
+            if (window.Persistence) {
+                const form = document.querySelector('form');
+                if (form) {
+                    setTimeout(() => {
+                        window.Persistence.refreshPersistence(form);
+                    }, 100);
+                }
             }
         });
         }
@@ -114,13 +124,15 @@ window.Moves = (function() {
 
     /**
      * Render moves for a specific role
+     * @param {string} role - The role to render moves for
+     * @param {boolean} refreshPersistence - Whether to refresh persistence after rendering (default: true)
      */
-    function renderMovesForRole(role) {
+    function renderMovesForRole(role, refreshPersistence = true) {
         if (window.MovesCore) {
             window.MovesCore.renderMovesForRole(role);
             
             // After rendering moves, refresh persistence to handle new checkboxes
-            if (window.Persistence) {
+            if (refreshPersistence && window.Persistence) {
                 const form = document.querySelector('form');
                 if (form) {
                     // Add a small delay to ensure DOM is fully updated

@@ -157,15 +157,10 @@ window.Cards = (function() {
                 container.appendChild(cardWrapper);
             }
 
-            // After all cards are rendered, refresh persistence to capture new inputs
-            if (window.Persistence) {
-                const form = document.querySelector('form');
-                if (form) {
-                    setTimeout(() => {
-                        window.Persistence.refreshPersistence(form);
-                    }, 100);
-                }
-            }
+            // Cards are now rendered and ready for persistence
+            console.log(`Rendered ${cardDefs.length} cards for role: ${role}`);
+            
+            // Note: Persistence refresh is handled by the caller
 
         } catch (error) {
             console.error('Error rendering cards:', error);
@@ -303,22 +298,9 @@ window.Cards = (function() {
      * Initialize cards system
      */
     function initialize() {
-        // Listen for role changes to re-render cards
-        const roleSelect = document.getElementById('role');
-        if (roleSelect) {
-            roleSelect.addEventListener('change', (event) => {
-                const selectedRole = event.target.value;
-                if (selectedRole) {
-                    renderCardsForRole(selectedRole);
-                } else {
-                    // Hide cards if no role selected
-                    const container = document.getElementById('cards-container');
-                    if (container) {
-                        container.style.display = 'none';
-                    }
-                }
-            });
-        }
+        // Cards are now managed by the moves system role change listener
+        // No separate role change handling needed here
+        console.log('Cards system initialized');
     }
 
     // Public API
