@@ -80,6 +80,13 @@ window.Moves = (function() {
         if (roleSelect) {
         roleSelect.addEventListener('change', (event) => {
             const selectedRole = event.target.value;
+            
+            // Render cards first
+            if (selectedRole && window.Cards) {
+                window.Cards.renderCardsForRole(selectedRole);
+            }
+            
+            // Then render moves
             renderMovesForRole(selectedRole);
             
             // Restore any learned moves from the URL

@@ -69,6 +69,10 @@
       "category": {
         "type": "string",
         "description": "Optional category for grouping moves (moves without a category appear first under 'Moves')"
+      },
+      "grantsCard": {
+        "type": "string",
+        "description": "Card name to grant when this move is selected"
       }
     },
     "required": ["id", "title"],

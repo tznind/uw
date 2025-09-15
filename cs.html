@@ -45,6 +45,8 @@
     <div id="stats-container"></div>
     <hr>
     
+    <div id="cards-container"></div>
+    
     <div id="moves"></div>
   </form>
 
@@ -85,9 +87,15 @@
     // Load initial state from URL
     window.Persistence.loadFromURL(form);
     
-    // Render initial moves based on selected role
+    // Render initial moves and cards based on selected role
     const initialRole = roleSelect.value;
     if (initialRole) {
+      // Render cards first
+      if (window.Cards) {
+        window.Cards.renderCardsForRole(initialRole);
+      }
+      
+      // Then render moves
       if (window.Moves) {
         window.Moves.renderMovesForRole(initialRole);
       }
@@ -115,6 +123,11 @@
     if (movesContainer) {
       movesContainer.innerHTML = '';
     }
+    // Clear cards display
+    const cardsContainer = document.getElementById('cards-container');
+    if (cardsContainer) {
+      cardsContainer.innerHTML = '';
+    }
   });
   
   document.getElementById('copy-url-button').addEventListener('click', () => {
@@ -139,8 +152,16 @@
   // Listen for hide untaken moves checkbox changes
   document.getElementById('hide_untaken').addEventListener('change', () => {
     const currentRole = roleSelect.value;
-    if (currentRole && window.Moves) {
-      window.Moves.renderMovesForRole(currentRole);
+    if (currentRole) {
+      // Render cards first
+      if (window.Cards) {
+        window.Cards.renderCardsForRole(currentRole);
+      }
+      
+      // Then render moves
+      if (window.Moves) {
+        window.Moves.renderMovesForRole(currentRole);
+      }
       if (window.GrantCard) {
         window.GrantCard.handleRoleChange(currentRole);
       }

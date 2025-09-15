@@ -13,6 +13,14 @@
           "type": "string",
           "description": "Path to the JSON file containing moves for this role",
           "pattern": "^data/moves/.+\\.json$"
+        },
+        "_cards": {
+          "type": "array",
+          "description": "Default cards assigned to this role (not associated with moves)",
+          "items": {
+            "type": "string",
+            "description": "Card name or identifier"
+          }
         }
       },
       "patternProperties": {
