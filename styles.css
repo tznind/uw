@@ -396,6 +396,49 @@ button:focus {
   cursor: not-allowed;
 }
 
+/* === GRANTED CARD DISPLAY === */
+.granted-card-options {
+  background: #e0f2fe;
+  border: 1px solid #0369a1;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.granted-card-container {
+  margin-top: 15px;
+}
+
+.granted-card {
+  background: #f8fafc;
+  border: 2px solid #0369a1;
+  border-radius: 6px;
+  padding: 15px;
+  position: relative;
+}
+
+.granted-card::before {
+  content: "Granted:";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #e0f2fe;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #0369a1;
+}
+
+.granted-card .card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  margin: 0;
+}
+
+.granted-card .card-title {
+  margin-bottom: 10px;
+}
+
 /* === LEARNED MOVE DISPLAY === */
 .learned-move-container {
   margin-top: 15px;

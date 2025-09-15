@@ -12,22 +12,51 @@ window.GrantCard = (function() {
         const move = window.moves && window.moves.find(m => m.id === moveId);
         if (!move || !move.grantsCard) return;
 
-        const currentRole = getCurrentRole();
-        if (!currentRole || !window.Cards) return;
-
-        if (isChecked) {
-            // Grant the card
-            window.Cards.addCardToRole(currentRole, move.grantsCard);
-            console.log(`Granted card '${move.grantsCard}' to ${currentRole}`);
-        } else {
-            // Only remove if no other checkboxes for this move are checked
-            if (!checkIfAnyMoveChecked(moveId)) {
-                window.Cards.removeCardFromRole(currentRole, move.grantsCard);
-                console.log(`Removed card '${move.grantsCard}' from ${currentRole}`);
-            }
-        }
+        // Update the inline card display
+        updateInlineCardDisplay(moveId, isChecked);
     }
 
+    /**
+     * Update the inline card display under a move
+     */
+    function updateInlineCardDisplay(moveId, isChecked) {
+        const grantedCardContainer = document.getElementById(`granted_card_${moveId}`);
+        if (!grantedCardContainer) return;
+        
+        const move = window.moves && window.moves.find(m => m.id === moveId);
+        if (!move || !move.grantsCard) return;
+        
+        if (isChecked || checkIfAnyMoveChecked(moveId)) {
+            // Show the card
+            if (window.Cards) {
+                window.Cards.loadCard(move.grantsCard).then(cardData => {
+                    grantedCardContainer.innerHTML = '';
+                    const grantedCardDiv = document.createElement("div");
+                    grantedCardDiv.className = "granted-card";
+                    grantedCardDiv.innerHTML = cardData.html;
+                    grantedCardContainer.appendChild(grantedCardDiv);
+                    
+                    // Refresh persistence to capture new card inputs
+                    if (window.Persistence) {
+                        const form = document.querySelector('form');
+                        setTimeout(() => {
+                            window.Persistence.refreshPersistence(form);
+                        }, 100);
+                    }
+                    
+                    console.log(`Displayed card '${move.grantsCard}' inline under move '${move.title}'`);
+                }).catch(error => {
+                    console.error('Error loading granted card:', error);
+                    grantedCardContainer.innerHTML = '<div class="card-error">Error loading card</div>';
+                });
+            }
+        } else {
+            // Hide the card
+            grantedCardContainer.innerHTML = '';
+            console.log(`Removed card '${move.grantsCard}' from inline display`);
+        }
+    }
+    
     /**
      * Check if any checkbox for a move is checked (handles multiple checkboxes)
      */
@@ -53,13 +82,16 @@ window.GrantCard = (function() {
     function restoreCardGrants(role) {
         if (!window.moves || !role) return;
 
+        console.log('Restoring card grants for role:', role);
+        
         // Find all card-granting moves and check if they're selected
         window.moves
             .filter(move => move.grantsCard)
             .forEach(move => {
+                console.log(`Checking move ${move.id} for restoration`);
                 if (checkIfAnyMoveChecked(move.id)) {
-                    window.Cards.addCardToRole(role, move.grantsCard);
-                    console.log(`Restored card '${move.grantsCard}' to ${role}`);
+                    console.log(`Restoring inline card for move ${move.id}`);
+                    updateInlineCardDisplay(move.id, true);
                 }
             });
     }
@@ -69,8 +101,8 @@ window.GrantCard = (function() {
      */
     function handleRoleChange(role) {
         if (role) {
-            // Small delay to ensure moves are rendered first
-            setTimeout(() => restoreCardGrants(role), 200);
+            // Longer delay to ensure moves are fully rendered and checkboxes restored
+            setTimeout(() => restoreCardGrants(role), 400);
         }
     }
 

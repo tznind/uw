@@ -45,8 +45,6 @@
     <div id="stats-container"></div>
     <hr>
     
-    <div id="cards-container" style="display: none;"></div>
-    
     <div id="moves"></div>
   </form>
 
@@ -87,14 +85,11 @@
     // Load initial state from URL
     window.Persistence.loadFromURL(form);
     
-    // Render initial moves and cards based on selected role
+    // Render initial moves based on selected role
     const initialRole = roleSelect.value;
     if (initialRole) {
       if (window.Moves) {
         window.Moves.renderMovesForRole(initialRole);
-      }
-      if (window.Cards) {
-        window.Cards.renderCardsForRole(initialRole);
       }
       if (window.GrantCard) {
         window.GrantCard.handleRoleChange(initialRole);
@@ -103,7 +98,7 @@
       // Refresh persistence after everything loads
       setTimeout(() => {
         window.Persistence.refreshPersistence(form);
-      }, 250);
+      }, 300);
     }
   }
   
@@ -115,16 +110,10 @@
   // Button event listeners
   document.getElementById('clear-button').addEventListener('click', () => {
     window.Persistence.clearState(form);
-    // Clear moves display
+    // Clear moves display (includes inline cards)
     const movesContainer = document.getElementById('moves');
     if (movesContainer) {
       movesContainer.innerHTML = '';
-    }
-    // Clear cards display
-    const cardsContainer = document.getElementById('cards-container');
-    if (cardsContainer) {
-      cardsContainer.innerHTML = '';
-      cardsContainer.style.display = 'none';
     }
   });
   

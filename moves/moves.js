@@ -17,9 +17,6 @@ window.Moves = (function() {
         
         // Listen for availableMap updates
         setupAvailableMapUpdateListener();
-        
-        // Set up hide untaken moves toggle
-        setupHideUntakenMovesToggle();
     }
 
     /**
@@ -51,6 +48,19 @@ window.Moves = (function() {
         // Check if this move grants a card
         if (move && move.grantsCard && window.GrantCard) {
             window.GrantCard.handleCardGrantingMoveToggle(moveId, checkbox.checked);
+        }
+        
+        // Also trigger inline card display update if moves are rendered
+        if (move && move.grantsCard && window.MovesCore) {
+            const grantedCardContainer = document.getElementById(`granted_card_${moveId}`);
+            if (grantedCardContainer) {
+                const urlParams = new URLSearchParams(location.search);
+                setTimeout(() => {
+                    if (window.MovesCore.updateGrantedCardDisplay) {
+                        window.MovesCore.updateGrantedCardDisplay(move, grantedCardContainer, urlParams);
+                    }
+                }, 50);
+            }
         }
     }
 
