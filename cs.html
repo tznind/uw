@@ -96,16 +96,14 @@
       if (window.Cards) {
         window.Cards.renderCardsForRole(initialRole);
       }
-      
-      // Restore card grants after moves are rendered and persistence loaded
       if (window.GrantCard) {
-        window.GrantCard.initializeCardGrantsForRole(initialRole);
+        window.GrantCard.handleRoleChange(initialRole);
       }
       
-      // Refresh persistence after moves and cards are rendered to capture new inputs
+      // Refresh persistence after everything loads
       setTimeout(() => {
         window.Persistence.refreshPersistence(form);
-      }, 350);
+      }, 250);
     }
   }
   
@@ -154,16 +152,13 @@
     const currentRole = roleSelect.value;
     if (currentRole && window.Moves) {
       window.Moves.renderMovesForRole(currentRole);
-      
-      // Restore card grants after re-render
       if (window.GrantCard) {
-        window.GrantCard.initializeCardGrantsForRole(currentRole);
+        window.GrantCard.handleRoleChange(currentRole);
       }
       
-      // Refresh persistence after re-render
       setTimeout(() => {
         window.Persistence.refreshPersistence(form);
-      }, 350);
+      }, 250);
     }
   });
 </script>
