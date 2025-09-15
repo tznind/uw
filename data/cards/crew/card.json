@@ -1,0 +1,13 @@
+{
+  "id": "crew",
+  "title": "Crew Member",
+  "path": "data/cards/crew",
+  "description": "Individual crew member tracking with stats and background",
+  "version": "1.0.0",
+  "author": "Core System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

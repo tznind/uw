@@ -1,0 +1,13 @@
+{
+  "id": "robotic-companion",
+  "title": "Robotic Companion",
+  "path": "data/cards/robotic-companion",
+  "description": "Mechanicus-crafted robotic servant and combat companion",
+  "version": "1.0.0",
+  "author": "Core System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

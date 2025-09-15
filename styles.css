@@ -437,6 +437,149 @@ button:focus {
 }
 
 
+/* === CARDS SECTION === */
+#cards-container {
+  margin: 30px 0;
+}
+
+.card-wrapper {
+  margin-bottom: 25px;
+}
+
+.card {
+  background: #ffffff;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: #2c3e50;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  border-bottom: 2px solid #e1e5e9;
+  padding-bottom: 10px;
+}
+
+.card-section {
+  margin-bottom: 20px;
+}
+
+.card-section:last-child {
+  margin-bottom: 0;
+}
+
+.card-section h4 {
+  color: #495057;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card .form-field {
+  margin-bottom: 15px;
+}
+
+.card .form-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #555;
+}
+
+.card input[type="text"],
+.card input[type="number"],
+.card select,
+.card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.card input[type="text"]:focus,
+.card input[type="number"]:focus,
+.card select:focus,
+.card textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.card textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+/* Ship-specific styles */
+.ship-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.component-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.component-item {
+  display: flex;
+  align-items: center;
+}
+
+.component-item label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  margin: 0;
+  font-weight: normal;
+}
+
+.component-item label:hover {
+  background-color: #f8f9fa;
+}
+
+.component-item input[type="checkbox"] {
+  transform: scale(1.1);
+  margin: 0;
+}
+
+/* Error state */
+.card-error {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.card-error h3 {
+  color: #721c24;
+  margin: 0 0 10px 0;
+}
+
+.card-error p {
+  margin: 0;
+  font-weight: normal;
+}
+
 /* === SECTION STYLING === */
 h3 {
   color: #2c3e50;
@@ -495,6 +638,16 @@ hr {
   
   .takefrom-controls select {
     min-width: 100%;
+  }
+  
+  /* Card responsive styles */
+  .card {
+    padding: 15px;
+  }
+  
+  .ship-stats,
+  .component-list {
+    grid-template-columns: 1fr;
   }
 }
 

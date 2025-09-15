@@ -37,7 +37,7 @@ window.Moves = (function() {
     }
 
     /**
-     * Handle takefrom move checkbox changes (only if the move has takefrom)
+     * Handle special move checkbox changes (takefrom, card granting, etc.)
      */
     function handleTakeFromMoveIfNeeded(checkbox) {
         const moveId = extractMoveId(checkbox.id);
@@ -46,6 +46,11 @@ window.Moves = (function() {
         const move = window.moves && window.moves.find(m => m.id === moveId);
         if (move && move.takefrom && window.TakeFrom) {
             window.TakeFrom.handleTakeFromMoveToggle(moveId, checkbox.checked);
+        }
+        
+        // Check if this move grants a card
+        if (move && move.grantsCard && window.GrantCard) {
+            window.GrantCard.handleCardGrantingMoveToggle(moveId, checkbox.checked);
         }
     }
 
@@ -63,13 +68,18 @@ window.Moves = (function() {
     function setupRoleChangeListener() {
         const roleSelect = document.getElementById('role');
         if (roleSelect) {
-            roleSelect.addEventListener('change', (event) => {
-                const selectedRole = event.target.value;
-                renderMovesForRole(selectedRole);
-                
-                // Restore any learned moves from the URL
-                restoreLearnedMoves(selectedRole);
-            });
+        roleSelect.addEventListener('change', (event) => {
+            const selectedRole = event.target.value;
+            renderMovesForRole(selectedRole);
+            
+            // Restore any learned moves from the URL
+            restoreLearnedMoves(selectedRole);
+            
+            // Handle card grants for the new role
+            if (window.GrantCard) {
+                window.GrantCard.handleRoleChange(selectedRole);
+            }
+        });
         }
     }
 

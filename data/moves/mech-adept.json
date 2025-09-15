@@ -99,5 +99,24 @@
       "Terrifying",
       "Messy"
     ]
+  },
+  {
+    "id": "acquire_companion",
+    "title": "Acquire Robotic Companion",
+    "description": "Through techno-arcane rites or salvage operations, you have created or acquired a robotic companion to serve the Omnissiah.",
+    "category": "Advancement",
+    "grantsCard": "robotic-companion",
+    "outcomes": [
+      {
+        "range": "Always",
+        "text": "You now have a robotic companion. Its exact nature depends on your craftsmanship and available resources:",
+        "bullets": [
+          "Choose its type: servo-skull, combat servitor, tech-adept construct, or custom design",
+          "Its loyalty is absolute, but its machine spirit has its own quirks",
+          "It requires maintenance and may malfunction at inopportune times",
+          "Other Tech-Priests may covet or critique your work"
+        ]
+      }
+    ]
   }
 ]

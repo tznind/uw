@@ -276,12 +276,28 @@ window.TakeFrom = (function() {
         if (previousMove && previousMove !== selectedMove && currentRole) {
             if (window.availableMap && window.availableMap[currentRole]) {
                 delete window.availableMap[currentRole][previousMove];
+                
+                // Check if the removed move granted a card
+                if (window.GrantCard) {
+                    const removedMove = window.moves && window.moves.find(m => m.id === previousMove);
+                    if (removedMove && removedMove.grantsCard) {
+                        window.GrantCard.handleCardGrantingMoveToggle(previousMove, false);
+                    }
+                }
             }
         }
         
         // Add newly selected move to available moves (quietly)
         if (selectedMove && currentRole) {
             addLearnedMoveQuiet(currentRole, selectedMove);
+            
+            // Check if the newly learned move grants a card
+            if (window.GrantCard) {
+                const learnedMove = window.moves && window.moves.find(m => m.id === selectedMove);
+                if (learnedMove && learnedMove.grantsCard) {
+                    window.GrantCard.handleCardGrantingMoveToggle(selectedMove, true);
+                }
+            }
         }
     }
 
@@ -332,6 +348,14 @@ window.TakeFrom = (function() {
                 const currentRole = getCurrentRole();
                 if (currentRole && window.availableMap && window.availableMap[currentRole]) {
                     delete window.availableMap[currentRole][previousMove];
+                    
+                    // Check if the removed move granted a card
+                    if (window.GrantCard) {
+                        const removedMove = window.moves && window.moves.find(m => m.id === previousMove);
+                        if (removedMove && removedMove.grantsCard) {
+                            window.GrantCard.handleCardGrantingMoveToggle(previousMove, false);
+                        }
+                    }
                 }
             }
         }
