@@ -24,12 +24,21 @@
             // Render stats
             window.renderStats('#stats-container', window.hexStats);
             
-            // Populate role options
-            Object.keys(window.availableMap).forEach(role => {
-                const option = document.createElement('option');
-                option.value = role;
-                option.textContent = role;
-                roleSelect.appendChild(option);
+            // Populate all role selectors with available roles
+            const roleSelectors = window.Utils.getRoleSelectors();
+            roleSelectors.forEach(selector => {
+                // Clear existing options (except the first "Select..." option)
+                while (selector.children.length > 1) {
+                    selector.removeChild(selector.lastChild);
+                }
+                
+                // Add role options
+                Object.keys(window.availableMap).forEach(role => {
+                    const option = document.createElement('option');
+                    option.value = role;
+                    option.textContent = role;
+                    selector.appendChild(option);
+                });
             });
             
             // Initialize persistence first
@@ -38,10 +47,10 @@
             // Load initial state from URL
             window.Persistence.loadFromURL(form);
             
-            // Render initial moves and cards based on selected role
-            const initialRole = roleSelect.value;
-            if (initialRole) {
-                await renderRoleContent(initialRole, true);
+            // Render initial moves and cards based on selected roles
+            const selectedRoles = window.Utils.getCurrentRoles();
+            if (selectedRoles.length > 0) {
+                await renderRoleContent(selectedRoles, true);
             }
 
             console.log('Application initialized successfully');
@@ -53,28 +62,36 @@
     }
 
     /**
-     * Render all content for a role (cards and moves)
-     * @param {string} role - The role to render content for
+     * Render all content for roles (cards and moves)
+     * @param {string|Array<string>} roles - The role(s) to render content for
      * @param {boolean} isInitialLoad - Whether this is the initial page load
      */
-    async function renderRoleContent(role, isInitialLoad = false) {
-        if (!role) return;
-
-        // Render cards first (async)
+    async function renderRoleContent(roles, isInitialLoad = false) {
+        // Handle both single role (backward compatibility) and multiple roles
+        const roleArray = Array.isArray(roles) ? roles : [roles];
+        if (roleArray.length === 0 || (roleArray.length === 1 && !roleArray[0])) return;
+        
+        // For backward compatibility, use first role for single-role systems
+        const primaryRole = roleArray[0];
+        
+        // Create merged availability map for multiple roles
+        const mergedAvailability = window.Utils.mergeRoleAvailability(roleArray);
+        
+        // Render cards first (async) - use merged availability
         if (window.Cards) {
-            await window.Cards.renderCardsForRole(role);
+            await window.Cards.renderCardsForRoles(roleArray, mergedAvailability);
         }
         
         // Then render moves (without persistence refresh during initial load)
         if (window.Moves) {
-            window.Moves.renderMovesForRole(role, !isInitialLoad);
+            window.Moves.renderMovesForRoles(roleArray, mergedAvailability, !isInitialLoad);
         }
         
         // Learned moves are restored automatically by their takefrom sections
         
-        // Handle card grants for the role
+        // Handle card grants for the primary role (maintain backward compatibility)
         if (window.GrantCard) {
-            window.GrantCard.handleRoleChange(role);
+            window.GrantCard.handleRoleChange(primaryRole);
         }
         
         // Refresh persistence after everything loads (longer delay for initial load)
@@ -137,17 +154,16 @@
      * Handle hide untaken moves toggle - only re-render moves, not cards
      */
     function handleHideUntakenToggle() {
-        const roleSelect = document.getElementById('role');
-        if (!roleSelect) return;
-
-        const currentRole = roleSelect.value;
-        if (currentRole) {
+        const selectedRoles = window.Utils.getCurrentRoles();
+        if (selectedRoles.length > 0) {
+            const mergedAvailability = window.Utils.mergeRoleAvailability(selectedRoles);
+            
             // Only re-render moves, not cards (cards shouldn't change when hiding/showing moves)
             if (window.Moves) {
-                window.Moves.renderMovesForRole(currentRole);
+                window.Moves.renderMovesForRoles(selectedRoles, mergedAvailability);
             }
             if (window.GrantCard) {
-                window.GrantCard.handleRoleChange(currentRole);
+                window.GrantCard.handleRoleChange(selectedRoles[0]); // Use primary role for backward compatibility
             }
             
             // Refresh persistence after moves are re-rendered
@@ -161,25 +177,30 @@
     }
 
     /**
+     * Handle role selection change for any role selector
+     */
+    async function handleRoleChange() {
+        const selectedRoles = window.Utils.getCurrentRoles();
+        if (selectedRoles.length > 0) {
+            await renderRoleContent(selectedRoles);
+        } else {
+            // Clear content when no roles selected
+            const movesContainer = document.getElementById('moves');
+            const cardsContainer = document.getElementById('cards-container');
+            if (movesContainer) movesContainer.innerHTML = '';
+            if (cardsContainer) cardsContainer.innerHTML = '';
+        }
+    }
+
+    /**
      * Set up event listeners
      */
     function setupEventListeners() {
-        // Role dropdown change
-        const roleSelect = document.getElementById('role');
-        if (roleSelect) {
-            roleSelect.addEventListener('change', async (event) => {
-                const newRole = event.target.value;
-                if (newRole) {
-                    await renderRoleContent(newRole);
-                } else {
-                    // Clear content when no role selected
-                    const movesContainer = document.getElementById('moves');
-                    const cardsContainer = document.getElementById('cards-container');
-                    if (movesContainer) movesContainer.innerHTML = '';
-                    if (cardsContainer) cardsContainer.innerHTML = '';
-                }
-            });
-        }
+        // Set up event listeners for all role selectors
+        const roleSelectors = window.Utils.getRoleSelectors();
+        roleSelectors.forEach(selector => {
+            selector.addEventListener('change', handleRoleChange);
+        });
         
         // Clear button
         const clearButton = document.getElementById('clear-button');
