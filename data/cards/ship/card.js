@@ -55,10 +55,10 @@
             }
         });
         
-        // Gellar field is essential for warp travel
-        setupDependency('ship_gellar_field', 'change', (element) => {
+        // Warp shield is essential for warp travel
+        setupDependency('ship_warp_shield', 'change', (element) => {
             if (!element.checked) {
-                const warning = confirm('WARNING: Removing Gellar Field makes warp travel extremely dangerous! Are you sure?');
+                const warning = confirm('WARNING: Removing Warp Shield makes warp travel extremely dangerous! Are you sure?');
                 if (!warning) {
                     element.checked = true;
                 }

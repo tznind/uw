@@ -17,7 +17,7 @@
         setupStatusLogic();
         setupDesignationGenerator();
         
-        console.log('Robotic Companion card initialized - Omnissiah be praised!');
+        console.log('Robotic Companion card initialized - Machine God be praised!');
     }
     
     function setupRobotTypeLogic() {
@@ -25,7 +25,7 @@
         
         // Robot type configurations
         const typeDefaults = {
-            'servo_skull': { 
+            'recon_drone': { 
                 robot_toughness: 20, robot_agility: 60, robot_intelligence: 30, 
                 robot_wounds: 4, robot_armour: 2, robot_movement: 6,
                 description: 'Small hovering reconnaissance unit'
@@ -38,7 +38,7 @@
             'tech_adept': { 
                 robot_toughness: 35, robot_agility: 40, robot_intelligence: 55, 
                 robot_wounds: 10, robot_armour: 5, robot_movement: 4,
-                description: 'Tech-Priest artificial construct'
+                description: 'Tech Adept artificial construct'
             },
             'guardian_servitor': { 
                 robot_toughness: 50, robot_agility: 25, robot_intelligence: 20, 
@@ -91,12 +91,12 @@
         setupDependency('robot_intelligence', 'input', (element, helpers) => {
             const intelligence = parseInt(element.value);
             if (intelligence && intelligence < 20) {
-                if (helpers.isChecked('robot_auspex') && 
-                    confirm('Low intelligence units may struggle with complex equipment like Auspex. Remove?')) {
-                    helpers.setChecked('robot_auspex', false);
+                if (helpers.isChecked('robot_scanner') && 
+                    confirm('Low intelligence units may struggle with complex equipment like Scanner. Remove?')) {
+                    helpers.setChecked('robot_scanner', false);
                 }
                 if (helpers.isChecked('robot_vox_caster') && 
-                    confirm('Low intelligence units may not operate Vox-casters effectively. Remove?')) {
+                    confirm('Low intelligence units may not operate Communicators effectively. Remove?')) {
                     helpers.setChecked('robot_vox_caster', false);
                 }
             }
@@ -138,7 +138,7 @@
         
         // Malfunctioning conflicts with blessing
         setupDependency('robot_malfunctioning', 'change', 
-            DependencyPatterns.conflictingCheckboxes('robot_blessed', 'The Omnissiah rarely blesses malfunctioning machines. Remove blessing?'));
+            DependencyPatterns.conflictingCheckboxes('robot_blessed', 'The Machine God rarely blesses malfunctioning machines. Remove blessing?'));
         
         // Machine spirit bonding is rare and auto-blesses
         setupDependency('robot_bonded', 'change', (element, helpers) => {
@@ -186,9 +186,9 @@
     
     function generateDesignation(robotType) {
         const prefixes = {
-            'servo_skull': ['Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta'],
+            'recon_drone': ['Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta'],
             'combat_servitor': ['Guardian', 'Defender', 'Warrior', 'Sentinel', 'Warden', 'Protector'],
-            'tech_adept': ['Magos', 'Technus', 'Cogitator', 'Omnissiah', 'Binary', 'Logic'],
+            'tech_adept': ['Magos', 'Technus', 'Cogitator', 'Oracle', 'Binary', 'Logic'],
             'guardian_servitor': ['Fortress', 'Bastion', 'Shield', 'Rampart', 'Bulwark', 'Aegis'],
             'medicae_servitor': ['Healing', 'Vitalis', 'Sanguine', 'Curator', 'Mender', 'Suture'],
             'utility_servitor': ['Worker', 'Builder', 'Maker', 'Forge', 'Craft', 'Tool'],
