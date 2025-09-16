@@ -99,13 +99,6 @@ window.JsonLoader = (function() {
         return loadJsonData('data/availability.json', 'availableMap');
     }
 
-    /**
-     * Load cards data
-     * @returns {Promise} Promise that resolves when cards data is loaded
-     */
-    async function loadCardsData() {
-        return loadJsonData('data/cards.json', 'cardsData');
-    }
 
     /**
      * Load all game data (stats, availability map, and moves)
@@ -113,11 +106,10 @@ window.JsonLoader = (function() {
      */
     async function loadAllGameData() {
         try {
-            // Load stats, availability, and cards data first
+            // Load stats and availability data first
             await Promise.all([
                 loadStatsData(),
-                loadAvailabilityMap(),
-                loadCardsData()
+                loadAvailabilityMap()
             ]);
 
             // Then load all role moves (needs availableMap to be loaded first)
@@ -138,7 +130,6 @@ window.JsonLoader = (function() {
         loadAllRoleMoves,
         loadStatsData,
         loadAvailabilityMap,
-        loadCardsData,
         loadAllGameData
     };
 })();
