@@ -265,12 +265,16 @@ window.TakeFrom = (function() {
         if (selectedRole && window.availableMap && window.availableMap[selectedRole]) {
             moveSelect.disabled = false;
             
-            // Get available moves for selected role
+            // Get available moves for selected role and current role
             const availableMoves = window.availableMap[selectedRole];
+            const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
+            const currentRoleMoves = currentRole && window.availableMap[currentRole] ? window.availableMap[currentRole] : {};
             
-            // Filter moves to only show those available to that role
+            // Filter moves to only show those available to selected role but NOT to current role
             window.moves.forEach(move => {
-                if (move.id !== moveId && availableMoves.hasOwnProperty(move.id)) {
+                if (move.id !== moveId && 
+                    availableMoves.hasOwnProperty(move.id) && 
+                    !currentRoleMoves.hasOwnProperty(move.id)) {
                     const option = document.createElement("option");
                     option.value = move.id;
                     option.textContent = move.title;
