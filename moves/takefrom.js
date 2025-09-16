@@ -310,10 +310,7 @@ window.TakeFrom = (function() {
             }
         }
         
-        // Add newly selected move to available moves (quietly)
-        if (selectedMove && currentRole) {
-            addLearnedMoveQuiet(currentRole, selectedMove);
-        }
+        // Note: We don't need to modify availableMap - learned moves are self-contained
     }
 
     /**
@@ -358,13 +355,7 @@ window.TakeFrom = (function() {
             moveSelect.appendChild(defaultOption);
             moveSelect.disabled = true;
             
-            // Remove the learned move from availableMap
-            if (previousMove) {
-                const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
-                if (currentRole && window.availableMap && window.availableMap[currentRole]) {
-                    delete window.availableMap[currentRole][previousMove];
-                }
-            }
+            // Learned moves are self-contained - no availableMap cleanup needed
         }
         
         if (learnedMoveContainer) {
@@ -408,26 +399,13 @@ window.TakeFrom = (function() {
                             updateLearnedMoveDisplay(moveSelect, learnedMoveContainer, urlParams);
                         }
                     
-                        // Add move back to availableMap
-                        const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
-                        if (currentRole) {
-                            addLearnedMoveQuiet(currentRole, savedMove);
-                        }
+                        // Learned moves are self-contained - no availableMap modification needed
                     }
                 }, 50);
             }
         }
     }
 
-    /**
-     * Add learned move to current role's available moves (quiet - no re-render)
-     */
-    function addLearnedMoveQuiet(currentRole, learnedMoveId) {
-        if (currentRole && learnedMoveId && window.availableMap && window.availableMap[currentRole]) {
-            // Add the learned move to the current role's available moves
-            window.availableMap[currentRole][learnedMoveId] = true;
-        }
-    }
 
 
     /**
@@ -461,7 +439,6 @@ window.TakeFrom = (function() {
         handleTakeFromMoveToggle,
         updateLearnedMoveDisplay,
         updateMoveOptions,
-        addLearnedMoveQuiet,
         checkIfAnyTakeFromMoveChecked
     };
 })();

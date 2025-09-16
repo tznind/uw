@@ -70,8 +70,7 @@
             window.Moves.renderMovesForRole(role, !isInitialLoad);
         }
         
-        // Restore any learned moves from the URL
-        restoreLearnedMoves(role);
+        // Learned moves are restored automatically by their takefrom sections
         
         // Handle card grants for the role
         if (window.GrantCard) {
@@ -221,29 +220,6 @@
         startApplication();
     }
 
-    /**
-     * Restore learned moves from URL parameters when role changes
-     */
-    function restoreLearnedMoves(role) {
-        if (!role || !window.availableMap || !window.availableMap[role]) return;
-        
-        const urlParams = new URLSearchParams(location.search);
-        const learnedMoves = new Set();
-        
-        // Find all takefrom move selections in the URL
-        for (const [key, value] of urlParams) {
-            if (key.includes('takefrom_') && key.includes('_move') && value) {
-                learnedMoves.add(value);
-            }
-        }
-        
-        // Add learned moves to the availableMap
-        learnedMoves.forEach(moveId => {
-            if (window.TakeFrom) {
-                window.TakeFrom.addLearnedMoveQuiet(role, moveId);
-            }
-        });
-    }
 
     // Export for debugging/testing
     window.CharacterSheet = {
