@@ -50,124 +50,22 @@
     <div id="moves"></div>
   </form>
 
+<!-- Core dependencies -->
 <script src="utils.js"></script>
 <script src="json-loader.js"></script>
 <script src="data-loader.js"></script>
 <script src="persistence.js"></script>
 <script src="stats.js"></script>
+
+<!-- Cards and moves modules -->
 <script src="cards.js"></script>
 <script src="moves/moves-core.js"></script>
 <script src="moves/takefrom.js"></script>
 <script src="moves/grantcard.js"></script>
 <script src="moves/moves.js"></script>
 
-<script>
-  const form = document.querySelector('form');
-  const roleSelect = document.getElementById('role');
-  
-  // Initialize the application after moves data is loaded
-  async function initializeApp() {
-    // Initialize moves data from separate role files
-    await window.initializeMovesData();
-    
-    // Render stats
-    window.renderStats('#stats-container', window.hexStats);
-    
-    // Populate role options
-    Object.keys(window.availableMap).forEach(role => {
-      const option = document.createElement('option');
-      option.value = role;
-      option.textContent = role;
-      roleSelect.appendChild(option);
-    });
-    
-    // Initialize persistence first
-    window.Persistence.setupAutoPersistence(form);
-    
-    // Load initial state from URL
-    window.Persistence.loadFromURL(form);
-    
-    // Render initial moves and cards based on selected role
-    const initialRole = roleSelect.value;
-    if (initialRole) {
-      // Render cards first (async)
-      if (window.Cards) {
-        await window.Cards.renderCardsForRole(initialRole);
-      }
-      
-      // Then render moves (without persistence refresh)
-      if (window.Moves) {
-        window.Moves.renderMovesForRole(initialRole, false);
-      }
-      if (window.GrantCard) {
-        window.GrantCard.handleRoleChange(initialRole);
-      }
-      
-      // Refresh persistence after everything loads to restore card values
-      setTimeout(() => {
-        window.Persistence.refreshPersistence(form);
-      }, 500);
-    }
-  }
-  
-  // Start the app
-  initializeApp().catch(error => {
-    console.error('Failed to initialize app:', error);
-  });
-  
-  // Button event listeners
-  document.getElementById('clear-button').addEventListener('click', () => {
-    window.Persistence.clearState(form);
-    // Clear moves display (includes inline cards)
-    const movesContainer = document.getElementById('moves');
-    if (movesContainer) {
-      movesContainer.innerHTML = '';
-    }
-    // Clear cards display
-    const cardsContainer = document.getElementById('cards-container');
-    if (cardsContainer) {
-      cardsContainer.innerHTML = '';
-    }
-  });
-  
-  document.getElementById('copy-url-button').addEventListener('click', () => {
-    const button = document.getElementById('copy-url-button');
-    
-    window.Persistence.copyURLToClipboard()
-      .then(() => {
-        // Show success state
-        button.classList.add('success');
-        
-        // Reset after 2 seconds
-        setTimeout(() => {
-          button.classList.remove('success');
-        }, 2000);
-      })
-      .catch(err => {
-        console.error('Failed to copy URL:', err);
-        alert('Failed to copy URL to clipboard');
-      });
-  });
-  
-  // Listen for hide untaken moves checkbox changes
-  document.getElementById('hide_untaken').addEventListener('change', () => {
-    const currentRole = roleSelect.value;
-    if (currentRole) {
-      // Only re-render moves, not cards (cards shouldn't change when hiding/showing moves)
-      if (window.Moves) {
-        window.Moves.renderMovesForRole(currentRole);
-      }
-      if (window.GrantCard) {
-        window.GrantCard.handleRoleChange(currentRole);
-      }
-      
-      // Refresh persistence after moves are re-rendered
-      setTimeout(() => {
-        window.Persistence.refreshPersistence(form);
-      }, 100);
-    }
-  });
-</script>
+<!-- Main application -->
+<script src="main.js"></script>
 
 </body>
 </html>

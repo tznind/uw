@@ -101,7 +101,7 @@
     ]
   },
   {
-    "id": "acquire_companion",
+    "id": "ac001",
     "title": "Acquire Robotic Companion",
     "description": "Through techno-arcane rites or salvage operations, you have created or acquired a robotic companion to serve the Omnissiah.",
     "category": "Advancement",

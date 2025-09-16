@@ -181,66 +181,6 @@ window.Cards = (function() {
         return window.cardsData[role] || [];
     }
 
-    /**
-     * Add a card to a role (useful for moves that grant cards)
-     * @param {string} role - The role to add the card to
-     * @param {string|object} cardIdOrDef - Card ID (string) or card definition object {id, path}
-     */
-    function addCardToRole(role, cardIdOrDef) {
-        if (!window.cardsData) {
-            console.error('Cards data not loaded');
-            return;
-        }
-        
-        if (!window.cardsData[role]) {
-            window.cardsData[role] = [];
-        }
-
-        // Handle both string IDs and card objects
-        let cardDef;
-        if (typeof cardIdOrDef === 'string') {
-            cardDef = {
-                id: cardIdOrDef,
-                path: `data/cards/${cardIdOrDef}`
-            };
-        } else {
-            cardDef = cardIdOrDef;
-        }
-
-        // Check if card is already present
-        const existingCard = window.cardsData[role].find(card => card.id === cardDef.id);
-        if (!existingCard) {
-            window.cardsData[role].push(cardDef);
-            
-            // Trigger re-render if this is the current role
-            const currentRole = getCurrentRole();
-            if (currentRole === role) {
-                renderCardsForRole(role);
-            }
-        }
-    }
-
-    /**
-     * Remove a card from a role
-     * @param {string} role - The role to remove the card from
-     * @param {string} cardId - ID of the card to remove
-     */
-    function removeCardFromRole(role, cardId) {
-        if (!window.cardsData || !window.cardsData[role]) {
-            return;
-        }
-
-        const index = window.cardsData[role].findIndex(card => card.id === cardId);
-        if (index > -1) {
-            window.cardsData[role].splice(index, 1);
-            
-            // Trigger re-render if this is the current role
-            const currentRole = getCurrentRole();
-            if (currentRole === role) {
-                renderCardsForRole(role);
-            }
-        }
-    }
 
     /**
      * Get current role from role select
@@ -308,8 +248,6 @@ window.Cards = (function() {
         loadCard,
         renderCardsForRole,
         getCardsForRole,
-        addCardToRole,
-        removeCardFromRole,
         getCardInfo,
         listAvailableCards,
         clearCache,

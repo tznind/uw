@@ -134,19 +134,8 @@ Edit `data/availability.json` and add a `_cards` array to any role:
 
 ## Advanced Usage
 
-### Dynamic Card Assignment
-Cards can be dynamically added/removed via JavaScript:
-
-```javascript
-// Add a card to a role
-window.Cards.addCardToRole('Navigator', 'newcard');
-
-// Remove a card from a role  
-window.Cards.removeCardFromRole('Navigator', 'oldcard');
-```
-
 ### From Moves
-You could create moves that grant cards when selected. For example, a "Acquire Ship" move could programmatically add the ship card to the character.
+Moves can grant cards when selected using the `grantsCard` property. For example, an "Acquire Robotic Companion" move can show the robotic companion card inline when the move is taken.
 
 ## File Structure
 ```

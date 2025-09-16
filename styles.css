@@ -567,44 +567,6 @@ button:focus {
   font-family: inherit;
 }
 
-/* Ship-specific styles */
-.ship-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-}
-
-.component-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-}
-
-.component-item {
-  display: flex;
-  align-items: center;
-}
-
-.component-item label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
-  margin: 0;
-  font-weight: normal;
-}
-
-.component-item label:hover {
-  background-color: #f8f9fa;
-}
-
-.component-item input[type="checkbox"] {
-  transform: scale(1.1);
-  margin: 0;
-}
 
 /* Error state */
 .card-error {
@@ -688,10 +650,6 @@ hr {
     padding: 15px;
   }
   
-  .ship-stats,
-  .component-list {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* === ACCESSIBILITY === */
