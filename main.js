@@ -24,7 +24,7 @@
             // Render stats
             window.renderStats('#stats-container', window.hexStats);
             
-            // Populate all role selectors with available roles
+            // Populate role selectors with specified roles (or all roles if no data-roles attribute)
             const roleSelectors = window.Utils.getRoleSelectors();
             roleSelectors.forEach(selector => {
                 // Clear existing options (except the first "Select..." option)
@@ -32,8 +32,29 @@
                     selector.removeChild(selector.lastChild);
                 }
                 
+                // Get allowed roles for this selector from data-roles attribute
+                const allowedRoles = selector.getAttribute('data-roles');
+                let rolesToAdd;
+                
+                if (allowedRoles) {
+                    // Parse comma-separated list and trim whitespace
+                    const allowedRolesList = allowedRoles.split(',').map(role => role.trim());
+                    
+                    // Check if wildcard * is present
+                    if (allowedRolesList.includes('*')) {
+                        // Use all available roles if * is specified
+                        rolesToAdd = Object.keys(window.availableMap);
+                    } else {
+                        // Filter to only include roles that exist in availableMap
+                        rolesToAdd = allowedRolesList.filter(role => window.availableMap.hasOwnProperty(role));
+                    }
+                } else {
+                    // No data-roles attribute, use all available roles
+                    rolesToAdd = Object.keys(window.availableMap);
+                }
+                
                 // Add role options
-                Object.keys(window.availableMap).forEach(role => {
+                rolesToAdd.forEach(role => {
                     const option = document.createElement('option');
                     option.value = role;
                     option.textContent = role;

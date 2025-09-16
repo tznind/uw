@@ -20,13 +20,17 @@
       <input type="text" id="player" name="player">
     </div>
     
+    <!-- Role selectors support data-roles attribute to limit which roles appear:
+         - Comma-separated list: data-roles="Navigator,Mech Adept" 
+         - Wildcard for all roles: data-roles="*"
+         - No attribute: shows all roles (same as *) -->
     <div class="form-controls">
       <label for="role">Origin:</label>
-      <select id="role" name="role">
+      <select id="role" name="role" data-roles="Navigator,Mech Adept">
         <option value="">Select origin...</option>
       </select>
       <label for="role2">Career:</label>
-      <select id="role2" name="role2">
+      <select id="role2" name="role2" data-roles="*">
         <option value="">Select career...</option>
       </select>
       <button type="button" id="copy-url-button">
