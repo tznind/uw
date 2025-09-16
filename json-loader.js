@@ -96,10 +96,7 @@ window.JsonLoader = (function() {
      * @returns {Promise} Promise that resolves when availability map is loaded
      */
     async function loadAvailabilityMap() {
-        const result = await loadJsonData('data/availability.json', 'availableMap');
-        // Deep copy the original for cleanup purposes
-        window.originalAvailableMap = JSON.parse(JSON.stringify(window.availableMap));
-        return result;
+        return loadJsonData('data/availability.json', 'availableMap');
     }
 
     /**
