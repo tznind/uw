@@ -193,6 +193,7 @@ window.Cards = (function() {
         console.log('Cards system initialized');
     }
 
+
     // Public API
     return {
         loadCard,

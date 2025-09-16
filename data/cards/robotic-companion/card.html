@@ -1,195 +1,48 @@
+<!-- Simple Example Card - Demonstrates basic form inputs and automatic persistence -->
 <div class="card robotic-companion-card">
-  <h3 class="card-title">Robotic Companion</h3>
+  <h3 class="card-title">🤖 Robotic Companion</h3>
   
-  <div class="card-section">
-    <div class="form-field">
-      <label for="robot_designation">Designation:</label>
-      <input type="text" id="robot_designation" name="robot_designation" placeholder="e.g. Recon Drone Alpha-7, Combat Servitor Theta">
-    </div>
-    
-    <div class="form-field">
-      <label for="robot_type">Type:</label>
-      <select id="robot_type" name="robot_type">
-        <option value="">Select type...</option>
-        <option value="recon_drone">Reconnaissance Drone</option>
-        <option value="combat_servitor">Combat Servitor</option>
-        <option value="tech_adept">Tech-Adept Construct</option>
-        <option value="guardian_servitor">Guardian Servitor</option>
-        <option value="medicae_servitor">Medicae Servitor</option>
-        <option value="utility_servitor">Utility Servitor</option>
-        <option value="heavy_servitor">Heavy Combat Servitor</option>
-        <option value="custom">Custom Design</option>
-      </select>
-    </div>
+  <!-- Text input example -->
+  <div class="form-field">
+    <label for="companion_name">Companion Name:</label>
+    <input type="text" id="companion_name" placeholder="Enter name">
   </div>
-
-  <div class="card-section">
-    <h4>Machine Characteristics</h4>
-    <div class="robot-stats-grid">
-      <div class="form-field">
-        <label for="robot_toughness">Toughness:</label>
-        <input type="number" id="robot_toughness" name="robot_toughness" min="1" max="100" placeholder="20-80">
-      </div>
-      
-      <div class="form-field">
-        <label for="robot_agility">Agility:</label>
-        <input type="number" id="robot_agility" name="robot_agility" min="1" max="100" placeholder="10-60">
-      </div>
-      
-      <div class="form-field">
-        <label for="robot_intelligence">Intelligence:</label>
-        <input type="number" id="robot_intelligence" name="robot_intelligence" min="1" max="100" placeholder="5-40">
-      </div>
-
-      <div class="form-field">
-        <label for="robot_wounds">Wounds:</label>
-        <input type="number" id="robot_wounds" name="robot_wounds" min="1" max="50" placeholder="Current/Max">
-      </div>
-
-      <div class="form-field">
-        <label for="robot_armour">Armour Points:</label>
-        <input type="number" id="robot_armour" name="robot_armour" min="0" max="10" placeholder="0-8">
-      </div>
-
-      <div class="form-field">
-        <label for="robot_movement">Movement:</label>
-        <input type="number" id="robot_movement" name="robot_movement" min="1" max="20" placeholder="Movement rate">
-      </div>
-    </div>
+  
+  <!-- Dropdown/select example -->
+  <div class="form-field">
+    <label for="companion_type">Type:</label>
+    <select id="companion_type">
+      <option value="">Select type...</option>
+      <option value="scout">Scout Drone</option>
+      <option value="combat">Combat Unit</option>
+      <option value="utility">Utility Bot</option>
+    </select>
   </div>
-
-  <div class="card-section">
-    <h4>Equipment & Modifications</h4>
-    <div class="robot-equipment-grid">
-      <div class="equipment-category">
-        <h5>Weapons Systems</h5>
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_laser_pistol" name="robot_laser_pistol">
-            Laser Pistol
-          </label>
-        </div>
-        
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_autogun" name="robot_autogun">
-            Autogun
-          </label>
-        </div>
-        
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_flamer" name="robot_flamer">
-            Flamer
-          </label>
-        </div>
-
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_chainsaw" name="robot_chainsaw">
-            Chainsaw
-          </label>
-        </div>
-
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_power_fist" name="robot_power_fist">
-            Power Fist
-          </label>
-        </div>
-      </div>
-
-      <div class="equipment-category">
-        <h5>Augmentations</h5>
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_enhanced_senses" name="robot_enhanced_senses">
-            Enhanced Senses
-          </label>
-        </div>
-        
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_vox_caster" name="robot_vox_caster">
-            Communicator
-          </label>
-        </div>
-        
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_scanner" name="robot_scanner">
-            Scanner
-          </label>
-        </div>
-
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_tentacles" name="robot_tentacles">
-            Robotic Tentacles
-          </label>
-        </div>
-
-        <div class="equipment-item">
-          <label>
-            <input type="checkbox" id="robot_self_repair" name="robot_self_repair">
-            Self-Repair Systems
-          </label>
-        </div>
-      </div>
-    </div>
+  
+  <!-- Checkboxes example -->
+  <div class="form-field">
+    <strong>Equipment:</strong><br>
+    <label><input type="checkbox" id="has_scanner"> Scanner</label><br>
+    <label><input type="checkbox" id="has_weapon"> Weapon Mount</label><br>
+    <label><input type="checkbox" id="has_tools"> Repair Tools</label>
   </div>
-
-  <div class="card-section">
-    <h4>Status & Condition</h4>
-    <div class="robot-status-grid">
-      <div class="status-item">
-        <label>
-          <input type="checkbox" id="robot_damaged" name="robot_damaged">
-          Damaged
-        </label>
-      </div>
-      
-      <div class="status-item">
-        <label>
-          <input type="checkbox" id="robot_malfunctioning" name="robot_malfunctioning">
-          Malfunctioning
-        </label>
-      </div>
-      
-      <div class="status-item">
-        <label>
-          <input type="checkbox" id="robot_blessed" name="robot_blessed">
-          Blessed by Machine God
-        </label>
-      </div>
-
-      <div class="status-item">
-        <label>
-          <input type="checkbox" id="robot_upgraded" name="robot_upgraded">
-          Recently Upgraded
-        </label>
-      </div>
-
-      <div class="status-item">
-        <label>
-          <input type="checkbox" id="robot_combat_ready" name="robot_combat_ready">
-          Combat Ready
-        </label>
-      </div>
-
-      <div class="status-item">
-        <label>
-          <input type="checkbox" id="robot_bonded" name="robot_bonded">
-          Machine Spirit Bonded
-        </label>
-      </div>
-    </div>
+  
+  <!-- Radio buttons example -->
+  <div class="form-field">
+    <strong>Power Source:</strong><br>
+    <label><input type="radio" name="power_source" id="power_battery" value="battery"> Battery</label><br>
+    <label><input type="radio" name="power_source" id="power_reactor" value="reactor"> Micro-Reactor</label><br>
+    <label><input type="radio" name="power_source" id="power_solar" value="solar"> Solar Cell</label>
   </div>
-
-  <div class="card-section">
-    <div class="form-field">
-      <label for="robot_notes">Technical Notes & Modifications:</label>
-      <textarea id="robot_notes" name="robot_notes" rows="3" placeholder="Construction notes, behavioral quirks, modification history, machine spirit temperament..."></textarea>
-    </div>
+  
+  <!-- Textarea example -->
+  <div class="form-field">
+    <label for="companion_notes">Notes:</label>
+    <textarea id="companion_notes" rows="2" placeholder="Additional notes..."></textarea>
+  </div>
+  
+  <!-- Information for developers -->
+  <div style="margin-top: 1rem; padding: 0.5rem; background: #f0f0f0; font-size: 0.8rem; border-radius: 4px;">
+    <strong>For Developers:</strong> All inputs with <code>id</code> attributes are automatically persisted to the URL. No JavaScript required!
   </div>
 </div>
