@@ -1,12 +1,16 @@
 /**
  * Robotic Companion Card - Mechanicus Logic
- * Advanced companion management with type-based stats and equipment validation
+ * Simplified using CardHelpers framework
  */
 
 (function() {
     'use strict';
     
     function initializeRoboticCompanionCard() {
+        const { setupAutoFill, setupVisualValidation, setupDependency, addUtilityButton, 
+                ValidationPatterns, DependencyPatterns } = window.CardHelpers;
+        
+        // Robot type auto-fill configuration
         setupRobotTypeLogic();
         setupStatValidation();
         setupEquipmentDependencies();
@@ -17,281 +21,167 @@
     }
     
     function setupRobotTypeLogic() {
-        const robotTypeSelect = document.getElementById('robot_type');
-        const toughnessInput = document.getElementById('robot_toughness');
-        const agilityInput = document.getElementById('robot_agility');
-        const intelligenceInput = document.getElementById('robot_intelligence');
-        const woundsInput = document.getElementById('robot_wounds');
-        const armourInput = document.getElementById('robot_armour');
-        const movementInput = document.getElementById('robot_movement');
+        const { setupAutoFill } = window.CardHelpers;
         
-        if (robotTypeSelect) {
-            robotTypeSelect.addEventListener('change', function() {
-                const robotType = this.value;
-                
-                // Auto-fill stats based on robot type
-                const typeDefaults = {
-                    'servo_skull': { 
-                        toughness: 20, agility: 60, intelligence: 30, 
-                        wounds: 4, armour: 2, movement: 6,
-                        description: 'Small hovering reconnaissance unit'
-                    },
-                    'combat_servitor': { 
-                        toughness: 45, agility: 30, intelligence: 15, 
-                        wounds: 12, armour: 4, movement: 3,
-                        description: 'Combat-optimized servitor unit'
-                    },
-                    'tech_adept': { 
-                        toughness: 35, agility: 40, intelligence: 55, 
-                        wounds: 10, armour: 5, movement: 4,
-                        description: 'Tech-Priest artificial construct'
-                    },
-                    'guardian_servitor': { 
-                        toughness: 50, agility: 25, intelligence: 20, 
-                        wounds: 15, armour: 6, movement: 3,
-                        description: 'Heavy protection servitor'
-                    },
-                    'medicae_servitor': { 
-                        toughness: 30, agility: 35, intelligence: 40, 
-                        wounds: 8, armour: 3, movement: 4,
-                        description: 'Medical assistance servitor'
-                    },
-                    'utility_servitor': { 
-                        toughness: 35, agility: 30, intelligence: 25, 
-                        wounds: 10, armour: 3, movement: 3,
-                        description: 'General purpose work unit'
-                    },
-                    'heavy_servitor': { 
-                        toughness: 65, agility: 15, intelligence: 10, 
-                        wounds: 20, armour: 8, movement: 2,
-                        description: 'Heavy combat platform'
-                    }
-                };
-                
-                const defaults = typeDefaults[robotType];
-                if (defaults) {
-                    const message = `Auto-fill typical stats for ${robotType.replace('_', ' ')}?\n${defaults.description}`;
-                    if (confirm(message)) {
-                        if (toughnessInput && !toughnessInput.value) toughnessInput.value = defaults.toughness;
-                        if (agilityInput && !agilityInput.value) agilityInput.value = defaults.agility;
-                        if (intelligenceInput && !intelligenceInput.value) intelligenceInput.value = defaults.intelligence;
-                        if (woundsInput && !woundsInput.value) woundsInput.value = defaults.wounds;
-                        if (armourInput && !armourInput.value) armourInput.value = defaults.armour;
-                        if (movementInput && !movementInput.value) movementInput.value = defaults.movement;
-                        
-                        triggerPersistence();
-                    }
-                }
-            });
-        }
+        // Robot type configurations
+        const typeDefaults = {
+            'servo_skull': { 
+                robot_toughness: 20, robot_agility: 60, robot_intelligence: 30, 
+                robot_wounds: 4, robot_armour: 2, robot_movement: 6,
+                description: 'Small hovering reconnaissance unit'
+            },
+            'combat_servitor': { 
+                robot_toughness: 45, robot_agility: 30, robot_intelligence: 15, 
+                robot_wounds: 12, robot_armour: 4, robot_movement: 3,
+                description: 'Combat-optimized servitor unit'
+            },
+            'tech_adept': { 
+                robot_toughness: 35, robot_agility: 40, robot_intelligence: 55, 
+                robot_wounds: 10, robot_armour: 5, robot_movement: 4,
+                description: 'Tech-Priest artificial construct'
+            },
+            'guardian_servitor': { 
+                robot_toughness: 50, robot_agility: 25, robot_intelligence: 20, 
+                robot_wounds: 15, robot_armour: 6, robot_movement: 3,
+                description: 'Heavy protection servitor'
+            },
+            'medicae_servitor': { 
+                robot_toughness: 30, robot_agility: 35, robot_intelligence: 40, 
+                robot_wounds: 8, robot_armour: 3, robot_movement: 4,
+                description: 'Medical assistance servitor'
+            },
+            'utility_servitor': { 
+                robot_toughness: 35, robot_agility: 30, robot_intelligence: 25, 
+                robot_wounds: 10, robot_armour: 3, robot_movement: 3,
+                description: 'General purpose work unit'
+            },
+            'heavy_servitor': { 
+                robot_toughness: 65, robot_agility: 15, robot_intelligence: 10, 
+                robot_wounds: 20, robot_armour: 8, robot_movement: 2,
+                description: 'Heavy combat platform'
+            }
+        };
+        
+        setupAutoFill('robot_type', typeDefaults, (type, defaults) => {
+            return `Auto-fill typical stats for ${type.replace('_', ' ')}?\n${defaults.description}`;
+        });
     }
     
     function setupStatValidation() {
-        const toughnessInput = document.getElementById('robot_toughness');
-        const woundsInput = document.getElementById('robot_wounds');
-        const intelligenceInput = document.getElementById('robot_intelligence');
+        const { setupVisualValidation, setupDependency, ValidationPatterns } = window.CardHelpers;
+        
+        // Visual feedback for wounds (critical damage indication)
+        setupVisualValidation('robot_wounds', ValidationPatterns.numericRange([
+            { max: 2, bgColor: '#fee2e2', color: '#dc2626' },
+            { max: 5, bgColor: '#fef3c7', color: '#d97706' }
+        ]));
         
         // Toughness affects wound capacity
-        if (toughnessInput && woundsInput) {
-            toughnessInput.addEventListener('input', function() {
-                const toughness = parseInt(this.value);
-                if (toughness && toughness < 20 && parseInt(woundsInput.value) > 5) {
-                    if (confirm('Low toughness units typically have fewer wounds. Adjust wounds?')) {
-                        woundsInput.value = Math.max(1, Math.floor(toughness / 4));
-                        triggerPersistence();
-                    }
+        setupDependency('robot_toughness', 'input', (element, helpers) => {
+            const toughness = parseInt(element.value);
+            const currentWounds = parseInt(helpers.getValue('robot_wounds')) || 0;
+            if (toughness && toughness < 20 && currentWounds > 5) {
+                if (confirm('Low toughness units typically have fewer wounds. Adjust wounds?')) {
+                    helpers.setValue('robot_wounds', Math.max(1, Math.floor(toughness / 4)));
                 }
-            });
-        }
-        
-        // Visual feedback for critical damage
-        if (woundsInput) {
-            woundsInput.addEventListener('input', function() {
-                const wounds = parseInt(this.value);
-                if (wounds && wounds <= 2) {
-                    this.style.backgroundColor = '#fee2e2';
-                    this.style.color = '#dc2626';
-                } else if (wounds && wounds <= 5) {
-                    this.style.backgroundColor = '#fef3c7';
-                    this.style.color = '#d97706';
-                } else {
-                    this.style.backgroundColor = '';
-                    this.style.color = '';
-                }
-            });
-        }
+            }
+        });
         
         // Intelligence affects equipment compatibility
-        if (intelligenceInput) {
-            intelligenceInput.addEventListener('input', function() {
-                const intelligence = parseInt(this.value);
-                const auspexCheckbox = document.getElementById('robot_auspex');
-                const voxCheckbox = document.getElementById('robot_vox_caster');
-                
-                if (intelligence && intelligence < 20) {
-                    if (auspexCheckbox && auspexCheckbox.checked) {
-                        if (confirm('Low intelligence units may struggle with complex equipment like Auspex. Remove?')) {
-                            auspexCheckbox.checked = false;
-                            triggerPersistence();
-                        }
-                    }
-                    if (voxCheckbox && voxCheckbox.checked) {
-                        if (confirm('Low intelligence units may not operate Vox-casters effectively. Remove?')) {
-                            voxCheckbox.checked = false;
-                            triggerPersistence();
-                        }
-                    }
+        setupDependency('robot_intelligence', 'input', (element, helpers) => {
+            const intelligence = parseInt(element.value);
+            if (intelligence && intelligence < 20) {
+                if (helpers.isChecked('robot_auspex') && 
+                    confirm('Low intelligence units may struggle with complex equipment like Auspex. Remove?')) {
+                    helpers.setChecked('robot_auspex', false);
                 }
-            });
-        }
+                if (helpers.isChecked('robot_vox_caster') && 
+                    confirm('Low intelligence units may not operate Vox-casters effectively. Remove?')) {
+                    helpers.setChecked('robot_vox_caster', false);
+                }
+            }
+        });
     }
     
     function setupEquipmentDependencies() {
+        const { setupDependency, DependencyPatterns } = window.CardHelpers;
+        
         // Power weapons require higher toughness
-        const powerFistCheckbox = document.getElementById('robot_power_fist');
-        const toughnessInput = document.getElementById('robot_toughness');
-        
-        if (powerFistCheckbox && toughnessInput) {
-            powerFistCheckbox.addEventListener('change', function() {
-                if (this.checked) {
-                    const toughness = parseInt(toughnessInput.value) || 0;
-                    if (toughness < 40) {
-                        if (confirm('Power Fist requires sturdy construction (Toughness 40+). Increase toughness?')) {
-                            toughnessInput.value = 45;
-                            triggerPersistence();
-                        } else {
-                            this.checked = false;
-                        }
-                    }
-                }
-            });
-        }
-        
-        // Heavy weapons reduce agility
-        const flamerCheckbox = document.getElementById('robot_flamer');
-        const agilityInput = document.getElementById('robot_agility');
-        
-        if (flamerCheckbox && agilityInput) {
-            flamerCheckbox.addEventListener('change', function() {
-                if (this.checked) {
-                    const agility = parseInt(agilityInput.value) || 0;
-                    if (agility > 40) {
-                        if (confirm('Heavy weapons like flamers reduce mobility. Reduce agility?')) {
-                            agilityInput.value = Math.max(10, agility - 15);
-                            triggerPersistence();
-                        }
-                    }
-                }
-            });
-        }
+        setupDependency('robot_power_fist', 'change', 
+            DependencyPatterns.requireMinStat('robot_toughness', 40, 'Power Fist requires sturdy construction (Toughness 40+). Increase toughness?'));
         
         // Self-repair requires intelligence
-        const selfRepairCheckbox = document.getElementById('robot_self_repair');
-        const intelligenceInput = document.getElementById('robot_intelligence');
+        setupDependency('robot_self_repair', 'change', 
+            DependencyPatterns.requireMinStat('robot_intelligence', 25, 'Self-repair systems require Intelligence 25+. Increase intelligence?'));
         
-        if (selfRepairCheckbox && intelligenceInput) {
-            selfRepairCheckbox.addEventListener('change', function() {
-                if (this.checked) {
-                    const intelligence = parseInt(intelligenceInput.value) || 0;
-                    if (intelligence < 25) {
-                        if (confirm('Self-repair systems require Intelligence 25+. Increase intelligence?')) {
-                            intelligenceInput.value = 30;
-                            triggerPersistence();
-                        } else {
-                            this.checked = false;
-                        }
+        // Heavy weapons reduce agility (custom logic)
+        setupDependency('robot_flamer', 'change', (element, helpers) => {
+            if (element.checked) {
+                const agility = parseInt(helpers.getValue('robot_agility')) || 0;
+                if (agility > 40) {
+                    if (confirm('Heavy weapons like flamers reduce mobility. Reduce agility?')) {
+                        helpers.setValue('robot_agility', Math.max(10, agility - 15));
                     }
                 }
-            });
-        }
+            }
+        });
     }
     
     function setupStatusLogic() {
-        const damagedCheckbox = document.getElementById('robot_damaged');
-        const malfunctioningCheckbox = document.getElementById('robot_malfunctioning');
-        const blessedCheckbox = document.getElementById('robot_blessed');
-        const combatReadyCheckbox = document.getElementById('robot_combat_ready');
-        const bondedCheckbox = document.getElementById('robot_bonded');
+        const { setupDependency, DependencyPatterns } = window.CardHelpers;
         
-        // Damaged conflicts with combat ready
-        if (damagedCheckbox && combatReadyCheckbox) {
-            damagedCheckbox.addEventListener('change', function() {
-                if (this.checked && combatReadyCheckbox.checked) {
-                    if (confirm('Damaged units are rarely combat ready. Remove combat ready status?')) {
-                        combatReadyCheckbox.checked = false;
-                        triggerPersistence();
-                    }
-                }
-            });
-            
-            combatReadyCheckbox.addEventListener('change', function() {
-                if (this.checked && damagedCheckbox.checked) {
-                    if (confirm('Combat ready units should not be damaged. Remove damage status?')) {
-                        damagedCheckbox.checked = false;
-                        triggerPersistence();
-                    }
-                }
-            });
-        }
+        // Damaged conflicts with combat ready (bidirectional)
+        setupDependency('robot_damaged', 'change', 
+            DependencyPatterns.conflictingCheckboxes('robot_combat_ready', 'Damaged units are rarely combat ready. Remove combat ready status?'));
+        setupDependency('robot_combat_ready', 'change', 
+            DependencyPatterns.conflictingCheckboxes('robot_damaged', 'Combat ready units should not be damaged. Remove damage status?'));
         
-        // Malfunctioning makes blessing less likely
-        if (malfunctioningCheckbox && blessedCheckbox) {
-            malfunctioningCheckbox.addEventListener('change', function() {
-                if (this.checked && blessedCheckbox.checked) {
-                    if (confirm('The Omnissiah rarely blesses malfunctioning machines. Remove blessing?')) {
-                        blessedCheckbox.checked = false;
-                        triggerPersistence();
-                    }
-                }
-            });
-        }
+        // Malfunctioning conflicts with blessing
+        setupDependency('robot_malfunctioning', 'change', 
+            DependencyPatterns.conflictingCheckboxes('robot_blessed', 'The Omnissiah rarely blesses malfunctioning machines. Remove blessing?'));
         
-        // Machine spirit bonding is rare
-        if (bondedCheckbox) {
-            bondedCheckbox.addEventListener('change', function() {
-                if (this.checked) {
-                    if (confirm('Machine Spirit bonding is a rare and sacred occurrence. Are you certain?')) {
-                        // Auto-bless bonded machines
-                        if (blessedCheckbox && !blessedCheckbox.checked) {
-                            blessedCheckbox.checked = true;
-                            triggerPersistence();
-                        }
-                    } else {
-                        this.checked = false;
+        // Machine spirit bonding is rare and auto-blesses
+        setupDependency('robot_bonded', 'change', (element, helpers) => {
+            if (element.checked) {
+                if (confirm('Machine Spirit bonding is a rare and sacred occurrence. Are you certain?')) {
+                    // Auto-bless bonded machines
+                    if (!helpers.isChecked('robot_blessed')) {
+                        helpers.setChecked('robot_blessed', true);
                     }
+                } else {
+                    element.checked = false;
                 }
-            });
-        }
+            }
+        });
     }
     
     function setupDesignationGenerator() {
-        const designationInput = document.getElementById('robot_designation');
-        const robotTypeSelect = document.getElementById('robot_type');
+        const { addUtilityButton, getElement, savePersistence } = window.CardHelpers;
         
-        if (designationInput) {
-            // Add random designation generator
-            const designationField = designationInput.parentElement;
-            const generateBtn = document.createElement('button');
-            generateBtn.type = 'button';
-            generateBtn.textContent = '⚙️';
-            generateBtn.title = 'Generate designation';
-            generateBtn.style.marginLeft = '8px';
-            generateBtn.style.padding = '4px 8px';
-            generateBtn.style.fontSize = '14px';
-            generateBtn.style.backgroundColor = '#dc2626';
-            generateBtn.style.color = 'white';
-            generateBtn.style.border = 'none';
-            generateBtn.style.borderRadius = '4px';
-            generateBtn.style.cursor = 'pointer';
-            
-            generateBtn.addEventListener('click', function() {
-                const robotType = robotTypeSelect ? robotTypeSelect.value : '';
-                designationInput.value = generateDesignation(robotType);
-                triggerPersistence();
-            });
-            
-            designationField.appendChild(generateBtn);
-        }
+        addUtilityButton('robot_designation', {
+            text: '⚙️',
+            title: 'Generate designation',
+            style: {
+                marginLeft: '8px',
+                padding: '4px 8px',
+                fontSize: '14px',
+                backgroundColor: '#dc2626',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer'
+            },
+            onclick: () => {
+                const robotTypeSelect = getElement('robot_type');
+                const designationInput = getElement('robot_designation');
+                
+                if (designationInput) {
+                    const robotType = robotTypeSelect ? robotTypeSelect.value : '';
+                    designationInput.value = generateDesignation(robotType);
+                    savePersistence();
+                }
+            }
+        });
     }
     
     function generateDesignation(robotType) {
@@ -324,17 +214,12 @@
         return selectedPattern();
     }
     
-    function triggerPersistence() {
-        if (window.Persistence) {
-            const form = document.querySelector('form');
-            if (form) window.Persistence.saveToURL(form);
-        }
+    // Register with CardHelpers for proper lifecycle management
+    if (window.CardHelpers) {
+        window.CardHelpers.registerCard('robotic-companion', initializeRoboticCompanionCard);
+    } else {
+        // Fallback for development
+        setTimeout(initializeRoboticCompanionCard, 100);
     }
-    
-    // Initialize when card loads
-    setTimeout(initializeRoboticCompanionCard, 100);
-    
-    // Expose for manual initialization
-    window.initializeRoboticCompanionCard = initializeRoboticCompanionCard;
     
 })();

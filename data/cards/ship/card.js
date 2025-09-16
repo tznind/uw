@@ -1,126 +1,77 @@
 /**
- * Ship Card Custom JavaScript
- * This demonstrates how cards can have their own custom logic
+ * Ship Card - Simplified using CardHelpers framework
  */
 
 (function() {
     'use strict';
     
-    // Wait for the ship card to be loaded
     function initializeShipCard() {
-        // Auto-calculate some stats based on ship class
-        const shipClassSelect = document.getElementById('ship_class');
-        const speedInput = document.getElementById('ship_speed');
-        const maneuverabilityInput = document.getElementById('ship_maneuverability');
-        const hullIntegrityInput = document.getElementById('ship_hull_integrity');
-        const armourInput = document.getElementById('ship_armour');
+        const { setupAutoFill, setupVisualValidation, setupDependency, 
+                ValidationPatterns, addEventListener } = window.CardHelpers;
         
-        if (shipClassSelect) {
-            shipClassSelect.addEventListener('change', function() {
-                const shipClass = this.value;
-                
-                // Auto-fill typical stats based on ship class
-                const classDefaults = {
-                    'frigate': { speed: 8, maneuverability: 15, hull: 35, armour: 4 },
-                    'light_cruiser': { speed: 6, maneuverability: 10, hull: 50, armour: 5 },
-                    'cruiser': { speed: 5, maneuverability: 8, hull: 65, armour: 6 },
-                    'grand_cruiser': { speed: 4, maneuverability: 5, hull: 80, armour: 7 },
-                    'battleship': { speed: 3, maneuverability: 2, hull: 100, armour: 8 },
-                    'transport': { speed: 4, maneuverability: -10, hull: 45, armour: 3 },
-                    'raider': { speed: 10, maneuverability: 20, hull: 25, armour: 3 }
-                };
-                
-                const defaults = classDefaults[shipClass];
-                if (defaults && confirm('Auto-fill typical stats for this ship class?')) {
-                    if (speedInput && !speedInput.value) speedInput.value = defaults.speed;
-                    if (maneuverabilityInput && !maneuverabilityInput.value) maneuverabilityInput.value = defaults.maneuverability;
-                    if (hullIntegrityInput && !hullIntegrityInput.value) hullIntegrityInput.value = defaults.hull;
-                    if (armourInput && !armourInput.value) armourInput.value = defaults.armour;
-                    
-                    // Trigger persistence save
-                    if (window.Persistence) {
-                        const form = document.querySelector('form');
-                        if (form) window.Persistence.saveToURL(form);
-                    }
-                }
-            });
-        }
+        // Ship class auto-fill
+        const classDefaults = {
+            'frigate': { ship_speed: 8, ship_maneuverability: 15, ship_hull_integrity: 35, ship_armour: 4 },
+            'light_cruiser': { ship_speed: 6, ship_maneuverability: 10, ship_hull_integrity: 50, ship_armour: 5 },
+            'cruiser': { ship_speed: 5, ship_maneuverability: 8, ship_hull_integrity: 65, ship_armour: 6 },
+            'grand_cruiser': { ship_speed: 4, ship_maneuverability: 5, ship_hull_integrity: 80, ship_armour: 7 },
+            'battleship': { ship_speed: 3, ship_maneuverability: 2, ship_hull_integrity: 100, ship_armour: 8 },
+            'transport': { ship_speed: 4, ship_maneuverability: -10, ship_hull_integrity: 45, ship_armour: 3 },
+            'raider': { ship_speed: 10, ship_maneuverability: 20, ship_hull_integrity: 25, ship_armour: 3 }
+        };
         
-        // Add visual feedback for critical hull damage
-        if (hullIntegrityInput) {
-            hullIntegrityInput.addEventListener('input', function() {
-                const hull = parseInt(this.value);
-                if (hull && hull <= 10) {
-                    this.style.backgroundColor = '#fee2e2';
-                    this.style.color = '#dc2626';
-                } else if (hull && hull <= 25) {
-                    this.style.backgroundColor = '#fef3c7';
-                    this.style.color = '#d97706';
-                } else {
-                    this.style.backgroundColor = '';
-                    this.style.color = '';
-                }
-            });
-        }
+        setupAutoFill('ship_class', classDefaults);
         
-        // Add ship name validation
-        const shipNameInput = document.getElementById('ship_name');
-        if (shipNameInput) {
-            shipNameInput.addEventListener('blur', function() {
-                const name = this.value.trim();
-                if (name && !name.match(/^[A-Za-z\s'\-]+$/)) {
-                    alert('Ship names should typically contain only letters, spaces, apostrophes, and hyphens.');
-                }
-            });
-        }
+        // Visual feedback for critical hull damage
+        setupVisualValidation('ship_hull_integrity', ValidationPatterns.numericRange([
+            { max: 10, bgColor: '#fee2e2', color: '#dc2626' },
+            { max: 25, bgColor: '#fef3c7', color: '#d97706' }
+        ]));
         
-        // Add component dependency logic
+        // Ship name validation
+        addEventListener('ship_name', 'blur', function() {
+            const name = this.value.trim();
+            if (name && !name.match(/^[A-Za-z\s'\-]+$/)) {
+                alert('Ship names should typically contain only letters, spaces, apostrophes, and hyphens.');
+            }
+        });
+        
         setupComponentDependencies();
         
         console.log('Ship card initialized with custom functionality');
     }
     
     function setupComponentDependencies() {
-        // Void shields require plasma drive
-        const plasmadriveCheckbox = document.getElementById('ship_plasma_drive');
-        const voidShieldsCheckbox = document.getElementById('ship_void_shields');
+        const { setupDependency } = window.CardHelpers;
         
-        if (plasmadriveCheckbox && voidShieldsCheckbox) {
-            voidShieldsCheckbox.addEventListener('change', function() {
-                if (this.checked && !plasmadriveCheckbox.checked) {
-                    if (confirm('Void shields require a plasma drive. Add plasma drive?')) {
-                        plasmadriveCheckbox.checked = true;
-                        // Trigger persistence
-                        if (window.Persistence) {
-                            const form = document.querySelector('form');
-                            if (form) window.Persistence.saveToURL(form);
-                        }
-                    } else {
-                        this.checked = false;
-                    }
+        // Void shields require plasma drive
+        setupDependency('ship_void_shields', 'change', (element, helpers) => {
+            if (element.checked && !helpers.isChecked('ship_plasma_drive')) {
+                if (confirm('Void shields require a plasma drive. Add plasma drive?')) {
+                    helpers.setChecked('ship_plasma_drive', true);
+                } else {
+                    element.checked = false;
                 }
-            });
-        }
+            }
+        });
         
         // Gellar field is essential for warp travel
-        const gellarFieldCheckbox = document.getElementById('ship_gellar_field');
-        if (gellarFieldCheckbox) {
-            gellarFieldCheckbox.addEventListener('change', function() {
-                if (!this.checked) {
-                    const warning = confirm('WARNING: Removing Gellar Field makes warp travel extremely dangerous! Are you sure?');
-                    if (!warning) {
-                        this.checked = true;
-                    }
+        setupDependency('ship_gellar_field', 'change', (element) => {
+            if (!element.checked) {
+                const warning = confirm('WARNING: Removing Gellar Field makes warp travel extremely dangerous! Are you sure?');
+                if (!warning) {
+                    element.checked = true;
                 }
-            });
-        }
+            }
+        });
     }
     
-    // Initialize when the card is loaded
-    // We need to wait a bit for the DOM to be ready
-    setTimeout(initializeShipCard, 100);
-    
-    // Also expose initialization function globally for manual triggering
-    window.initializeShipCard = initializeShipCard;
+    // Register with CardHelpers for proper lifecycle management
+    if (window.CardHelpers) {
+        window.CardHelpers.registerCard('ship', initializeShipCard);
+    } else {
+        // Fallback for development
+        setTimeout(initializeShipCard, 100);
+    }
     
 })();

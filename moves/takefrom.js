@@ -233,49 +233,19 @@ window.TakeFrom = (function() {
      * Create granted card section for learned moves
      */
     function createLearnedGrantedCardSection(move, urlParams) {
-        if (!move.grantsCard || !window.Cards) {
+        if (!move.grantsCard || !window.InlineCards) {
             return null;
         }
         
-        const cardDiv = document.createElement("div");
-        cardDiv.className = "granted-card-options";
-        
-        const heading = document.createElement("strong");
-        heading.textContent = "Grants:";
-        cardDiv.appendChild(heading);
-        
-        // Container for the granted card
-        const grantedCardContainer = document.createElement("div");
-        grantedCardContainer.className = "granted-card-container";
-        grantedCardContainer.id = `learned_granted_card_${move.id}`;
-        cardDiv.appendChild(grantedCardContainer);
+        const containerId = `learned_granted_card_${move.id}`;
+        const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
         
         // Show granted card immediately for learned moves (they're always "active")
         setTimeout(() => {
-            if (window.Cards) {
-                window.Cards.loadCard(move.grantsCard).then(cardData => {
-                    const grantedCardDiv = document.createElement("div");
-                    grantedCardDiv.className = "granted-card";
-                    grantedCardDiv.innerHTML = cardData.html;
-                    grantedCardContainer.appendChild(grantedCardDiv);
-                    
-                    // Refresh persistence to capture new card inputs
-                    if (window.Persistence) {
-                        const form = document.querySelector('form');
-                        setTimeout(() => {
-                            window.Persistence.refreshPersistence(form);
-                        }, 100);
-                    }
-                    
-                    console.log(`Displayed granted card '${move.grantsCard}' for learned move '${move.title}'`);
-                }).catch(error => {
-                    console.error('Error loading granted card for learned move:', error);
-                    grantedCardContainer.innerHTML = '<div class="card-error">Error loading card</div>';
-                });
-            }
+            window.InlineCards.displayCard(containerId, move.grantsCard);
         }, 100);
         
-        return cardDiv;
+        return cardSection;
     }
     
     /**

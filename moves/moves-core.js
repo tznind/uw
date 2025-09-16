@@ -133,103 +133,27 @@ window.MovesCore = (function() {
      * Create granted card section
      */
     function createGrantedCardSection(move, urlParams) {
-        if (!move.grantsCard || !window.Cards) {
+        if (!move.grantsCard || !window.InlineCards) {
             return null;
         }
         
-        const cardDiv = document.createElement("div");
-        cardDiv.className = "granted-card-options";
-        
-        const heading = document.createElement("strong");
-        heading.textContent = "Grants:";
-        cardDiv.appendChild(heading);
-        
-        // Container for the granted card (initially empty)
-        const grantedCardContainer = document.createElement("div");
-        grantedCardContainer.className = "granted-card-container";
-        grantedCardContainer.id = `granted_card_${move.id}`;
-        cardDiv.appendChild(grantedCardContainer);
+        const containerId = `granted_card_${move.id}`;
+        const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
         
         // Show granted card if move is selected (delay to ensure checkboxes are set up)
         setTimeout(() => {
-            updateGrantedCardDisplay(move, grantedCardContainer, urlParams);
+            if (window.InlineCards) {
+                const urlGranted = urlParams.get(`move_${move.id}`) === '1';
+                const domGranted = window.InlineCards.isAnyMoveCheckboxChecked(move.id);
+                const isGranted = urlGranted || domGranted;
+                
+                if (isGranted) {
+                    window.InlineCards.displayCard(containerId, move.grantsCard);
+                }
+            }
         }, 300);
         
-        return cardDiv;
-    }
-    
-    /**
-     * Update the granted card display underneath the move
-     */
-    function updateGrantedCardDisplay(move, grantedCardContainer, urlParams) {
-        if (!move.grantsCard || !grantedCardContainer) {
-            console.log('updateGrantedCardDisplay: missing grantsCard or container');
-            return;
-        }
-        
-        console.log(`updateGrantedCardDisplay: Checking move ${move.id} for card ${move.grantsCard}`);
-        
-        // Clear previous content
-        grantedCardContainer.innerHTML = '';
-        
-        // Check if any checkbox for this move is checked (prioritize URL params for initial load)
-        const urlGranted = urlParams.get(`move_${move.id}`) === '1';
-        const domGranted = checkIfMoveIsGranted(move.id, urlParams);
-        const isGranted = urlGranted || domGranted;
-        
-        console.log(`Move ${move.id}: URL=${urlGranted}, DOM=${domGranted}, isGranted=${isGranted}`);
-        
-        if (!isGranted) return;
-        
-        // Load and display the card
-        if (window.Cards) {
-            window.Cards.loadCard(move.grantsCard).then(cardData => {
-                const grantedCardDiv = document.createElement("div");
-                grantedCardDiv.className = "granted-card";
-                grantedCardDiv.innerHTML = cardData.html;
-                grantedCardContainer.appendChild(grantedCardDiv);
-                
-                // Refresh persistence to capture new card inputs
-                if (window.Persistence) {
-                    const form = document.querySelector('form');
-                    setTimeout(() => {
-                        window.Persistence.refreshPersistence(form);
-                    }, 100);
-                }
-            }).catch(error => {
-                console.error('Error loading granted card:', error);
-                grantedCardContainer.innerHTML = '<div class="card-error">Error loading card</div>';
-            });
-        }
-    }
-    
-    /**
-     * Check if a move is granted (has any checkboxes checked)
-     */
-    function checkIfMoveIsGranted(moveId, urlParams) {
-        // Check main checkbox in DOM
-        const mainCheckbox = document.getElementById(`move_${moveId}`);
-        if (mainCheckbox && mainCheckbox.checked) {
-            return true;
-        }
-        
-        // Check multiple checkboxes in DOM
-        let index = 1;
-        while (true) {
-            const checkbox = document.getElementById(`move_${moveId}_${index}`);
-            if (!checkbox) break;
-            if (checkbox.checked) {
-                return true;
-            }
-            index++;
-        }
-        
-        // Fallback to URL params if DOM not ready yet
-        if (urlParams.get(`move_${moveId}`) === '1') {
-            return true;
-        }
-        
-        return false;
+        return cardSection;
     }
 
     /**
@@ -453,7 +377,6 @@ window.MovesCore = (function() {
         groupMovesByCategory,
         isMoveTaken,
         renderMove,
-        renderMovesForRole,
-        updateGrantedCardDisplay
+        renderMovesForRole
     };
 })();
