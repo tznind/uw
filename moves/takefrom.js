@@ -216,11 +216,38 @@ window.TakeFrom = (function() {
                 const pickElement = window.MovesCore.createPickOptions(selectedMoveData, urlParams);
                 learnedMoveDiv.appendChild(pickElement);
             }
+            
+            // Add granted card section if the learned move grants a card
+            if (selectedMoveData.grantsCard) {
+                const grantedCardSection = createLearnedGrantedCardSection(selectedMoveData, urlParams);
+                if (grantedCardSection) {
+                    learnedMoveDiv.appendChild(grantedCardSection);
+                }
+            }
         }
         
         learnedMoveContainer.appendChild(learnedMoveDiv);
     }
 
+    /**
+     * Create granted card section for learned moves
+     */
+    function createLearnedGrantedCardSection(move, urlParams) {
+        if (!move.grantsCard || !window.InlineCards) {
+            return null;
+        }
+        
+        const containerId = `learned_granted_card_${move.id}`;
+        const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
+        
+        // Show granted card immediately for learned moves (they're always "active")
+        setTimeout(() => {
+            window.InlineCards.displayCard(containerId, move.grantsCard);
+        }, 100);
+        
+        return cardSection;
+    }
+    
     /**
      * Update move options based on selected role
      */
@@ -264,7 +291,7 @@ window.TakeFrom = (function() {
      * Handle takefrom selection changes (quiet version - no re-render)
      */
     function handleSelectionChangeQuiet(roleSelect, moveSelect, takeFromMoveId) {
-        const currentRole = getCurrentRole();
+        const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
         const selectedMove = moveSelect.value;
         
         // Get previous selection to remove it if changed
@@ -329,7 +356,7 @@ window.TakeFrom = (function() {
             
             // Remove the learned move from availableMap
             if (previousMove) {
-                const currentRole = getCurrentRole();
+                const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
                 if (currentRole && window.availableMap && window.availableMap[currentRole]) {
                     delete window.availableMap[currentRole][previousMove];
                 }
@@ -378,7 +405,7 @@ window.TakeFrom = (function() {
                         }
                     
                         // Add move back to availableMap
-                        const currentRole = getCurrentRole();
+                        const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
                         if (currentRole) {
                             addLearnedMoveQuiet(currentRole, savedMove);
                         }
@@ -398,13 +425,6 @@ window.TakeFrom = (function() {
         }
     }
 
-    /**
-     * Get current role from the form (utility function)
-     */
-    function getCurrentRole() {
-        const roleSelect = document.getElementById('role');
-        return roleSelect ? roleSelect.value : null;
-    }
 
     /**
      * Check if any checkbox for a takefrom move is still checked
@@ -438,7 +458,6 @@ window.TakeFrom = (function() {
         updateLearnedMoveDisplay,
         updateMoveOptions,
         addLearnedMoveQuiet,
-        getCurrentRole,
         checkIfAnyTakeFromMoveChecked
     };
 })();

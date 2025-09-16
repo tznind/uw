@@ -1,0 +1,10 @@
+{
+  "Navigator": [],
+  "Mech Adept": [],
+  "Lord Commander": [
+    {
+      "id": "ship",
+      "path": "data/cards/ship"
+    }
+  ]
+}

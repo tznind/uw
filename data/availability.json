@@ -12,7 +12,8 @@
     "m1a2b3": false,
     "m4c5d6": false,
     "m7e8f9": false,
-    "85757e": false
+    "85757e": false,
+    "ac001": false
   },
   "Lord Commander": {
     "_movesFile": "data/moves/lord-commander.json",
