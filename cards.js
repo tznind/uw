@@ -182,57 +182,7 @@ window.Cards = (function() {
     }
 
 
-    /**
-     * Get current role from role select
-     * @returns {string|null} Current role or null
-     */
-    function getCurrentRole() {
-        const roleSelect = document.getElementById('role');
-        return roleSelect ? roleSelect.value : null;
-    }
 
-    /**
-     * Clear all caches (useful for development/testing)
-     */
-    function clearCache() {
-        cardCache.clear();
-        
-        // Remove loaded stylesheets
-        document.querySelectorAll('style[data-card]').forEach(style => style.remove());
-        loadedStyles.clear();
-        
-        // Remove loaded scripts
-        document.querySelectorAll('script[data-card]').forEach(script => script.remove());
-        loadedScripts.clear();
-    }
-
-    /**
-     * Get information about a loaded card
-     * @param {string} cardId - ID of the card
-     * @returns {Object|null} Card data or null
-     */
-    function getCardInfo(cardId) {
-        return cardCache.get(cardId) || null;
-    }
-
-    /**
-     * List all available cards from the cards data
-     * @returns {string[]} Array of unique card IDs across all roles
-     */
-    function listAvailableCards() {
-        if (!window.cardsData) {
-            console.warn('Cards data not loaded');
-            return [];
-        }
-        
-        const allCards = new Set();
-        for (const role in window.cardsData) {
-            const roleCards = window.cardsData[role] || [];
-            roleCards.forEach(card => allCards.add(card.id));
-        }
-        
-        return Array.from(allCards);
-    }
 
     /**
      * Initialize cards system
@@ -248,9 +198,6 @@ window.Cards = (function() {
         loadCard,
         renderCardsForRole,
         getCardsForRole,
-        getCardInfo,
-        listAvailableCards,
-        clearCache,
         initialize
     };
 })();

@@ -214,7 +214,7 @@ window.Persistence = (function() {
         
         // Extract move ID, handling multiple instances (move_id_1 -> move_id)
         const moveId = inputId.replace('move_', '').replace(/_\d+$/, '').replace(/_pick_\d+$/, '');
-        const currentRole = getCurrentRole();
+        const currentRole = window.Utils ? window.Utils.getCurrentRole() : null;
         
         if (currentRole && window.availableMap[currentRole]) {
             return window.availableMap[currentRole][moveId] === true;
@@ -222,13 +222,6 @@ window.Persistence = (function() {
         return false;
     }
     
-    /**
-     * Get current role (helper function)
-     */
-    function getCurrentRole() {
-        const roleSelect = document.getElementById('role');
-        return roleSelect ? roleSelect.value : null;
-    }
     
     /**
      * Refresh persistence after dynamic content changes
