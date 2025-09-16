@@ -165,6 +165,23 @@
      * Set up event listeners
      */
     function setupEventListeners() {
+        // Role dropdown change
+        const roleSelect = document.getElementById('role');
+        if (roleSelect) {
+            roleSelect.addEventListener('change', async (event) => {
+                const newRole = event.target.value;
+                if (newRole) {
+                    await renderRoleContent(newRole);
+                } else {
+                    // Clear content when no role selected
+                    const movesContainer = document.getElementById('moves');
+                    const cardsContainer = document.getElementById('cards-container');
+                    if (movesContainer) movesContainer.innerHTML = '';
+                    if (cardsContainer) cardsContainer.innerHTML = '';
+                }
+            });
+        }
+        
         // Clear button
         const clearButton = document.getElementById('clear-button');
         if (clearButton) {
