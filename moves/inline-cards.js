@@ -26,6 +26,12 @@ window.InlineCards = (function() {
                 cardDiv.innerHTML = cardData.html;
                 container.appendChild(cardDiv);
                 
+                // Make sure the parent granted-card-options container is visible
+                const parentContainer = container.closest('.granted-card-options');
+                if (parentContainer) {
+                    parentContainer.style.display = 'block';
+                }
+                
                 // Refresh persistence to capture new card inputs
                 refreshPersistence();
                 
@@ -45,6 +51,12 @@ window.InlineCards = (function() {
         const container = document.getElementById(containerId);
         if (container) {
             container.innerHTML = '';
+            
+            // Also hide the parent granted-card-options container (which contains "Grants:" heading)
+            const parentContainer = container.closest('.granted-card-options');
+            if (parentContainer) {
+                parentContainer.style.display = 'none';
+            }
         }
     }
 

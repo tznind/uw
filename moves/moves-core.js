@@ -140,15 +140,37 @@ window.MovesCore = (function() {
         const containerId = `granted_card_${move.id}`;
         const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
         
+        // Check if move is initially selected
+        const urlGranted = urlParams.get(`move_${move.id}`) === '1';
+        // Check multiple checkboxes if this is a multi-checkbox move
+        let anyUrlGranted = urlGranted;
+        if (!anyUrlGranted) {
+            let index = 1;
+            while (urlParams.has(`move_${move.id}_${index}`)) {
+                if (urlParams.get(`move_${move.id}_${index}`) === '1') {
+                    anyUrlGranted = true;
+                    break;
+                }
+                index++;
+            }
+        }
+        
+        // Hide the container initially if move is not selected
+        if (!anyUrlGranted) {
+            cardSection.style.display = 'none';
+        }
+        
         // Show granted card if move is selected (delay to ensure checkboxes are set up)
         setTimeout(() => {
             if (window.InlineCards) {
-                const urlGranted = urlParams.get(`move_${move.id}`) === '1';
                 const domGranted = window.InlineCards.isAnyMoveCheckboxChecked(move.id);
-                const isGranted = urlGranted || domGranted;
+                const isGranted = anyUrlGranted || domGranted;
                 
                 if (isGranted) {
                     window.InlineCards.displayCard(containerId, move.grantsCard);
+                } else {
+                    // Make sure it's hidden if not granted
+                    cardSection.style.display = 'none';
                 }
             }
         }, 300);
