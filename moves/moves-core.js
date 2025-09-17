@@ -340,28 +340,36 @@ window.MovesCore = (function() {
         return groups;
     }
 
+
     /**
-     * Render all moves for a role
+     * Render all moves for roles with merged availability
      */
-    function renderMovesForRole(role) {
+    function renderMovesForRole(roles, mergedAvailability) {
         const movesContainer = document.getElementById("moves");
         if (!movesContainer) return;
         
         movesContainer.innerHTML = "";
         
-        if (!role || !window.availableMap || !window.availableMap[role]) {
+        if (!roles || roles.length === 0 || !mergedAvailability) {
             return;
         }
         
-        const available = window.availableMap[role];
         const urlParams = new URLSearchParams(location.search);
         
         // Check if hiding untaken moves
         const hideUntakenCheckbox = document.getElementById('hide_untaken');
         const hideUntaken = hideUntakenCheckbox && hideUntakenCheckbox.checked;
         
-        // Group moves by category
-        const groups = groupMovesByCategory(window.moves, available, hideUntaken, urlParams);
+        // Group moves by category using merged availability
+        const groups = groupMovesByCategory(window.moves, mergedAvailability, hideUntaken, urlParams);
+        
+        // Add role information to the header
+        if (roles.length > 1) {
+            const rolesHeader = document.createElement("h2");
+            rolesHeader.className = "roles-header";
+            rolesHeader.textContent = `Roles: ${roles.join(', ')}`;
+            movesContainer.appendChild(rolesHeader);
+        }
         
         // First render uncategorized moves under "Moves" header
         if (groups.uncategorized.length > 0) {
@@ -369,7 +377,7 @@ window.MovesCore = (function() {
             movesContainer.appendChild(movesHeader);
             
             groups.uncategorized.forEach(move => {
-                const moveElement = renderMove(move, available, urlParams);
+                const moveElement = renderMove(move, mergedAvailability, urlParams);
                 movesContainer.appendChild(moveElement);
             });
         }
@@ -382,7 +390,7 @@ window.MovesCore = (function() {
             
             const categoryMoves = groups.categorized.get(categoryName);
             categoryMoves.forEach(move => {
-                const moveElement = renderMove(move, available, urlParams);
+                const moveElement = renderMove(move, mergedAvailability, urlParams);
                 movesContainer.appendChild(moveElement);
             });
         });

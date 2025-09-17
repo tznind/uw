@@ -81,13 +81,14 @@ window.Moves = (function() {
     }
 
     /**
-     * Render moves for a specific role
-     * @param {string} role - The role to render moves for
+     * Render moves for roles with merged availability
+     * @param {Array<string>} roles - Array of roles to render moves for
+     * @param {Object} mergedAvailability - Merged availability map
      * @param {boolean} refreshPersistence - Whether to refresh persistence after rendering (default: true)
      */
-    function renderMovesForRole(role, refreshPersistence = true) {
+    function renderMovesForRole(roles, mergedAvailability, refreshPersistence = true) {
         if (window.MovesCore) {
-            window.MovesCore.renderMovesForRole(role);
+            window.MovesCore.renderMovesForRole(roles, mergedAvailability);
             
             // After rendering moves, refresh persistence to handle new checkboxes
             if (refreshPersistence && window.Persistence) {
