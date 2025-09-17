@@ -45,8 +45,9 @@ window.Moves = (function() {
         }
         
         // Check if this move grants a card
-        if (move && move.grantsCard && window.GrantCard) {
-            window.GrantCard.handleCardGrantingMoveToggle(moveId, checkbox.checked);
+        if (move && move.grantsCard && window.InlineCards) {
+            const containerId = `granted_card_${moveId}`;
+            window.InlineCards.toggleCardDisplay(moveId, move.grantsCard, containerId, checkbox.checked);
         }
         
     }
