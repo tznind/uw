@@ -88,7 +88,8 @@
   },
   {
     "id": "85757e",
-    "title": "Relic Weapon - You have a priceless relic of the before time, choose 2 then +1 for each additional time you take this move:",
+    "title": "Relic Weapon",
+    "description":"You have a priceless relic of the before time, choose 2 then +1 for each additional time you take this move",
     "multiple": 3,
     "category": "Equipment",
     "pick": [
