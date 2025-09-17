@@ -194,13 +194,20 @@ window.MovesCore = (function() {
             const li = document.createElement("li");
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
-            checkbox.id = `move_${move.id}_pick_${index + 1}`;
-            checkbox.name = `move_${move.id}_pick_${index + 1}`;
+            
+            // Use new shorter URL format: _p1, _p2, etc.
+            const newId = `move_${move.id}_p${index + 1}`;
+            const oldId = `move_${move.id}_pick_${index + 1}`;
+            
+            checkbox.id = newId;
+            checkbox.name = newId;
             checkbox.setAttribute('aria-label', `Pick ${option}`);
             
-            // Restore from URL if exists
-            if (urlParams.has(checkbox.id)) {
-                checkbox.checked = urlParams.get(checkbox.id) === '1';
+            // Restore from URL if exists (check both old and new formats)
+            if (urlParams.has(newId)) {
+                checkbox.checked = urlParams.get(newId) === '1';
+            } else if (urlParams.has(oldId)) {
+                checkbox.checked = urlParams.get(oldId) === '1';
             }
             
             const label = document.createElement("label");
@@ -214,6 +221,49 @@ window.MovesCore = (function() {
         
         pickDiv.appendChild(pickList);
         return pickDiv;
+    }
+
+    /**
+     * Create pickOne options section (radio buttons)
+     */
+    function createPickOneOptions(move, urlParams) {
+        const pickOneDiv = document.createElement("div");
+        pickOneDiv.className = "pick-one-options";
+        
+        const pickOneTitle = document.createElement("strong");
+        pickOneTitle.textContent = "Pick One:";
+        pickOneDiv.appendChild(pickOneTitle);
+        
+        const pickOneList = document.createElement("ul");
+        const radioGroupName = `move_${move.id}_pickone`;
+        
+        move.pickOne.forEach((option, index) => {
+            const li = document.createElement("li");
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = radioGroupName;
+            
+            // Use new URL format: _o1, _o2, etc.
+            radio.id = `move_${move.id}_o${index + 1}`;
+            radio.value = `${index + 1}`;
+            radio.setAttribute('aria-label', `Pick one: ${option}`);
+            
+            // Restore from URL if exists
+            if (urlParams.has(radio.id)) {
+                radio.checked = urlParams.get(radio.id) === '1';
+            }
+            
+            const label = document.createElement("label");
+            label.setAttribute('for', radio.id);
+            label.appendChild(radio);
+            label.appendChild(document.createTextNode(option));
+            
+            li.appendChild(label);
+            pickOneList.appendChild(li);
+        });
+        
+        pickOneDiv.appendChild(pickOneList);
+        return pickOneDiv;
     }
 
     /**
@@ -244,7 +294,13 @@ window.MovesCore = (function() {
             });
         }
         
-        // Add pick options if they exist
+        // Add pickOne options if they exist (render first as they're typically more fundamental)
+        if (move.pickOne && Array.isArray(move.pickOne) && move.pickOne.length > 0) {
+            const pickOneElement = createPickOneOptions(move, urlParams);
+            moveDiv.appendChild(pickOneElement);
+        }
+        
+        // Add pick options if they exist (render after pickOne as they're typically add-on features)
         if (move.pick && Array.isArray(move.pick) && move.pick.length > 0) {
             const pickElement = createPickOptions(move, urlParams);
             moveDiv.appendChild(pickElement);
@@ -298,10 +354,24 @@ window.MovesCore = (function() {
             }
         }
         
-        // Check pick option checkboxes if they exist
+        // Check pick option checkboxes if they exist (both old and new formats)
         if (move.pick && Array.isArray(move.pick)) {
             for (let i = 1; i <= move.pick.length; i++) {
+                // Check new format first (_p1, _p2, etc.)
+                if (urlParams.get(`move_${move.id}_p${i}`) === '1') {
+                    return true;
+                }
+                // Check old format for backward compatibility (_pick_1, _pick_2, etc.)
                 if (urlParams.get(`move_${move.id}_pick_${i}`) === '1') {
+                    return true;
+                }
+            }
+        }
+        
+        // Check pickOne option radio buttons if they exist (_o1, _o2, etc.)
+        if (move.pickOne && Array.isArray(move.pickOne)) {
+            for (let i = 1; i <= move.pickOne.length; i++) {
+                if (urlParams.get(`move_${move.id}_o${i}`) === '1') {
                     return true;
                 }
             }
@@ -403,6 +473,7 @@ window.MovesCore = (function() {
         createDescription,
         createOutcome,
         createPickOptions,
+        createPickOneOptions,
         createCategoryHeader,
         groupMovesByCategory,
         isMoveTaken,

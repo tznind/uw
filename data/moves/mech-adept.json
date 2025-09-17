@@ -98,6 +98,11 @@
       "Precise",
       "Terrifying",
       "Messy"
+    ],
+    "pickOne": [
+      "Ranged weapon (projectile or energy)",
+      "Melee weapon (blade or maul)",
+      "Exotic weapon (unique mechanism)"
     ]
   },
   {
