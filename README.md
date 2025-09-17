@@ -4,7 +4,7 @@ This repository is a template for building interactive [PbtA-style](https://en.w
 
 
 
-<a href="https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&influence=%2B2&expertise=0&conviction=%2B1&name=Selene+Vortrix&player=Thomas&move_l1a2b3=1&move_lc001_1=1&move_lc001_2=0&takefrom_adapt1_role=Mech+Adept&move_adapt1=1&move_85757e_1=1&move_85757e_pick_1=1&move_85757e_pick_2=1&ship_name=The+Intrepid&ship_class=light_cruiser&ship_speed=12&ship_maneuverability=-10&ship_detection=32&ship_hull_integrity=11&ship_armour=1&ship_turret_rating=1&ship_plasma_drive=1&ship_lance_batteries=1&ship_notes=Rogue+machine+spirits&hide_untaken=1&takefrom_adapt1_move=85757e">
+<a href="https://tznind.github.io/lc/cs.html?role=Lord+Commander&mettle=%2B1&physique=-1&influence=%2B2&expertise=0&conviction=%2B1&name=Selene+Vortrix&player=Thomas&move_l1a2b3=1&move_lc001_1=1&takefrom_adapt1_role=Mech+Adept&move_adapt1=1&move_85757e_1=1&move_85757e_pick_1=1&move_85757e_pick_2=1&ship_name=The+Intrepid&ship_class=light_cruiser&ship_speed=12&ship_maneuverability=-10&ship_detection=32&ship_hull_integrity=11&ship_armour=1&ship_turret_rating=1&ship_plasma_drive=1&ship_lance_batteries=1&ship_notes=Rogue+machine+spirits&hide_untaken=1&takefrom_adapt1_move=85757e&move_85757e_pickone=2&move_85757e_p2=1&move_85757e_p1=1">
 <img width="478" height="286" alt="image" src="https://github.com/user-attachments/assets/02a1f67c-de79-4e7e-a043-8e90e0f645f2" />
 </a>
 
