@@ -36,7 +36,7 @@ window.Moves = (function() {
      * Handle special move checkbox changes (takefrom, card granting, etc.)
      */
     function handleTakeFromMoveIfNeeded(checkbox) {
-        const moveId = extractMoveId(checkbox.id);
+        const moveId = extractMoveId(checkbox);
         
         // Check if this is a takefrom move that needs special handling
         const move = window.moves && window.moves.find(m => m.id === moveId);
@@ -45,18 +45,19 @@ window.Moves = (function() {
         }
         
         // Check if this move grants a card
-        if (move && move.grantsCard && window.GrantCard) {
-            window.GrantCard.handleCardGrantingMoveToggle(moveId, checkbox.checked);
+        if (move && move.grantsCard && window.InlineCards) {
+            const containerId = `granted_card_${moveId}`;
+            window.InlineCards.toggleCardDisplay(moveId, move.grantsCard, containerId, checkbox.checked);
         }
         
     }
 
     /**
-     * Extract move ID from checkbox ID (handles single and multiple checkboxes)
+     * Extract move ID from checkbox/radio element
      */
-    function extractMoveId(checkboxId) {
-        // Remove 'move_' prefix and any instance numbers (_1, _2, etc.) or pick suffixes
-        return checkboxId.replace('move_', '').replace(/_\d+$/, '').replace(/_pick_\d+$/, '');
+    function extractMoveId(element) {
+        // Use the data attribute we set when creating the element
+        return element.getAttribute('data-move-id');
     }
 
     /**
