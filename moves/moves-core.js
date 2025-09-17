@@ -340,58 +340,11 @@ window.MovesCore = (function() {
         return groups;
     }
 
-    /**
-     * Render all moves for a role (backward compatibility)
-     */
-    function renderMovesForRole(role) {
-        const movesContainer = document.getElementById("moves");
-        if (!movesContainer) return;
-        
-        movesContainer.innerHTML = "";
-        
-        if (!role || !window.availableMap || !window.availableMap[role]) {
-            return;
-        }
-        
-        const available = window.availableMap[role];
-        const urlParams = new URLSearchParams(location.search);
-        
-        // Check if hiding untaken moves
-        const hideUntakenCheckbox = document.getElementById('hide_untaken');
-        const hideUntaken = hideUntakenCheckbox && hideUntakenCheckbox.checked;
-        
-        // Group moves by category
-        const groups = groupMovesByCategory(window.moves, available, hideUntaken, urlParams);
-        
-        // First render uncategorized moves under "Moves" header
-        if (groups.uncategorized.length > 0) {
-            const movesHeader = createCategoryHeader("Moves");
-            movesContainer.appendChild(movesHeader);
-            
-            groups.uncategorized.forEach(move => {
-                const moveElement = renderMove(move, available, urlParams);
-                movesContainer.appendChild(moveElement);
-            });
-        }
-        
-        // Then render categorized moves with their category headers
-        const sortedCategories = Array.from(groups.categorized.keys()).sort();
-        sortedCategories.forEach(categoryName => {
-            const categoryHeader = createCategoryHeader(categoryName);
-            movesContainer.appendChild(categoryHeader);
-            
-            const categoryMoves = groups.categorized.get(categoryName);
-            categoryMoves.forEach(move => {
-                const moveElement = renderMove(move, available, urlParams);
-                movesContainer.appendChild(moveElement);
-            });
-        });
-    }
 
     /**
-     * Render all moves for multiple roles with merged availability
+     * Render all moves for roles with merged availability
      */
-    function renderMovesForRoles(roles, mergedAvailability) {
+    function renderMovesForRole(roles, mergedAvailability) {
         const movesContainer = document.getElementById("moves");
         if (!movesContainer) return;
         
@@ -454,7 +407,6 @@ window.MovesCore = (function() {
         groupMovesByCategory,
         isMoveTaken,
         renderMove,
-        renderMovesForRole,
-        renderMovesForRoles
+        renderMovesForRole
     };
 })();

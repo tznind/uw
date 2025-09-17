@@ -81,42 +81,14 @@ window.Moves = (function() {
     }
 
     /**
-     * Render moves for a specific role (backward compatibility)
-     * @param {string} role - The role to render moves for
-     * @param {boolean} refreshPersistence - Whether to refresh persistence after rendering (default: true)
-     */
-    function renderMovesForRole(role, refreshPersistence = true) {
-        if (window.MovesCore) {
-            window.MovesCore.renderMovesForRole(role);
-            
-            // After rendering moves, refresh persistence to handle new checkboxes
-            if (refreshPersistence && window.Persistence) {
-                const form = document.querySelector('form');
-                if (form) {
-                    // Add a small delay to ensure DOM is fully updated
-                    setTimeout(() => {
-                        window.Persistence.refreshPersistence(form);
-                    }, 50);
-                }
-            }
-        }
-    }
-
-    /**
-     * Render moves for multiple roles with merged availability
+     * Render moves for roles with merged availability
      * @param {Array<string>} roles - Array of roles to render moves for
      * @param {Object} mergedAvailability - Merged availability map
      * @param {boolean} refreshPersistence - Whether to refresh persistence after rendering (default: true)
      */
-    function renderMovesForRoles(roles, mergedAvailability, refreshPersistence = true) {
+    function renderMovesForRole(roles, mergedAvailability, refreshPersistence = true) {
         if (window.MovesCore) {
-            // Use the new multi-role rendering if available, otherwise fall back to single role
-            if (window.MovesCore.renderMovesForRoles) {
-                window.MovesCore.renderMovesForRoles(roles, mergedAvailability);
-            } else {
-                // Backward compatibility: use first role
-                window.MovesCore.renderMovesForRole(roles[0]);
-            }
+            window.MovesCore.renderMovesForRole(roles, mergedAvailability);
             
             // After rendering moves, refresh persistence to handle new checkboxes
             if (refreshPersistence && window.Persistence) {
@@ -136,8 +108,7 @@ window.Moves = (function() {
     // Public API
     return {
         initialize,
-        renderMovesForRole,
-        renderMovesForRoles
+        renderMovesForRole
     };
 })();
 

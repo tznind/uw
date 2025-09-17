@@ -84,35 +84,30 @@
 
     /**
      * Render all content for roles (cards and moves)
-     * @param {string|Array<string>} roles - The role(s) to render content for
+     * @param {Array<string>} roles - Array of roles to render content for
      * @param {boolean} isInitialLoad - Whether this is the initial page load
      */
     async function renderRoleContent(roles, isInitialLoad = false) {
-        // Handle both single role (backward compatibility) and multiple roles
-        const roleArray = Array.isArray(roles) ? roles : [roles];
-        if (roleArray.length === 0 || (roleArray.length === 1 && !roleArray[0])) return;
-        
-        // For backward compatibility, use first role for single-role systems
-        const primaryRole = roleArray[0];
+        if (!Array.isArray(roles) || roles.length === 0) return;
         
         // Create merged availability map for multiple roles
-        const mergedAvailability = window.Utils.mergeRoleAvailability(roleArray);
+        const mergedAvailability = window.Utils.mergeRoleAvailability(roles);
         
         // Render cards first (async) - use merged availability
         if (window.Cards) {
-            await window.Cards.renderCardsForRoles(roleArray, mergedAvailability);
+            await window.Cards.renderCardsForRole(roles, mergedAvailability);
         }
         
         // Then render moves (without persistence refresh during initial load)
         if (window.Moves) {
-            window.Moves.renderMovesForRoles(roleArray, mergedAvailability, !isInitialLoad);
+            window.Moves.renderMovesForRole(roles, mergedAvailability, !isInitialLoad);
         }
         
         // Learned moves are restored automatically by their takefrom sections
         
-        // Handle card grants for the primary role (maintain backward compatibility)
+        // Handle card grants (role parameter not actually used by restoreInlineCards)
         if (window.GrantCard) {
-            window.GrantCard.handleRoleChange(primaryRole);
+            window.GrantCard.handleRoleChange(roles[0] || null);
         }
         
         // Refresh persistence after everything loads (longer delay for initial load)
@@ -181,10 +176,10 @@
             
             // Only re-render moves, not cards (cards shouldn't change when hiding/showing moves)
             if (window.Moves) {
-                window.Moves.renderMovesForRoles(selectedRoles, mergedAvailability);
+                window.Moves.renderMovesForRole(selectedRoles, mergedAvailability);
             }
             if (window.GrantCard) {
-                window.GrantCard.handleRoleChange(selectedRoles[0]); // Use primary role for backward compatibility
+                window.GrantCard.handleRoleChange(selectedRoles[0] || null);
             }
             
             // Refresh persistence after moves are re-rendered
