@@ -16,6 +16,9 @@ window.MovesCore = (function() {
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             
+            // Add data attribute to identify the parent move
+            checkbox.setAttribute('data-move-id', move.id);
+            
             if (checkboxCount === 1) {
                 // Single checkbox - use original ID format
                 checkbox.id = `move_${move.id}`;
@@ -199,6 +202,7 @@ window.MovesCore = (function() {
             checkbox.id = `move_${move.id}_p${index + 1}`;
             checkbox.name = `move_${move.id}_p${index + 1}`;
             checkbox.setAttribute('aria-label', `Pick ${option}`);
+            checkbox.setAttribute('data-move-id', move.id);
             
             // Restore from URL if exists
             if (urlParams.has(checkbox.id)) {
@@ -242,6 +246,7 @@ window.MovesCore = (function() {
             radio.id = `move_${move.id}_o${index + 1}`;
             radio.value = `${index + 1}`;
             radio.setAttribute('aria-label', `Pick one: ${option}`);
+            radio.setAttribute('data-move-id', move.id);
             
             // Restore from URL if exists
             if (urlParams.has(radio.id)) {
