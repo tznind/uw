@@ -59,8 +59,7 @@ window.Moves = (function() {
         return checkboxId
             .replace('move_', '')
             .replace(/_\d+$/, '')                     // Remove trailing numbers (_1, _2, etc.)
-            .replace(/_pick_\d+$/, '')                // Remove old pick format (_pick_1, _pick_2, etc.)
-            .replace(/_p\d+$/, '')                    // Remove new pick format (_p1, _p2, etc.)
+            .replace(/_p\d+$/, '')                    // Remove pick format (_p1, _p2, etc.)
             .replace(/_o\d+$/, '')                    // Remove pickOne format (_o1, _o2, etc.)
             .replace(/_pickone$/, '');                // Remove pickOne group name suffix
     }

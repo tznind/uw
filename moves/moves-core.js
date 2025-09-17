@@ -196,18 +196,13 @@ window.MovesCore = (function() {
             checkbox.type = "checkbox";
             
             // Use new shorter URL format: _p1, _p2, etc.
-            const newId = `move_${move.id}_p${index + 1}`;
-            const oldId = `move_${move.id}_pick_${index + 1}`;
-            
-            checkbox.id = newId;
-            checkbox.name = newId;
+            checkbox.id = `move_${move.id}_p${index + 1}`;
+            checkbox.name = `move_${move.id}_p${index + 1}`;
             checkbox.setAttribute('aria-label', `Pick ${option}`);
             
-            // Restore from URL if exists (check both old and new formats)
-            if (urlParams.has(newId)) {
-                checkbox.checked = urlParams.get(newId) === '1';
-            } else if (urlParams.has(oldId)) {
-                checkbox.checked = urlParams.get(oldId) === '1';
+            // Restore from URL if exists
+            if (urlParams.has(checkbox.id)) {
+                checkbox.checked = urlParams.get(checkbox.id) === '1';
             }
             
             const label = document.createElement("label");
@@ -354,15 +349,10 @@ window.MovesCore = (function() {
             }
         }
         
-        // Check pick option checkboxes if they exist (both old and new formats)
+        // Check pick option checkboxes if they exist (_p1, _p2, etc.)
         if (move.pick && Array.isArray(move.pick)) {
             for (let i = 1; i <= move.pick.length; i++) {
-                // Check new format first (_p1, _p2, etc.)
                 if (urlParams.get(`move_${move.id}_p${i}`) === '1') {
-                    return true;
-                }
-                // Check old format for backward compatibility (_pick_1, _pick_2, etc.)
-                if (urlParams.get(`move_${move.id}_pick_${i}`) === '1') {
                     return true;
                 }
             }
