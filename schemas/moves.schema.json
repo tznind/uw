@@ -60,6 +60,12 @@
           "type": "string"
         }
       },
+      "multiplePick": {
+        "type": "integer",
+        "description": "Number of columns for pick/pickOne options (creates grid layout with separate selections per column)",
+        "minimum": 2,
+        "maximum": 5
+      },
       "takefrom": {
         "type": "array",
         "description": "List of roles this move can be taken from",

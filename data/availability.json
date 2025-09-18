@@ -6,7 +6,8 @@
     "d4e5f6": false,
     "g7h8i9": true,
     "1587dd": false,
-    "nav001": false
+    "nav001": false,
+    "is": false
   },
   "Mech Adept": {
     "_movesFile": "data/moves/mech-adept.json",
@@ -15,7 +16,8 @@
     "m4c5d6": false,
     "m7e8f9": false,
     "85757e": false,
-    "ac001": false
+    "ac001": false,
+    "is": false
   },
   "Lord Commander": {
     "_movesFile": "data/moves/lord-commander.json",
@@ -24,6 +26,7 @@
     "l4c5d6": false,
     "l7e8f9": false,
     "lc001": true,
-    "adapt1": false
+    "adapt1": false,
+    "is": false
   }
 }
