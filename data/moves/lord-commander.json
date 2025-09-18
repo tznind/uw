@@ -123,7 +123,8 @@
   },
   {
     "id": "is",
-    "title": "Improved Stat - Choose a stat to improve",
+    "title": "Improved Stat",
+    "description": "Choose one stat to improve by 1 (can be taken twice)",
     "multiple": 2,
     "multiplePick": 2,
     "category": "Advancement",
