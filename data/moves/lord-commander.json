@@ -120,5 +120,19 @@
     "id": "adapt1",
     "title": "Adaptable - Learn techniques from other roles",
     "takefrom": ["Navigator", "Mech Adept"]
+  },
+  {
+    "id": "is",
+    "title": "Improved Stat - Choose a stat to improve",
+    "multiple": 2,
+    "multiplePick": 2,
+    "category": "Advancement",
+    "pickOne": [
+      "Mettle",
+      "Physique",
+      "Influence",
+      "Expertise",
+      "Conviction"
+    ]
   }
 ]

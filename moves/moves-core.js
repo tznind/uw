@@ -468,6 +468,12 @@ window.MovesCore = (function() {
      * Group moves by category
      */
     function groupMovesByCategory(moves, available, hideUntaken = false, urlParams = null) {
+        console.log('groupMovesByCategory called with:');
+        console.log('- Total moves:', moves.length);
+        console.log('- Available moves:', Object.keys(available));
+        console.log('- Looking for move "is":', moves.find(m => m.id === 'is'));
+        console.log('- "is" in available:', available.hasOwnProperty('is'), available['is']);
+        
         const groups = {
             uncategorized: [], // Moves without category go here
             categorized: new Map() // Map of category name to moves

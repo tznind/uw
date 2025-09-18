@@ -104,11 +104,7 @@
         }
         
         // Learned moves are restored automatically by their takefrom sections
-        
-        // Handle card grants (role parameter not actually used by restoreInlineCards)
-        if (window.GrantCard) {
-            window.GrantCard.handleRoleChange(roles[0] || null);
-        }
+        // Card grants are now handled automatically by the persistence system
         
         // Refresh persistence after everything loads (longer delay for initial load)
         const delay = isInitialLoad ? 500 : 100;
@@ -178,9 +174,7 @@
             if (window.Moves) {
                 window.Moves.renderMovesForRole(selectedRoles, mergedAvailability);
             }
-            if (window.GrantCard) {
-                window.GrantCard.handleRoleChange(selectedRoles[0] || null);
-            }
+            // Card grants are handled automatically by the persistence system
             
             // Refresh persistence after moves are re-rendered
             setTimeout(() => {

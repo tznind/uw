@@ -91,7 +91,6 @@
     "title": "Relic Weapon - You have a priceless relic of the before time, choose 2 then +1 for each additional time you take this move:",
     "multiple": 3,
     "category": "Equipment",
-    "multiplePick": 2,
     "pick": [
       "+1 Harm",
       "Armor Piercing",

@@ -24,6 +24,7 @@ window.initializeMovesData = async function() {
         for (const key in window) {
             if (key.endsWith('Moves') && Array.isArray(window[key])) {
                 console.log(`Found move data: ${key} with ${window[key].length} moves`);
+                console.log(`${key} contains:`, window[key].map(m => m.id));
                 window.moves = window.moves.concat(window[key]);
             }
         }
