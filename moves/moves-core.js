@@ -168,33 +168,80 @@ window.MovesCore = (function() {
         pickTitle.textContent = "Pick:";
         pickDiv.appendChild(pickTitle);
         
-        const pickList = document.createElement("ul");
-        move.pick.forEach((option, index) => {
-            const li = document.createElement("li");
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            
-            // Use new shorter URL format: _p1, _p2, etc.
-            checkbox.id = `move_${move.id}_p${index + 1}`;
-            checkbox.name = `move_${move.id}_p${index + 1}`;
-            checkbox.setAttribute('aria-label', `Pick ${option}`);
-            checkbox.setAttribute('data-move-id', move.id);
-            
-            // Restore from URL if exists
-            if (urlParams.has(checkbox.id)) {
-                checkbox.checked = urlParams.get(checkbox.id) === '1';
-            }
-            
-            const label = document.createElement("label");
-            label.setAttribute('for', checkbox.id);
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(option));
-            
-            li.appendChild(label);
-            pickList.appendChild(li);
-        });
+        const multiplePick = move.multiplePick || 1;
         
-        pickDiv.appendChild(pickList);
+        if (multiplePick > 1) {
+            // Create list with multiple checkboxes per option (like multiple moves)
+            const pickList = document.createElement("ul");
+            
+            move.pick.forEach((option, optionIndex) => {
+                const li = document.createElement("li");
+                li.className = "pick-option-item";
+                
+                // Create multiple checkboxes for this option
+                const checkboxContainer = document.createElement("div");
+                checkboxContainer.className = "pick-checkboxes";
+                
+                for (let col = 1; col <= multiplePick; col++) {
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    
+                    // ID format: first column uses _p1, _p2, etc. Additional columns use _p1_c2, _p1_c3, etc.
+                    const baseId = `move_${move.id}_p${optionIndex + 1}`;
+                    checkbox.id = col === 1 ? baseId : `${baseId}_c${col}`;
+                    checkbox.name = checkbox.id;
+                    checkbox.setAttribute('aria-label', `Pick ${option} (Instance ${col})`);
+                    checkbox.setAttribute('data-move-id', move.id);
+                    
+                    // Restore from URL if exists
+                    if (urlParams.has(checkbox.id)) {
+                        checkbox.checked = urlParams.get(checkbox.id) === '1';
+                    }
+                    
+                    checkboxContainer.appendChild(checkbox);
+                }
+                
+                // Add the option text after all checkboxes
+                const optionText = document.createElement("span");
+                optionText.className = "pick-option-text";
+                optionText.textContent = option;
+                
+                li.appendChild(checkboxContainer);
+                li.appendChild(optionText);
+                pickList.appendChild(li);
+            });
+            
+            pickDiv.appendChild(pickList);
+        } else {
+            // Single column layout (original behavior)
+            const pickList = document.createElement("ul");
+            move.pick.forEach((option, index) => {
+                const li = document.createElement("li");
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                
+                checkbox.id = `move_${move.id}_p${index + 1}`;
+                checkbox.name = `move_${move.id}_p${index + 1}`;
+                checkbox.setAttribute('aria-label', `Pick ${option}`);
+                checkbox.setAttribute('data-move-id', move.id);
+                
+                // Restore from URL if exists
+                if (urlParams.has(checkbox.id)) {
+                    checkbox.checked = urlParams.get(checkbox.id) === '1';
+                }
+                
+                const label = document.createElement("label");
+                label.setAttribute('for', checkbox.id);
+                label.appendChild(checkbox);
+                label.appendChild(document.createTextNode(option));
+                
+                li.appendChild(label);
+                pickList.appendChild(li);
+            });
+            
+            pickDiv.appendChild(pickList);
+        }
+        
         return pickDiv;
     }
 
@@ -209,36 +256,86 @@ window.MovesCore = (function() {
         pickOneTitle.textContent = "Pick One:";
         pickOneDiv.appendChild(pickOneTitle);
         
-        const pickOneList = document.createElement("ul");
-        const radioGroupName = `move_${move.id}_pickone`;
+        const multiplePick = move.multiplePick || 1;
         
-        move.pickOne.forEach((option, index) => {
-            const li = document.createElement("li");
-            const radio = document.createElement("input");
-            radio.type = "radio";
-            radio.name = radioGroupName;
+        if (multiplePick > 1) {
+            // Create list with multiple radio buttons per option (like multiple moves)
+            const pickOneList = document.createElement("ul");
             
-            // Use new URL format: _o1, _o2, etc.
-            radio.id = `move_${move.id}_o${index + 1}`;
-            radio.value = `${index + 1}`;
-            radio.setAttribute('aria-label', `Pick one: ${option}`);
-            radio.setAttribute('data-move-id', move.id);
+            move.pickOne.forEach((option, optionIndex) => {
+                const li = document.createElement("li");
+                li.className = "pick-one-option-item";
+                
+                // Create multiple radio buttons for this option
+                const radioContainer = document.createElement("div");
+                radioContainer.className = "pick-one-radios";
+                
+                for (let col = 1; col <= multiplePick; col++) {
+                    const radio = document.createElement("input");
+                    radio.type = "radio";
+                    
+                    // Each column gets its own radio group
+                    radio.name = col === 1 ? `move_${move.id}_pickone` : `move_${move.id}_pickone_c${col}`;
+                    
+                    // ID format: first column uses _o1, _o2, etc. Additional columns use _o1_c2, _o1_c3, etc.
+                    const baseId = `move_${move.id}_o${optionIndex + 1}`;
+                    radio.id = col === 1 ? baseId : `${baseId}_c${col}`;
+                    radio.value = `${optionIndex + 1}`;
+                    radio.setAttribute('aria-label', `Pick one: ${option} (Instance ${col})`);
+                    radio.setAttribute('data-move-id', move.id);
+                    
+                    // Restore from URL if exists
+                    if (urlParams.has(radio.id)) {
+                        radio.checked = urlParams.get(radio.id) === '1';
+                    }
+                    
+                    radioContainer.appendChild(radio);
+                }
+                
+                // Add the option text after all radio buttons
+                const optionText = document.createElement("span");
+                optionText.className = "pick-one-option-text";
+                optionText.textContent = option;
+                
+                li.appendChild(radioContainer);
+                li.appendChild(optionText);
+                pickOneList.appendChild(li);
+            });
             
-            // Restore from URL if exists
-            if (urlParams.has(radio.id)) {
-                radio.checked = urlParams.get(radio.id) === '1';
-            }
+            pickOneDiv.appendChild(pickOneList);
+        } else {
+            // Single column layout (original behavior)
+            const pickOneList = document.createElement("ul");
+            const radioGroupName = `move_${move.id}_pickone`;
             
-            const label = document.createElement("label");
-            label.setAttribute('for', radio.id);
-            label.appendChild(radio);
-            label.appendChild(document.createTextNode(option));
+            move.pickOne.forEach((option, index) => {
+                const li = document.createElement("li");
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = radioGroupName;
+                
+                radio.id = `move_${move.id}_o${index + 1}`;
+                radio.value = `${index + 1}`;
+                radio.setAttribute('aria-label', `Pick one: ${option}`);
+                radio.setAttribute('data-move-id', move.id);
+                
+                // Restore from URL if exists
+                if (urlParams.has(radio.id)) {
+                    radio.checked = urlParams.get(radio.id) === '1';
+                }
+                
+                const label = document.createElement("label");
+                label.setAttribute('for', radio.id);
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(option));
+                
+                li.appendChild(label);
+                pickOneList.appendChild(li);
+            });
             
-            li.appendChild(label);
-            pickOneList.appendChild(li);
-        });
+            pickOneDiv.appendChild(pickOneList);
+        }
         
-        pickOneDiv.appendChild(pickOneList);
         return pickOneDiv;
     }
 
@@ -330,20 +427,36 @@ window.MovesCore = (function() {
             }
         }
         
-        // Check pick option checkboxes if they exist (_p1, _p2, etc.)
+        // Check pick option checkboxes if they exist (_p1, _p2, etc. and _p1_c2, _p1_c3, etc.)
         if (move.pick && Array.isArray(move.pick)) {
+            const multiplePick = move.multiplePick || 1;
             for (let i = 1; i <= move.pick.length; i++) {
+                // Check first column
                 if (urlParams.get(`move_${move.id}_p${i}`) === '1') {
                     return true;
+                }
+                // Check additional columns if multiplePick > 1
+                for (let col = 2; col <= multiplePick; col++) {
+                    if (urlParams.get(`move_${move.id}_p${i}_c${col}`) === '1') {
+                        return true;
+                    }
                 }
             }
         }
         
-        // Check pickOne option radio buttons if they exist (_o1, _o2, etc.)
+        // Check pickOne option radio buttons if they exist (_o1, _o2, etc. and _o1_c2, _o1_c3, etc.)
         if (move.pickOne && Array.isArray(move.pickOne)) {
+            const multiplePick = move.multiplePick || 1;
             for (let i = 1; i <= move.pickOne.length; i++) {
+                // Check first column
                 if (urlParams.get(`move_${move.id}_o${i}`) === '1') {
                     return true;
+                }
+                // Check additional columns if multiplePick > 1
+                for (let col = 2; col <= multiplePick; col++) {
+                    if (urlParams.get(`move_${move.id}_o${i}_c${col}`) === '1') {
+                        return true;
+                    }
                 }
             }
         }
