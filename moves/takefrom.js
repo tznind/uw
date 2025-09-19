@@ -218,6 +218,14 @@ window.TakeFrom = (function() {
         }
         
         learnedMoveContainer.appendChild(learnedMoveDiv);
+        
+        // Refresh persistence to capture any new inputs in the learned move
+        setTimeout(() => {
+            const form = document.querySelector('form');
+            if (form && window.Persistence) {
+                window.Persistence.refreshPersistence(form);
+            }
+        }, 150);
     }
 
     /**
@@ -232,8 +240,16 @@ window.TakeFrom = (function() {
         const cardSection = window.InlineCards.createCardContainer(containerId, "Grants:");
         
         // Show granted card immediately for learned moves (they're always "active")
-        setTimeout(() => {
-            window.InlineCards.displayCard(containerId, move.grantsCard);
+        setTimeout(async () => {
+            await window.InlineCards.displayCard(containerId, move.grantsCard);
+            
+            // Refresh persistence to capture new card inputs
+            setTimeout(() => {
+                const form = document.querySelector('form');
+                if (form && window.Persistence) {
+                    window.Persistence.refreshPersistence(form);
+                }
+            }, 50);
         }, 100);
         
         return cardSection;
@@ -388,6 +404,14 @@ window.TakeFrom = (function() {
                         // Restore learned move display
                         if (learnedMoveContainer) {
                             updateLearnedMoveDisplay(moveSelect, learnedMoveContainer, urlParams);
+                            
+                            // Refresh persistence after learned move is displayed (with delay for cards to load)
+                            setTimeout(() => {
+                                const form = document.querySelector('form');
+                                if (form && window.Persistence) {
+                                    window.Persistence.refreshPersistence(form);
+                                }
+                            }, 200);
                         }
                     
                         // Learned moves are self-contained - no availableMap modification needed
