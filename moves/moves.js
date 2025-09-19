@@ -58,25 +58,9 @@ window.Moves = (function() {
         return element.getAttribute('data-move-id');
     }
 
-
-
-    /**
-     * Render moves for roles with merged availability
-     * @param {Array<string>} roles - Array of roles to render moves for
-     * @param {Object} mergedAvailability - Merged availability map
-     */
-    function renderMovesForRole(roles, mergedAvailability) {
-        if (window.MovesCore) {
-            window.MovesCore.renderMovesForRole(roles, mergedAvailability);
-        }
-    }
-
-
-
     // Public API
     return {
-        initialize,
-        renderMovesForRole
+        initialize
     };
 })();
 
