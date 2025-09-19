@@ -14,6 +14,9 @@ window.Layout = (function() {
         console.log('Layout: Starting application layout...');
         
         try {
+            // Preserve scroll position to prevent jumping
+            const scrollY = window.scrollY;
+            
             const urlParams = new URLSearchParams(location.search);
             const selectedRoles = window.Utils.getCurrentRoles();
             
@@ -26,6 +29,8 @@ window.Layout = (function() {
             if (selectedRoles.length === 0) {
                 // No roles selected - everything stays empty
                 console.log('Layout: No roles selected, keeping containers empty');
+                // Restore scroll position
+                window.scrollTo(0, scrollY);
                 return;
             }
             
@@ -38,10 +43,13 @@ window.Layout = (function() {
             // Then render moves (including inline cards)
             await renderMoves(selectedRoles, mergedAvailability, urlParams);
             
-            // Apply persistence to restore all form state (with delay to ensure DOM is ready)
+            // Apply persistence to restore all form state immediately
+            applyPersistenceState(urlParams);
+            
+            // Restore scroll position after a brief delay to ensure layout is complete
             setTimeout(() => {
-                applyPersistenceState(urlParams);
-            }, 150);
+                window.scrollTo(0, scrollY);
+            }, 50);
             
             console.log('Layout: Application layout complete');
             
@@ -113,21 +121,19 @@ window.Layout = (function() {
     async function restoreInlineCards(urlParams) {
         if (!window.moves || !window.InlineCards) return;
         
-        // Add a small delay to ensure DOM is fully rendered
-        setTimeout(async () => {
-            // Find all moves that grant cards and check if they're selected
-            for (const move of window.moves) {
-                if (move.grantsCard) {
-                    const isTaken = window.MovesCore.isMoveTaken(move, urlParams);
-                    const containerId = `granted_card_${move.id}`;
-                    
-                    if (isTaken) {
-                        console.log(`Layout: Restoring granted card '${move.grantsCard}' for move '${move.id}'`);
-                        await window.InlineCards.displayCard(containerId, move.grantsCard);
-                    }
+        // Find all moves that grant cards and check if they're selected
+        // Remove delay to prevent screen jumping
+        for (const move of window.moves) {
+            if (move.grantsCard) {
+                const isTaken = window.MovesCore.isMoveTaken(move, urlParams);
+                const containerId = `granted_card_${move.id}`;
+                
+                if (isTaken) {
+                    console.log(`Layout: Restoring granted card '${move.grantsCard}' for move '${move.id}'`);
+                    await window.InlineCards.displayCard(containerId, move.grantsCard);
                 }
             }
-        }, 100);
+        }
     }
     
     /**
@@ -162,13 +168,16 @@ window.Layout = (function() {
         
         switch (changeType) {
             case 'hide-untaken-toggle':
-                // Just re-render moves section
+                // Just re-render moves section with scroll preservation
+                const scrollY = window.scrollY;
                 const selectedRoles = window.Utils.getCurrentRoles();
                 if (selectedRoles.length > 0) {
                     const mergedAvailability = window.Utils.mergeRoleAvailability(selectedRoles);
                     const urlParams = new URLSearchParams(location.search);
                     await renderMoves(selectedRoles, mergedAvailability, urlParams);
                     applyPersistenceState(urlParams);
+                    // Restore scroll position
+                    setTimeout(() => window.scrollTo(0, scrollY), 25);
                 }
                 break;
                 
