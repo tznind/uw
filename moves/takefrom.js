@@ -5,12 +5,6 @@
 window.TakeFrom = (function() {
     'use strict';
 
-    // Debounced save function to prevent excessive URL updates
-    const debouncedSave = window.Utils ? window.Utils.debounce((form) => {
-        if (form && window.Persistence) {
-            window.Persistence.saveToURL(form);
-        }
-    }, 100) : null;
 
     /**
      * Create takefrom section for learning moves from other roles
@@ -166,14 +160,6 @@ window.TakeFrom = (function() {
         
         const newUrl = params.toString() ? '?' + params.toString() : location.pathname;
         history.replaceState({}, '', newUrl);
-        
-        // Trigger debounced persistence save
-        if (debouncedSave) {
-            const form = document.querySelector('form');
-            if (form) {
-                debouncedSave(form);
-            }
-        }
     }
 
     /**

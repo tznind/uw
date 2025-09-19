@@ -68,7 +68,6 @@ window.Moves = (function() {
     function renderMovesForRole(roles, mergedAvailability) {
         if (window.MovesCore) {
             window.MovesCore.renderMovesForRole(roles, mergedAvailability);
-            // Persistence is now handled by the layout system
         }
     }
 
