@@ -75,12 +75,17 @@ To add a new role with moves:
 +}
 }
 ```
+_/data/availability.json_
+
+Moves marked `true` are always enabled for the role and cannot be disabled.
 
 You can start with an empty json file for the moves:
 
 ```json
-
+[
+]
 ```
+_/data/moves/new-role.json_
 
 ---
 
