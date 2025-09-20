@@ -13,6 +13,15 @@ Showcases (GitHub Pages):
 - [Demo](https://tznind.github.io/st/lc.html)
 - [Stonetop Character Sheet](https://tznind.github.io/st/cs.html)
 
+## Creating Moves
+
+Moves are designed for flexibility and ease writing. Simply enter moves into the json file and add to the availability map to relevant role(s).
+
+<a href="https://github.com/tznind/st/tree/main/data/moves"/>
+<img width="50%" src="https://github.com/user-attachments/assets/d8efa576-ee04-4549-9699-ae3caa280952"/>
+</a>
+
+
 ## Features
 
 ### State stored in the URL
