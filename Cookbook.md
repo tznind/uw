@@ -9,7 +9,6 @@ This comprehensive guide covers creating roles, moves, and cards for the Rogue T
 - [Advanced Move Types](#advanced-move-types)
   - [Pick One Moves (Radio Buttons)](#pick-one-moves-radio-buttons)
   - [Pick Multiple Moves (Checkboxes)](#pick-multiple-moves-checkboxes)
-  - [Repeatable Moves](#repeatable-moves)
   - [Take From Other Roles](#take-from-other-roles)
   - [Move Categories](#move-categories)
   - [Moves That Grant Cards](#moves-that-grant-cards)
@@ -175,161 +174,67 @@ Beyond basic roll-based moves, the system supports several specialized move type
 
 ### Pick Multiple Moves (Checkboxes)
 
-**When to use:** For moves that let characters select multiple benefits or properties, like customizing equipment or gaining multiple abilities.
-
-**Example use case:** Customizing a weapon with multiple properties or choosing several training bonuses.
+**When to use:** For moves that let characters select multiple benefits or properties.
 
 #### Structure
-```json
+
+<table>
+<tr>
+<td>
+<pre>
 {
-  "id": "move_id",
+  "id": "multipicksdsd",
   "title": "Move Name",
-  "description": "Choose multiple options",
+  "description": "Each time you take this move, pick 2:",
+  "multiple": 2,
   "pick": [
     "First Option",
     "Second Option",
     "Third Option",
-    "Fourth Option"
-  ],
-  "outcomes": [
-    {
-      "range": "",
-      "text": "Pick one or more from the list above"
-    }
+    "Fourth Option",
+    "Fifth Option"
   ]
 }
-```
-
-#### Real Example: Relic Weapon from Mech Adept
-```json
-{
-  "id": "85757e",
-  "title": "Relic Weapon",
-  "description": "You have a priceless relic of the before time, choose 2 then +1 for each additional time you take this move",
-  "multiple": 3,
-  "category": "Equipment",
-  "pick": [
-    "+1 Harm",
-    "Armor Piercing",
-    "Reliable",
-    "Precise",
-    "Terrifying",
-    "Messy"
-  ],
-  "pickOne": [
-    "Ranged weapon (projectile or energy)",
-    "Melee weapon (blade or maul)",
-    "Exotic weapon (unique mechanism)"
-  ]
-}
-```
+</pre>
+</td> <td> <img alt="image" src="https://github.com/user-attachments/assets/0b4198d4-3f20-4af4-858c-d5b535724d07" /> </td> </tr> </table>
 
 **Key Features:**
 - `pick` creates checkboxes (multiple selections allowed)
 - Can combine `pick` and `pickOne` in the same move
 - Often combined with `multiple` for repeated taking
-- Perfect for equipment customization
-
-### Repeatable Moves
-
-**When to use:** For moves that can be taken multiple times to stack effects or represent ongoing advancement.
-
-**Example use case:** Training moves that improve with repetition, or equipment upgrades that can be applied multiple times.
-
-#### Structure
-```json
-{
-  "id": "move_id",
-  "title": "Repeatable Move - Description of stacking benefit",
-  "multiple": 3,
-  "outcomes": [
-    // Standard outcomes or pick options
-  ]
-}
-```
-
-#### Real Example: Tactical Superiority from Lord Commander
-```json
-{
-  "id": "lc001",
-  "title": "Tactical Superiority - Each time taken, add +1 die to tactical rolls",
-  "multiple": 2,
-  "outcomes": [
-    {
-      "range": "≥ 10",
-      "text": "Your strategic insight is flawless. Enemies fall into your carefully laid traps.",
-      "bullets": []
-    },
-    {
-      "range": "7–9",
-      "text": "Your tactics succeed, but choose one:",
-      "bullets": [
-        "Victory comes at higher cost than expected",
-        "You reveal your strategic approach to watching enemies",
-        "Success breeds overconfidence in your ranks"
-      ]
-    },
-    {
-      "range": "≤ 6",
-      "text": "Your tactics backfire:",
-      "bullets": [
-        "The enemy anticipated your move and counterattacks",
-        "Your forces are caught out of position",
-        "Morale suffers as troops question your leadership"
-      ]
-    }
-  ]
-}
-```
-
-**Key Features:**
-- `multiple` defines how many times the move can be taken (2-10)
-- Creates separate checkboxes for each instance
-- Title should clearly explain the stacking benefit
-- Great for gradual character advancement
 
 ### Take From Other Roles
 
-**When to use:** For versatile characters who can learn techniques from other roles, representing cross-training or adaptability.
-
-**Example use case:** A Lord Commander learning navigation from a Navigator, or a jack-of-all-trades character.
+**When to use:** If a move allows you to pick a move from another role.
 
 #### Structure
-```json
-{
-  "id": "move_id",
-  "title": "Cross-Training Move Name",
-  "takefrom": ["Role Name 1", "Role Name 2"]
-}
-```
 
-#### Real Example: Adaptable from Lord Commander
-```json
+<table>
+<tr>
+<td>
+<pre>
 {
-  "id": "adapt1",
-  "title": "Adaptable - Learn techniques from other roles",
-  "takefrom": ["Navigator", "Mech Adept"]
+  "id": "takefrom1",
+  "title": "Cross-Training Move Name",
+  "description": "Take a move from an unused role",
+  "takefrom": ["Lord Commander", "Mech Adept"]
 }
-```
+</pre>
+</td> <td> <img alt="image" src="https://github.com/user-attachments/assets/1747a931-4fd0-4d84-af96-30bc370f70b7" /> </td> </tr> </table>
+
 
 **Key Features:**
 - `takefrom` lists roles this character can learn from
 - Creates dropdown menus populated with moves from those roles
 - Allows character versatility and cross-class abilities
-- No outcomes needed—the move grants access to other moves
 
 ### Move Categories
 
 **When to use:** To organize moves into logical groups on the character sheet.
 
-**Available categories:**
-- `"Advancement"` - Character improvement moves
-- `"Equipment"` - Gear and weapon moves
-- `"Companion"` - Allies and followers
-- `"Custom Category"` - Any name you choose
-
 #### Structure
-```json
+
+```
 {
   "id": "move_id",
   "title": "Move Name",
@@ -341,62 +246,88 @@ Beyond basic roll-based moves, the system supports several specialized move type
 **Key Features:**
 - Moves without `category` appear under the default "Moves" section
 - Categories appear as separate sections on the character sheet
-- Helps players find related moves quickly
+- Common categories: `"Advancement"`, `"Equipment"`, `"Companion"`
 
 ### Moves That Grant Cards
 
-**When to use:** When a move should give the character a new card interface for tracking complex information.
+**When to use:** When a move should give the character a new card interface for tracking complex information.  For example 'gain a crew...'.
 
-**Example use case:** Acquiring a robotic companion, getting a ship, or gaining a complex piece of equipment.
+This allows you to create completely bespoke elements in the character sheet.
 
 #### Structure
-```json
+
+<table>
+<tr>
+<td>
+<pre>
 {
-  "id": "move_id",
+  "id": "cardmove1",
   "title": "Move Name",
   "grantsCard": "card-name",
   "outcomes": [
     {
-      "range": "Always",
-      "text": "Description of what you gain",
-      "bullets": [
-        "Details about the new capability",
-        "Any limitations or requirements",
-        "Ongoing considerations"
-      ]
+      "range": "",
+      "text": "Description of what you gain"
     }
   ]
 }
-```
+</pre>
+</td> <td> <img alt="image" src="https://github.com/user-attachments/assets/adadfbc1-6556-4930-9d1d-ce1664153f87" />
+ </td> </tr> </table>
 
-#### Real Example: Acquire Robotic Companion from Mech Adept
+In order to work a card must have a corresponding card.json and card.html in the [cards](./data/cards) folder:
+
 ```json
 {
-  "id": "ac001",
-  "title": "Acquire Robotic Companion",
-  "description": "Through techno-arcane rites or salvage operations, you have created or acquired a robotic companion to serve the Machine God.",
-  "category": "Advancement",
-  "grantsCard": "robotic-companion",
-  "outcomes": [
-    {
-      "range": "Always",
-      "text": "You now have a robotic companion. Its exact nature depends on your craftsmanship and available resources:",
-      "bullets": [
-        "Choose its type: reconnaissance drone, combat servitor, tech-adept construct, or custom design",
-        "Its loyalty is absolute, but its machine spirit has its own quirks",
-        "It requires maintenance and may malfunction at inopportune times",
-        "Other Tech Adepts may covet or critique your work"
-      ]
-    }
-  ]
+  "id": "card-name",
+  "title": "Example Card Title",
+  "path": "data/cards/card-name",
+  "description": "Simple example card",
+  "version": "2.0.0",
+  "author": "Thomas",
+  "files": {
+    "html": "card.html"
+  }
 }
+```
+_card.json_
+
+And html for the card itself:
+
+```html
+<p>Example Card</p>
+<label for="example-card-input">
+Type some text<input type="text" id="example-card-input" />
+</label>
+```
+_card.html_
+
+As long as the inputs in the html have ids then they will be automatically persisted without any additional requirements.
+
+File structure for a new card and move
+```
+/data
+  /cards
+    /new-card-name
+      card.html
+      card.json
+ /moves
+    /your-role.json (add move here) 
+```
+
+Cards can also be added directly to roles (i.e. if a move is not required and role always has it):
+
+```diff
+"New Role": {
+  "_movesFile": "data/moves/new-role.json",
++  "cards": ["card-name"],
+  "aaabvb": false,
 ```
 
 **Key Features:**
 - `grantsCard` references a card by its folder name
 - The card must exist in `data/cards/[card-name]/`
 - Cards appear inline when the move is selected
-- Perfect for companions, equipment, or other complex game elements
 
 ## Cards System
 
