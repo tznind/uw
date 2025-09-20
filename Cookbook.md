@@ -132,59 +132,10 @@ Basic moves are actions that can have different outcomes based on dice rolls or 
   ]
 }
 </pre>
-</td> <td> <img src="https://github.com/user-attachments/assets/ce52e203-b5b8-442f-8477-f5c6e189e5ac" width="300px"> </td> </tr> </table>
+</td> <td> <img src="https://github.com/user-attachments/assets/ce52e203-b5b8-442f-8477-f5c6e189e5ac"> </td> </tr> </table>
 
-```json
-
-```
 
 **Note:** The example above shows a common three-outcome structure, but you can use any number of outcomes or ranges that make sense for your game. You could have just two outcomes (success/failure), or more complex breakdowns. The `range` field is displayed as-is to players, so write it in whatever way makes sense for your system.
-
-### Example: Adding a Basic Move to Lord Commander
-
-Let's add a simple command move to `data/moves/lord-commander.json`:
-
-```json
-{
-  "id": "lc_inspire",
-  "title": "Inspire the Troops (+Influence)",
-  "description": "Rally your forces with a rousing speech or display of courage",
-  "outcomes": [
-    {
-      "range": "≥ 10",
-      "text": "Your words ignite unshakeable resolve. Your troops fight with renewed vigor and courage.",
-      "bullets": []
-    },
-    {
-      "range": "7–9",
-      "text": "Your inspiration works, but choose one:",
-      "bullets": [
-        "The effect is temporary—it will fade quickly",
-        "Only some of your forces are truly inspired",
-        "Your words carry unintended consequences"
-      ]
-    },
-    {
-      "range": "≤ 6",
-      "text": "Your attempt backfires:",
-      "bullets": [
-        "Your troops question your leadership",
-        "Morale actually decreases",
-        "A rival seizes the moment to undermine you"
-      ]
-    }
-  ]
-}
-```
-
-**Key Points:**
-- `id` must be unique across ALL moves in the system
-- `title` should be clear and descriptive for players (stat references like "+Influence" are common but optional)
-- `description` is optional but helpful for complex moves or additional context
-- `outcomes` can have as many or as few ranges as your game needs
-- `range` text is displayed exactly as written - use whatever notation makes sense for your players
-- `bullets` arrays are optional and used for player choices or lists of consequences
-- The structure should make sense when read by players, not necessarily parsed by machines
 
 ---
 
@@ -194,48 +145,28 @@ Beyond basic roll-based moves, the system supports several specialized move type
 
 ### Pick One Moves (Radio Buttons)
 
-**When to use:** For moves where the character must choose exactly one option from a list, typically for specialization or weapon configuration.
-
-**Example use case:** Configuring a weapon's firing mode or choosing a character's specialization focus.
+**When to use:** For moves where the character must choose exactly one option from a list.
 
 #### Structure
-```json
+
+
+
+<table>
+<tr>
+<td>
+<pre>
 {
   "id": "move_id",
   "title": "Move Name",
-  "description": "Choose your character's focus",
+  "description": "When you take this move, choose one of the following",
   "pickOne": [
     "Option 1",
     "Option 2", 
     "Option 3"
-  ],
-  "outcomes": [
-    {
-      "range": "",
-      "text": "Description of what this choice represents"
-    }
   ]
 }
-```
-
-#### Real Example: Stat Improvement from Lord Commander
-```json
-{
-  "id": "is",
-  "title": "Improved Stat",
-  "description": "Choose one stat to improve by 1 (can be taken twice)",
-  "multiple": 2,
-  "multiplePick": 2,
-  "category": "Advancement",
-  "pickOne": [
-    "Mettle",
-    "Physique",
-    "Influence",
-    "Expertise",
-    "Conviction"
-  ]
-}
-```
+</pre>
+</td> <td> <img src="https://github.com/user-attachments/assets/b59a9714-a0ec-47ec-805f-178e06a9eca4"> </td> </tr> </table>
 
 **Key Features:**
 - `pickOne` creates radio buttons (only one selection allowed)
