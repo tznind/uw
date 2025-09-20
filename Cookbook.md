@@ -9,7 +9,6 @@ This comprehensive guide covers creating roles, moves, and cards for the Rogue T
 - [Advanced Move Types](#advanced-move-types)
   - [Pick One Moves (Radio Buttons)](#pick-one-moves-radio-buttons)
   - [Pick Multiple Moves (Checkboxes)](#pick-multiple-moves-checkboxes)
-  - [Repeatable Moves](#repeatable-moves)
   - [Take From Other Roles](#take-from-other-roles)
   - [Move Categories](#move-categories)
   - [Moves That Grant Cards](#moves-that-grant-cards)
@@ -203,32 +202,6 @@ Beyond basic roll-based moves, the system supports several specialized move type
 - `pick` creates checkboxes (multiple selections allowed)
 - Can combine `pick` and `pickOne` in the same move
 - Often combined with `multiple` for repeated taking
-
-### Repeatable Moves
-
-**When to use:** For moves that can be taken multiple times to stack effects.
-
-#### Structure
-
-<table>
-<tr>
-<td>
-<pre>
-{
-  "id": "move_id",
-  "title": "Repeatable Move - Description of stacking benefit",
-  "multiple": 3,
-  "outcomes": [
-    // Standard outcomes or pick options
-  ]
-}
-</pre>
-</td> <td>  </td> </tr> </table>
-
-**Key Features:**
-- `multiple` defines how many times the move can be taken (2-10)
-- Creates separate checkboxes for each instance
-- Title should clearly explain the stacking benefit
 
 ### Take From Other Roles
 
