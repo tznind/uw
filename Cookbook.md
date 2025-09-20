@@ -23,7 +23,7 @@ Each game system typically has its own set of character statistics. The example 
 
 ### Modifying Stats
 
-Stats are defined in `data/stats.json`. Each stat has an `id` (used internally) and a `title` (displayed to players):
+Stats are defined in [stats.json](./data/stats.json). Each stat has an `id` (used internally) and a `title` (displayed to players):
 
 ```json
 [
@@ -96,7 +96,11 @@ Basic moves are actions that can have different outcomes based on dice rolls or 
 **When to use:** For any action that involves rolling dice, making choices, or has variable outcomes.
 
 ### Structure
-```json
+
+<table>
+<tr>
+<td>
+<pre>
 {
   "id": "unique_id",
   "title": "Move Name (+Stat)",
@@ -127,6 +131,11 @@ Basic moves are actions that can have different outcomes based on dice rolls or 
     }
   ]
 }
+</pre>
+</td> <td> <img src="https://github.com/user-attachments/assets/ce52e203-b5b8-442f-8477-f5c6e189e5ac" width="300px"> </td> </tr> </table>
+
+```json
+
 ```
 
 **Note:** The example above shows a common three-outcome structure, but you can use any number of outcomes or ranges that make sense for your game. You could have just two outcomes (success/failure), or more complex breakdowns. The `range` field is displayed as-is to players, so write it in whatever way makes sense for your system.
