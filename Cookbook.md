@@ -175,69 +175,43 @@ Beyond basic roll-based moves, the system supports several specialized move type
 
 ### Pick Multiple Moves (Checkboxes)
 
-**When to use:** For moves that let characters select multiple benefits or properties, like customizing equipment or gaining multiple abilities.
-
-**Example use case:** Customizing a weapon with multiple properties or choosing several training bonuses.
+**When to use:** For moves that let characters select multiple benefits or properties.
 
 #### Structure
-```json
+
+<table>
+<tr>
+<td>
+<pre>
 {
   "id": "move_id",
   "title": "Move Name",
-  "description": "Choose multiple options",
+  "description": "Choose multiple options from the list",
   "pick": [
     "First Option",
     "Second Option",
     "Third Option",
     "Fourth Option"
-  ],
-  "outcomes": [
-    {
-      "range": "",
-      "text": "Pick one or more from the list above"
-    }
   ]
 }
-```
-
-#### Real Example: Relic Weapon from Mech Adept
-```json
-{
-  "id": "85757e",
-  "title": "Relic Weapon",
-  "description": "You have a priceless relic of the before time, choose 2 then +1 for each additional time you take this move",
-  "multiple": 3,
-  "category": "Equipment",
-  "pick": [
-    "+1 Harm",
-    "Armor Piercing",
-    "Reliable",
-    "Precise",
-    "Terrifying",
-    "Messy"
-  ],
-  "pickOne": [
-    "Ranged weapon (projectile or energy)",
-    "Melee weapon (blade or maul)",
-    "Exotic weapon (unique mechanism)"
-  ]
-}
-```
+</pre>
+</td> <td>  </td> </tr> </table>
 
 **Key Features:**
 - `pick` creates checkboxes (multiple selections allowed)
 - Can combine `pick` and `pickOne` in the same move
 - Often combined with `multiple` for repeated taking
-- Perfect for equipment customization
 
 ### Repeatable Moves
 
-**When to use:** For moves that can be taken multiple times to stack effects or represent ongoing advancement.
-
-**Example use case:** Training moves that improve with repetition, or equipment upgrades that can be applied multiple times.
+**When to use:** For moves that can be taken multiple times to stack effects.
 
 #### Structure
-```json
+
+<table>
+<tr>
+<td>
+<pre>
 {
   "id": "move_id",
   "title": "Repeatable Move - Description of stacking benefit",
@@ -246,111 +220,71 @@ Beyond basic roll-based moves, the system supports several specialized move type
     // Standard outcomes or pick options
   ]
 }
-```
-
-#### Real Example: Tactical Superiority from Lord Commander
-```json
-{
-  "id": "lc001",
-  "title": "Tactical Superiority - Each time taken, add +1 die to tactical rolls",
-  "multiple": 2,
-  "outcomes": [
-    {
-      "range": "≥ 10",
-      "text": "Your strategic insight is flawless. Enemies fall into your carefully laid traps.",
-      "bullets": []
-    },
-    {
-      "range": "7–9",
-      "text": "Your tactics succeed, but choose one:",
-      "bullets": [
-        "Victory comes at higher cost than expected",
-        "You reveal your strategic approach to watching enemies",
-        "Success breeds overconfidence in your ranks"
-      ]
-    },
-    {
-      "range": "≤ 6",
-      "text": "Your tactics backfire:",
-      "bullets": [
-        "The enemy anticipated your move and counterattacks",
-        "Your forces are caught out of position",
-        "Morale suffers as troops question your leadership"
-      ]
-    }
-  ]
-}
-```
+</pre>
+</td> <td>  </td> </tr> </table>
 
 **Key Features:**
 - `multiple` defines how many times the move can be taken (2-10)
 - Creates separate checkboxes for each instance
 - Title should clearly explain the stacking benefit
-- Great for gradual character advancement
 
 ### Take From Other Roles
 
-**When to use:** For versatile characters who can learn techniques from other roles, representing cross-training or adaptability.
-
-**Example use case:** A Lord Commander learning navigation from a Navigator, or a jack-of-all-trades character.
+**When to use:** For versatile characters who can learn techniques from other roles.
 
 #### Structure
-```json
+
+<table>
+<tr>
+<td>
+<pre>
 {
   "id": "move_id",
   "title": "Cross-Training Move Name",
   "takefrom": ["Role Name 1", "Role Name 2"]
 }
-```
-
-#### Real Example: Adaptable from Lord Commander
-```json
-{
-  "id": "adapt1",
-  "title": "Adaptable - Learn techniques from other roles",
-  "takefrom": ["Navigator", "Mech Adept"]
-}
-```
+</pre>
+</td> <td>  </td> </tr> </table>
 
 **Key Features:**
 - `takefrom` lists roles this character can learn from
 - Creates dropdown menus populated with moves from those roles
 - Allows character versatility and cross-class abilities
-- No outcomes needed—the move grants access to other moves
 
 ### Move Categories
 
 **When to use:** To organize moves into logical groups on the character sheet.
 
-**Available categories:**
-- `"Advancement"` - Character improvement moves
-- `"Equipment"` - Gear and weapon moves
-- `"Companion"` - Allies and followers
-- `"Custom Category"` - Any name you choose
-
 #### Structure
-```json
+
+<table>
+<tr>
+<td>
+<pre>
 {
   "id": "move_id",
   "title": "Move Name",
   "category": "Equipment",
   // ... rest of move definition
 }
-```
+</pre>
+</td> <td>  </td> </tr> </table>
 
 **Key Features:**
 - Moves without `category` appear under the default "Moves" section
 - Categories appear as separate sections on the character sheet
-- Helps players find related moves quickly
+- Common categories: `"Advancement"`, `"Equipment"`, `"Companion"`
 
 ### Moves That Grant Cards
 
 **When to use:** When a move should give the character a new card interface for tracking complex information.
 
-**Example use case:** Acquiring a robotic companion, getting a ship, or gaining a complex piece of equipment.
-
 #### Structure
-```json
+
+<table>
+<tr>
+<td>
+<pre>
 {
   "id": "move_id",
   "title": "Move Name",
@@ -358,45 +292,17 @@ Beyond basic roll-based moves, the system supports several specialized move type
   "outcomes": [
     {
       "range": "Always",
-      "text": "Description of what you gain",
-      "bullets": [
-        "Details about the new capability",
-        "Any limitations or requirements",
-        "Ongoing considerations"
-      ]
+      "text": "Description of what you gain"
     }
   ]
 }
-```
-
-#### Real Example: Acquire Robotic Companion from Mech Adept
-```json
-{
-  "id": "ac001",
-  "title": "Acquire Robotic Companion",
-  "description": "Through techno-arcane rites or salvage operations, you have created or acquired a robotic companion to serve the Machine God.",
-  "category": "Advancement",
-  "grantsCard": "robotic-companion",
-  "outcomes": [
-    {
-      "range": "Always",
-      "text": "You now have a robotic companion. Its exact nature depends on your craftsmanship and available resources:",
-      "bullets": [
-        "Choose its type: reconnaissance drone, combat servitor, tech-adept construct, or custom design",
-        "Its loyalty is absolute, but its machine spirit has its own quirks",
-        "It requires maintenance and may malfunction at inopportune times",
-        "Other Tech Adepts may covet or critique your work"
-      ]
-    }
-  ]
-}
-```
+</pre>
+</td> <td>  </td> </tr> </table>
 
 **Key Features:**
 - `grantsCard` references a card by its folder name
 - The card must exist in `data/cards/[card-name]/`
 - Cards appear inline when the move is selected
-- Perfect for companions, equipment, or other complex game elements
 
 ## Cards System
 
