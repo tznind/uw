@@ -50,46 +50,6 @@ Stats are defined in `data/stats.json`. Each stat has an `id` (used internally) 
 ]
 ```
 
-### Examples for Other Game Systems
-
-**D&D-style Stats:**
-```json
-[
-  {"id": "strength", "title": "STRENGTH"},
-  {"id": "dexterity", "title": "DEXTERITY"},
-  {"id": "constitution", "title": "CONSTITUTION"},
-  {"id": "intelligence", "title": "INTELLIGENCE"},
-  {"id": "wisdom", "title": "WISDOM"},
-  {"id": "charisma", "title": "CHARISMA"}
-]
-```
-
-**Simple Two-Stat System:**
-```json
-[
-  {"id": "body", "title": "BODY"},
-  {"id": "mind", "title": "MIND"}
-]
-```
-
-**Cyberpunk-style Stats:**
-```json
-[
-  {"id": "cool", "title": "COOL"},
-  {"id": "attr", "title": "ATTR"},
-  {"id": "luck", "title": "LUCK"},
-  {"id": "ma", "title": "MA"},
-  {"id": "body", "title": "BODY"},
-  {"id": "emp", "title": "EMP"}
-]
-```
-
-**Key Points:**
-- The `id` field must be lowercase and contain no spaces (used in move references like "+conviction")
-- The `title` field is what players see on their character sheets
-- You can have as many or as few stats as your game system requires
-- After changing stats, update your moves to reference the new stat IDs
-
 ---
 
 ## Creating Roles
@@ -99,12 +59,27 @@ To add a new role with moves:
 1. Create a JSON file in `data/moves/` (e.g., `data/moves/new-role.json`)
 2. Add the role to `data/availability.json` with a `_movesFile` property:
 
-```json
-"New Role": {
-  "_movesFile": "data/moves/new-role.json",
-  "move1": true,
-  "move2": false
+```diff
+...
+
+  "Lord Commander": {
+    "_movesFile": "data/moves/lord-commander.json",
+    "cards": ["ship"],
+    "l1a2b3": false
+-  }
++  },
++ "New Role": {
++  "_movesFile": "data/moves/new-role.json",
++  "move1": true,
++  "move2": false
++}
 }
+```
+
+You can start with an empty json file for the moves:
+
+```json
+
 ```
 
 ---
