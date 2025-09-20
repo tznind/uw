@@ -170,9 +170,8 @@ Beyond basic roll-based moves, the system supports several specialized move type
 
 **Key Features:**
 - `pickOne` creates radio buttons (only one selection allowed)
-- Can combine with `multiple` for repeated selections
+- Can combine with `multiple` to allow user to take the same move multiple times
 - `multiplePick` creates separate columns for multiple independent choices
-- Usually doesn't need standard outcome ranges
 
 ### Pick Multiple Moves (Checkboxes)
 
