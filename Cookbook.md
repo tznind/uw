@@ -304,6 +304,17 @@ _card.html_
 
 As long as the inputs in the html have ids then they will be automatically persisted without any additional requirements.
 
+File structure for a new card and move
+```
+/data
+  /cards
+    /new-card-name
+      card.html
+      card.json
+ /moves
+    /your-role.json (add move here) 
+```
+
 Cards can also be added directly to roles (i.e. if a move is not required and role always has it):
 
 ```diff
