@@ -39,6 +39,10 @@ To create your own game system:
 https://your_name.github.io/your_repository_name/cs.html
 ```
 
+### Cookbook
+
+For more detailed description of how to create various types of moves see [Cookbook.md](./Cookbook.md)
+
 ## Powered by the Apocalypse
 
 You can read more about Powered by the Apocalypse, including their permissive license terms, here:
@@ -77,18 +81,3 @@ php -S localhost:8000
 ```
 
 Then visit `http://localhost:8000/cs.html`
-
-### Adding New Roles
-
-To add a new role with moves:
-
-1. Create a JSON file in `data/moves/` (e.g., `data/moves/new-role.json`)
-2. Add the role to `data/availability.json` with a `_movesFile` property:
-
-```json
-"New Role": {
-  "_movesFile": "data/moves/new-role.json",
-  "move1": true,
-  "move2": false
-}
-```
