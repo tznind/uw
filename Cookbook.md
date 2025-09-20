@@ -184,18 +184,20 @@ Beyond basic roll-based moves, the system supports several specialized move type
 <td>
 <pre>
 {
-  "id": "move_id",
+  "id": "multipicksdsd",
   "title": "Move Name",
-  "description": "Choose multiple options from the list",
+  "description": "Each time you take this move, pick 2:",
+  "multiple": 2,
   "pick": [
     "First Option",
     "Second Option",
     "Third Option",
-    "Fourth Option"
+    "Fourth Option",
+    "Fifth Option"
   ]
 }
 </pre>
-</td> <td>  </td> </tr> </table>
+</td> <td> <img alt="image" src="https://github.com/user-attachments/assets/0b4198d4-3f20-4af4-858c-d5b535724d07" /> </td> </tr> </table>
 
 **Key Features:**
 - `pick` creates checkboxes (multiple selections allowed)
