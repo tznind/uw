@@ -11,7 +11,7 @@ Players can create their own characters, choose skills etc. Data is saved only i
 
 Showcases (GitHub Pages):
 - [Demo](https://tznind.github.io/lc/cs.html)
-- [Stonetop Character Sheet](https://tznind.github.io/st/cs.html)
+- [Stonetop Character Sheet](https://tznind.github.io/st/cs.html) ([Repository](https://github.com/tznind/st))
 
 ## Creating Moves
 
