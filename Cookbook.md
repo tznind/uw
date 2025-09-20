@@ -205,7 +205,7 @@ Beyond basic roll-based moves, the system supports several specialized move type
 
 ### Take From Other Roles
 
-**When to use:** For versatile characters who can learn techniques from other roles.
+**When to use:** If a move allows you to pick a move from another role.
 
 #### Structure
 
@@ -214,12 +214,14 @@ Beyond basic roll-based moves, the system supports several specialized move type
 <td>
 <pre>
 {
-  "id": "move_id",
+  "id": "takefrom1",
   "title": "Cross-Training Move Name",
-  "takefrom": ["Role Name 1", "Role Name 2"]
+  "description": "Take a move from an unused role",
+  "takefrom": ["Lord Commander", "Mech Adept"]
 }
 </pre>
-</td> <td>  </td> </tr> </table>
+</td> <td> <img alt="image" src="https://github.com/user-attachments/assets/1747a931-4fd0-4d84-af96-30bc370f70b7" /> </td> </tr> </table>
+
 
 **Key Features:**
 - `takefrom` lists roles this character can learn from
@@ -232,18 +234,14 @@ Beyond basic roll-based moves, the system supports several specialized move type
 
 #### Structure
 
-<table>
-<tr>
-<td>
-<pre>
+```
 {
   "id": "move_id",
   "title": "Move Name",
   "category": "Equipment",
   // ... rest of move definition
 }
-</pre>
-</td> <td>  </td> </tr> </table>
+```
 
 **Key Features:**
 - Moves without `category` appear under the default "Moves" section
@@ -252,7 +250,9 @@ Beyond basic roll-based moves, the system supports several specialized move type
 
 ### Moves That Grant Cards
 
-**When to use:** When a move should give the character a new card interface for tracking complex information.
+**When to use:** When a move should give the character a new card interface for tracking complex information.  For example 'gain a crew...'.
+
+This allows you to create completely bespoke elements in the character sheet.
 
 #### Structure
 
@@ -261,18 +261,57 @@ Beyond basic roll-based moves, the system supports several specialized move type
 <td>
 <pre>
 {
-  "id": "move_id",
+  "id": "cardmove1",
   "title": "Move Name",
   "grantsCard": "card-name",
   "outcomes": [
     {
-      "range": "Always",
+      "range": "",
       "text": "Description of what you gain"
     }
   ]
 }
 </pre>
-</td> <td>  </td> </tr> </table>
+</td> <td> <img alt="image" src="https://github.com/user-attachments/assets/adadfbc1-6556-4930-9d1d-ce1664153f87" />
+ </td> </tr> </table>
+
+In order to work a card must have a corresponding card.json and card.html in the [cards](./data/cards) folder:
+
+```json
+{
+  "id": "card-name",
+  "title": "Example Card Title",
+  "path": "data/cards/card-name",
+  "description": "Simple example card",
+  "version": "2.0.0",
+  "author": "Thomas",
+  "files": {
+    "html": "card.html"
+  }
+}
+```
+_card.json_
+
+And html for the card itself:
+
+```html
+<p>Example Card</p>
+<label for="example-card-input">
+Type some text<input type="text" id="example-card-input" />
+</label>
+```
+_card.html_
+
+As long as the inputs in the html have ids then they will be automatically persisted without any additional requirements.
+
+Cards can also be added directly to roles (i.e. if a move is not required and role always has it):
+
+```diff
+"New Role": {
+  "_movesFile": "data/moves/new-role.json",
++  "cards": ["card-name"],
+  "aaabvb": false,
+```
 
 **Key Features:**
 - `grantsCard` references a card by its folder name
