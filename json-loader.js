@@ -114,6 +114,14 @@ window.JsonLoader = (function() {
         return loadJsonData('data/availability.json', 'availableMap');
     }
 
+    /**
+     * Load categories configuration
+     * @returns {Promise} Promise that resolves when categories data is loaded
+     */
+    async function loadCategoriesData() {
+        return loadJsonData('data/categories.json', 'categoriesConfig');
+    }
+
 
     /**
      * Load all game data (stats, availability map, and moves)
@@ -121,10 +129,11 @@ window.JsonLoader = (function() {
      */
     async function loadAllGameData() {
         try {
-            // Load stats and availability data first
+            // Load stats, availability, and categories data first
             await Promise.all([
                 loadStatsData(),
-                loadAvailabilityMap()
+                loadAvailabilityMap(),
+                loadCategoriesData()
             ]);
 
             // Load all role moves and return the combined array
@@ -145,6 +154,7 @@ window.JsonLoader = (function() {
         loadAllRoleMoves,
         loadStatsData,
         loadAvailabilityMap,
+        loadCategoriesData,
         loadAllGameData
     };
 })();
