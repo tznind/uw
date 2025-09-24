@@ -184,13 +184,6 @@ window.Layout = (function() {
                     await renderMoves(selectedRoles, mergedAvailability, urlParams);
                     applyPersistenceState(urlParams);
                     
-                    // Initialize takefrom sections
-                    if (window.TakeFrom) {
-                        setTimeout(() => {
-                            window.TakeFrom.initializeTakeFromSections();
-                        }, 50);
-                    }
-                    
                     // Restore scroll position
                     setTimeout(() => window.scrollTo(0, scrollY), 25);
                 }
