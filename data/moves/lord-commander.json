@@ -119,7 +119,7 @@
   {
     "id": "adapt1",
     "title": "Adaptable - Learn techniques from other roles",
-    "takefrom": ["Navigator", "Mech Adept"]
+    "takefrom": ["*"]
   },
   {
     "id": "is",
