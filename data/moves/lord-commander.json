@@ -135,8 +135,12 @@
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "Your presence fills your allies with determination. Gain 2 Inspire.",
-        "bullets": []
+        "text": "Your presence fills your allies with determination. Gain 2 Inspire. Spend Inspire to:",
+        "bullets": [
+          "An ally gains +1 forward to their next roll",
+          "Remove one debility from yourself or an ally",
+          "Rally broken troops - they return to the fight"
+        ]
       },
       {
         "range": "7–9",
@@ -152,13 +156,6 @@
           "The enemy takes advantage of your distraction"
         ]
       }
-    ],
-    "pick": [
-      "Spend 1 Inspire: An ally gains +1 forward to their next roll",
-      "Spend 1 Inspire: Remove one debility from yourself or an ally",
-      "Spend 2 Inspire: Rally broken troops - they return to the fight",
-      "Spend 2 Inspire: Your next tactical roll gains +2 dice",
-      "Spend 3 Inspire: All allies in the scene act with advantage until the end of the encounter"
     ]
   },
   {
