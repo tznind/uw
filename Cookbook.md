@@ -11,6 +11,7 @@ This comprehensive guide covers creating roles, moves, and cards for the Rogue T
   - [Pick Multiple Moves (Checkboxes)](#pick-multiple-moves-checkboxes)
   - [Take From Other Roles](#take-from-other-roles)
   - [Move Categories](#move-categories)
+  - [Track Counter Moves](#track-counter-moves)
   - [Moves That Grant Cards](#moves-that-grant-cards)
 - [Cards System](#cards-system)
 
@@ -247,6 +248,53 @@ Beyond basic roll-based moves, the system supports several specialized move type
 - Moves without `category` appear under the default "Moves" section
 - Categories appear as separate sections on the character sheet
 - Common categories: `"Advancement"`, `"Equipment"`, `"Companion"`
+
+### Track Counter Moves
+
+**When to use:** For moves that grant temporary points that can be spent for various effects (like Inspire, Hold, Focus, etc.).
+
+#### Structure
+
+<table>
+<tr>
+<td>
+<pre>
+{
+  "id": "track_move",
+  "title": "Move Name (+Stat)",
+  "track": {
+    "name": "Resource",
+    "max": 3
+  },
+  "outcomes": [
+    {
+      "range": "≥ 10",
+      "text": "Success. Gain 2 Resource. Spend Resource to:",
+      "bullets": [
+        "Spend 1: Effect option",
+        "Spend 2: Better effect",
+        "Spend 3: Powerful effect"
+      ]
+    },
+    {
+      "range": "7–9", 
+      "text": "Partial success. Gain 1 Resource."
+    },
+    {
+      "range": "≤ 6",
+      "text": "Your attempt falls flat - choose",
+      "bullets": ["Bad outcome 1", "Bad outcome 2"]
+    }
+  ]
+}
+</pre>
+</td> <td> <img src="placeholder-track-counter-image.png"> </td> </tr> </table>
+
+**Key Features:**
+- `track` creates interactive counter squares in move title
+- Click squares to increment/decrement current value
+- Spending options typically in bullets of successful outcomes
+- Values persist in URL and reset when move unchecked
 
 ### Moves That Grant Cards
 
