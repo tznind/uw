@@ -288,7 +288,8 @@ Beyond basic roll-based moves, the system supports several specialized move type
   ]
 }
 </pre>
-</td> <td> <img src="placeholder-track-counter-image.png"> </td> </tr> </table>
+</td> <td> <img alt="image" src="https://github.com/user-attachments/assets/0636c795-4522-427a-85de-a2cdeeb4f8c3" />
+ </td> </tr> </table>
 
 **Key Features:**
 - `track` creates interactive counter squares in move title
