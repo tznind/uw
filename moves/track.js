@@ -9,62 +9,79 @@ window.Track = (function() {
      * Create a track counter display for a move
      */
     function createTrackDisplay(move, urlParams) {
-        if (!move.track) return null;
-
+        console.log('Track system: createTrackDisplay called for move:', move.id, 'track:', move.track, 'tracks:', move.tracks);
+        if (!move.track && !move.tracks) {
+            console.log('Track system: No track/tracks found for move:', move.id);
+            return null;
+        }
+        
+        // Support both single track (legacy) and multiple tracks
+        const trackConfigs = move.tracks || [move.track];
+        console.log('Track system: Using track configs:', trackConfigs);
+        
         const trackContainer = document.createElement('div');
         trackContainer.className = 'track-counter';
         trackContainer.id = `track_${move.id}`;
         
-        // Track display shows current/max as filled/empty shapes
-        const currentValue = getCurrentTrackValue(move.id, urlParams);
-        const maxValue = move.track.max || 5; // Default max of 5
-        const shape = move.track.shape || 'square'; // Default shape
-        
-        // Create shapes container
-        const shapesContainer = document.createElement('div');
-        shapesContainer.className = 'track-shapes';
-        
-        // Create individual shapes
-        for (let i = 1; i <= maxValue; i++) {
-            const shapeElement = document.createElement('div');
-            shapeElement.className = `track-shape track-${shape}`;
-            shapeElement.dataset.value = i;
+        // Create each track counter
+        trackConfigs.forEach((trackConfig, index) => {
+            const trackId = trackConfigs.length > 1 ? `${move.id}_${index}` : move.id;
+            const currentValue = getCurrentTrackValue(trackId, urlParams);
+            const maxValue = trackConfig.max || 5;
+            const shape = trackConfig.shape || 'square';
             
-            if (i <= currentValue) {
-                shapeElement.classList.add('filled');
+            // Create individual track container
+            const individualTrackContainer = document.createElement('div');
+            individualTrackContainer.className = 'individual-track';
+            
+            // Create shapes container
+            const shapesContainer = document.createElement('div');
+            shapesContainer.className = 'track-shapes';
+            
+            // Create individual shapes
+            for (let i = 1; i <= maxValue; i++) {
+                const shapeElement = document.createElement('div');
+                shapeElement.className = `track-shape track-${shape}`;
+                shapeElement.dataset.value = i;
+                shapeElement.setAttribute('data-track-id', trackId);
+                
+                if (i <= currentValue) {
+                    shapeElement.classList.add('filled');
+                }
+                
+                // Add click handler for toggling
+                shapeElement.addEventListener('click', () => {
+                    handleShapeClick(trackId, i, maxValue);
+                });
+                
+                shapesContainer.appendChild(shapeElement);
             }
             
-            // Add click handler for toggling
-            shapeElement.addEventListener('click', () => {
-                handleSquareClick(move.id, i, maxValue);
-            });
+            // Create label showing track name and current/max
+            const trackLabel = document.createElement('div');
+            trackLabel.className = 'track-label';
+            trackLabel.textContent = `${trackConfig.name}: ${currentValue}/${maxValue}`;
             
-            shapesContainer.appendChild(shapeElement);
-        }
-        
-        // Create label showing track name and current/max
-        const trackLabel = document.createElement('div');
-        trackLabel.className = 'track-label';
-        trackLabel.textContent = `${move.track.name}: ${currentValue}/${maxValue}`;
-        
-        trackContainer.appendChild(trackLabel);
-        trackContainer.appendChild(shapesContainer);
+            individualTrackContainer.appendChild(trackLabel);
+            individualTrackContainer.appendChild(shapesContainer);
+            trackContainer.appendChild(individualTrackContainer);
+        });
         
         return trackContainer;
     }
 
     /**
-     * Handle clicking on a track square
+     * Handle clicking on a track shape
      */
-    function handleSquareClick(moveId, clickedValue, maxValue) {
-        const currentValue = getCurrentTrackValue(moveId, new URLSearchParams(location.search));
+    function handleShapeClick(trackId, clickedValue, maxValue) {
+        const currentValue = getCurrentTrackValue(trackId, new URLSearchParams(location.search));
         
         let newValue;
         if (clickedValue <= currentValue) {
-            // Clicking on a filled square or lower - set to one less than clicked
+            // Clicking on a filled shape or lower - set to one less than clicked
             newValue = clickedValue - 1;
         } else {
-            // Clicking on an empty square - fill up to that square
+            // Clicking on an empty shape - fill up to that shape
             newValue = clickedValue;
         }
         
@@ -72,23 +89,20 @@ window.Track = (function() {
         newValue = Math.max(0, Math.min(newValue, maxValue));
         
         // Update display
-        updateTrackDisplay(moveId, newValue, maxValue);
+        updateSingleTrackDisplay(trackId, newValue, maxValue);
         
         // Update URL
-        updateTrackValueInURL(moveId, newValue);
+        updateTrackValueInURL(trackId, newValue);
     }
 
     /**
-     * Update the visual display of a track counter
+     * Update the visual display of a single track counter
      */
-    function updateTrackDisplay(moveId, currentValue, maxValue) {
-        const trackContainer = document.getElementById(`track_${moveId}`);
-        if (!trackContainer) return;
-        
-        // Update shapes
-        const shapes = trackContainer.querySelectorAll('.track-shape');
+    function updateSingleTrackDisplay(trackId, currentValue, maxValue) {
+        // Find shapes with matching trackId
+        const shapes = document.querySelectorAll(`[data-track-id="${trackId}"]`);
         shapes.forEach((shape, index) => {
-            const shapeValue = index + 1;
+            const shapeValue = parseInt(shape.dataset.value);
             if (shapeValue <= currentValue) {
                 shape.classList.add('filled');
             } else {
@@ -96,20 +110,30 @@ window.Track = (function() {
             }
         });
         
-        // Update label
-        const label = trackContainer.querySelector('.track-label');
-        if (label) {
-            const move = window.moves?.find(m => m.id === moveId);
-            const trackName = move?.track?.name || 'Track';
+        // Update corresponding label
+        const trackContainer = shapes[0]?.closest('.individual-track');
+        const label = trackContainer?.querySelector('.track-label');
+        if (label && shapes.length > 0) {
+            // Extract track name from current label text
+            const currentText = label.textContent;
+            const trackName = currentText.split(':')[0];
             label.textContent = `${trackName}: ${currentValue}/${maxValue}`;
         }
     }
 
     /**
+     * Update the visual display of all track counters for a move
+     */
+    function updateTrackDisplay(moveId, currentValue, maxValue) {
+        // Legacy function - delegates to single track update
+        updateSingleTrackDisplay(moveId, currentValue, maxValue);
+    }
+
+    /**
      * Get current track value from URL parameters
      */
-    function getCurrentTrackValue(moveId, urlParams) {
-        const paramName = `track_${moveId}`;
+    function getCurrentTrackValue(trackId, urlParams) {
+        const paramName = `track_${trackId}`;
         const value = urlParams.get(paramName);
         return value ? parseInt(value, 10) : 0;
     }
@@ -117,9 +141,9 @@ window.Track = (function() {
     /**
      * Update track value in URL parameters
      */
-    function updateTrackValueInURL(moveId, value) {
+    function updateTrackValueInURL(trackId, value) {
         const params = new URLSearchParams(location.search);
-        const paramName = `track_${moveId}`;
+        const paramName = `track_${trackId}`;
         
         if (value > 0) {
             params.set(paramName, value.toString());
@@ -135,18 +159,32 @@ window.Track = (function() {
      * Initialize track counters after page render
      */
     function initializeTrackCounters() {
-        if (!window.moves) return;
+        console.log('Track system: Initializing track counters...');
+        if (!window.moves || !Array.isArray(window.moves)) {
+            console.log('Track system: window.moves not available or not an array');
+            return;
+        }
         
+        console.log('Track system: Found', window.moves.length, 'moves');
         const urlParams = new URLSearchParams(location.search);
         
         // Update all track displays based on current URL state
+        let trackMovesFound = 0;
         window.moves.forEach(move => {
-            if (move.track) {
-                const currentValue = getCurrentTrackValue(move.id, urlParams);
-                const maxValue = move.track.max || 5;
-                updateTrackDisplay(move.id, currentValue, maxValue);
+            if (move.track || move.tracks) {
+                trackMovesFound++;
+                console.log('Track system: Processing move', move.id, 'with tracks:', move.tracks || move.track);
+                const trackConfigs = move.tracks || [move.track];
+                trackConfigs.forEach((trackConfig, index) => {
+                    const trackId = trackConfigs.length > 1 ? `${move.id}_${index}` : move.id;
+                    const currentValue = getCurrentTrackValue(trackId, urlParams);
+                    const maxValue = trackConfig.max || 5;
+                    console.log('Track system: Updating display for trackId:', trackId, 'value:', currentValue, 'max:', maxValue);
+                    updateSingleTrackDisplay(trackId, currentValue, maxValue);
+                });
             }
         });
+        console.log('Track system: Found', trackMovesFound, 'moves with tracking');
     }
 
     /**
@@ -154,15 +192,19 @@ window.Track = (function() {
      */
     function handleTrackedMoveToggle(moveId, isChecked) {
         if (!isChecked) {
-            // Move was unchecked - reset track to 0
+            // Move was unchecked - reset all tracks to 0
             const move = window.moves?.find(m => m.id === moveId);
-            if (move?.track) {
-                const maxValue = move.track.max || 5;
-                updateTrackDisplay(moveId, 0, maxValue);
-                updateTrackValueInURL(moveId, 0);
+            if (move?.track || move?.tracks) {
+                const trackConfigs = move.tracks || [move.track];
+                trackConfigs.forEach((trackConfig, index) => {
+                    const trackId = trackConfigs.length > 1 ? `${moveId}_${index}` : moveId;
+                    const maxValue = trackConfig.max || 5;
+                    updateSingleTrackDisplay(trackId, 0, maxValue);
+                    updateTrackValueInURL(trackId, 0);
+                });
             }
         }
-        // If checked, leave current track value as is (don't auto-reset)
+        // If checked, leave current track values as is (don't auto-reset)
     }
 
     // Public API
@@ -175,9 +217,5 @@ window.Track = (function() {
     };
 })();
 
-// Auto-initialize when DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', window.Track.initializeTrackCounters);
-} else {
-    window.Track.initializeTrackCounters();
-}
+// Note: Initialization is now handled by the moves rendering system
+// No need for auto-initialization here
