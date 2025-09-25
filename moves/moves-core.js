@@ -53,9 +53,9 @@ window.MovesCore = (function() {
     }
 
     /**
-     * Create move title with checkboxes
+     * Create move title with checkboxes and optional track display
      */
-    function createMoveTitle(move, checkboxes) {
+    function createMoveTitle(move, checkboxes, urlParams) {
         const titleContainer = document.createElement("div");
         titleContainer.className = "move-title";
         
@@ -81,6 +81,14 @@ window.MovesCore = (function() {
             
             titleContainer.appendChild(checkboxContainer);
             titleContainer.appendChild(titleText);
+        }
+        
+        // Add track display if move has tracking
+        if (move.track && window.Track) {
+            const trackDisplay = window.Track.createTrackDisplay(move, urlParams);
+            if (trackDisplay) {
+                titleContainer.appendChild(trackDisplay);
+            }
         }
         
         return titleContainer;
@@ -364,7 +372,7 @@ window.MovesCore = (function() {
         
         // Create checkboxes and title
         const checkboxes = createMoveCheckboxes(move, available, urlParams);
-        const titleContainer = createMoveTitle(move, checkboxes);
+        const titleContainer = createMoveTitle(move, checkboxes, urlParams);
         moveDiv.appendChild(titleContainer);
         
         // Add description if it exists

@@ -95,6 +95,26 @@
       "grantsCard": {
         "type": "string",
         "description": "Card name to grant when this move is selected"
+      },
+      "track": {
+        "type": "object",
+        "description": "Tracking configuration for temporary points (like Inspire, Hold, etc.)",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Display name for the tracked resource",
+            "examples": ["Inspire", "Hold", "Focus"]
+          },
+          "max": {
+            "type": "integer",
+            "description": "Maximum number of points that can be tracked",
+            "minimum": 1,
+            "maximum": 10,
+            "default": 5
+          }
+        },
+        "required": ["name"],
+        "additionalProperties": false
       }
     },
     "required": ["id", "title"],
