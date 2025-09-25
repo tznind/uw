@@ -5,7 +5,7 @@ This repository is a template for building interactive [PbtA-style](https://en.w
 
 Players can create their own characters, choose skills etc. Data is saved only into the address bar (URL) - allowing sharing/saving for later e.g. as a bookmark.
 
-<a href="https://tznind.github.io/st/cs.html?name=Inigo+Montoya&player=Thomas&role=Fox&move_l1a2b3=1&move_d4e5f6=1&takefrom_d4e5f6_role=The+Ranger&takefrom_d4e5f6_move=rg002&move_rg002=1&ac_nm=Foxy+Fox&ac_dt=messy&strength=1&dexterity=2&intelligence=1&wisdom=0">
+<a href="https://tznind.github.io/st/cs.html?name=Inigo+Montoya&player=Thomas&role=Fox&move_l1a2b3=1&move_d4e5f6=1&takeFrom_d4e5f6_role=The+Ranger&takeFrom_d4e5f6_move=rg002&move_rg002=1&ac_nm=Foxy+Fox&ac_dt=messy&strength=1&dexterity=2&intelligence=1&wisdom=0">
 <img src="https://github.com/user-attachments/assets/9d21b4b4-6b42-4f22-a740-c78015beb577"/>
 </a>
 

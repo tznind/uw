@@ -214,17 +214,17 @@ Beyond basic roll-based moves, the system supports several specialized move type
 <td>
 <pre>
 {
-  "id": "takefrom1",
+  "id": "takeFrom1",
   "title": "Cross-Training Move Name",
   "description": "Take a move from an unused role",
-  "takefrom": ["Lord Commander", "Mech Adept"]
+  "takeFrom": ["Lord Commander", "Mech Adept"]
 }
 </pre>
 </td> <td> <img alt="image" src="https://github.com/user-attachments/assets/1747a931-4fd0-4d84-af96-30bc370f70b7" /> </td> </tr> </table>
 
 
 **Key Features:**
-- `takefrom` lists roles this character can learn from
+- `takeFrom` lists roles this character can learn from
 - Creates dropdown menus populated with moves from those roles
 - Allows character versatility and cross-class abilities
 
