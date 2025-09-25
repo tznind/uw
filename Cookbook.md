@@ -264,7 +264,8 @@ Beyond basic roll-based moves, the system supports several specialized move type
   "title": "Move Name (+Stat)",
   "track": {
     "name": "Resource",
-    "max": 3
+    "max": 3,
+    "shape": "circle"
   },
   "outcomes": [
     {
@@ -291,8 +292,9 @@ Beyond basic roll-based moves, the system supports several specialized move type
 </td> <td> <img src="placeholder-track-counter-image.png"> </td> </tr> </table>
 
 **Key Features:**
-- `track` creates interactive counter squares in move title
-- Click squares to increment/decrement current value
+- `track` creates interactive counter shapes in move title
+- `shape` options: "square" (default), "circle", "triangle", "hexagon"
+- Click shapes to increment/decrement current value
 - Spending options typically in bullets of successful outcomes
 - Values persist in URL and reset when move unchecked
 

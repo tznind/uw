@@ -111,6 +111,12 @@
             "minimum": 1,
             "maximum": 10,
             "default": 5
+          },
+          "shape": {
+            "type": "string",
+            "description": "Visual shape for the track counters",
+            "enum": ["square", "circle", "triangle", "hexagon"],
+            "default": "square"
           }
         },
         "required": ["name"],

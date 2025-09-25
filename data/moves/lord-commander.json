@@ -130,7 +130,8 @@
     "description": "When you rally your troops or inspire others through decisive action, roll +Influence.",
     "track": {
       "name": "Inspire",
-      "max": 3
+      "max": 3,
+      "shape": "triangle"
     },
     "outcomes": [
       {

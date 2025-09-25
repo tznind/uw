@@ -756,41 +756,94 @@ hr {
   letter-spacing: 0.5px;
 }
 
-.track-squares {
+.track-shapes {
   display: flex;
   gap: 2px;
   align-items: center;
 }
 
-.track-square {
+.track-shape {
   width: 16px;
   height: 16px;
   border: 2px solid #6c757d;
-  border-radius: 2px;
   background: transparent;
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
 }
 
-.track-square:hover {
+.track-shape:hover {
   border-color: #495057;
   transform: scale(1.1);
 }
 
-.track-square.filled {
+.track-shape.filled:not(.track-triangle):not(.track-hexagon) {
   background: #b0b0b0; /* soft medium gray */
   border-color: #8c8c8c; /* slightly darker gray */
 }
 
-.track-square.filled:hover {
-  background: #c7c7c7; /* lighter gray on hover */
-  border-color: #6e6e6e; /* darker border on hover */
+.track-shape.filled:hover:not(.track-triangle):not(.track-hexagon) {
+  background: #8c8c8c; /* darker gray on hover */
+  border-color: #6e6e6e; /* even darker border on hover */
+}
+
+/* Shape-specific styles */
+.track-square {
+  border-radius: 2px;
+}
+
+.track-circle {
+  border-radius: 50%;
+}
+
+.track-hexagon {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%236c757d" stroke-width="12" fill="transparent"/></svg>') no-repeat center/contain;
+  transition: all 0.2s ease;
+}
+
+.track-hexagon:hover {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%23495057" stroke-width="12" fill="transparent"/></svg>') no-repeat center/contain;
+  transform: scale(1.1);
+}
+
+.track-shape.track-hexagon.filled {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%238c8c8c" stroke-width="12" fill="%23b0b0b0"/></svg>') no-repeat center/contain;
+}
+
+.track-shape.track-hexagon.filled:hover {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%236e6e6e" stroke-width="12" fill="%238c8c8c"/></svg>') no-repeat center/contain;
+  transform: scale(1.1);
+}
+
+.track-triangle {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="background:transparent"><polygon points="50,10 85,80 15,80" stroke="%236c757d" stroke-width="8" fill="transparent"/></svg>') no-repeat center/contain;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.track-triangle:hover {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 85,80 15,80" stroke="%23495057" stroke-width="8" fill="transparent"/></svg>') no-repeat center/contain;
+  transform: scale(1.1);
+}
+
+.track-shape.track-triangle.filled {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 85,80 15,80" stroke="%238c8c8c" stroke-width="8" fill="%23b0b0b0"/></svg>') no-repeat center/contain;
+}
+
+.track-shape.track-triangle.filled:hover {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 85,80 15,80" stroke="%236e6e6e" stroke-width="8" fill="%238c8c8c"/></svg>') no-repeat center/contain;
+  transform: scale(1.1);
 }
 
 
-/* Add a subtle inner shadow for filled squares */
-.track-square.filled::after {
+/* Add a subtle inner shadow for filled shapes */
+.track-shape.filled::after {
   content: '';
   position: absolute;
   top: 1px;
@@ -798,7 +851,7 @@ hr {
   right: 1px;
   bottom: 1px;
   background: rgba(0, 0, 0, 0.1);
-  border-radius: 1px;
+  border-radius: inherit;
 }
 
 /* Responsive adjustments for track display */
@@ -809,7 +862,7 @@ hr {
     margin-top: 8px;
   }
   
-  .track-square {
+  .track-shape {
     width: 14px;
     height: 14px;
   }

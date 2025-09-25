@@ -15,30 +15,31 @@ window.Track = (function() {
         trackContainer.className = 'track-counter';
         trackContainer.id = `track_${move.id}`;
         
-        // Track display shows current/max as filled/empty squares
+        // Track display shows current/max as filled/empty shapes
         const currentValue = getCurrentTrackValue(move.id, urlParams);
         const maxValue = move.track.max || 5; // Default max of 5
+        const shape = move.track.shape || 'square'; // Default shape
         
-        // Create squares container
-        const squaresContainer = document.createElement('div');
-        squaresContainer.className = 'track-squares';
+        // Create shapes container
+        const shapesContainer = document.createElement('div');
+        shapesContainer.className = 'track-shapes';
         
-        // Create individual squares
+        // Create individual shapes
         for (let i = 1; i <= maxValue; i++) {
-            const square = document.createElement('div');
-            square.className = 'track-square';
-            square.dataset.value = i;
+            const shapeElement = document.createElement('div');
+            shapeElement.className = `track-shape track-${shape}`;
+            shapeElement.dataset.value = i;
             
             if (i <= currentValue) {
-                square.classList.add('filled');
+                shapeElement.classList.add('filled');
             }
             
             // Add click handler for toggling
-            square.addEventListener('click', () => {
+            shapeElement.addEventListener('click', () => {
                 handleSquareClick(move.id, i, maxValue);
             });
             
-            squaresContainer.appendChild(square);
+            shapesContainer.appendChild(shapeElement);
         }
         
         // Create label showing track name and current/max
@@ -47,7 +48,7 @@ window.Track = (function() {
         trackLabel.textContent = `${move.track.name}: ${currentValue}/${maxValue}`;
         
         trackContainer.appendChild(trackLabel);
-        trackContainer.appendChild(squaresContainer);
+        trackContainer.appendChild(shapesContainer);
         
         return trackContainer;
     }
@@ -84,14 +85,14 @@ window.Track = (function() {
         const trackContainer = document.getElementById(`track_${moveId}`);
         if (!trackContainer) return;
         
-        // Update squares
-        const squares = trackContainer.querySelectorAll('.track-square');
-        squares.forEach((square, index) => {
-            const squareValue = index + 1;
-            if (squareValue <= currentValue) {
-                square.classList.add('filled');
+        // Update shapes
+        const shapes = trackContainer.querySelectorAll('.track-shape');
+        shapes.forEach((shape, index) => {
+            const shapeValue = index + 1;
+            if (shapeValue <= currentValue) {
+                shape.classList.add('filled');
             } else {
-                square.classList.remove('filled');
+                shape.classList.remove('filled');
             }
         });
         
