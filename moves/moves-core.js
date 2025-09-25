@@ -83,12 +83,18 @@ window.MovesCore = (function() {
             titleContainer.appendChild(titleText);
         }
         
-        // Add track display if move has tracking
-        if (move.track && window.Track) {
+        // Add track display if move has tracking (support both single track and multiple tracks)
+        if ((move.track || move.tracks) && window.Track) {
+            console.log('MovesCore: Found track/tracks for move:', move.id, 'calling createTrackDisplay');
             const trackDisplay = window.Track.createTrackDisplay(move, urlParams);
             if (trackDisplay) {
+                console.log('MovesCore: Adding track display to title container for move:', move.id);
                 titleContainer.appendChild(trackDisplay);
+            } else {
+                console.log('MovesCore: createTrackDisplay returned null for move:', move.id);
             }
+        } else {
+            console.log('MovesCore: No track system or no tracks for move:', move.id, 'track:', move.track, 'tracks:', move.tracks, 'window.Track:', !!window.Track);
         }
         
         return titleContainer;

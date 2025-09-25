@@ -262,10 +262,18 @@ Beyond basic roll-based moves, the system supports several specialized move type
 {
   "id": "track_move",
   "title": "Move Name (+Stat)",
-  "track": {
-    "name": "Resource",
-    "max": 3
-  },
+  "tracks": [
+    {
+      "name": "Resource",
+      "max": 3,
+      "shape": "triangle"
+    },
+    {
+      "name": "Special",
+      "max": 2,
+      "shape": "hexagon"
+    }
+  ],
   "outcomes": [
     {
       "range": "≥ 10",
@@ -273,12 +281,12 @@ Beyond basic roll-based moves, the system supports several specialized move type
       "bullets": [
         "Spend 1: Effect option",
         "Spend 2: Better effect",
-        "Spend 3: Powerful effect"
+        "Special: Major effect"
       ]
-    },
-    {
-      "range": "7–9", 
-      "text": "Partial success. Gain 1 Resource."
+    }
+  ]
+}
+</pre>
     },
     {
       "range": "≤ 6",
@@ -292,9 +300,10 @@ Beyond basic roll-based moves, the system supports several specialized move type
  </td> </tr> </table>
 
 **Key Features:**
-- `track` creates interactive counter squares in move title
-- Click squares to increment/decrement current value
-- Spending options typically in bullets of successful outcomes
+- `tracks` array supports multiple counters (or single `track` for one)
+- Multiple tracks appear horizontally from right to left
+- `shape` options: "square" (default), "circle", "triangle", "hexagon"
+- Click shapes to increment/decrement current value
 - Values persist in URL and reset when move unchecked
 
 ### Moves That Grant Cards

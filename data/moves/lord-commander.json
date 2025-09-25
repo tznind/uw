@@ -127,11 +127,19 @@
   {
     "id": "inspire1",
     "title": "Inspiring Presence (+Influence)",
-    "description": "When you rally your troops or inspire others through decisive action, roll +Influence.",
-    "track": {
-      "name": "Inspire",
-      "max": 3
-    },
+    "description": "When you rally your troops or inspire others through decisive action, roll +Influence. Twice per year you can Rally (hexagon) to prevent an ally dying.",
+    "tracks": [
+      {
+        "name": "Inspire",
+        "max": 3,
+        "shape": "triangle"
+      },
+      {
+        "name": "Rally",
+        "max": 2,
+        "shape": "hexagon"
+      }
+    ],
     "outcomes": [
       {
         "range": "≥ 10",
