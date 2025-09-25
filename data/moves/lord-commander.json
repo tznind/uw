@@ -125,6 +125,40 @@
 
   },
   {
+    "id": "inspire1",
+    "title": "Inspiring Presence (+Influence)",
+    "description": "When you rally your troops or inspire others through decisive action, roll +Influence.",
+    "track": {
+      "name": "Inspire",
+      "max": 3
+    },
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Your presence fills your allies with determination. Gain 2 Inspire. Spend Inspire to:",
+        "bullets": [
+          "An ally gains +1 forward to their next roll",
+          "Remove one debility from yourself or an ally",
+          "Rally broken troops - they return to the fight"
+        ]
+      },
+      {
+        "range": "7–9",
+        "text": "Your words carry weight, but the moment is fleeting. Gain 1 Inspire.",
+        "bullets": []
+      },
+      {
+        "range": "≤ 6",
+        "text": "Your attempt falls flat or backfires:",
+        "bullets": [
+          "Your troops remain demoralized",
+          "Someone questions your judgment publicly",
+          "The enemy takes advantage of your distraction"
+        ]
+      }
+    ]
+  },
+  {
     "id": "is",
     "title": "Improved Stat",
     "description": "Choose one stat to improve by 1 (can be taken twice)",
