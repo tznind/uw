@@ -66,6 +66,12 @@
         });
     }
     
+    // Create global initialization function that can be called whenever card is recreated  
+    window.initializeShip = function() {
+        console.log('Initializing Ship card...');
+        initializeShipCard();
+    };
+    
     // Register with CardHelpers for proper lifecycle management
     if (window.CardHelpers) {
         window.CardHelpers.registerCard('ship', initializeShipCard);
