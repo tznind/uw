@@ -143,3 +143,39 @@
     font-size: 20px;
   }
 }
+
+/* Very narrow screens for ship cards */
+/* Breakpoint: 480px - matches styles.css narrow screen breakpoint */
+@media (max-width: 480px) {
+  .ship-stats-grid {
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  .ship-components-grid {
+    gap: 10px;
+  }
+  
+  .component-category {
+    padding: 8px;
+  }
+  
+  .component-category h5 {
+    font-size: 13px;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+  }
+  
+  .ship-card .component-item {
+    margin-bottom: 6px;
+  }
+  
+  .ship-card .component-item label {
+    padding: 4px 6px;
+    font-size: 14px;
+  }
+  
+  .ship-card .card-title::before {
+    font-size: 18px;
+  }
+}
