@@ -5,13 +5,14 @@ This repository is a template for building interactive [PbtA-style](https://en.w
 
 Players can create their own characters, choose skills etc. Data is saved only into the address bar (URL) - allowing sharing/saving for later e.g. as a bookmark.
 
+Showcases (GitHub Pages):
+- [<img width="12" height="12" alt="GitHub logo" src="https://github.com/user-attachments/assets/d45893e9-0b26-4259-8764-a9737ee1426e" /> Demo Site](https://tznind.github.io/lc/cs.html)
+- [<img width="12" height="12" alt="GitHub logo" src="https://github.com/user-attachments/assets/d45893e9-0b26-4259-8764-a9737ee1426e" /> Stonetop Character Sheet](https://tznind.github.io/st/cs.html) ([<img width="12" height="12" alt="GitHub logo" src="https://github.com/user-attachments/assets/d45893e9-0b26-4259-8764-a9737ee1426e"/> Source](https://github.com/tznind/st))
+
+
 <a href="https://tznind.github.io/st/cs.html?name=Inigo+Montoya&player=Thomas&role=Fox&move_l1a2b3=1&move_d4e5f6=1&takeFrom_d4e5f6_role=The+Ranger&takeFrom_d4e5f6_move=rg002&move_rg002=1&ac_nm=Foxy+Fox&ac_dt=messy&strength=1&dexterity=2&intelligence=1&wisdom=0">
 <img src="https://github.com/user-attachments/assets/9d21b4b4-6b42-4f22-a740-c78015beb577"/>
 </a>
-
-Showcases (GitHub Pages):
-- [Demo](https://tznind.github.io/lc/cs.html)
-- [Stonetop Character Sheet](https://tznind.github.io/st/cs.html) ([Source](https://github.com/tznind/st))
 
 ## Creating Moves
 
