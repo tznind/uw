@@ -323,6 +323,7 @@ button:focus {
   padding: 20px;
   margin-bottom: 20px;
   transition: box-shadow 0.2s;
+  position: relative;
 }
 
 .move:hover {
@@ -337,7 +338,6 @@ button:focus {
   display: flex;
   align-items: center;
   gap: 10px;
-  position: relative;
 }
 
 .move-title label {
@@ -356,23 +356,22 @@ button:focus {
 
 .move-collapse-toggle {
   position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  right: 5px;
+  top: 5px;
   background: #f8f9fa;
   border: 1px solid #dee2e6;
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: bold;
   color: #495057;
   cursor: pointer;
-  padding: 2px;
-  width: 26px;
-  height: 26px;
+  padding: 0;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  transition: all 0.2s;
-  z-index: 10;
+  transition: background-color 0.2s;
 }
 
 .move-collapse-toggle:hover {
@@ -385,10 +384,7 @@ button:focus {
   box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.3);
 }
 
-/* No rotation needed - we use different arrow symbols directly */
-.move-collapse-toggle.collapsed {
-  transform: translateY(-50%);
-}
+/* Simple + and - symbols, no special collapsed styling needed */
 
 /* Move content styling for collapse/expand */
 .move-content {
@@ -1019,7 +1015,7 @@ hr {
 .track-counter {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 32px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

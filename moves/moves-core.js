@@ -102,7 +102,7 @@ window.MovesCore = (function() {
         collapseToggle.type = "button";
         collapseToggle.className = "move-collapse-toggle";
         collapseToggle.setAttribute('aria-label', `Toggle ${move.title} details`);
-        collapseToggle.innerHTML = "▼"; // Down-pointing triangle
+        collapseToggle.innerHTML = "-"; // Minus sign (expanded state)
         
         // Add click handler to toggle move content
         collapseToggle.addEventListener('click', function(e) {
@@ -474,16 +474,16 @@ window.MovesCore = (function() {
         const isCurrentlyCollapsed = contentContainer.classList.contains('collapsed');
         
         if (isCurrentlyCollapsed) {
-            // Expand - show down arrow
+            // Expand - show minus sign
             contentContainer.classList.remove('collapsed');
             toggleButton.classList.remove('collapsed');
-            toggleButton.innerHTML = '▼'; // Down arrow (expanded state)
+            toggleButton.innerHTML = '-'; // Minus (expanded state)
             toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
         } else {
-            // Collapse - show right arrow
+            // Collapse - show plus sign
             contentContainer.classList.add('collapsed');
             toggleButton.classList.add('collapsed');
-            toggleButton.innerHTML = '▶'; // Right arrow (collapsed state)
+            toggleButton.innerHTML = '+'; // Plus (collapsed state)
             toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
         }
     }
@@ -500,7 +500,7 @@ window.MovesCore = (function() {
             if (contentContainer && toggleButton) {
                 contentContainer.classList.add('collapsed');
                 toggleButton.classList.add('collapsed');
-                toggleButton.innerHTML = '▶'; // Right arrow (collapsed state)
+                toggleButton.innerHTML = '+'; // Plus (collapsed state)
                 toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
             }
         });
@@ -518,7 +518,7 @@ window.MovesCore = (function() {
             if (contentContainer && toggleButton) {
                 contentContainer.classList.remove('collapsed');
                 toggleButton.classList.remove('collapsed');
-                toggleButton.innerHTML = '▼'; // Down arrow (expanded state)
+                toggleButton.innerHTML = '-'; // Minus (expanded state)
                 toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
             }
         });
@@ -572,16 +572,16 @@ window.MovesCore = (function() {
                 
                 if (shouldBeCollapsed !== undefined) {
                     if (shouldBeCollapsed) {
-                        // Collapse this move - show right arrow
+                        // Collapse this move - show plus sign
                         contentContainer.classList.add('collapsed');
                         toggleButton.classList.add('collapsed');
-                        toggleButton.innerHTML = '▶'; // Right arrow (collapsed state)
+                        toggleButton.innerHTML = '+'; // Plus (collapsed state)
                         toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
                     } else {
-                        // Ensure this move is expanded - show down arrow
+                        // Ensure this move is expanded - show minus sign
                         contentContainer.classList.remove('collapsed');
                         toggleButton.classList.remove('collapsed');
-                        toggleButton.innerHTML = '▼'; // Down arrow (expanded state)
+                        toggleButton.innerHTML = '-'; // Minus (expanded state)
                         toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
                     }
                     restoredCount++;
