@@ -10,41 +10,47 @@
 <body>
 
   <form>
-    <div class="form-field">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name">
+    <!-- Character Info Box -->
+    <div class="character-info-box">
+      <div class="basic-info">
+        <div class="form-field">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name">
+        </div>
+        
+        <div class="form-field">
+          <label for="player">Player:</label>
+          <input type="text" id="player" name="player">
+        </div>
+      </div>
+      
+      <!-- Role selectors support data-roles attribute to limit which roles appear:
+           - Comma-separated list: data-roles="Navigator,Mech Adept" 
+           - Wildcard for all roles: data-roles="*"
+           - No attribute: shows all roles (same as *) -->
+      <div class="role-controls">
+        <label for="role">Origin:</label>
+        <select id="role" name="role" data-roles="*">
+          <option value="">Select origin...</option>
+        </select>
+  <!--
+        <label for="role2">Career:</label>
+        <select id="role2" name="role2" data-roles="*">
+          <option value="">Select career...</option>
+        </select>-->
+        <button type="button" id="copy-url-button">
+          <span class="button-text">Copy URL</span>
+          <span class="success-text">
+            <span class="checkmark"></span>
+            Copied!
+          </span>
+        </button>
+        <button type="button" id="clear-button">Clear</button>
+      </div>
     </div>
     
-    <div class="form-field">
-      <label for="player">Player:</label>
-      <input type="text" id="player" name="player">
-    </div>
-    
-    <!-- Role selectors support data-roles attribute to limit which roles appear:
-         - Comma-separated list: data-roles="Navigator,Mech Adept" 
-         - Wildcard for all roles: data-roles="*"
-         - No attribute: shows all roles (same as *) -->
-    <div class="form-controls">
-      <label for="role">Origin:</label>
-      <select id="role" name="role" data-roles="*">
-        <option value="">Select origin...</option>
-      </select>
-<!--
-      <label for="role2">Career:</label>
-      <select id="role2" name="role2" data-roles="*">
-        <option value="">Select career...</option>
-      </select>-->
-      <button type="button" id="copy-url-button">
-        <span class="button-text">Copy URL</span>
-        <span class="success-text">
-          <span class="checkmark"></span>
-          Copied!
-        </span>
-      </button>
-      <button type="button" id="clear-button">Clear</button>
-    </div>
-    
-    <div class="form-controls">
+    <!-- UI Control -->
+    <div class="ui-control">
       <label>
         <input type="checkbox" id="hide_untaken" name="hide_untaken">
         Hide untaken moves
