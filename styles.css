@@ -385,9 +385,9 @@ button:focus {
   box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.3);
 }
 
-/* Arrow rotation for collapsed/expanded state */
+/* No rotation needed - we use different arrow symbols directly */
 .move-collapse-toggle.collapsed {
-  transform: translateY(-50%) rotate(-90deg);
+  transform: translateY(-50%);
 }
 
 /* Move content styling for collapse/expand */

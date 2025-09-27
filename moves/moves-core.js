@@ -102,7 +102,7 @@ window.MovesCore = (function() {
         collapseToggle.type = "button";
         collapseToggle.className = "move-collapse-toggle";
         collapseToggle.setAttribute('aria-label', `Toggle ${move.title} details`);
-        collapseToggle.innerHTML = "&#9660;"; // Down-pointing triangle
+        collapseToggle.innerHTML = "▼"; // Down-pointing triangle
         
         // Add click handler to toggle move content
         collapseToggle.addEventListener('click', function(e) {
@@ -474,16 +474,16 @@ window.MovesCore = (function() {
         const isCurrentlyCollapsed = contentContainer.classList.contains('collapsed');
         
         if (isCurrentlyCollapsed) {
-            // Expand
+            // Expand - show down arrow
             contentContainer.classList.remove('collapsed');
             toggleButton.classList.remove('collapsed');
-            toggleButton.innerHTML = '&#9660;'; // Down arrow
+            toggleButton.innerHTML = '▼'; // Down arrow (expanded state)
             toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
         } else {
-            // Collapse
+            // Collapse - show right arrow
             contentContainer.classList.add('collapsed');
             toggleButton.classList.add('collapsed');
-            toggleButton.innerHTML = '&#9654;'; // Right arrow
+            toggleButton.innerHTML = '▶'; // Right arrow (collapsed state)
             toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
         }
     }
@@ -500,7 +500,7 @@ window.MovesCore = (function() {
             if (contentContainer && toggleButton) {
                 contentContainer.classList.add('collapsed');
                 toggleButton.classList.add('collapsed');
-                toggleButton.innerHTML = '&#9654;'; // Right arrow
+                toggleButton.innerHTML = '▶'; // Right arrow (collapsed state)
                 toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
             }
         });
@@ -518,7 +518,7 @@ window.MovesCore = (function() {
             if (contentContainer && toggleButton) {
                 contentContainer.classList.remove('collapsed');
                 toggleButton.classList.remove('collapsed');
-                toggleButton.innerHTML = '&#9660;'; // Down arrow
+                toggleButton.innerHTML = '▼'; // Down arrow (expanded state)
                 toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
             }
         });
@@ -572,16 +572,16 @@ window.MovesCore = (function() {
                 
                 if (shouldBeCollapsed !== undefined) {
                     if (shouldBeCollapsed) {
-                        // Collapse this move
+                        // Collapse this move - show right arrow
                         contentContainer.classList.add('collapsed');
                         toggleButton.classList.add('collapsed');
-                        toggleButton.innerHTML = '&#9654;'; // Right arrow
+                        toggleButton.innerHTML = '▶'; // Right arrow (collapsed state)
                         toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Collapse', 'Expand'));
                     } else {
-                        // Ensure this move is expanded
+                        // Ensure this move is expanded - show down arrow
                         contentContainer.classList.remove('collapsed');
                         toggleButton.classList.remove('collapsed');
-                        toggleButton.innerHTML = '&#9660;'; // Down arrow
+                        toggleButton.innerHTML = '▼'; // Down arrow (expanded state)
                         toggleButton.setAttribute('aria-label', toggleButton.getAttribute('aria-label').replace('Expand', 'Collapse'));
                     }
                     restoredCount++;
