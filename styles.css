@@ -1030,7 +1030,7 @@ hr {
 .track-counter {
   position: absolute;
   top: 0;
-  right: 32px;
+  right: 48px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
