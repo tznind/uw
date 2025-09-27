@@ -386,6 +386,21 @@ button:focus {
 
 /* Simple + and - symbols, no special collapsed styling needed */
 
+/* === RESPONSIVE TRACK COUNTER === */
+@media (max-width: 768px) {
+  .track-counter {
+    position: static;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .move-title {
+    flex-wrap: wrap;
+  }
+}
+
 /* Move content styling for collapse/expand */
 .move-content {
   transition: all 0.3s ease-out;
@@ -1019,6 +1034,7 @@ hr {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  flex-wrap: wrap;
   gap: 15px;
   font-size: 12px;
   color: #555;
