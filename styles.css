@@ -320,7 +320,7 @@ button:focus {
   background: #f8f9fa;
   border: 1px solid #e9ecef;
   border-radius: 6px;
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 20px;
   transition: box-shadow 0.2s;
   position: relative;
@@ -356,8 +356,8 @@ button:focus {
 
 .move-collapse-toggle {
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 3px;
+  top: 3px;
   background: #f8f9fa;
   border: 1px solid #dee2e6;
   font-size: 16px;
@@ -410,8 +410,8 @@ button:focus {
   }
   
   .move-collapse-toggle {
-    top: 8px; /* Adjust position slightly on mobile */
-    right: 8px;
+    top: 3px; /* Keep close to border on mobile too */
+    right: 5px;
   }
 }
 
