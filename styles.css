@@ -386,6 +386,14 @@ button:focus {
 
 /* Simple + and - symbols, no special collapsed styling needed */
 
+/* === RESPONSIVE LAYOUT FOR MOVE TITLE === */
+/* At medium screen sizes, ensure enough space for button */
+@media (max-width: 1100px) {
+  .move-title {
+    padding-right: 35px; /* Make room for collapse button */
+  }
+}
+
 /* === RESPONSIVE TRACK COUNTER === */
 @media (max-width: 768px) {
   .track-counter {
@@ -398,6 +406,12 @@ button:focus {
   
   .move-title {
     flex-wrap: wrap;
+    padding-right: 35px; /* Continue to make room for button */
+  }
+  
+  .move-collapse-toggle {
+    top: 8px; /* Adjust position slightly on mobile */
+    right: 8px;
   }
 }
 
