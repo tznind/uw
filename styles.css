@@ -378,6 +378,22 @@ button:focus {
 
 /* Simple + and - symbols, no special collapsed styling needed */
 
+/* Hide collapse functionality for moves nested inside granted cards and learned moves */
+.granted-card .move-collapse-toggle,
+.learned-move .move-collapse-toggle {
+  display: none;
+}
+
+.granted-card .move-title,
+.learned-move .move-title {
+  cursor: default;
+}
+
+.granted-card .move-title[role="button"],
+.learned-move .move-title[role="button"] {
+  pointer-events: none;
+}
+
 /* === RESPONSIVE LAYOUT FOR MOVE TITLE === */
 /* At medium screen sizes, ensure enough space for button */
 @media (max-width: 1100px) {
