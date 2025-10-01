@@ -10,7 +10,6 @@
   },
   "Advanced": {
     "cards": ["health"],
-    "cutting_edge": false,
     "ai": false,
     "ce": false,
     "cuf": false,
@@ -18,7 +17,6 @@
   },
   "Brutal": {
     "cards": ["health"],
-    "branded": false,
     "ass": false,
     "tou": false,
     "sne": false,
@@ -26,7 +24,6 @@
   },
   "Colonist": {
     "cards": ["health"],
-    "resourceful": false,
     "tin": false,
     "cuv": false,
     "hli": false,
@@ -34,7 +31,6 @@
   },
   "Crowded": {
     "cards": ["health"],
-    "affable": false,
     "cnt": false,
     "net": false,
     "bri": false,
@@ -42,7 +38,6 @@
   },
   "Galactic": {
     "cards": ["health"],
-    "fine_tuning": false,
     "pro": false,
     "wei": false,
     "rep": false,
@@ -50,7 +45,6 @@
   },
   "Impoverished": {
     "cards": ["health"],
-    "scrappy": false,
     "ste": false,
     "rec": false,
     "cri": false,
@@ -58,7 +52,6 @@
   },
   "Privileged": {
     "cards": ["health"],
-    "decorum": false,
     "lux": false,
     "fam": false,
     "sca": false,
@@ -66,14 +59,13 @@
   },
   "Productive": {
     "cards": ["health"],
-    "vocation": false,
     "cal": false,
     "acu": false,
-    "voc": false
+    "voc": false,
+    "edu": false
   },
   "Regimented": {
     "cards": ["health"],
-    "disciplined": false,
     "lea": false,
     "tac": false,
     "ded": false,
@@ -81,7 +73,6 @@
   },
   "Rustic": {
     "cards": ["health"],
-    "hard_labor": false,
     "con": false,
     "sur": false,
     "che": false,
@@ -89,7 +80,6 @@
   },
   "Clandestine": {
     "cards": [],
-    "subterfuge": false,
     "ste": false,
     "sab": false,
     "srv": false,
@@ -98,15 +88,14 @@
   },
   "Commercial": {
     "cards": [],
-    "wealth": false,
     "out": false,
     "mar": false,
     "acu": false,
-    "bri": false
+    "bri": false,
+    "lux": true
   },
   "Explorer": {
     "cards": [],
-    "survival": false,
     "bg": false,
     "recon": false,
     "sur": false,
@@ -115,7 +104,6 @@
   },
   "Industrial": {
     "cards": [],
-    "creativity": false,
     "rep": false,
     "con": false,
     "upg": false,
@@ -124,7 +112,6 @@
   },
   "Military": {
     "cards": [],
-    "weaponry": false,
     "tac": false,
     "uw": false,
     "hli": false,
@@ -133,7 +120,6 @@
   },
   "Personality": {
     "cards": [],
-    "charm": false,
     "fam": false,
     "lea": false,
     "cnt": false,
@@ -142,7 +128,6 @@
   },
   "Scoundrel": {
     "cards": [],
-    "wits": false,
     "cri": false,
     "sne": false,
     "sca": false,
@@ -151,7 +136,6 @@
   },
   "Starfarer": {
     "cards": [],
-    "travel": false,
     "wei": false,
     "cosm": false,
     "nav": false,
@@ -160,7 +144,6 @@
   },
   "Technocrat": {
     "cards": [],
-    "information": false,
     "upl": false,
     "hij": false,
     "pro": false,
