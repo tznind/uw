@@ -532,5 +532,33 @@
        "id":"hij",
        "title":"Hijack",
        "description":"When you Access a system, it locks out everyone else. You can open the system to anyone you wish."
+   },
+   {
+       "id":"workspace",
+       "title":"Workspace",
+       "category":"Workspace",
+       "description":"Choose the type of workspace you have access to:",
+       "pickOne": [
+           "Medical: Sterile environment. Medbay, cryotubes, surgical servo arms, isolation chamber, recovery ward.",
+           "Research: Sensors gather scientific readings. Laboratory, containment units, sample scanners, sealed storage.",
+           "Stealthy: Difficult to detect, high tech camouflage, cloaking or concealment. Scanning bafflers, sound dampening, hidden doors/rooms.",
+           "Secure: Sensors to track people and movement. Security cameras, monitoring stations, holding cells, security doors.",
+           "Mercantile: Prominent advertisement, easy access. Large cargo storage space, automatic loader-unloader systems.",
+           "Leisure: Relaxing, inviting, well-lit. Studio, lounge, entertainment systems, recreation area.",
+           "Rugged: Withstands harsh climates and weather. Decontamination units, hydroponics facilities, advanced water/air/waste recyclers, self-sufficient.",
+           "Survey: Planetary scanners (weather, geological activity, etc). Probe launcher, topography holo-projector, motor-pool.",
+           "Refinery: Heavy raw-material collectors. Gathers, processes raw matter into refined materials. Material storage tanks.",
+           "Manufactory: Engineering bays. Builds, upgrades and repairs. Workbenches, tool racks, winches, pulleys, lifts.",
+           "Armored: Made of reinforced materials. Difficult to damage, can withstand direct impacts and explosions. Reinforced blast doors, structurally sound.",
+           "Barracks: Efficient, defensible, practical. Berthing for many soldiers, lockers, gym, training ring, mobilization area.",
+           "Habitation: Living space for many guests or crew. Communal eating rooms, extended life-support/facilities.",
+           "Stately: Expensive, luxurious, finely appointed décor. More expensive to maintain, but provides much higher quality of life.",
+           "Facade: False identification/registry, disguised as something else. Crawlspaces, hidden compartments, false walls.",
+           "Sleazy: Ramshackle, grimy, dimly lit. Space for drinking, smoking, recreational drug use, or other vices.",
+           "Navigation: Wide bay windows, observation decks, star-charts, holo-screens. Satellite uplinks, orbital tracking systems, airspace control/coordination tower.",
+           "Launchpad: Aircraft/shuttle hangar with wide bay doors, launchpads for shuttles and speeders.",
+           "Communication: High-powered communications array, transceivers, antennae. Screens, conference rooms, holo-projectors.",
+           "Observer: Advanced, multi-band sensors, capable of long-distance scans. Probe launchers. Recording equipment, shielded data storage."
+       ]
    }
 ]
