@@ -1,0 +1,70 @@
+<!-- Custom Vehicle Card for Uncharted Worlds -->
+<div class="card custom-vehicle-card">
+  <div class="card-header">
+    <h3 class="card-title">🚗 Custom Vehicle</h3>
+  </div>
+  
+  <!-- Basic Info -->
+  <div class="form-field">
+    <label for="cv_nm">Name:</label>
+    <input type="text" id="cv_nm" name="cv_nm" placeholder="Your vehicle's name">
+  </div>
+  
+  <div class="form-field">
+    <label for="cv_type">Type:</label>
+    <select id="cv_type" name="cv_type">
+      <option value="">Select type...</option>
+      <option value="ground_car">Ground Car</option>
+      <option value="bike">Bike</option>
+      <option value="walker">Walker</option>
+      <option value="quad_walker">Quad Walker</option>
+    </select>
+  </div>
+  
+  <!-- Health Status (radio buttons) -->
+  <div class="form-field">
+    <strong>Health Status:</strong>
+    <div class="health-options">
+      <label class="health-option"><input type="radio" name="cv_health" id="cv_h1" value="operational"> Operational<br><small class="health-description">Fully functional</small></label>
+      <label class="health-option"><input type="radio" name="cv_health" id="cv_h2" value="minor"> Minor Damage<br><small class="health-description">Dents, cracks, scorches - repairs: a few hours</small></label>
+      <label class="health-option"><input type="radio" name="cv_health" id="cv_h3" value="major"> Major Damage<br><small class="health-description">Shattered windows, bent panels - repairs: a day or two</small></label>
+      <label class="health-option"><input type="radio" name="cv_health" id="cv_h4" value="severe"> Severe Damage<br><small class="health-description">Large holes, bent frame - repairs: few days, needs spare parts</small></label>
+      <label class="health-option"><input type="radio" name="cv_health" id="cv_h5" value="critical"> Critical Damage<br><small class="health-description">Crushed frame, gaping holes - repairs: 1-2 weeks, experts only</small></label>
+      <label class="health-option"><input type="radio" name="cv_health" id="cv_h6" value="fatal"> Fatal Damage<br><small class="health-description">Smoldering wreckage - repairs: few weeks, salvage only</small></label>
+    </div>
+  </div>
+  
+  <!-- Malfunction -->
+  <div class="form-field">
+    <label><input type="checkbox" id="cv_malfunction" name="cv_malfunction"> Malfunction</label>
+    <input type="text" id="cv_malfunction_desc" name="cv_malfunction_desc" placeholder="Description of malfunction..." class="malfunction-desc">
+  </div>
+  
+  <!-- HR Separator -->
+  <hr>
+  
+  <!-- Upgrades Section -->
+  <div class="form-field">
+    <h4>Upgrades</h4>
+    <p class="upgrade-description">Pick 1 upgrade when designing a Class 1 Land Vehicle, pick 2 for Class 2, etc.</p>
+    
+    <div class="upgrades-grid">
+      <label><input type="checkbox" id="cv_ag" name="cv_ag"> <strong>Agile</strong><br><small class="upgrade-desc">Quick, maneuverable, able to perform stunts.</small></label>
+      <label><input type="checkbox" id="cv_ar" name="cv_ar"> <strong>Armed</strong><br><small class="upgrade-desc">A heavy weapon (purchased separately) attached to the vehicle, fired by the pilot.</small></label>
+      <label><input type="checkbox" id="cv_bo" name="cv_bo"> <strong>Boosters</strong><br><small class="upgrade-desc">Greatly increases overland speed. Allows short jumps.</small></label>
+      <label><input type="checkbox" id="cv_co" name="cv_co"> <strong>Controlled</strong><br><small class="upgrade-desc">Can be remotely activated and given directions.</small></label>
+      <label><input type="checkbox" id="cv_lu" name="cv_lu"> <strong>Luxury</strong><br><small class="upgrade-desc">Impressive, high quality and very comfortable. Various quality-of-life features.</small></label>
+      <label><input type="checkbox" id="cv_pl" name="cv_pl"> <strong>Plated</strong><br><small class="upgrade-desc">+3 Armor.</small></label>
+      <label><input type="checkbox" id="cv_re" name="cv_re"> <strong>Reinforced</strong><br><small class="upgrade-desc">Slow. +3 Armor. Ignores Armor Piercing and Destructive. Must be Breached.</small></label>
+      <label><input type="checkbox" id="cv_ru" name="cv_ru"> <strong>Rugged</strong><br><small class="upgrade-desc">Protects from elements, resists environmental damage, easy to repair.</small></label>
+      <label><input type="checkbox" id="cv_se" name="cv_se"> <strong>Sealed</strong><br><small class="upgrade-desc">Fully enclosed frame with oxygen source. Can function in space, under water, etc.</small></label>
+      <label><input type="checkbox" id="cv_sn" name="cv_sn"> <strong>Sensors</strong><br><small class="upgrade-desc">The vehicle gathers various types of information.</small></label>
+      <label><input type="checkbox" id="cv_st" name="cv_st"> <strong>Stealthy</strong><br><small class="upgrade-desc">Silent, difficult to pick up on sensors, occupants invisible to sensors.</small></label>
+      <label><input type="checkbox" id="cv_to" name="cv_to"> <strong>Tool</strong><br><small class="upgrade-desc">Choose a melee weapon upgrade to represent a tool attached to this vehicle.</small></label>
+      <label><input type="checkbox" id="cv_tr" name="cv_tr"> <strong>Transport</strong><br><small class="upgrade-desc">Can carry a dozen people or a cargo container. Groundcar and Quad Walker only.</small></label>
+      <label><input type="checkbox" id="cv_tu" name="cv_tu"> <strong>Turret</strong><br><small class="upgrade-desc">A heavy weapon (purchased separately) on a swivel mount, fired by a passenger.</small></label>
+      <label><input type="checkbox" id="cv_wo" name="cv_wo"> <strong>Workspace</strong><br><small class="upgrade-desc">Choose a Kit to be integrated into the vehicle.</small></label>
+    </div>
+  </div>
+  
+</div>

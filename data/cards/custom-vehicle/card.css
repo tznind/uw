@@ -1,0 +1,66 @@
+/* Custom Vehicle Card Styles */
+
+.custom-vehicle-card .health-options {
+  margin-top: 5px;
+}
+
+.custom-vehicle-card .health-option {
+  display: block;
+  margin: 2px 0;
+}
+
+.custom-vehicle-card .health-description {
+  color: #666;
+  margin-left: 20px;
+  font-size: 0.85em;
+}
+
+.custom-vehicle-card .malfunction-desc {
+  margin-left: 10px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.custom-vehicle-card .damage-reference {
+  font-size: 0.9em;
+}
+
+.custom-vehicle-card .damage-type {
+  margin-bottom: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.custom-vehicle-card .damage-type:last-child {
+  border-bottom: none;
+}
+
+.custom-vehicle-card .upgrade-description {
+  font-size: 0.9em;
+  color: #666;
+  margin: 5px 0 10px 0;
+}
+
+.custom-vehicle-card .upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.custom-vehicle-card .upgrades-grid label {
+  display: block;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.custom-vehicle-card .upgrades-grid label:hover {
+  background: #f0f0f0;
+}
+
+.custom-vehicle-card .upgrade-desc {
+  color: #666;
+  font-size: 0.8em;
+  line-height: 1.2;
+}

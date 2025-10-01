@@ -216,9 +216,10 @@
        ]
    },
    {
-       "id":"cuv",
-       "title":"Custom Vehicle",
-       "description":"You own a custom-designed Class 3 land vehicle. If that vehicle is ever lost, you can spend an extended period of time claiming a new land vehicle as your Custom Vehicle, adding an extra upgrade to it."
+      "id":"cuv",
+      "title":"Custom Vehicle",
+      "description":"You own a custom-designed Class 3 land vehicle. If that vehicle is ever lost, you can spend an extended period of time claiming a new land vehicle as your Custom Vehicle, adding an extra upgrade to it.",
+      "grantsCard": "custom-vehicle"
    },
    {
        "id":"hli",

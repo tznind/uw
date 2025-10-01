@@ -1,0 +1,12 @@
+{
+  "id": "custom-vehicle",
+  "title": "Custom Vehicle",
+  "path": "data/cards/custom-vehicle",
+  "description": "Your custom-designed Class 3 land vehicle",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css"
+  }
+}
