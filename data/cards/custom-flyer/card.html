@@ -1,0 +1,90 @@
+<!-- Custom Flyer Card for Uncharted Worlds -->
+<div class="card custom-flyer-card">
+  <div class="card-header">
+    <h3 class="card-title">✈️ Custom Flyer</h3>
+  </div>
+  
+  <!-- Basic Info -->
+  <div class="form-field">
+    <label for="cf_nm">Name:</label>
+    <input type="text" id="cf_nm" name="cf_nm" placeholder="Your flyer's name">
+  </div>
+  
+  <div class="form-field">
+    <label for="cf_type">Type:</label>
+    <select id="cf_type" name="cf_type">
+      <option value="">Select type...</option>
+      <option value="speeder">Speeder</option>
+      <option value="shuttle">Shuttle</option>
+    </select>
+    <div id="cf_type_description" style="margin-top: 8px; padding: 6px; background: #f0f8ff; border-radius: 4px; font-size: 0.9em; color: #333; display: none;">
+      <!-- Type description will appear here -->
+    </div>
+  </div>
+  
+  <!-- Health Status (radio buttons) -->
+  <div class="form-field">
+    <strong>Health Status:</strong>
+    <div class="health-options">
+      <label class="health-option"><input type="radio" name="cf_health" id="cf_h1" value="operational"> Operational<br><small class="health-description">Fully functional</small></label>
+      <label class="health-option"><input type="radio" name="cf_health" id="cf_h2" value="minor"> Minor Damage<br><small class="health-description">Dents, cracks, scorches - repairs: a few hours</small></label>
+      <label class="health-option"><input type="radio" name="cf_health" id="cf_h3" value="major"> Major Damage<br><small class="health-description">Shattered windows, bent panels - repairs: a day or two</small></label>
+      <label class="health-option"><input type="radio" name="cf_health" id="cf_h4" value="severe"> Severe Damage<br><small class="health-description">Large holes, bent frame - repairs: few days, needs spare parts</small></label>
+      <label class="health-option"><input type="radio" name="cf_health" id="cf_h5" value="critical"> Critical Damage<br><small class="health-description">Crushed frame, gaping holes - repairs: 1-2 weeks, experts only</small></label>
+      <label class="health-option"><input type="radio" name="cf_health" id="cf_h6" value="fatal"> Fatal Damage<br><small class="health-description">Smoldering wreckage - repairs: few weeks, salvage only</small></label>
+    </div>
+    
+    <!-- Brace for Impact Help -->
+    <details style="margin-top: 10px; padding: 8px; background: #f5f5f5; border-radius: 4px;">
+      <summary style="cursor: pointer; font-weight: bold; color: #333;">💥 Brace for Impact (+Armor)</summary>
+      <div style="margin-top: 8px; font-size: 0.9em; line-height: 1.4;">
+        <p style="margin: 0 0 8px 0;">When you would suffer harm, the GM will tell you the Severity (Minor, Major, Severe, Critical or Fatal). Roll+Armor.</p>
+        <ul style="margin: 0; padding-left: 20px;">
+          <li><strong>On a 13+:</strong> the severity is reduced by two levels.</li>
+          <li><strong>On a 10-12:</strong> the severity is reduced by one level.</li>
+          <li><strong>On a 7-9:</strong> you suffer an injury of that severity.</li>
+          <li><strong>On a 6-:</strong> you also suffer debilities, incur costs/troubles, or suffer an injury of a greater severity, at the GM's discretion.</li>
+        </ul>
+      </div>
+    </details>
+  </div>
+  
+  <!-- Malfunction -->
+  <div class="form-field">
+    <label><input type="checkbox" id="cf_malfunction" name="cf_malfunction"> Malfunction</label>
+    <input type="text" id="cf_malfunction_desc" name="cf_malfunction_desc" placeholder="Description of malfunction..." class="malfunction-desc">
+  </div>
+  
+  <!-- HR Separator -->
+  <hr>
+  
+  <!-- Upgrades Section -->
+  <div class="form-field">
+    <h4>Upgrades</h4>
+    <p class="upgrade-description">Pick 1 upgrade when designing a Class 1 Flyer, pick 2 for Class 2, etc.</p>
+    
+    <div class="upgrades-grid">
+      <label><input type="checkbox" id="cf_ag" name="cf_ag"> <strong>Agile</strong><br><small class="upgrade-desc">Quick, maneuverable, able to perform stunts.</small></label>
+      <label><input type="checkbox" id="cf_ar" name="cf_ar"> <strong>Armored</strong><br><small class="upgrade-desc">+2 Armor.</small></label>
+      <label><input type="checkbox" id="cf_am" name="cf_am"> <strong>Armed</strong><br><small class="upgrade-desc">A heavy weapon (purchased separately) attached to the vehicle, fired by the pilot.</small></label>
+      <label><input type="checkbox" id="cf_co" name="cf_co"> <strong>Controlled</strong><br><small class="upgrade-desc">Can be remotely activated and given directions with Interface.</small></label>
+      <label><input type="checkbox" id="cf_lu" name="cf_lu"> <strong>Luxury</strong><br><small class="upgrade-desc">Impressive, high quality and very comfortable. Various quality-of-life features.</small></label>
+      <label><input type="checkbox" id="cf_ru" name="cf_ru"> <strong>Rugged</strong><br><small class="upgrade-desc">Protects from elements, resists environmental damage, easy to repair.</small></label>
+      <label><input type="checkbox" id="cf_se" name="cf_se"> <strong>Sealed</strong><br><small class="upgrade-desc">Fully enclosed frame with oxygen source. Can function in space, under water, etc.</small></label>
+      <label><input type="checkbox" id="cf_sn" name="cf_sn"> <strong>Sensors</strong><br><small class="upgrade-desc">The vehicle gathers various types of information.</small></label>
+      <label><input type="checkbox" id="cf_sh" name="cf_sh"> <strong>Shielded</strong><br><small class="upgrade-desc">+1 Armor provided by extended grav field. Blocks remote Access and hacking.</small></label>
+      <label><input type="checkbox" id="cf_st" name="cf_st"> <strong>Stealthy</strong><br><small class="upgrade-desc">Silent, difficult to pick up on sensors, occupants invisible to sensors.</small></label>
+      <label><input type="checkbox" id="cf_to" name="cf_to"> <strong>Tool</strong><br><small class="upgrade-desc">Choose a melee weapon upgrade to represent a tool attached to this vehicle.</small></label>
+      <label><input type="checkbox" id="cf_tr" name="cf_tr"> <strong>Transport</strong><br><small class="upgrade-desc">Can carry a dozen people or a cargo container. Shuttle only.</small></label>
+      <label><input type="checkbox" id="cf_tu" name="cf_tu"> <strong>Turret</strong><br><small class="upgrade-desc">A heavy weapon (purchased separately) on a swivel mount, fired by a passenger.</small></label>
+      <label><input type="checkbox" id="cf_wo" name="cf_wo"> <strong>Workspace</strong><br><small class="upgrade-desc">Choose a Kit to be integrated into the vehicle.</small></label>
+    </div>
+    
+    <!-- Details Section -->
+    <div class="form-field" style="margin-top: 15px;">
+      <label for="cf_details">Details:</label>
+      <textarea id="cf_details" name="cf_details" placeholder="Additional details about your flyer's upgrades, modifications, or special features..." rows="3" style="width: 100%; resize: vertical;"></textarea>
+    </div>
+  </div>
+  
+</div>

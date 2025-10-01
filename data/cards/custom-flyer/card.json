@@ -1,0 +1,13 @@
+{
+  "id": "custom-flyer",
+  "title": "Custom Flyer",
+  "path": "data/cards/custom-flyer",
+  "description": "Your custom-designed Class 3 flying vehicle",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

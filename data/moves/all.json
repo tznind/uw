@@ -288,7 +288,8 @@
    {
        "id":"cuf",
        "title":"Custom Flyer",
-       "description":"You own a custom-designed Class 3 shuttle or speeder vehicle. If that vehicle is ever lost, you can spend an extended period of time claiming a new vehicle as your Custom Vehicle, adding an extra upgrade to it."
+       "description":"You own a custom-designed Class 3 shuttle or speeder vehicle. If that vehicle is ever lost, you can spend an extended period of time claiming a new vehicle as your Custom Vehicle, adding an extra upgrade to it.",
+       "grantsCard": "custom-flyer"
    },
    {
        "id":"srv",

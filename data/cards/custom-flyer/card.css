@@ -1,0 +1,66 @@
+/* Custom Flyer Card Styles */
+
+.custom-flyer-card .health-options {
+  margin-top: 5px;
+}
+
+.custom-flyer-card .health-option {
+  display: block;
+  margin: 2px 0;
+}
+
+.custom-flyer-card .health-description {
+  color: #666;
+  margin-left: 20px;
+  font-size: 0.85em;
+}
+
+.custom-flyer-card .malfunction-desc {
+  margin-left: 10px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.custom-flyer-card .damage-reference {
+  font-size: 0.9em;
+}
+
+.custom-flyer-card .damage-type {
+  margin-bottom: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.custom-flyer-card .damage-type:last-child {
+  border-bottom: none;
+}
+
+.custom-flyer-card .upgrade-description {
+  font-size: 0.9em;
+  color: #666;
+  margin: 5px 0 10px 0;
+}
+
+.custom-flyer-card .upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.custom-flyer-card .upgrades-grid label {
+  display: block;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.custom-flyer-card .upgrades-grid label:hover {
+  background: #f0f0f0;
+}
+
+.custom-flyer-card .upgrade-desc {
+  color: #666;
+  font-size: 0.8em;
+  line-height: 1.2;
+}
