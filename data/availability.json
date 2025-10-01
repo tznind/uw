@@ -4,8 +4,80 @@
     "cards": [],
     "edu": false
   },
-  "Colonist":{
+  "Advanced": {
     "cards": [],
-    "res": false
+    "cutting_edge": false
+  },
+  "Brutal": {
+    "cards": [],
+    "branded": false
+  },
+  "Colonist": {
+    "cards": [],
+    "resourceful": false
+  },
+  "Crowded": {
+    "cards": [],
+    "affable": false
+  },
+  "Galactic": {
+    "cards": [],
+    "fine_tuning": false
+  },
+  "Impoverished": {
+    "cards": [],
+    "scrappy": false
+  },
+  "Privileged": {
+    "cards": [],
+    "decorum": false
+  },
+  "Productive": {
+    "cards": [],
+    "vocation": false
+  },
+  "Regimented": {
+    "cards": [],
+    "disciplined": false
+  },
+  "Rustic": {
+    "cards": [],
+    "hard_labor": false
+  },
+  "Clandestine": {
+    "cards": [],
+    "subterfuge": false
+  },
+  "Commercial": {
+    "cards": [],
+    "wealth": false
+  },
+  "Explorer": {
+    "cards": [],
+    "survival": false
+  },
+  "Industrial": {
+    "cards": [],
+    "creativity": false
+  },
+  "Military": {
+    "cards": [],
+    "weaponry": false
+  },
+  "Personality": {
+    "cards": [],
+    "charm": false
+  },
+  "Scoundrel": {
+    "cards": [],
+    "wits": false
+  },
+  "Starfarer": {
+    "cards": [],
+    "travel": false
+  },
+  "Technocrat": {
+    "cards": [],
+    "information": false
   }
 }
