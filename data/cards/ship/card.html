@@ -1,0 +1,133 @@
+<div class="card ship-card">
+  <h3 class="card-title">Starship</h3>
+  
+  <div class="card-section">
+    <div class="form-field">
+      <label for="ship_name">Ship Name:</label>
+      <input type="text" id="ship_name" name="ship_name" placeholder="Enter ship name">
+    </div>
+    
+    <div class="form-field">
+      <label for="ship_class">Ship Class:</label>
+      <select id="ship_class" name="ship_class">
+        <option value="">Select class...</option>
+        <option value="frigate">Frigate</option>
+        <option value="light_cruiser">Light Cruiser</option>
+        <option value="cruiser">Cruiser</option>
+        <option value="grand_cruiser">Grand Cruiser</option>
+        <option value="battleship">Battleship</option>
+        <option value="transport">Transport</option>
+        <option value="raider">Raider</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="card-section">
+    <h4>Ship Stats</h4>
+    <div class="ship-stats-grid">
+      <div class="form-field">
+        <label for="ship_speed">Speed:</label>
+        <input type="number" id="ship_speed" name="ship_speed" min="1" max="12" placeholder="1-12">
+      </div>
+      
+      <div class="form-field">
+        <label for="ship_maneuverability">Maneuverability:</label>
+        <input type="number" id="ship_maneuverability" name="ship_maneuverability" min="-30" max="30" placeholder="-30 to +30">
+      </div>
+      
+      <div class="form-field">
+        <label for="ship_detection">Detection:</label>
+        <input type="number" id="ship_detection" name="ship_detection" min="1" max="50" placeholder="Detection rating">
+      </div>
+      
+      <div class="form-field">
+        <label for="ship_hull_integrity">Hull Integrity:</label>
+        <input type="number" id="ship_hull_integrity" name="ship_hull_integrity" min="1" max="100" placeholder="Hull points">
+      </div>
+
+      <div class="form-field">
+        <label for="ship_armour">Armour:</label>
+        <input type="number" id="ship_armour" name="ship_armour" min="1" max="20" placeholder="Armour rating">
+      </div>
+
+      <div class="form-field">
+        <label for="ship_turret_rating">Turret Rating:</label>
+        <input type="number" id="ship_turret_rating" name="ship_turret_rating" min="1" max="3" placeholder="1-3">
+      </div>
+    </div>
+  </div>
+
+  <div class="card-section">
+    <h4>Ship Components</h4>
+    <div class="ship-components-grid">
+      <div class="component-category">
+        <h5>Essential Components</h5>
+        <div class="component-item">
+          <label>
+            <input type="checkbox" id="ship_plasma_drive" name="ship_plasma_drive">
+            Plasma Drive
+          </label>
+        </div>
+        
+        <div class="component-item">
+          <label>
+            <input type="checkbox" id="ship_void_shields" name="ship_void_shields">
+            Void Shields
+          </label>
+        </div>
+        
+        <div class="component-item">
+          <label>
+            <input type="checkbox" id="ship_warp_shield" name="ship_warp_shield">
+            Warp Shield
+          </label>
+        </div>
+        
+        <div class="component-item">
+          <label>
+            <input type="checkbox" id="ship_augur_arrays" name="ship_augur_arrays">
+            Augur Arrays
+          </label>
+        </div>
+      </div>
+
+      <div class="component-category">
+        <h5>Weapons</h5>
+        <div class="component-item">
+          <label>
+            <input type="checkbox" id="ship_macrobatteries" name="ship_macrobatteries">
+            Macrobatteries
+          </label>
+        </div>
+        
+        <div class="component-item">
+          <label>
+            <input type="checkbox" id="ship_lance_batteries" name="ship_lance_batteries">
+            Lance Batteries
+          </label>
+        </div>
+        
+        <div class="component-item">
+          <label>
+            <input type="checkbox" id="ship_torpedo_tubes" name="ship_torpedo_tubes">
+            Torpedo Tubes
+          </label>
+        </div>
+
+        <div class="component-item">
+          <label>
+            <input type="checkbox" id="ship_nova_cannon" name="ship_nova_cannon">
+            Nova Cannon
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-section">
+    <div class="form-field">
+      <label for="ship_notes">Additional Notes:</label>
+      <textarea id="ship_notes" name="ship_notes" rows="3" placeholder="Ship history, modifications, crew notes, machine spirits..."></textarea>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://roguetrader.local/schemas/availability.schema.json",
+  "title": "Commander Availability Map",
+  "description": "Schema for mapping roles to move IDs and their initial checked state",
+  "type": "object",
+  "patternProperties": {
+    "^[A-Za-z ]+$": {
+      "type": "object",
+      "description": "A role name mapping to move availability",
+      "properties": {
+        "_movesFile": {
+          "type": "string",
+          "description": "Path to the JSON file containing moves for this role",
+          "pattern": "^data/moves/.+\\.json$"
+        },
+        "cards": {
+          "type": "array",
+          "description": "Array of card IDs automatically assigned to this role (not granted by moves)",
+          "items": {
+            "type": "string",
+            "description": "Card ID that corresponds to a folder name in data/cards/",
+            "pattern": "^[a-zA-Z0-9-]+$"
+          },
+          "default": []
+        }
+      },
+      "patternProperties": {
+        "^[a-zA-Z0-9]+$": {
+          "type": "boolean",
+          "description": "Move ID mapped to its initial checked state (true = initially checked, false = initially unchecked)"
+        }
+      },
+      "required": ["_movesFile"],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "Navigator": {
+        "_movesFile": "data/moves/navigator.json",
+        "cards": [],
+        "a1b2c3": true,
+        "d4e5f6": false,
+        "g7h8i9": true
+      },
+      "Mech Adept": {
+        "_movesFile": "data/moves/mech-adept.json",
+        "cards": [],
+        "m1a2b3": false,
+        "m4c5d6": true
+      },
+      "Lord Commander": {
+        "_movesFile": "data/moves/lord-commander.json",
+        "cards": ["ship"],
+        "l1a2b3": false,
+        "l4c5d6": true
+      }
+    }
+  ]
+}

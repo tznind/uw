@@ -1,0 +1,1231 @@
+/* === GLOBAL STYLES === */
+/* Note: Narrow screen breakpoint of 480px is used in media queries below */
+body {
+  background: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* === FORM LAYOUT === */
+form {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* === FORM ELEMENTS === */
+label {
+  font-weight: 600;
+  color: #555;
+  margin-right: 10px;
+}
+
+/* === CHARACTER INFO BOX (Soft Gray) === */
+.character-info-box {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 12px;
+}
+
+.basic-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 12px;
+  max-width: 500px; /* Limit width so fields don't stretch too wide */
+}
+
+.basic-info .form-field {
+  margin-bottom: 0;
+}
+
+.basic-info input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.role-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.role-controls label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.role-controls select {
+  min-width: 140px;
+}
+
+/* === UI CONTROL (outside boxes) === */
+.ui-control {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ui-control label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+}
+
+.ui-control input[type="checkbox"] {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+/* === COLLAPSE CONTROLS === */
+.collapse-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.collapse-controls button {
+  padding: 4px 12px;
+  font-size: 12px;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.collapse-controls button:hover {
+  background: #5a6268;
+}
+
+.collapse-controls button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(108, 117, 125, 0.3);
+}
+
+/* Form field containers */
+.form-field {
+  margin-bottom: 10px;
+}
+
+.form-controls {
+  margin-bottom: 15px;
+}
+
+.form-controls input[type="text"] {
+  margin-right: 15px;
+}
+
+.form-controls button {
+  margin-left: 5px;
+}
+
+input[type="text"], select {
+  padding: 8px 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+input[type="text"]:focus, select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+button {
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+/* === COPY BUTTON STATES === */
+#copy-url-button {
+  position: relative;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+#copy-url-button.success {
+  background: #28a745;
+  color: white;
+}
+
+#copy-url-button.success:hover {
+  background: #218838;
+}
+
+#copy-url-button .button-text {
+  transition: opacity 0.2s ease;
+}
+
+#copy-url-button .success-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+}
+
+#copy-url-button.success .button-text {
+  opacity: 0;
+}
+
+#copy-url-button.success .success-text {
+  opacity: 1;
+}
+
+/* Checkmark icon using CSS */
+.checkmark {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkmark::after {
+  content: '';
+  width: 4px;
+  height: 8px;
+  border: 2px solid #28a745;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+/* === HEX STATS SECTION === */
+.hex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hex-input-wrapper {
+  width: 120px;
+  aspect-ratio: 1;
+  /* Default: black outline when not focused */
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%23000000" stroke-width="2" fill="white"/></svg>') no-repeat center/contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  box-sizing: border-box;
+  transition: background 0.3s ease;
+}
+
+/* Blue outline when input is focused */
+.hex-input-wrapper:focus-within {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%23007bff" stroke-width="2" fill="white"/></svg>') no-repeat center/contain;
+}
+
+.hex-input-wrapper input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  background: transparent;
+  color: #333;
+}
+
+/* Placeholder text styling to fit in hexagon */
+.hex-input-wrapper input::placeholder {
+  color: #999;
+  font-size: clamp(7px, 1.2vw, 9px); /* Smaller to fit CONVICTION */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2px; /* Even tighter spacing */
+  opacity: 0.7;
+  line-height: 1.1;
+  max-width: 80px; /* Constrain to hex width */
+  word-wrap: break-word;
+}
+
+/* Remove focus outline specifically for hex inputs */
+.hex-input-wrapper input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.hex-title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.hex-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+/* === MOVES SECTION === */
+#moves-container {
+  margin-top: 30px;
+}
+
+.move {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 12px;
+  transition: box-shadow 0.2s;
+  position: relative;
+}
+
+.move:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.move-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.move-title label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.move-title input[type="checkbox"] {
+  transform: scale(1.2);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* === MOVE COLLAPSE/EXPAND === */
+
+.move-collapse-toggle {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  font-size: 16px;
+  font-weight: bold;
+  color: #495057;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  pointer-events: none; /* Clicks pass through to the title container */
+  user-select: none;
+}
+
+/* Simple + and - symbols, no special collapsed styling needed */
+
+/* Hide collapse functionality for moves nested inside granted cards and learned moves */
+.granted-card .move-collapse-toggle,
+.learned-move .move-collapse-toggle {
+  display: none;
+}
+
+.granted-card .move-title,
+.learned-move .move-title {
+  cursor: default;
+}
+
+.granted-card .move-title[role="button"],
+.learned-move .move-title[role="button"] {
+  pointer-events: none;
+}
+
+/* === RESPONSIVE LAYOUT FOR MOVE TITLE === */
+/* At medium screen sizes, ensure enough space for button */
+@media (max-width: 1100px) {
+  .move-title {
+    padding-right: 35px; /* Make room for collapse button */
+  }
+}
+
+/* === RESPONSIVE TRACK COUNTER === */
+@media (max-width: 768px) {
+  .track-counter {
+    position: static;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .move-title {
+    flex-wrap: wrap;
+    padding-right: 35px; /* Continue to make room for button */
+  }
+  
+  .move-collapse-toggle {
+    top: 3px; /* Keep close to border on mobile too */
+    right: 5px;
+  }
+}
+
+/* Move content styling for collapse/expand */
+.move-content {
+  transition: all 0.3s ease-out;
+  overflow: hidden;
+}
+
+.move-content.collapsed {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Multiple checkboxes styling */
+.move-title-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.move-checkboxes {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.move-checkboxes input[type="checkbox"] {
+  margin: 0;
+  padding: 0;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* === MOVE DESCRIPTIONS === */
+.move-description {
+  background: #f8f9fa;
+  border-left: 3px solid #6c757d;
+  padding: 8px 12px;
+  margin: 10px 0;
+  border-radius: 0 4px 4px 0;
+  font-style: italic;
+}
+
+.move-description p {
+  margin: 0;
+  color: #495057;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* === OUTCOMES === */
+.outcome {
+  background: white;
+  border-left: 4px solid #17a2b8;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.outcome p {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+}
+
+.outcome strong {
+  color: #17a2b8;
+  font-weight: 600;
+}
+
+.outcome ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.outcome li {
+  margin-bottom: 5px;
+  color: #495057;
+}
+
+/* === PICK OPTIONS === */
+.pick-options {
+  background: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 10px;
+}
+
+.pick-options label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.pick-options label:hover {
+  color: #007bff;
+}
+
+.pick-options input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.1);
+}
+
+/* === PICK ONE OPTIONS === */
+.pick-one-options {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 10px;
+}
+
+.pick-one-options label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.pick-one-options label:hover {
+  color: #007bff;
+}
+
+.pick-one-options input[type="radio"] {
+  margin-right: 10px;
+  transform: scale(1.1);
+}
+
+/* === MULTIPLE PICK INLINE === */
+.pick-option-item,
+.pick-one-option-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.pick-checkboxes,
+.pick-one-radios {
+  display: flex;
+  gap: 0;
+  margin-right: 10px;
+}
+
+.pick-checkboxes input,
+.pick-one-radios input {
+  margin: 0;
+  transform: scale(1.1);
+}
+
+.pick-option-text,
+.pick-one-option-text {
+  font-weight: normal;
+  color: #2c3e50;
+}
+
+/* === 2-COLUMN LAYOUT FOR LARGE PICK LISTS === */
+.pick-list-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+/* On smaller screens, fallback to single column */
+@media (max-width: 768px) {
+  .pick-list-columns {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+/* === TAKEFROM OPTIONS === */
+.takeFrom-options {
+  background: #e3f2fd;
+  border: 1px solid #bbdefb;
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.takeFrom-controls {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.takeFrom-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.takeFrom-controls select {
+  min-width: 150px;
+  padding: 6px 10px;
+  border: 2px solid #90caf9;
+  border-radius: 4px;
+  background: white;
+  font-size: 14px;
+}
+
+.takeFrom-controls select:focus {
+  border-color: #1976d2;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.takeFrom-controls select:disabled {
+  background: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
+}
+
+/* === MULTIPLE TAKEFROM INSTANCES === */
+.takeFrom-instances {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.takeFrom-instance {
+  background: #f8f9fa;
+  border: 1px solid #90caf9;
+  border-radius: 4px;
+  padding: 12px;
+}
+
+.takeFrom-instance:first-child {
+  background: #e3f2fd;
+}
+
+.learned-moves-container {
+  margin-top: 15px;
+}
+
+.learned-moves-container .learned-move-container {
+  margin-top: 10px;
+}
+
+.learned-moves-container .learned-move-container:first-child {
+  margin-top: 0;
+}
+
+/* === GRANTED CARD DISPLAY === */
+.granted-card-options {
+  background: #e0f2fe;
+  border: 1px solid #0369a1;
+  border-radius: 4px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.granted-card-container {
+  margin-top: 15px;
+}
+
+.granted-card {
+  background: #f8fafc;
+  border: 2px solid #0369a1;
+  border-radius: 6px;
+  padding: 15px;
+  position: relative;
+}
+
+.granted-card::before {
+  content: "Granted:";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #e0f2fe;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #0369a1;
+}
+
+.granted-card .card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  margin: 0;
+}
+
+.granted-card .card-title {
+  margin-bottom: 10px;
+}
+
+/* === LEARNED MOVE DISPLAY === */
+.learned-move-container {
+  margin-top: 15px;
+}
+
+.learned-move {
+  background: #f0f8ff;
+  border: 2px solid #1976d2;
+  border-radius: 6px;
+  padding: 15px;
+  position: relative;
+}
+
+.learned-move::before {
+  content: "Learned Move:";
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: #f0f8ff;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.learned-move .move-title {
+  margin-bottom: 10px;
+}
+
+.learned-move .outcome {
+  background: #ffffff;
+  border-left: 4px solid #1976d2;
+  margin: 8px 0;
+}
+
+.learned-move .pick-options {
+  background: #e3f2fd;
+  border: 1px solid #1976d2;
+}
+
+
+/* === CARDS SECTION === */
+#cards-container {
+  margin: 30px 0;
+}
+
+.card-wrapper {
+  margin-bottom: 25px;
+}
+
+.card {
+  background: #ffffff;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  color: #2c3e50;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  border-bottom: 2px solid #e1e5e9;
+  padding-bottom: 10px;
+}
+
+.card-section {
+  margin-bottom: 20px;
+}
+
+.card-section:last-child {
+  margin-bottom: 0;
+}
+
+.card-section h4 {
+  color: #495057;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card .form-field {
+  margin-bottom: 15px;
+}
+
+.card .form-field label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #555;
+}
+
+.card input[type="text"],
+.card input[type="number"],
+.card select,
+.card textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.card input[type="text"]:focus,
+.card input[type="number"]:focus,
+.card select:focus,
+.card textarea:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.card textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: inherit;
+}
+
+
+/* Error state */
+.card-error {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.card-error h3 {
+  color: #721c24;
+  margin: 0 0 10px 0;
+}
+
+.card-error p {
+  margin: 0;
+  font-weight: normal;
+}
+
+/* === SECTION STYLING === */
+h3 {
+  color: #2c3e50;
+  font-size: 1.2em;
+  margin: 20px 0 15px 0;
+  font-weight: 600;
+}
+
+
+/* === DIVIDERS === */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #dee2e6, transparent);
+  margin: 30px 0;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+  form {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  /* Character info box - remove margins in compact mode */
+  .character-info-box {
+    margin-bottom: 8px;
+    padding: 12px;
+  }
+  
+  .basic-info {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  
+  /* Role controls - reduce gap on mobile */
+  .role-controls {
+    gap: 10px;
+  }
+  
+  .hex-row {
+    gap: 20px;
+  }
+  
+  .hex-input-wrapper {
+    width: 100px;
+  }
+  
+  .move {
+    padding: 15px;
+  }
+  
+  .move-checkboxes {
+    gap: 1px;
+  }
+  
+  .move-checkboxes input[type="checkbox"] {
+    transform: scale(1.0);
+  }
+}
+
+/* === VERY NARROW SCREENS (Foldable phones and narrow devices) === */
+/* Breakpoint: 480px - change here and in ship/card.css if needed */
+@media (max-width: 480px) {
+  /* Remove ALL margins and minimal padding */
+  * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  
+  html {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  body {
+    padding: 8px 2px !important;
+    margin: 0 !important;
+  }
+  
+  /* Reduce form margins and padding */
+  form {
+    padding: 12px 4px !important;
+    margin: 0 !important;
+    border-radius: 4px;
+    max-width: none !important;
+    width: calc(100vw - 4px) !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Reduce card padding */
+  .card {
+    padding: 12px 8px;
+    border-radius: 4px;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+  }
+  
+  /* Reduce move padding */
+  .move {
+    padding: 12px 8px;
+    margin-bottom: 15px;
+  }
+  
+  /* Compress hex layout */
+  .hex-row {
+    gap: 15px;
+  }
+  
+  .hex-input-wrapper {
+    width: 85px;
+  }
+  
+  .hex-title {
+    font-size: 11px;
+  }
+  
+  /* Reduce various section margins */
+  .card-section {
+    margin-bottom: 15px;
+  }
+  
+  h3 {
+    margin: 15px 0 10px 0;
+    font-size: 1.1em;
+  }
+  
+  /* Compress pick options */
+  .pick-options,
+  .pick-one-options,
+  .takeFrom-options {
+    padding: 10px 8px;
+    margin-top: 10px;
+  }
+  
+  /* Reduce form field spacing */
+  .form-field {
+    margin-bottom: 8px;
+  }
+  
+  .form-controls {
+    margin-bottom: 12px;
+  }
+  
+  /* Reduce outcome padding */
+  .outcome {
+    padding: 12px 10px;
+    margin: 8px 0;
+  }
+  
+  /* Compress track counter */
+  .track-counter {
+    gap: 10px;
+  }
+  
+  .track-shape {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Reduce divider margins */
+  hr {
+    margin: 20px 0;
+  }
+  
+  /* Container margins */
+  #moves-container,
+  #cards-container {
+    margin: 20px 0;
+  }
+  
+  .card-wrapper {
+    margin-bottom: 20px;
+  }
+}
+
+/* === TRACK COUNTER STYLES === */
+.track-counter {
+  position: absolute;
+  top: 0;
+  right: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 12px;
+  color: #555;
+  z-index: 200;
+}
+
+.individual-track {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.move-title {
+  position: relative; /* Needed for absolute positioning of track counter */
+}
+
+.track-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.track-shapes {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+}
+
+.track-shape {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #6c757d;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.track-shape:hover {
+  border-color: #495057;
+  transform: scale(1.1);
+}
+
+.track-shape.filled:not(.track-triangle):not(.track-hexagon) {
+  background: #b0b0b0; /* soft medium gray */
+  border-color: #8c8c8c; /* slightly darker gray */
+}
+
+.track-shape.filled:hover:not(.track-triangle):not(.track-hexagon) {
+  background: #8c8c8c; /* darker gray on hover */
+  border-color: #6e6e6e; /* even darker border on hover */
+}
+
+/* Shape-specific styles */
+.track-square {
+  border-radius: 2px;
+}
+
+.track-circle {
+  border-radius: 50%;
+}
+
+.track-hexagon {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%236c757d" stroke-width="12" fill="transparent"/></svg>') no-repeat center/contain;
+  transition: all 0.2s ease;
+}
+
+.track-hexagon:hover {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%23495057" stroke-width="12" fill="transparent"/></svg>') no-repeat center/contain;
+  transform: scale(1.1);
+}
+
+.track-shape.track-hexagon.filled {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%238c8c8c" stroke-width="12" fill="%23b0b0b0"/></svg>') no-repeat center/contain;
+}
+
+.track-shape.track-hexagon.filled:hover {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%236e6e6e" stroke-width="12" fill="%238c8c8c"/></svg>') no-repeat center/contain;
+  transform: scale(1.1);
+}
+
+.track-triangle {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style="background:transparent"><polygon points="50,10 85,80 15,80" stroke="%236c757d" stroke-width="8" fill="transparent"/></svg>') no-repeat center/contain;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.track-triangle:hover {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 85,80 15,80" stroke="%23495057" stroke-width="8" fill="transparent"/></svg>') no-repeat center/contain;
+  transform: scale(1.1);
+}
+
+.track-shape.track-triangle.filled {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 85,80 15,80" stroke="%238c8c8c" stroke-width="8" fill="%23b0b0b0"/></svg>') no-repeat center/contain;
+}
+
+.track-shape.track-triangle.filled:hover {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,10 85,80 15,80" stroke="%236e6e6e" stroke-width="8" fill="%238c8c8c"/></svg>') no-repeat center/contain;
+  transform: scale(1.1);
+}
+
+
+/* Add a subtle inner shadow for filled shapes */
+.track-shape.filled::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: inherit;
+}
+
+/* Responsive adjustments for track display */
+@media (max-width: 768px) {
+  .track-counter {
+    position: static;
+    align-items: flex-start;
+    margin-top: 8px;
+  }
+  
+  .track-shape {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .takeFrom-controls {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+  
+  .takeFrom-controls label {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .takeFrom-controls select {
+    min-width: 100%;
+  }
+  
+  /* Card responsive styles */
+  .card {
+    padding: 15px;
+  }
+}
+
+/* === ACCESSIBILITY === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* Focus indicators - exclude hex inputs */
+*:focus:not(.hex-input-wrapper input) {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}

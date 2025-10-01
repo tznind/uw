@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://roguetrader.local/schemas/moves.schema.json",
+  "title": "Commander Moves",
+  "description": "Schema for Commander character moves data",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the move (must be unique across all moves)",
+        "pattern": "^[a-zA-Z0-9]+$"
+      },
+      "title": {
+        "type": "string",
+        "description": "Display title of the move"
+      },
+      "description": {
+        "type": "string",
+        "description": "Detailed description of when and how to use this move"
+      },
+      "outcomes": {
+        "type": "array",
+        "description": "Array of possible outcomes based on dice roll ranges",
+        "items": {
+          "type": "object",
+          "properties": {
+            "range": {
+              "type": "string",
+              "description": "Dice roll range (e.g., '≥ 10', '7–9', '≤ 6')"
+            },
+            "text": {
+              "type": "string",
+              "description": "Description of what happens on this outcome"
+            },
+            "bullets": {
+              "type": "array",
+              "description": "Optional bullet points for choices or effects",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": ["text"],
+          "additionalProperties": false
+        }
+      },
+      "pick": {
+        "type": "array",
+        "description": "Array of options for pick moves (multiple selections allowed)",
+        "items": {
+          "type": "string"
+        }
+      },
+      "pickOne": {
+        "type": "array",
+        "description": "Array of options for pickOne moves (radio buttons, only one selection allowed)",
+        "items": {
+          "type": "string"
+        }
+      },
+      "multiplePick": {
+        "type": "integer",
+        "description": "Number of columns for pick/pickOne options (creates grid layout with separate selections per column)",
+        "minimum": 2,
+        "maximum": 5
+      },
+      "takeFrom": {
+        "type": "array",
+        "description": "List of roles this move can be taken from. Supports wildcard patterns: '*' matches any role, 'prefix*' matches roles starting with prefix (case-insensitive). Roles already possessed by the character are automatically excluded.",
+        "items": {
+          "type": "string",
+          "examples": ["Navigator", "Mech Adept", "*", "the*", "Void*"]
+        }
+      },
+      "takeCategory": {
+        "type": "array",
+        "description": "Optional array of categories to filter moves when using takeFrom. Only moves with matching categories will be shown. Moves without a category are treated as 'Moves' category.",
+        "items": {
+          "type": "string",
+          "examples": ["Moves", "Equipment", "Advancement"]
+        }
+      },
+      "multiple": {
+        "type": "integer",
+        "description": "Number of checkboxes to show (for moves that can be taken multiple times)",
+        "minimum": 2,
+        "maximum": 10
+      },
+      "category": {
+        "type": "string",
+        "description": "Optional category for grouping moves (moves without a category appear first under 'Moves')"
+      },
+      "grantsCard": {
+        "type": "string",
+        "description": "Card name to grant when this move is selected"
+      },
+      "tracks": {
+        "type": "array",
+        "description": "Array of tracking configurations for multiple resources",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Display name for the tracked resource",
+              "examples": ["Inspire", "Hold", "Focus"]
+            },
+            "max": {
+              "type": "integer",
+              "description": "Maximum number of points that can be tracked",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 5
+            },
+            "shape": {
+              "type": "string",
+              "description": "Visual shape for the track counters",
+              "enum": ["square", "circle", "triangle", "hexagon"],
+              "default": "square"
+            }
+          },
+          "required": ["name"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": ["id", "title"],
+    "additionalProperties": false
+  }
+}
