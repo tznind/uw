@@ -2,5 +2,9 @@
     {
         "id":"edu",
         "title":"Education"
+    },
+    {
+        "id":"res",
+        "title":"Resourceful"
     }
 ]

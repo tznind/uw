@@ -3,5 +3,9 @@
     "_movesFile": "data/moves/all.json",
     "cards": [],
     "edu": false
+  },
+  "Colonist":{
+    "cards": [],
+    "res": false
   }
 }
