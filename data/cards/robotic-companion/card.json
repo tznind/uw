@@ -1,0 +1,11 @@
+{
+  "id": "robotic-companion",
+  "title": "Robotic Companion",
+  "path": "data/cards/robotic-companion",
+  "description": "Simple example card demonstrating basic form inputs and persistence",
+  "version": "2.0.0",
+  "author": "Core System",
+  "files": {
+    "html": "card.html"
+  }
+}
