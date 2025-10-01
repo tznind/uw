@@ -6,43 +6,83 @@
   },
   "Advanced": {
     "cards": [],
-    "cutting_edge": false
+    "cutting_edge": false,
+    "ai": false,
+    "ce": false,
+    "cuf": false,
+    "srv": false
   },
   "Brutal": {
     "cards": [],
-    "branded": false
+    "branded": false,
+    "ass": false,
+    "tou": false,
+    "sne": false,
+    "bra": false
   },
   "Colonist": {
     "cards": [],
-    "resourceful": false
+    "resourceful": false,
+    "tin": false,
+    "cuv": false,
+    "hli": false,
+    "rsr": false
   },
   "Crowded": {
     "cards": [],
-    "affable": false
+    "affable": false,
+    "cnt": false,
+    "net": false,
+    "bri": false,
+    "aff": false
   },
   "Galactic": {
     "cards": [],
-    "fine_tuning": false
+    "fine_tuning": false,
+    "pro": false,
+    "wei": false,
+    "rep": false,
+    "fin": false
   },
   "Impoverished": {
     "cards": [],
-    "scrappy": false
+    "scrappy": false,
+    "ste": false,
+    "rec": false,
+    "cri": false,
+    "scr": false
   },
   "Privileged": {
     "cards": [],
-    "decorum": false
+    "decorum": false,
+    "lux": false,
+    "fam": false,
+    "sca": false,
+    "dec": false
   },
   "Productive": {
     "cards": [],
-    "vocation": false
+    "vocation": false,
+    "cal": false,
+    "edu2": false,
+    "acu": false,
+    "voc": false
   },
   "Regimented": {
     "cards": [],
-    "disciplined": false
+    "disciplined": false,
+    "lea": false,
+    "tac": false,
+    "ded": false,
+    "dis": false
   },
   "Rustic": {
     "cards": [],
-    "hard_labor": false
+    "hard_labor": false,
+    "con": false,
+    "sur": false,
+    "che": false,
+    "hl": false
   },
   "Clandestine": {
     "cards": [],
