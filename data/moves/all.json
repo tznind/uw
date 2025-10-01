@@ -12,22 +12,34 @@
        "id":"con",
        "title":"Construction",
        "description":"A few hours of work creates a small structure with one of the following traits, or adds that trait to an existing room.",
-       "pick": [
-           "Shelter",
-           "Defensible", 
-           "Concealed",
-           "Workspace"
+       "outcomes": [
+           {
+               "range": "",
+               "text": "",
+               "bullets": [
+                   "Shelter",
+                   "Defensible", 
+                   "Concealed",
+                   "Workspace"
+               ]
+           }
        ]
    },
    {
        "id":"sur",
        "title":"Survival",
        "description":"You can scrounge up the following from all but the most barren, inhospitable surroundings:",
-       "pick": [
-           "Somewhat edible food and drink",
-           "Basic medicine or first-aid materials",
-           "Rustic Wilderness Kit",
-           "Primitive Class 0 melee weapon"
+       "outcomes": [
+           {
+               "range": "",
+               "text": "",
+               "bullets": [
+                   "Somewhat edible food and drink",
+                   "Basic medicine or first-aid materials",
+                   "Rustic Wilderness Kit",
+                   "Primitive Class 0 melee weapon"
+               ]
+           }
        ]
    },
    {
@@ -64,10 +76,16 @@
        "id":"ded",
        "title":"Deduction",
        "description":"When you first witness a situation, you may ask one of the following questions, the GM will answer honestly.",
-       "pick": [
-           "Who or what is most vulnerable in this situation?",
-           "Who or what is most dangerous in this situation?",
-           "Who or what caused this situation?"
+       "outcomes": [
+           {
+               "range": "",
+               "text": "",
+               "bullets": [
+                   "Who or what is most vulnerable in this situation?",
+                   "Who or what is most dangerous in this situation?",
+                   "Who or what caused this situation?"
+               ]
+           }
        ]
    },
    {
@@ -84,10 +102,16 @@
        "id":"acu",
        "title":"Acumen",
        "description":"When you first visit a market or environment, you may ask one of the following questions, and the GM will answer honestly:",
-       "pick": [
-           "What is profitably exploitable here?",
-           "What is in high demand here?",
-           "Who is the biggest economic player?"
+       "outcomes": [
+           {
+               "range": "",
+               "text": "",
+               "bullets": [
+                   "What is profitably exploitable here?",
+                   "What is in high demand here?",
+                   "Who is the biggest economic player?"
+               ]
+           }
        ]
    },
    {
@@ -189,11 +213,17 @@
        "id":"bri",
        "title":"Bribe",
        "description":"You can use Acquisition to purchase the following:",
-       "pick": [
-           "Political power",
-           "Legal decisions",
-           "Faction involvement",
-           "Diplomatic immunity"
+       "outcomes": [
+           {
+               "range": "",
+               "text": "",
+               "bullets": [
+                   "Political power",
+                   "Legal decisions",
+                   "Faction involvement",
+                   "Diplomatic immunity"
+               ]
+           }
        ]
    },
    {
@@ -336,10 +366,16 @@
        "id":"mar",
        "title":"Marketing",
        "description":"When you arrive in a civilized area, choose a type of market. You can easily find that kind of market here.",
-       "pick": [
-           "Elite: High class, exacting",
-           "Secretive: Discrete, illicit",
-           "Motivated: Fast, agreeable"
+       "outcomes": [
+           {
+               "range": "",
+               "text": "",
+               "bullets": [
+                   "Elite: High class, exacting",
+                   "Secretive: Discrete, illicit",
+                   "Motivated: Fast, agreeable"
+               ]
+           }
        ]
    },
    {
@@ -461,21 +497,33 @@
        "id":"nav",
        "title":"Navigation",
        "description":"When you plan a long voyage, choose 1. The voyage will be:",
-       "pick": [
-           "Fast – You know a shortcut",
-           "Safe – Choose a faction to avoid",
-           "Pleasant – +2 to Cramped Quarters",
-           "Profitable – If you deliver the passengers who are asking for passage"
+       "outcomes": [
+           {
+               "range": "",
+               "text": "",
+               "bullets": [
+                   "Fast – You know a shortcut",
+                   "Safe – Choose a faction to avoid",
+                   "Pleasant – +2 to Cramped Quarters",
+                   "Profitable – If you deliver the passengers who are asking for passage"
+               ]
+           }
        ]
    },
    {
        "id":"upl",
        "title":"Upload",
        "description":"Expend a Data Point on the SectorNet to have the facts about the subject…",
-       "pick": [
-           "be erased, hidden, classified",
-           "become common knowledge",
-           "be falsified, pivotally altered"
+       "outcomes": [
+           {
+               "range": "",
+               "text": "",
+               "bullets": [
+                   "be erased, hidden, classified",
+                   "become common knowledge",
+                   "be falsified, pivotally altered"
+               ]
+           }
        ]
    },
    {
