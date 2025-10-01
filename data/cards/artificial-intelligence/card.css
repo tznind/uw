@@ -1,0 +1,21 @@
+/* Artificial Intelligence Card Styles */
+
+.artificial-intelligence-card .form-field {
+  margin-bottom: 12px;
+}
+
+.artificial-intelligence-card input[type="text"],
+.artificial-intelligence-card textarea {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.artificial-intelligence-card input[type="text"]:focus,
+.artificial-intelligence-card textarea:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 3px rgba(76, 175, 80, 0.3);
+}

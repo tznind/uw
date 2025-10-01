@@ -309,7 +309,8 @@
    {
        "id":"ai",
        "title":"Artificial Intelligence",
-       "description":"You have the loyalty of a digital, artificial intelligence NPC. Give it a name and a 2-4 word description of its personality. It can enter, unlock and activate systems at your Command. Your AI can only be in one system at a time."
+       "description":"You have the loyalty of a digital, artificial intelligence NPC. Give it a name and a 2-4 word description of its personality. It can enter, unlock and activate systems at your Command. Your AI can only be in one system at a time.",
+       "grantsCard": "artificial-intelligence"
    },
    {
        "id":"ce",

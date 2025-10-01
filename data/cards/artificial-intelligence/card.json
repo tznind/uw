@@ -1,0 +1,13 @@
+{
+  "id": "artificial-intelligence",
+  "title": "Artificial Intelligence",
+  "path": "data/cards/artificial-intelligence",
+  "description": "Your loyal digital AI companion",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}
