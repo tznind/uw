@@ -1,58 +1,39 @@
-// Health Card JavaScript - Handle Toughness move
+// Health Card - Enable/disable toughness checkboxes based on tou move
+console.log('Health card script is loading!');
 (function() {
     'use strict';
     
-    console.log('Health card script loading...');
-    
-    // Check if character has Toughness move by looking at URL parameters
-    function hasToughness() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const touValue = urlParams.get('tou');
-        console.log('Checking toughness move - tou parameter:', touValue);
-        return touValue === '1' || touValue === 'true' || touValue === 'on';
-    }
-    
-    // Initialize health card toughness functionality
     function initializeHealthCard() {
-        console.log('Initializing health card...');
+        console.log('Health card: Enabling toughness checkboxes if player has tou move');
         
-        const toughnessCheckboxes = document.querySelectorAll('.health-card .toughness-only');
-        console.log('Found', toughnessCheckboxes.length, 'toughness checkboxes');
+        const hasTou = new URLSearchParams(window.location.search).get('move_tou') === '1';
         
-        if (toughnessCheckboxes.length === 0) {
-            console.log('No toughness checkboxes found, aborting');
-            return;
-        }
-        
-        const hasToughnessMove = hasToughness();
-        console.log('Has toughness move:', hasToughnessMove);
-        
-        toughnessCheckboxes.forEach((checkbox, index) => {
-            console.log('Updating checkbox', index + 1, 'disabled:', !hasToughnessMove);
-            checkbox.disabled = !hasToughnessMove;
-            if (!hasToughnessMove) {
-                checkbox.checked = false; // Uncheck if disabled
-            }
+        document.querySelectorAll('.health-card .toughness-only').forEach(checkbox => {
+            checkbox.disabled = !hasTou;
+            checkbox.title = hasTou ? '' : 'Requires Toughness';
+            if (!hasTou) checkbox.checked = false;
         });
+    }
+    
+    // Register with CardHelpers for automatic reinitialization
+    if (window.CardHelpers) {
+        window.CardHelpers.registerCard('health', initializeHealthCard);
         
-        console.log('Health card initialization complete');
-    }
-    
-    // Create global initialization function that can be called whenever card is recreated
-    window.initializeHealthCard = function() {
-        console.log('Initializing Health card...');
-        initializeHealthCard();
-    };
-    
-    // Multiple initialization attempts for first load
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeHealthCard);
+        // If card already exists, initialize it immediately
+        if (document.querySelector('[data-card-id="health"]')) {
+            console.log('Health card already exists, initializing immediately');
+            initializeHealthCard();
+        }
     } else {
-        initializeHealthCard();
+        // Fallback
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeHealthCard);
+        } else {
+            initializeHealthCard();
+        }
     }
     
-    // Also try after delays in case cards are loaded dynamically
-    setTimeout(initializeHealthCard, 500);
-    setTimeout(initializeHealthCard, 1000);
+    // Export for debugging
+    window.initializeHealthCard = initializeHealthCard;
     
 })();
