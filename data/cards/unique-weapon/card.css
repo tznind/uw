@@ -1,0 +1,40 @@
+/* Unique Weapon Card Styles */
+
+.unique-weapon-card .upgrade-description {
+  font-size: 0.9em;
+  color: #666;
+  margin: 5px 0 10px 0;
+}
+
+.unique-weapon-card .upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.unique-weapon-card .upgrades-grid label {
+  display: block;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.unique-weapon-card .upgrades-grid label:hover {
+  background: #f0f0f0;
+}
+
+.unique-weapon-card .upgrade-desc {
+  color: #666;
+  font-size: 0.8em;
+  line-height: 1.2;
+}
+
+/* Weapon-specific styles */
+.unique-weapon-card .upgrades-grid h5 {
+  color: #444;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 3px;
+}

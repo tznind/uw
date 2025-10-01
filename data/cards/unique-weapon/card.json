@@ -1,0 +1,13 @@
+{
+  "id": "unique-weapon",
+  "title": "Unique Weapon",
+  "path": "data/cards/unique-weapon",
+  "description": "Your unique Class 3 firearm or heavy weapon",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

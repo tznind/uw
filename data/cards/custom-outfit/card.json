@@ -1,0 +1,13 @@
+{
+  "id": "custom-outfit",
+  "title": "Custom Outfit",
+  "path": "data/cards/custom-outfit",
+  "description": "Your unique Class 3 attire",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

@@ -1,0 +1,101 @@
+<!-- Unique Weapon Card for Uncharted Worlds -->
+<div class="card unique-weapon-card">
+  <div class="card-header">
+    <h3 class="card-title">🔫 Unique Weapon</h3>
+  </div>
+  
+  <!-- Basic Info -->
+  <div class="form-field">
+    <label for="uw_nm">Name:</label>
+    <input type="text" id="uw_nm" name="uw_nm" placeholder="Your weapon's name">
+  </div>
+  
+  <div class="form-field">
+    <label for="uw_category">Category:</label>
+    <select id="uw_category" name="uw_category">
+      <option value="">Select category...</option>
+      <option value="firearm">Firearm</option>
+      <option value="heavy">Heavy Weapon</option>
+    </select>
+  </div>
+  
+  <!-- Sub-category for firearms only -->
+  <div class="form-field" id="uw_subtype_field" style="display: none;">
+    <label for="uw_subtype">Type:</label>
+    <select id="uw_subtype" name="uw_subtype">
+      <option value="">Select type...</option>
+      <option value="pistol">Pistol</option>
+      <option value="rifle">Rifle</option>
+    </select>
+  </div>
+  
+  <!-- Dynamic description area -->
+  <div id="uw_weapon_description" style="margin-top: 8px; padding: 6px; background: #f0f8ff; border-radius: 4px; font-size: 0.9em; color: #333; display: none;">
+    <!-- Weapon description will appear here -->
+  </div>
+  
+  <!-- HR Separator -->
+  <hr style="margin-top: 20px;">
+  
+  <!-- Upgrades Section -->
+  <div class="form-field">
+    <h4>Upgrades</h4>
+    <p class="upgrade-description">Pick upgrades based on your weapon's Class. Higher class weapons get more upgrades.</p>
+    
+    <!-- Firearm Upgrades (hidden by default) -->
+    <div id="firearm_upgrades" class="upgrades-grid" style="display: none;">
+      <h5 style="grid-column: 1 / -1; margin: 10px 0 5px 0;">Firearm Upgrades:</h5>
+      <p style="grid-column: 1 / -1; margin: 5px 0; font-size: 0.9em; color: #666;">Pick 1 upgrade when designing a Class 1 Firearm, pick 2 for a Class 2, etc.</p>
+      <label><input type="checkbox" id="uw_f_att" name="uw_f_att"> <strong>Attachment</strong><br><small class="upgrade-desc">Attach Class 0 Small weapon with Sharp, Ripper, Energy or Shock.</small></label>
+      <label><input type="checkbox" id="uw_f_burst" name="uw_f_burst"> <strong>Burst</strong><br><small class="upgrade-desc">Instead of a single shot, sprays shots in a wide cone.</small></label>
+      <label><input type="checkbox" id="uw_f_con" name="uw_f_con"> <strong>Concealed</strong><br><small class="upgrade-desc">Inconspicuous, easily hidden, doesn't show on scanners.</small></label>
+      <label><input type="checkbox" id="uw_f_chem" name="uw_f_chem"> <strong>Chemical</strong><br><small class="upgrade-desc">Creates lasting chemical reaction. Ex: fire, corrosion, frost, smoke, etc.</small></label>
+      <label><input type="checkbox" id="uw_f_dest" name="uw_f_dest"> <strong>Destructive</strong><br><small class="upgrade-desc">Causes property damage, damages machinery and vehicles.</small></label>
+      <label><input type="checkbox" id="uw_f_exp" name="uw_f_exp"> <strong>Explosive</strong><br><small class="upgrade-desc">Loud. Causes messy wounds, property damage near the point of impact.</small></label>
+      <label><input type="checkbox" id="uw_f_imp" name="uw_f_imp"> <strong>Impact</strong><br><small class="upgrade-desc">Heavy kinetic force that breaks bones and knocks people over.</small></label>
+      <label><input type="checkbox" id="uw_f_key" name="uw_f_key"> <strong>Keyed</strong><br><small class="upgrade-desc">Can only be fired by you unless you unlock it.</small></label>
+      <label><input type="checkbox" id="uw_f_las" name="uw_f_las"> <strong>Laser</strong><br><small class="upgrade-desc">Projects focused beams of energy that can cut or melt materials.</small></label>
+      <label><input type="checkbox" id="uw_f_lau" name="uw_f_lau"> <strong>Launcher</strong><br><small class="upgrade-desc">Lobbed, arcing projectile with a modest area of effect.</small></label>
+      <label><input type="checkbox" id="uw_f_mou" name="uw_f_mou"> <strong>Mounted</strong><br><small class="upgrade-desc">Mounted to a forearm or shoulder rig, keeps hands free.</small></label>
+      <label><input type="checkbox" id="uw_f_pen" name="uw_f_pen"> <strong>Penetrating</strong><br><small class="upgrade-desc">Ignores Armor.</small></label>
+      <label><input type="checkbox" id="uw_f_pla" name="uw_f_pla"> <strong>Plasma</strong><br><small class="upgrade-desc">Fires bright bolts of supercharged, burning energy.</small></label>
+      <label><input type="checkbox" id="uw_f_rap" name="uw_f_rap"> <strong>Rapid Fire</strong><br><small class="upgrade-desc">Unleashes suppressing fire at multiple targets.</small></label>
+      <label><input type="checkbox" id="uw_f_sco" name="uw_f_sco"> <strong>Scope</strong><br><small class="upgrade-desc">Can fire at distant objects. Optimal Ranges: Far, Distant.</small></label>
+      <label><input type="checkbox" id="uw_f_sho" name="uw_f_sho"> <strong>Shock</strong><br><small class="upgrade-desc">Electrocutes, causes malfunctions in electronics and robots.</small></label>
+      <label><input type="checkbox" id="uw_f_shr" name="uw_f_shr"> <strong>Shrapnel</strong><br><small class="upgrade-desc">Causes amputation, bleeding and disfigurement in a small radius.</small></label>
+      <label><input type="checkbox" id="uw_f_sil" name="uw_f_sil"> <strong>Silenced</strong><br><small class="upgrade-desc">Suppressed muzzle flash and practically silent shot.</small></label>
+      <label><input type="checkbox" id="uw_f_sta" name="uw_f_sta"> <strong>Stabilized</strong><br><small class="upgrade-desc">No recoil, can be used in micro-gravity environments.</small></label>
+      <label><input type="checkbox" id="uw_f_stu" name="uw_f_stu"> <strong>Stun</strong><br><small class="upgrade-desc">Non-lethal. Stuns, snares or renders unconscious.</small></label>
+      <label><input type="checkbox" id="uw_f_sty" name="uw_f_sty"> <strong>Stylish</strong><br><small class="upgrade-desc">Looks impressive, distinctive and unique.</small></label>
+    </div>
+    
+    <!-- Heavy Weapon Upgrades (hidden by default) -->
+    <div id="heavy_upgrades" class="upgrades-grid" style="display: none;">
+      <h5 style="grid-column: 1 / -1; margin: 10px 0 5px 0;">Heavy Weapon Upgrades:</h5>
+      <p style="grid-column: 1 / -1; margin: 5px 0; font-size: 0.9em; color: #666;">Pick 1 upgrade when designing a Class 1 Heavy Weapon, pick 2 for a Class 2, etc.</p>
+      <label><input type="checkbox" id="uw_h_bre" name="uw_h_bre"> <strong>Breaching</strong><br><small class="upgrade-desc">Damages starships and reinforced structures.</small></label>
+      <label><input type="checkbox" id="uw_h_chem" name="uw_h_chem"> <strong>Chemical</strong><br><small class="upgrade-desc">Creates lasting chemical reaction. Ex: fire, corrosion, frost, smoke, etc.</small></label>
+      <label><input type="checkbox" id="uw_h_con" name="uw_h_con"> <strong>Concussive</strong><br><small class="upgrade-desc">Exceptionally loud and bright. Deafens, blinds and knocks away.</small></label>
+      <label><input type="checkbox" id="uw_h_det" name="uw_h_det"> <strong>Detonation</strong><br><small class="upgrade-desc">Explodes in a large blast radius.</small></label>
+      <label><input type="checkbox" id="uw_h_imp" name="uw_h_imp"> <strong>Impact</strong><br><small class="upgrade-desc">Heavy kinetic force that breaks bones and knocks people over.</small></label>
+      <label><input type="checkbox" id="uw_h_key" name="uw_h_key"> <strong>Keyed</strong><br><small class="upgrade-desc">Can only be fired by you unless you unlock it.</small></label>
+      <label><input type="checkbox" id="uw_h_las" name="uw_h_las"> <strong>Laser</strong><br><small class="upgrade-desc">Projects focused beams of energy that can cut or melt materials.</small></label>
+      <label><input type="checkbox" id="uw_h_pen" name="uw_h_pen"> <strong>Penetrating</strong><br><small class="upgrade-desc">Ignores Armor.</small></label>
+      <label><input type="checkbox" id="uw_h_pla" name="uw_h_pla"> <strong>Plasma</strong><br><small class="upgrade-desc">Fires bright bolts of supercharged, burning energy.</small></label>
+      <label><input type="checkbox" id="uw_h_see" name="uw_h_see"> <strong>Seeking</strong><br><small class="upgrade-desc">Projectile arcs towards a moving target.</small></label>
+      <label><input type="checkbox" id="uw_h_sho" name="uw_h_sho"> <strong>Shock</strong><br><small class="upgrade-desc">Electrocutes, causes malfunctions in electronics and robots.</small></label>
+      <label><input type="checkbox" id="uw_h_shr" name="uw_h_shr"> <strong>Shrapnel</strong><br><small class="upgrade-desc">Causes amputation, bleeding and disfigurement in a wide radius.</small></label>
+      <label><input type="checkbox" id="uw_h_spr" name="uw_h_spr"> <strong>Spray</strong><br><small class="upgrade-desc">Reduce distance, coverage increased to wide cone. Optimal Range: Close.</small></label>
+      <label><input type="checkbox" id="uw_h_stu" name="uw_h_stu"> <strong>Stun</strong><br><small class="upgrade-desc">Non-lethal. Stuns, snares or renders unconscious.</small></label>
+      <label><input type="checkbox" id="uw_h_sty" name="uw_h_sty"> <strong>Stylish</strong><br><small class="upgrade-desc">Looks impressive, distinctive and unique.</small></label>
+      <label><input type="checkbox" id="uw_h_sus" name="uw_h_sus"> <strong>Sustained</strong><br><small class="upgrade-desc">Unleashes a constant suppressing fire at multiple targets.</small></label>
+    </div>
+    
+    <!-- Details Section -->
+    <div class="form-field" style="margin-top: 15px;">
+      <label for="uw_details">Details:</label>
+      <textarea id="uw_details" name="uw_details" placeholder="Additional details about your weapon's upgrades, modifications, or special features..." rows="3" style="width: 100%; resize: vertical;"></textarea>
+    </div>
+  </div>
+  
+</div>

@@ -1,0 +1,60 @@
+<!-- Custom Outfit Card for Uncharted Worlds -->
+<div class="card custom-outfit-card">
+  <div class="card-header">
+    <h3 class="card-title">👕 Custom Outfit</h3>
+  </div>
+  
+  <!-- Basic Info -->
+  <div class="form-field">
+    <label for="co_nm">Name:</label>
+    <input type="text" id="co_nm" name="co_nm" placeholder="Your outfit's name">
+  </div>
+  
+  <div class="form-field">
+    <label for="co_type">Style:</label>
+    <select id="co_type" name="co_type">
+      <option value="">Select style...</option>
+      <option value="rugged">Rugged</option>
+      <option value="simple">Simple</option>
+      <option value="cultural">Cultural</option>
+      <option value="formal">Formal</option>
+      <option value="uniform">Uniform</option>
+    </select>
+    <div id="co_type_description" style="margin-top: 8px; padding: 6px; background: #f0f8ff; border-radius: 4px; font-size: 0.9em; color: #333; display: none;">
+      <!-- Type description will appear here -->
+    </div>
+  </div>
+  
+  <!-- HR Separator -->
+  <hr style="margin-top: 20px;">
+  
+  <!-- Upgrades Section -->
+  <div class="form-field">
+    <h4>Upgrades</h4>
+    <p class="upgrade-description">Pick 1 upgrade when designing Class 1 Attire, pick 2 for Class 2, etc.</p>
+    
+    <div class="upgrades-grid">
+      <label><input type="checkbox" id="co_arm" name="co_arm"> <strong>Armored</strong><br><small class="upgrade-desc">+2 Armor.</small></label>
+      <label><input type="checkbox" id="co_car" name="co_car"> <strong>Carapace</strong><br><small class="upgrade-desc">Clumsy +3 Armor.</small></label>
+      <label><input type="checkbox" id="co_com" name="co_com"> <strong>Comms</strong><br><small class="upgrade-desc">Can receive and broadcast signals over great distances.</small></label>
+      <label><input type="checkbox" id="co_con" name="co_con"> <strong>Connected</strong><br><small class="upgrade-desc">Built-in CPU with eye-piece HUD, connects wirelessly to other systems.</small></label>
+      <label><input type="checkbox" id="co_imp" name="co_imp"> <strong>Impressive</strong><br><small class="upgrade-desc">Distinctive, intimidating, with embellishments and accessories.</small></label>
+      <label><input type="checkbox" id="co_jum" name="co_jum"> <strong>Jump Jets</strong><br><small class="upgrade-desc">Can give small burst jumps, slow descent, and controlled flight in zero-g.</small></label>
+      <label><input type="checkbox" id="co_mes" name="co_mes"> <strong>Meshweave</strong><br><small class="upgrade-desc">+1 Armor that looks like normal fabric.</small></label>
+      <label><input type="checkbox" id="co_rig" name="co_rig"> <strong>Rig</strong><br><small class="upgrade-desc">Choose a Kit: That Kit is integrated in the suit. Can still carry a 2nd Kit.</small></label>
+      <label><input type="checkbox" id="co_tou" name="co_tou"> <strong>Tough</strong><br><small class="upgrade-desc">Protects from elements, hard to damage, easy to repair.</small></label>
+      <label><input type="checkbox" id="co_sea" name="co_sea"> <strong>Sealed</strong><br><small class="upgrade-desc">Airtight suit with helmet and oxygen tank.</small></label>
+      <label><input type="checkbox" id="co_sen" name="co_sen"> <strong>Sensor</strong><br><small class="upgrade-desc">Choose a type of information. The wrist screen scans for that subject.</small></label>
+      <label><input type="checkbox" id="co_shi" name="co_shi"> <strong>Shielded</strong><br><small class="upgrade-desc">+1 Armor provided by thin, invisible energy shield projected by the suit.</small></label>
+      <label><input type="checkbox" id="co_ste" name="co_ste"> <strong>Stealthy</strong><br><small class="upgrade-desc">Muffled, blends in to environments, difficult to pick up on scanners.</small></label>
+      <label><input type="checkbox" id="co_vis" name="co_vis"> <strong>Visor</strong><br><small class="upgrade-desc">Choose a type of information. The visor detects that subject.</small></label>
+    </div>
+    
+    <!-- Details Section -->
+    <div class="form-field" style="margin-top: 15px;">
+      <label for="co_details">Details:</label>
+      <textarea id="co_details" name="co_details" placeholder="Additional details about your outfit's upgrades, modifications, or special features..." rows="3" style="width: 100%; resize: vertical;"></textarea>
+    </div>
+  </div>
+  
+</div>

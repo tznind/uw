@@ -1,0 +1,32 @@
+/* Custom Outfit Card Styles */
+
+.custom-outfit-card .upgrade-description {
+  font-size: 0.9em;
+  color: #666;
+  margin: 5px 0 10px 0;
+}
+
+.custom-outfit-card .upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.custom-outfit-card .upgrades-grid label {
+  display: block;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.custom-outfit-card .upgrades-grid label:hover {
+  background: #f0f0f0;
+}
+
+.custom-outfit-card .upgrade-desc {
+  color: #666;
+  font-size: 0.8em;
+  line-height: 1.2;
+}
