@@ -1,0 +1,63 @@
+<!-- Custom Crew Card for Uncharted Worlds -->
+<div class="card custom-crew-card">
+  <div class="card-header">
+    <h3 class="card-title">👥 Custom Crew</h3>
+  </div>
+  
+  <!-- Basic Info -->
+  <div class="form-field">
+    <label for="cc_nm">Name:</label>
+    <input type="text" id="cc_nm" name="cc_nm" placeholder="Your crew's name">
+  </div>
+  
+  <div class="form-field">
+    <label for="cc_type">Type:</label>
+    <select id="cc_type" name="cc_type">
+      <option value="">Select type...</option>
+      <option value="squad">Squad</option>
+      <option value="techs">Techs</option>
+      <option value="gang">Gang</option>
+      <option value="staff">Staff</option>
+    </select>
+    <div id="cc_type_description" style="margin-top: 8px; padding: 6px; background: #f0f8ff; border-radius: 4px; font-size: 0.9em; color: #333; display: none;">
+      <!-- Type description will appear here -->
+    </div>
+  </div>
+  
+  <!-- HR Separator -->
+  <hr style="margin-top: 20px;">
+  
+  <!-- Upgrades Section -->
+  <div class="form-field">
+    <h4>Upgrades</h4>
+    <p class="upgrade-description">Pick 1 upgrade when designing a Class 1 Crew, pick 2 for Class 2, etc.</p>
+    
+    <div class="upgrades-grid">
+      <label><input type="checkbox" id="cc_arm" name="cc_arm"> <strong>Armed</strong><br><small class="upgrade-desc">Choose a Class 1 Firearm. The crew is equipped with it and trained in its use.</small></label>
+      <label><input type="checkbox" id="cc_art" name="cc_art"> <strong>Artillery</strong><br><small class="upgrade-desc">Able to bombard with artillery, turrets or starship weaponry.</small></label>
+      <label><input type="checkbox" id="cc_ath" name="cc_ath"> <strong>Athletic</strong><br><small class="upgrade-desc">Graceful, swift, strong and flexible. Much better than average, physically.</small></label>
+      <label><input type="checkbox" id="cc_bea" name="cc_bea"> <strong>Beautiful</strong><br><small class="upgrade-desc">Chosen for their good looks and wit. Able to distract and entertain.</small></label>
+      <label><input type="checkbox" id="cc_bui" name="cc_bui"> <strong>Builders</strong><br><small class="upgrade-desc">Able to build small structures or assist in construction projects.</small></label>
+      <label><input type="checkbox" id="cc_cri" name="cc_cri"> <strong>Criminal</strong><br><small class="upgrade-desc">Able to commit small-scale criminal activity or assist with larger crimes.</small></label>
+      <label><input type="checkbox" id="cc_equ" name="cc_equ"> <strong>Equipped</strong><br><small class="upgrade-desc">Choose a Kit. The crew carries various tools from that kit, and can use them.</small></label>
+      <label><input type="checkbox" id="cc_fea" name="cc_fea"> <strong>Fearless</strong><br><small class="upgrade-desc">Never afraid or intimidated, will follow insane orders but often go too far.</small></label>
+      <label><input type="checkbox" id="cc_imp" name="cc_imp"> <strong>Imposing</strong><br><small class="upgrade-desc">Imposing in some way. Able to frighten, threaten, dissuade, etc.</small></label>
+      <label><input type="checkbox" id="cc_inf" name="cc_inf"> <strong>Informants</strong><br><small class="upgrade-desc">Able to collect information and report back, or pass on information.</small></label>
+      <label><input type="checkbox" id="cc_loy" name="cc_loy"> <strong>Loyal</strong><br><small class="upgrade-desc">Only take orders from you. Quickly recovers to their normal disposition.</small></label>
+      <label><input type="checkbox" id="cc_mec" name="cc_mec"> <strong>Mechanics</strong><br><small class="upgrade-desc">Able to service and maintain machinery, and assist in repairs and overhauls.</small></label>
+      <label><input type="checkbox" id="cc_med" name="cc_med"> <strong>Medics</strong><br><small class="upgrade-desc">Able to provide long-term convalescent care or assist in medical procedures.</small></label>
+      <label><input type="checkbox" id="cc_num" name="cc_num"> <strong>Numerous</strong><br><small class="upgrade-desc">There are a large number of them, you have trouble keeping track of them all.</small></label>
+      <label><input type="checkbox" id="cc_rug" name="cc_rug"> <strong>Rugged</strong><br><small class="upgrade-desc">Can work in harsh climates for extended periods of time.</small></label>
+      <label><input type="checkbox" id="cc_ste" name="cc_ste"> <strong>Stealthy</strong><br><small class="upgrade-desc">Able to sneak into (or out of) places, and pass unnoticed.</small></label>
+      <label><input type="checkbox" id="cc_tea" name="cc_tea"> <strong>Teamsters</strong><br><small class="upgrade-desc">Able to quickly load, unload, assemble and pack away heavy objects and cargo.</small></label>
+      <label><input type="checkbox" id="cc_wre" name="cc_wre"> <strong>Wreckers</strong><br><small class="upgrade-desc">Able to destroy terrain and structures.</small></label>
+    </div>
+    
+    <!-- Details Section -->
+    <div class="form-field" style="margin-top: 15px;">
+      <label for="cc_details">Details:</label>
+      <textarea id="cc_details" name="cc_details" placeholder="Additional details about your crew's specializations, background, or notable members..." rows="3" style="width: 100%; resize: vertical;"></textarea>
+    </div>
+  </div>
+  
+</div>

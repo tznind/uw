@@ -65,7 +65,8 @@
    {
        "id":"lea",
        "title":"Leadership",
-       "description":"You have a hand-picked, elite Class 3 Crew. Given enough time and training, you can replace lost members of this crew with new NPCs."
+       "description":"You have a hand-picked, elite Class 3 Crew. Given enough time and training, you can replace lost members of this crew with new NPCs.",
+       "grantsCard": "custom-crew"
    },
    {
        "id":"tac",

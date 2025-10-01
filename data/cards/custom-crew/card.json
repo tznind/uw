@@ -1,0 +1,13 @@
+{
+  "id": "custom-crew",
+  "title": "Custom Crew",
+  "path": "data/cards/custom-crew",
+  "description": "Your hand-picked, elite Class 3 crew",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}
