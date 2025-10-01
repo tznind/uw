@@ -1,11 +1,11 @@
 {
   "Academic": {
     "_movesFile": "data/moves/all.json",
-    "cards": [],
+    "cards": ["health"],
     "edu": false
   },
   "Advanced": {
-    "cards": [],
+    "cards": ["health"],
     "cutting_edge": false,
     "ai": false,
     "ce": false,
@@ -13,7 +13,7 @@
     "srv": false
   },
   "Brutal": {
-    "cards": [],
+    "cards": ["health"],
     "branded": false,
     "ass": false,
     "tou": false,
@@ -21,7 +21,7 @@
     "bra": false
   },
   "Colonist": {
-    "cards": [],
+    "cards": ["health"],
     "resourceful": false,
     "tin": false,
     "cuv": false,
@@ -29,7 +29,7 @@
     "rsr": false
   },
   "Crowded": {
-    "cards": [],
+    "cards": ["health"],
     "affable": false,
     "cnt": false,
     "net": false,
@@ -37,7 +37,7 @@
     "aff": false
   },
   "Galactic": {
-    "cards": [],
+    "cards": ["health"],
     "fine_tuning": false,
     "pro": false,
     "wei": false,
@@ -45,7 +45,7 @@
     "fin": false
   },
   "Impoverished": {
-    "cards": [],
+    "cards": ["health"],
     "scrappy": false,
     "ste": false,
     "rec": false,
@@ -53,7 +53,7 @@
     "scr": false
   },
   "Privileged": {
-    "cards": [],
+    "cards": ["health"],
     "decorum": false,
     "lux": false,
     "fam": false,
@@ -61,7 +61,7 @@
     "dec": false
   },
   "Productive": {
-    "cards": [],
+    "cards": ["health"],
     "vocation": false,
     "cal": false,
     "edu2": false,
@@ -69,7 +69,7 @@
     "voc": false
   },
   "Regimented": {
-    "cards": [],
+    "cards": ["health"],
     "disciplined": false,
     "lea": false,
     "tac": false,
@@ -77,7 +77,7 @@
     "dis": false
   },
   "Rustic": {
-    "cards": [],
+    "cards": ["health"],
     "hard_labor": false,
     "con": false,
     "sur": false,
@@ -102,7 +102,8 @@
   },
   "Military": {
     "cards": [],
-    "weaponry": false
+    "weaponry": false,
+    "tou": false
   },
   "Personality": {
     "cards": [],

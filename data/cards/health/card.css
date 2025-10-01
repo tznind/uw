@@ -1,0 +1,51 @@
+/* Health Card Styles */
+
+.health-card .injury-grid {
+  margin-top: 5px;
+}
+
+.health-card .injury-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.health-card .injury-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.health-card .injury-checkboxes {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.health-card .health-description {
+  color: #666;
+  font-size: 0.85em;
+  margin-top: 2px;
+}
+
+.health-card .toughness-only {
+  opacity: 0.3;
+}
+
+.health-card .toughness-only:not(:disabled) {
+  opacity: 1;
+}
+
+.health-card .health-notes {
+  width: 100%;
+  min-height: 60px;
+  resize: vertical;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-family: inherit;
+}

@@ -1,0 +1,73 @@
+<!-- Health Card for Uncharted Worlds -->
+<div class="card health-card">
+  <div class="card-header">
+    <h3 class="card-title">❤️ Health</h3>
+  </div>
+  
+  <!-- Injury Status (dual radio buttons) -->
+  <div class="form-field">
+    <strong>Injury Status:</strong>
+    <div class="injury-grid">
+      <div class="injury-row">
+        <div class="injury-label">
+          <strong>Minor Injury</strong><br>
+          <small class="health-description">Bruises and cuts - healing: few hours, treated by minutes of Patch Up</small>
+        </div>
+        <div class="injury-checkboxes">
+          <input type="checkbox" id="inj_m1" name="inj_m1">
+          <input type="checkbox" id="inj_m2" name="inj_m2" class="toughness-only">
+        </div>
+      </div>
+      
+      <div class="injury-row">
+        <div class="injury-label">
+          <strong>Major Injury</strong><br>
+          <small class="health-description">Lacerations, broken bones, burns - healing: few days, treated by hours of Patch Up</small>
+        </div>
+        <div class="injury-checkboxes">
+          <input type="checkbox" id="inj_maj1" name="inj_maj1">
+          <input type="checkbox" id="inj_maj2" name="inj_maj2" class="toughness-only">
+        </div>
+      </div>
+      
+      <div class="injury-row">
+        <div class="injury-label">
+          <strong>Severe Injury</strong><br>
+          <small class="health-description">Bullet wounds, broken limbs, organ damage - healing: few days after Patch Up, hour of surgery</small>
+        </div>
+        <div class="injury-checkboxes">
+          <input type="checkbox" id="inj_s1" name="inj_s1">
+          <input type="checkbox" id="inj_s2" name="inj_s2" class="toughness-only">
+        </div>
+      </div>
+      
+      <div class="injury-row">
+        <div class="injury-label">
+          <strong>Critical Injury</strong><br>
+          <small class="health-description">Dismemberment, organ failure - healing: stabilized by Patch Up, many hours of surgery</small>
+        </div>
+        <div class="injury-checkboxes">
+          <input type="checkbox" id="inj_c1" name="inj_c1">
+          <input type="checkbox" id="inj_c2" name="inj_c2" class="toughness-only">
+        </div>
+      </div>
+      
+      <div class="injury-row">
+        <div class="injury-label">
+          <strong>Fatal Injury</strong><br>
+          <small class="health-description">Death - healing: none, possible emergency cryo-stasis</small>
+        </div>
+        <div class="injury-checkboxes">
+          <input type="checkbox" id="inj_f1" name="inj_f1">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Additional Notes -->
+  <div class="form-field">
+    <label for="health_notes">Notes:</label>
+    <textarea id="health_notes" name="health_notes" placeholder="Additional injury/debility details..." class="health-notes"></textarea>
+  </div>
+  
+</div>

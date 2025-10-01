@@ -209,10 +209,16 @@
        "id":"tin",
        "title":"Tinker",
        "description":"You can assemble the following from scrap metal and spare parts:",
-       "pick": [
-           "Shoddy Class 0 melee weapon",
-           "Makeshift Class 0 explosive",
-           "Crude Engineering Kit"
+       "outcomes": [
+           {
+               "range": "",
+               "text": "",
+               "bullets": [
+                   "Shoddy Class 0 melee weapon",
+                   "Makeshift Class 0 explosive",
+                   "Crude Engineering Kit"
+               ]
+           }
        ]
    },
    {

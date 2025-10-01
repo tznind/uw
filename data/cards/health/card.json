@@ -1,0 +1,13 @@
+{
+  "id": "health",
+  "title": "Health",
+  "path": "data/cards/health",
+  "description": "Track your character's health and injuries",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}
