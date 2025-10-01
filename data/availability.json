@@ -2,7 +2,11 @@
   "Academic": {
     "_movesFile": "data/moves/all.json",
     "cards": ["health"],
-    "edu": false
+    "edu": false,
+    "che": false,
+    "ded": false,
+    "surg": false,
+    "tec": false
   },
   "Advanced": {
     "cards": ["health"],
@@ -64,7 +68,6 @@
     "cards": ["health"],
     "vocation": false,
     "cal": false,
-    "edu2": false,
     "acu": false,
     "voc": false
   },
@@ -86,39 +89,82 @@
   },
   "Clandestine": {
     "cards": [],
-    "subterfuge": false
+    "subterfuge": false,
+    "ste": false,
+    "sab": false,
+    "srv": false,
+    "int": false,
+    "ass": false
   },
   "Commercial": {
     "cards": [],
-    "wealth": false
+    "wealth": false,
+    "out": false,
+    "mar": false,
+    "acu": false,
+    "bri": false
   },
   "Explorer": {
     "cards": [],
-    "survival": false
+    "survival": false,
+    "bg": false,
+    "recon": false,
+    "sur": false,
+    "rec": false,
+    "cuv": false
   },
   "Industrial": {
     "cards": [],
-    "creativity": false
+    "creativity": false,
+    "rep": false,
+    "con": false,
+    "upg": false,
+    "dism": false,
+    "tin": false
   },
   "Military": {
     "cards": [],
     "weaponry": false,
+    "tac": false,
+    "uw": false,
+    "hli": false,
+    "auth": false,
     "tou": false
   },
   "Personality": {
     "cards": [],
-    "charm": false
+    "charm": false,
+    "fam": false,
+    "lea": false,
+    "cnt": false,
+    "insp": false,
+    "dipl": false
   },
   "Scoundrel": {
     "cards": [],
-    "wits": false
+    "wits": false,
+    "cri": false,
+    "sne": false,
+    "sca": false,
+    "fid": false,
+    "add": false
   },
   "Starfarer": {
     "cards": [],
-    "travel": false
+    "travel": false,
+    "wei": false,
+    "cosm": false,
+    "nav": false,
+    "cal": false,
+    "cuf": false
   },
   "Technocrat": {
     "cards": [],
-    "information": false
+    "information": false,
+    "upl": false,
+    "hij": false,
+    "pro": false,
+    "net": false,
+    "ai": false
   }
 }

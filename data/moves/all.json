@@ -1,7 +1,8 @@
 [
    {
        "id":"edu",
-       "title":"Education"
+       "title":"Education",
+       "description":"When you gain one or more Data Points about a subject, each ally that was present or involved also gains a Data Point about the subject."
    },
    {
        "id":"res",
@@ -78,11 +79,6 @@
        "id":"cal",
        "title":"Calibrations",
        "description":"When you diligently calibrate your favorite console or vehicle, make a Get Involved using Interface and record the result. The next time anyone uses it, the result of the Get Involved applies."
-   },
-   {
-       "id":"edu2",
-       "title":"Education",
-       "description":"When you gain one or more Data Points about a subject, each ally that was present or involved also gains a Data Point about the subject."
    },
    {
        "id":"acu",
@@ -298,5 +294,190 @@
        "id":"srv",
        "title":"Surveillance",
        "description":"After you Access someone's personal systems, you can track that person's public movements from then on (general location, interactions, transactions, etc). You can only have one surveillance subject at a time."
+   },
+   {
+       "id":"surg",
+       "title":"Surgery",
+       "description":"When using a medical facility, your Patch Up can be used to install prosthetics and perform surgical reconstruction on living beings. This treats critical injuries."
+   },
+   {
+       "id":"tec",
+       "title":"Technobabble",
+       "description":"You can Command crew using Expertise rather than Influence. Subjects of your Command can perform minor technical or scientific tasks, no matter their skill set."
+   },
+   {
+       "id":"sab",
+       "title":"Sabotage",
+       "description":"When you tamper with machines, plans, etc, describe how you go about it and Roll+[Stat].",
+       "outcomes": [
+           {
+               "range":"≥ 10",
+               "text":"The target of your tampering is doomed to fail, just as you planned."
+           },
+           {
+               "range":"7-9",
+               "text":"The target of your tampering is doomed to fail spectacularly, horrifically or comically, at the GM's discretion."
+           }
+       ]
+   },
+   {
+       "id":"int",
+       "title":"Interrogation",
+       "description":"When you question someone who is at your mercy, gain 3 Data Points about them: their lives, their job, their transactions, their friends, their family, their guilt, their shame, etc."
+   },
+   {
+       "id":"out",
+       "title":"Outfit",
+       "description":"Own a unique Class 3 Attire. If your attire is ever lost or damaged, you can abandon it and spend an extended period of time claiming new attire as your Outfit, adding an extra upgrade to it."
+   },
+   {
+       "id":"mar",
+       "title":"Marketing",
+       "description":"When you arrive in a civilized area, choose a type of market. You can easily find that kind of market here.",
+       "pick": [
+           "Elite: High class, exacting",
+           "Secretive: Discrete, illicit",
+           "Motivated: Fast, agreeable"
+       ]
+   },
+   {
+       "id":"bg",
+       "title":"Boldly Go",
+       "description":"When leading an expedition into the unknown, Roll+Mettle.",
+       "outcomes": [
+           {
+               "range":"≥ 10",
+               "text":"Choose 1. You encounter…",
+               "bullets": [
+                   "something potentially profitable",
+                   "something currently useful",
+                   "something uniquely awesome"
+               ]
+           },
+           {
+               "range":"7-9",
+               "text":"The GM will choose 1. You encounter…",
+               "bullets": [
+                   "something potentially profitable",
+                   "something currently useful",
+                   "something uniquely awesome"
+               ]
+           }
+       ]
+   },
+   {
+       "id":"recon",
+       "title":"Reconnaissance",
+       "description":"When you make an Assessment of any aspect of a wilderness (animals, plants, weather, terrain, hazards, etc) you gain 3 Data Points about that subject on a 10+, and 1 Data Point about that subject on a 7-9."
+   },
+   {
+       "id":"upg",
+       "title":"Upgrade",
+       "description":"Your Patch Up can very temporarily add up to one additional upgrade to a weapon or vehicle, briefly increasing its Class by +1."
+   },
+   {
+       "id":"dism",
+       "title":"Dismantle",
+       "description":"When forcefully dismantling, demolishing or breaking something, Roll+Physique.",
+       "outcomes": [
+           {
+               "range":"≥ 10",
+               "text":"Choose 2.",
+               "bullets": [
+                   "It doesn't take very long",
+                   "It doesn't attract too much attention",
+                   "You recover useful components",
+                   "You could rebuild or reassemble it",
+                   "You gain a Data Point about it"
+               ]
+           },
+           {
+               "range":"7-9",
+               "text":"Choose 1.",
+               "bullets": [
+                   "It doesn't take very long",
+                   "It doesn't attract too much attention",
+                   "You recover useful components",
+                   "You could rebuild or reassemble it",
+                   "You gain a Data Point about it"
+               ]
+           }
+       ]
+   },
+   {
+       "id":"uw",
+       "title":"Unique Weapon",
+       "description":"Own a unique Class 3 firearm or heavy weapon. If that weapon is ever lost, you can abandon it and spend an extended period of time claiming a new weapon as your Unique Weapon, adding an extra upgrade to it."
+   },
+   {
+       "id":"auth",
+       "title":"Authority",
+       "description":"Whenever you are in a position of clear superiority over a group of NPCs, you can Command those NPCs even if the order goes against their own traits, loyalties and willingness."
+   },
+   {
+       "id":"insp",
+       "title":"Inspiration",
+       "description":"Choose an emotion and the medium/art with which you convey it, then Roll+Influence or +Physique.",
+       "outcomes": [
+           {
+               "range":"7-9",
+               "text":"The emotion takes hold of your audience."
+           },
+           {
+               "range":"≥ 10",
+               "text":"As above, and choose 1:",
+               "bullets": [
+                   "You gain a keen admirer",
+                   "You are treated lavishly",
+                   "You can Command the audience"
+               ]
+           }
+       ]
+   },
+   {
+       "id":"dipl",
+       "title":"Diplomacy",
+       "description":"Factions will ignore political boundaries, jurisdictions, your personal relationship, and even their own prejudices when you call in a Favor."
+   },
+   {
+       "id":"fid",
+       "title":"False Identity",
+       "description":"You maintain a number of fake identities that have neutral standing with all factions. As long as a chosen identity holds, your actions do not incur Debt or earn Favor."
+   },
+   {
+       "id":"add",
+       "title":"Addict",
+       "description":"Choose one of your five stats. As long as you regularly dose yourself with your drug of choice, increase that stat by +1. Failure to subsequently dose yourself will reduce that stat by -2 until you dose yourself again or recover from the lengthy effects of withdrawal."
+   },
+   {
+       "id":"cosm",
+       "title":"Cosmopolitan",
+       "description":"When you make an Assessment of any aspect of a society (culture, traditions, laws, government, economy, etc) you gain 3 Data Points about that subject on a 10+, and 1 Data Point about that subject on a 7-9."
+   },
+   {
+       "id":"nav",
+       "title":"Navigation",
+       "description":"When you plan a long voyage, choose 1. The voyage will be:",
+       "pick": [
+           "Fast – You know a shortcut",
+           "Safe – Choose a faction to avoid",
+           "Pleasant – +2 to Cramped Quarters",
+           "Profitable – If you deliver the passengers who are asking for passage"
+       ]
+   },
+   {
+       "id":"upl",
+       "title":"Upload",
+       "description":"Expend a Data Point on the SectorNet to have the facts about the subject…",
+       "pick": [
+           "be erased, hidden, classified",
+           "become common knowledge",
+           "be falsified, pivotally altered"
+       ]
+   },
+   {
+       "id":"hij",
+       "title":"Hijack",
+       "description":"When you Access a system, it locks out everyone else. You can open the system to anyone you wish."
    }
 ]
