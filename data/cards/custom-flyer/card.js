@@ -1,11 +1,21 @@
 // Custom Flyer Card JavaScript
-// Automatically calculates armor based on selected upgrades
-console.log('Custom Flyer card script is loading!');
+// Automatically calculates armor and handles hide untaken functionality
+console.log('*** CUSTOM FLYER SCRIPT STARTING ***');
+
 (function() {
     'use strict';
     
-    function initializeCustomFlyerCard() {
-        console.log('Custom Flyer card: Initializing type descriptions and armor calculation');
+    console.log('Custom Flyer script loading...');
+    
+    // List of all upgrade checkbox IDs
+    const upgradeCheckboxes = [
+        'cf_ag', 'cf_ar', 'cf_am', 'cf_co', 'cf_lu', 'cf_ru',
+        'cf_se', 'cf_sn', 'cf_sh', 'cf_st', 'cf_to', 'cf_tr',
+        'cf_tu', 'cf_wo'
+    ];
+    
+    function setupUpgradeCheckboxes() {
+        console.log('Custom Flyer: Setting up checkboxes...');
         
         // Get all upgrade checkboxes that affect armor
         const armoredCheckbox = document.getElementById('cf_ar');
@@ -26,16 +36,55 @@ console.log('Custom Flyer card script is loading!');
         'shuttle': 'A flying vehicle for up to six people that can hover and take off vertically.'
     };
     
-    // Function to update type description
-    function updateTypeDescription() {
-        const selectedType = typeSelect.value;
-        if (selectedType && typeDescriptions[selectedType]) {
-            typeDescription.innerHTML = typeDescriptions[selectedType];
-            typeDescription.style.display = 'block';
-        } else {
-            typeDescription.style.display = 'none';
+        // Function to update type description
+        function updateTypeDescription() {
+            const selectedType = typeSelect.value;
+            if (selectedType && typeDescriptions[selectedType]) {
+                typeDescription.innerHTML = typeDescriptions[selectedType];
+                typeDescription.style.display = 'block';
+            } else {
+                typeDescription.style.display = 'none';
+            }
         }
-    }
+        
+        // Function to update upgrade visibility
+        function updateUpgradeDisplay() {
+            console.log('Custom Flyer: Updating upgrade display...');
+            
+            // Check if hide untaken is enabled
+            const hideUntakenCheckbox = document.getElementById('hide_untaken');
+            const hideUntaken = hideUntakenCheckbox ? hideUntakenCheckbox.checked : false;
+            
+            upgradeCheckboxes.forEach(checkboxId => {
+                const checkbox = document.getElementById(checkboxId);
+                if (checkbox) {
+                    const label = checkbox.closest('label');
+                    if (label) {
+                        if (checkbox.checked) {
+                            // Show and mark as selected
+                            label.classList.add('selected');
+                            label.style.display = '';
+                            console.log(`Custom Flyer: Added selected to ${checkboxId}`);
+                        } else {
+                            // Remove selected styling
+                            label.classList.remove('selected');
+                            // Hide if 'Hide untaken' is checked, else show
+                            if (hideUntaken) {
+                                label.style.display = 'none';
+                                console.log(`Custom Flyer: Hid unselected ${checkboxId}`);
+                            } else {
+                                label.style.display = '';
+                                console.log(`Custom Flyer: Removed selected from ${checkboxId}`);
+                            }
+                        }
+                    } else {
+                        console.log(`Custom Flyer: Missing label for ${checkboxId}`);
+                    }
+                } else {
+                    console.log(`Custom Flyer: Checkbox ${checkboxId} NOT FOUND`);
+                }
+            });
+        }
     
     // Add event listener for type selection
     if (typeSelect) {
@@ -100,40 +149,73 @@ console.log('Custom Flyer card script is loading!');
         }
     }
     
-    // Add event listeners to armor-affecting upgrades
-    if (armoredCheckbox) {
-        armoredCheckbox.addEventListener('change', updateArmor);
-    }
-    if (shieldedCheckbox) {
-        shieldedCheckbox.addEventListener('change', updateArmor);
-    }
-    
-        // Initial calculation
-        updateArmor();
+        // Set up upgrade checkbox listeners
+        upgradeCheckboxes.forEach(checkboxId => {
+            console.log(`Custom Flyer: Looking for checkbox: ${checkboxId}`);
+            const checkbox = document.getElementById(checkboxId);
+            if (checkbox) {
+                console.log(`Custom Flyer: Found checkbox ${checkboxId}`);
+                
+                // Check if we already added a listener to prevent duplicates
+                if (!checkbox.hasAttribute('data-flyer-listener')) {
+                    console.log(`Custom Flyer: Adding event listener to ${checkboxId}`);
+                    checkbox.addEventListener('change', function() {
+                        console.log(`Custom Flyer: Checkbox ${checkboxId} changed to:`, this.checked);
+                        updateUpgradeDisplay();
+                        updateArmor(); // Also update armor when upgrades change
+                    });
+                    checkbox.setAttribute('data-flyer-listener', 'true');
+                } else {
+                    console.log(`Custom Flyer: Event listener already exists for ${checkboxId}`);
+                }
+            } else {
+                console.log(`Custom Flyer: Checkbox ${checkboxId} NOT FOUND`);
+            }
+        });
         
-        // Initial type description update
+        // Set up type select listener
+        if (typeSelect && !typeSelect.hasAttribute('data-flyer-type-listener')) {
+            typeSelect.addEventListener('change', updateTypeDescription);
+            typeSelect.setAttribute('data-flyer-type-listener', 'true');
+        }
+        
+        // Initial updates
         updateTypeDescription();
+        updateArmor();
+        updateUpgradeDisplay();
     }
     
-    // Register with CardHelpers for automatic reinitialization
-    if (window.CardHelpers) {
-        window.CardHelpers.registerCard('custom-flyer', initializeCustomFlyerCard);
-        
-        // If card already exists, initialize it immediately
-        if (document.querySelector('[data-card-id="custom-flyer"]')) {
-            console.log('Custom Flyer card already exists, initializing immediately');
-            initializeCustomFlyerCard();
-        }
-    } else {
-        // Fallback
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeCustomFlyerCard);
-        } else {
-            initializeCustomFlyerCard();
-        }
-    }
+    // Create global initialization function that can be called whenever card is recreated
+    window.initializeCustomFlyerCard = function() {
+        console.log('Custom Flyer: Initializing Custom Flyer card...');
+        setupUpgradeCheckboxes();
+    };
     
-    // Export for debugging
-    window.initializeCustomFlyerCard = initializeCustomFlyerCard;
+    // Simple initialization for first load following Stonetop pattern
+    console.log('Custom Flyer: Setting up initialization...');
+    
+    // Try multiple times to catch the card when it's ready
+    setTimeout(function() {
+        console.log('Custom Flyer: First attempt at 100ms...');
+        setupUpgradeCheckboxes();
+    }, 100);
+    
+    setTimeout(function() {
+        console.log('Custom Flyer: Second attempt at 1000ms...');
+        setupUpgradeCheckboxes();
+    }, 1000);
+    
+    setTimeout(function() {
+        console.log('Custom Flyer: Third attempt at 2000ms...');
+        setupUpgradeCheckboxes();
+    }, 2000);
+    
+    // Also try immediately if DOM is ready
+    if (document.readyState !== 'loading') {
+        console.log('Custom Flyer: DOM ready, trying immediately...');
+        setupUpgradeCheckboxes();
+    }
     
 })();
+
+console.log('*** CUSTOM FLYER SCRIPT END ***');

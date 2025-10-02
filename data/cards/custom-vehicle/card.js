@@ -1,11 +1,60 @@
 // Custom Vehicle Card JavaScript
-// Automatically calculates armor based on selected upgrades
-console.log('Custom Vehicle card script is loading!');
+// Automatically calculates armor and handles hide untaken functionality
+console.log('*** CUSTOM VEHICLE SCRIPT STARTING ***');
+
 (function() {
     'use strict';
     
-    function initializeCustomVehicleCard() {
-        console.log('Custom Vehicle card: Initializing type descriptions and armor calculation');
+    console.log('Custom Vehicle script loading...');
+    
+    // List of all upgrade checkbox IDs
+    const upgradeCheckboxes = [
+        'cv_ag', 'cv_ar', 'cv_bo', 'cv_co', 'cv_lu', 'cv_pl',
+        'cv_re', 'cv_ru', 'cv_se', 'cv_sn', 'cv_st', 'cv_to',
+        'cv_tr', 'cv_tu', 'cv_wo'
+    ];
+    
+    function setupUpgradeCheckboxes() {
+        console.log('Custom Vehicle: Setting up checkboxes...');
+        
+        // Function to update upgrade visibility
+        function updateUpgradeDisplay() {
+            console.log('Custom Vehicle: Updating upgrade display...');
+            
+            // Check if hide untaken is enabled
+            const hideUntakenCheckbox = document.getElementById('hide_untaken');
+            const hideUntaken = hideUntakenCheckbox ? hideUntakenCheckbox.checked : false;
+            
+            upgradeCheckboxes.forEach(checkboxId => {
+                const checkbox = document.getElementById(checkboxId);
+                if (checkbox) {
+                    const label = checkbox.closest('label');
+                    if (label) {
+                        if (checkbox.checked) {
+                            // Show and mark as selected
+                            label.classList.add('selected');
+                            label.style.display = '';
+                            console.log(`Custom Vehicle: Added selected to ${checkboxId}`);
+                        } else {
+                            // Remove selected styling
+                            label.classList.remove('selected');
+                            // Hide if 'Hide untaken' is checked, else show
+                            if (hideUntaken) {
+                                label.style.display = 'none';
+                                console.log(`Custom Vehicle: Hid unselected ${checkboxId}`);
+                            } else {
+                                label.style.display = '';
+                                console.log(`Custom Vehicle: Removed selected from ${checkboxId}`);
+                            }
+                        }
+                    } else {
+                        console.log(`Custom Vehicle: Missing label for ${checkboxId}`);
+                    }
+                } else {
+                    console.log(`Custom Vehicle: Checkbox ${checkboxId} NOT FOUND`);
+                }
+            });
+        }
         
         // Get all upgrade checkboxes that affect armor
         const platedCheckbox = document.getElementById('cv_pl');
@@ -66,73 +115,106 @@ console.log('Custom Vehicle card script is loading!');
         }
     }
     
-    // Function to calculate and update armor
-    function updateArmor() {
-        let totalArmor = 0;
-        
-        // Plated upgrade: +3 Armor
-        if (platedCheckbox && platedCheckbox.checked) {
-            totalArmor += 3;
+        // Function to calculate and update armor
+        function updateArmor() {
+            let totalArmor = 0;
+            
+            // Plated upgrade: +3 Armor
+            if (platedCheckbox && platedCheckbox.checked) {
+                totalArmor += 3;
+            }
+            
+            // Reinforced upgrade: +3 Armor
+            if (reinforcedCheckbox && reinforcedCheckbox.checked) {
+                totalArmor += 3;
+            }
+            
+            // Update display
+            const armorValueElement = document.getElementById('cv_armor_value');
+            if (armorValueElement) {
+                armorValueElement.textContent = totalArmor;
+            }
+            
+            // Add visual feedback for high armor values
+            if (totalArmor >= 6) {
+                armorDisplay.style.background = '#d4edda';
+                armorDisplay.style.color = '#155724';
+            } else if (totalArmor >= 3) {
+                armorDisplay.style.background = '#fff3cd';
+                armorDisplay.style.color = '#856404';
+            } else {
+                armorDisplay.style.background = '#e8f4f8';
+                armorDisplay.style.color = 'inherit';
+            }
         }
-        
-        // Reinforced upgrade: +3 Armor
-        if (reinforcedCheckbox && reinforcedCheckbox.checked) {
-            totalArmor += 3;
-        }
-        
-        // Update display
-        const armorValueElement = document.getElementById('cv_armor_value');
-        if (armorValueElement) {
-            armorValueElement.textContent = totalArmor;
-        }
-        
-        // Add visual feedback for high armor values
-        if (totalArmor >= 6) {
-            armorDisplay.style.background = '#d4edda';
-            armorDisplay.style.color = '#155724';
-        } else if (totalArmor >= 3) {
-            armorDisplay.style.background = '#fff3cd';
-            armorDisplay.style.color = '#856404';
-        } else {
-            armorDisplay.style.background = '#e8f4f8';
-            armorDisplay.style.color = 'inherit';
-        }
-    }
     
-    // Add event listeners to armor-affecting upgrades
-    if (platedCheckbox) {
-        platedCheckbox.addEventListener('change', updateArmor);
-    }
-    if (reinforcedCheckbox) {
-        reinforcedCheckbox.addEventListener('change', updateArmor);
-    }
-    
-        // Initial calculation
-        updateArmor();
+        // Set up upgrade checkbox listeners
+        upgradeCheckboxes.forEach(checkboxId => {
+            console.log(`Custom Vehicle: Looking for checkbox: ${checkboxId}`);
+            const checkbox = document.getElementById(checkboxId);
+            if (checkbox) {
+                console.log(`Custom Vehicle: Found checkbox ${checkboxId}`);
+                
+                // Check if we already added a listener to prevent duplicates
+                if (!checkbox.hasAttribute('data-vehicle-listener')) {
+                    console.log(`Custom Vehicle: Adding event listener to ${checkboxId}`);
+                    checkbox.addEventListener('change', function() {
+                        console.log(`Custom Vehicle: Checkbox ${checkboxId} changed to:`, this.checked);
+                        updateUpgradeDisplay();
+                        updateArmor(); // Also update armor when upgrades change
+                    });
+                    checkbox.setAttribute('data-vehicle-listener', 'true');
+                } else {
+                    console.log(`Custom Vehicle: Event listener already exists for ${checkboxId}`);
+                }
+            } else {
+                console.log(`Custom Vehicle: Checkbox ${checkboxId} NOT FOUND`);
+            }
+        });
         
-        // Initial type description update
+        // Set up type select listener
+        if (typeSelect && !typeSelect.hasAttribute('data-vehicle-type-listener')) {
+            typeSelect.addEventListener('change', updateTypeDescription);
+            typeSelect.setAttribute('data-vehicle-type-listener', 'true');
+        }
+        
+        // Initial updates
         updateTypeDescription();
+        updateArmor();
+        updateUpgradeDisplay();
     }
     
-    // Register with CardHelpers for automatic reinitialization
-    if (window.CardHelpers) {
-        window.CardHelpers.registerCard('custom-vehicle', initializeCustomVehicleCard);
-        
-        // If card already exists, initialize it immediately
-        if (document.querySelector('[data-card-id="custom-vehicle"]')) {
-            console.log('Custom Vehicle card already exists, initializing immediately');
-            initializeCustomVehicleCard();
-        }
-    } else {
-        // Fallback
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeCustomVehicleCard);
-        } else {
-            initializeCustomVehicleCard();
-        }
-    }
+    // Create global initialization function that can be called whenever card is recreated
+    window.initializeCustomVehicleCard = function() {
+        console.log('Custom Vehicle: Initializing Custom Vehicle card...');
+        setupUpgradeCheckboxes();
+    };
     
-    // Export for debugging
-    window.initializeCustomVehicleCard = initializeCustomVehicleCard;
+    // Simple initialization for first load following Stonetop pattern
+    console.log('Custom Vehicle: Setting up initialization...');
+    
+    // Try multiple times to catch the card when it's ready
+    setTimeout(function() {
+        console.log('Custom Vehicle: First attempt at 100ms...');
+        setupUpgradeCheckboxes();
+    }, 100);
+    
+    setTimeout(function() {
+        console.log('Custom Vehicle: Second attempt at 1000ms...');
+        setupUpgradeCheckboxes();
+    }, 1000);
+    
+    setTimeout(function() {
+        console.log('Custom Vehicle: Third attempt at 2000ms...');
+        setupUpgradeCheckboxes();
+    }, 2000);
+    
+    // Also try immediately if DOM is ready
+    if (document.readyState !== 'loading') {
+        console.log('Custom Vehicle: DOM ready, trying immediately...');
+        setupUpgradeCheckboxes();
+    }
     
 })();
+
+console.log('*** CUSTOM VEHICLE SCRIPT END ***');
