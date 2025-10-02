@@ -5,31 +5,11 @@
   </div>
   
   <!-- Basic Info -->
-  <div class="form-field">
-    <label for="ai_name">AI Name:</label>
-    <input type="text" id="ai_name" name="ai_name" placeholder="Your AI's name">
-  </div>
-  
-  <div class="form-field">
-    <label for="ai_personality">Personality (2-4 words):</label>
-    <input type="text" id="ai_personality" name="ai_personality" placeholder="e.g., Curious and analytical, Sardonic wit, Protective maternal" maxlength="50">
-    <small style="color: #666; font-size: 0.85em; display: block; margin-top: 4px;">Describe your AI's personality in 2-4 words</small>
-  </div>
-  
-  <!-- AI Capabilities -->
-  <div style="margin-top: 15px; padding: 8px; background: #f0f8ff; border-radius: 4px;">
-    <h4 style="margin: 0 0 8px 0; color: #333;">AI Capabilities:</h4>
-    <ul style="margin: 0; padding-left: 20px; font-size: 0.9em; color: #555;">
-      <li>Can enter, unlock and activate systems at your Command</li>
-      <li>Can only be in one system at a time</li>
-      <li>Has complete loyalty to you</li>
-    </ul>
-  </div>
-  
-  <!-- Notes Section -->
-  <div class="form-field" style="margin-top: 15px;">
-    <label for="ai_notes">Notes:</label>
-    <textarea id="ai_notes" name="ai_notes" placeholder="Additional details about your AI's quirks, capabilities, history, or current activities..." rows="3" style="width: 100%; resize: vertical;"></textarea>
+  <div class="form-field" style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+    <label for="ai_name" style="min-width: 60px;">Name:</label>
+    <input type="text" id="ai_name" name="ai_name" placeholder="Your AI's name" style="flex: 1;">
+    <label for="ai_description" style="min-width: 80px;">Description:</label>
+    <input type="text" id="ai_description" name="ai_description" placeholder="Describe your AI..."  style="flex: 2; resize: vertical;"></input>
   </div>
   
 </div>

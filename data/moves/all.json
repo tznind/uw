@@ -129,12 +129,14 @@
            "Assistant",
            "Consort",
            "Advisor"
-       ]
+       ],
+       "grantsCard": "luxury"
    },
    {
        "id":"fam",
        "title":"Fame",
-       "description":"Decide what you are famous/infamous for. Factions, groups and people of importance always know who you are when you meet them. Allies may use your +Influence if they speak in your name, but you'll suffer for any faux-pas."
+       "description":"Decide what you are famous/infamous for. Factions, groups and people of importance always know who you are when you meet them. Allies may use your +Influence if they speak in your name, but you'll suffer for any faux-pas.",
+       "grantsCard": "fame"
    },
    {
        "id":"sca",

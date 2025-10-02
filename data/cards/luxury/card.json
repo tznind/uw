@@ -1,0 +1,11 @@
+{
+  "id": "luxury",
+  "title": "Luxury",
+  "path": "data/cards/luxury",
+  "description": "A luxury item for your character",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html"
+  }
+}
