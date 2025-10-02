@@ -491,7 +491,15 @@
    {
        "id":"add",
        "title":"Addict",
-       "description":"Choose one of your five stats. As long as you regularly dose yourself with your drug of choice, increase that stat by +1. Failure to subsequently dose yourself will reduce that stat by -2 until you dose yourself again or recover from the lengthy effects of withdrawal."
+       "description":"Choose one of your five stats. As long as you regularly dose yourself with your drug of choice, increase that stat by +1. Failure to subsequently dose yourself will reduce that stat by -2 until you dose yourself again or recover from the lengthy effects of withdrawal.",
+       "pickOne":[
+            "Mettle",
+            "Physique",
+            "Influence",
+            "Expertise",
+            "Interface"
+        ],
+       "details":true
    },
    {
        "id":"cosm",
