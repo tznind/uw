@@ -37,28 +37,33 @@
            - Comma-separated list: data-roles="Navigator,Mech Adept" 
            - Wildcard for all roles: data-roles="*"
            - No attribute: shows all roles (same as *) -->
-      <div class="role-controls">
-        <div class="role-group">
-          <label for="role">Origin:</label>
-          <select id="role" name="role" data-roles="Advanced, Brutal, Colonist, Crowded, Galactic, Impoverished, Privileged, Productive, Regimented, Rustic">
-            <option value="">Select origin...</option>
-          </select>
+
+        <div class="role-controls">
+          <div class="role-group">
+            <label for="role">Origin:</label>
+            <select id="role" name="role" data-roles="Advanced, Brutal, Colonist, Crowded, Galactic, Impoverished, Privileged, Productive, Regimented, Rustic">
+              <option value="">Select origin...</option>
+            </select>
+          </div>
+          
+          <div class="role-group">
+            <label for="role2">Career 1:</label>
+            <select id="role2" name="role2" data-roles="Academic, Clandestine, Commercial, Explorer, Industrial, Military, Personality, Scoundrel, Starfarer, Technocrat">
+              <option value="">Select career...</option>
+            </select>
+          </div>
+          
+          <div class="role-group">
+            <label for="role3">Career 2:</label>
+            <select id="role3" name="role3" data-roles="Academic, Clandestine, Commercial, Explorer, Industrial, Military, Personality, Scoundrel, Starfarer, Technocrat">
+              <option value="">Select career...</option>
+            </select>
+            <div class="role-group">
+              <label for="archetype">Archetype:</label>
+            <input type="text" id="archetype" name="archetype" placeholder="e.g. Space Pirate">
+            </div>
         </div>
-        
-        <div class="role-group">
-          <label for="role2">Career 1:</label>
-          <select id="role2" name="role2" data-roles="Academic, Clandestine, Commercial, Explorer, Industrial, Military, Personality, Scoundrel, Starfarer, Technocrat">
-            <option value="">Select career...</option>
-          </select>
-        </div>
-        
-        <div class="role-group">
-          <label for="role3">Career 2:</label>
-          <select id="role3" name="role3" data-roles="Academic, Clandestine, Commercial, Explorer, Industrial, Military, Personality, Scoundrel, Starfarer, Technocrat">
-            <option value="">Select career...</option>
-          </select>
-        </div>
-      </div>
+      
     </div>
     
     <!-- Data Points Section -->
