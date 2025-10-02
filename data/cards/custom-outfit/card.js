@@ -42,21 +42,24 @@ console.log('Custom Outfit card script is loading!');
             }
         }
         
-        // Create and insert armor display element
-        const armorDisplay = document.createElement('div');
-        armorDisplay.id = 'co_armor_display';
-        armorDisplay.className = 'form-field';
-        armorDisplay.innerHTML = '<strong>Armor:</strong> <span id="co_armor_value">0</span>';
-        armorDisplay.style.marginTop = '10px';
-        armorDisplay.style.padding = '8px';
-        armorDisplay.style.background = '#e8f4f8';
-        armorDisplay.style.borderRadius = '4px';
-        armorDisplay.style.fontSize = '1.1em';
-        
-        // Insert armor display after the HR separator
-        const hrElement = document.querySelector('.custom-outfit-card hr');
-        if (hrElement && hrElement.parentNode) {
-            hrElement.parentNode.insertBefore(armorDisplay, hrElement.nextSibling);
+        // Create and insert armor display element (only if it doesn't exist)
+        let armorDisplay = document.getElementById('co_armor_display');
+        if (!armorDisplay) {
+            armorDisplay = document.createElement('div');
+            armorDisplay.id = 'co_armor_display';
+            armorDisplay.className = 'form-field';
+            armorDisplay.innerHTML = '<strong>Armor:</strong> <span id="co_armor_value">0</span>';
+            armorDisplay.style.marginTop = '10px';
+            armorDisplay.style.padding = '8px';
+            armorDisplay.style.background = '#e8f4f8';
+            armorDisplay.style.borderRadius = '4px';
+            armorDisplay.style.fontSize = '1.1em';
+            
+            // Insert armor display after the HR separator
+            const hrElement = document.querySelector('.custom-outfit-card hr');
+            if (hrElement && hrElement.parentNode) {
+                hrElement.parentNode.insertBefore(armorDisplay, hrElement.nextSibling);
+            }
         }
         
         // Function to calculate and update armor

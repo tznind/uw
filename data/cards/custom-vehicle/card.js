@@ -46,21 +46,24 @@ console.log('Custom Vehicle card script is loading!');
         updateTypeDescription();
     }
     
-    // Create and insert armor display element
-    const armorDisplay = document.createElement('div');
-    armorDisplay.id = 'cv_armor_display';
-    armorDisplay.className = 'form-field';
-    armorDisplay.innerHTML = '<strong>Armor:</strong> <span id="cv_armor_value">0</span>';
-    armorDisplay.style.marginTop = '10px';
-    armorDisplay.style.padding = '8px';
-    armorDisplay.style.background = '#e8f4f8';
-    armorDisplay.style.borderRadius = '4px';
-    armorDisplay.style.fontSize = '1.1em';
-    
-    // Insert armor display after the Brace for Impact help section
-    const braceForImpactDetails = document.querySelector('.custom-vehicle-card details');
-    if (braceForImpactDetails && braceForImpactDetails.parentNode) {
-        braceForImpactDetails.parentNode.insertBefore(armorDisplay, braceForImpactDetails.nextSibling);
+    // Create and insert armor display element (only if it doesn't exist)
+    let armorDisplay = document.getElementById('cv_armor_display');
+    if (!armorDisplay) {
+        armorDisplay = document.createElement('div');
+        armorDisplay.id = 'cv_armor_display';
+        armorDisplay.className = 'form-field';
+        armorDisplay.innerHTML = '<strong>Armor:</strong> <span id="cv_armor_value">0</span>';
+        armorDisplay.style.marginTop = '10px';
+        armorDisplay.style.padding = '8px';
+        armorDisplay.style.background = '#e8f4f8';
+        armorDisplay.style.borderRadius = '4px';
+        armorDisplay.style.fontSize = '1.1em';
+        
+        // Insert armor display after the Brace for Impact help section
+        const braceForImpactDetails = document.querySelector('.custom-vehicle-card details');
+        if (braceForImpactDetails && braceForImpactDetails.parentNode) {
+            braceForImpactDetails.parentNode.insertBefore(armorDisplay, braceForImpactDetails.nextSibling);
+        }
     }
     
     // Function to calculate and update armor
