@@ -828,13 +828,7 @@ window.MovesCore = (function() {
         // Group moves by category using merged availability
         const categorized = groupMovesByCategory(window.moves, mergedAvailability, hideUntaken, urlParams);
         
-        // Add role information to the header
-        if (roles.length > 1) {
-            const rolesHeader = document.createElement("h2");
-            rolesHeader.className = "roles-header";
-            rolesHeader.textContent = `Roles: ${roles.join(', ')}`;
-            movesContainer.appendChild(rolesHeader);
-        }
+        // Role information header removed - no longer displaying roles
         
         // Sort categories according to configuration
         const sortedCategories = sortCategories(Array.from(categorized.keys()));
