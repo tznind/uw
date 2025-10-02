@@ -130,13 +130,14 @@
            "Consort",
            "Advisor"
        ],
-       "grantsCard": "luxury"
+       "grantsCard": "luxury",
+       "details":true
    },
    {
        "id":"fam",
        "title":"Fame",
        "description":"Decide what you are famous/infamous for. Factions, groups and people of importance always know who you are when you meet them. Allies may use your +Influence if they speak in your name, but you'll suffer for any faux-pas.",
-       "grantsCard": "fame"
+       "details": true
    },
    {
        "id":"sca",
@@ -312,7 +313,7 @@
        "id":"ai",
        "title":"Artificial Intelligence",
        "description":"You have the loyalty of a digital, artificial intelligence NPC. Give it a name and a 2-4 word description of its personality. It can enter, unlock and activate systems at your Command. Your AI can only be in one system at a time.",
-       "grantsCard": "artificial-intelligence"
+       "details":true
    },
    {
        "id":"ce",

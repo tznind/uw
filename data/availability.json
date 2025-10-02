@@ -102,7 +102,7 @@
     "mar": false,
     "acu": false,
     "bri": false,
-    "lux": true
+    "lux": false
   },
   "Explorer": {
     "cards": [],
