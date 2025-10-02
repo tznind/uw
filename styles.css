@@ -60,13 +60,20 @@ label {
   flex-wrap: wrap;
 }
 
-.role-controls label {
-  font-size: 14px;
-  font-weight: 600;
-  margin-right: 8px;
+.role-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
 }
 
-.role-controls select {
+.role-group label {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.role-group select {
   min-width: 140px;
 }
 
