@@ -1,7 +1,7 @@
 {
   "Academic": {
     "_movesFile": "data/moves/all.json",
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "edu": false,
     "che": false,
     "ded": false,
@@ -9,87 +9,77 @@
     "tec": false
   },
   "Advanced": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "ai": false,
     "ce": false,
     "cuf": false,
-    "srv": false,
-    "workspace": true
+    "srv": false
   },
   "Brutal": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "ass": false,
     "tou": false,
     "sne": false,
-    "bra": false,
-    "workspace": true
+    "bra": false
   },
   "Colonist": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "tin": false,
     "cuv": false,
     "hli": false,
-    "rsr": false,
-    "workspace": true
+    "rsr": false
   },
   "Crowded": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "cnt": false,
     "net": false,
     "bri": false,
-    "aff": false,
-    "workspace": true
+    "aff": false
   },
   "Galactic": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "pro": false,
     "wei": false,
     "rep": false,
-    "fin": false,
-    "workspace": true
+    "fin": false
   },
   "Impoverished": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "ste": false,
     "rec": false,
     "cri": false,
-    "scr": false,
-    "workspace": true
+    "scr": false
   },
   "Privileged": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "lux": false,
     "fam": false,
     "sca": false,
-    "dec": false,
-    "workspace": true
+    "dec": false
   },
   "Productive": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "cal": false,
     "acu": false,
     "voc": false,
-    "edu": false,
-    "workspace": true
+    "edu": false
   },
   "Regimented": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "lea": false,
     "tac": false,
     "ded": false,
-    "dis": false,
-    "workspace": true
+    "dis": false
   },
   "Rustic": {
-    "cards": ["health"],
+    "cards": ["health", "workspace"],
     "con": false,
     "sur": false,
     "che": false,
-    "hl": false,
-    "workspace": true
+    "hl": false
   },
   "Clandestine": {
-    "cards": [],
+    "cards": ["workspace"],
     "ste": false,
     "sab": false,
     "srv": false,
@@ -97,7 +87,7 @@
     "ass": false
   },
   "Commercial": {
-    "cards": [],
+    "cards": ["workspace"],
     "out": false,
     "mar": false,
     "acu": false,
@@ -105,7 +95,7 @@
     "lux": false
   },
   "Explorer": {
-    "cards": [],
+    "cards": ["workspace"],
     "bg": false,
     "recon": false,
     "sur": false,
@@ -113,7 +103,7 @@
     "cuv": false
   },
   "Industrial": {
-    "cards": [],
+    "cards": ["workspace"],
     "rep": false,
     "con": false,
     "upg": false,
@@ -121,7 +111,7 @@
     "tin": false
   },
   "Military": {
-    "cards": [],
+    "cards": ["workspace"],
     "tac": false,
     "uw": false,
     "hli": false,
@@ -129,7 +119,7 @@
     "tou": false
   },
   "Personality": {
-    "cards": [],
+    "cards": ["workspace"],
     "fam": false,
     "lea": false,
     "cnt": false,
@@ -137,7 +127,7 @@
     "dipl": false
   },
   "Scoundrel": {
-    "cards": [],
+    "cards": ["workspace"],
     "cri": false,
     "sne": false,
     "sca": false,
@@ -145,7 +135,7 @@
     "add": false
   },
   "Starfarer": {
-    "cards": [],
+    "cards": ["workspace"],
     "wei": false,
     "cosm": false,
     "nav": false,
@@ -153,7 +143,7 @@
     "cuf": false
   },
   "Technocrat": {
-    "cards": [],
+    "cards": ["workspace"],
     "upl": false,
     "hij": false,
     "pro": false,

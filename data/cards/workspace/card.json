@@ -1,0 +1,13 @@
+{
+  "id": "workspace",
+  "title": "Workspace",
+  "path": "data/cards/workspace",
+  "description": "Select your workspace options from available careers",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

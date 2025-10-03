@@ -1,0 +1,9 @@
+/* Workspace Card Styles */
+.workspace-card {
+  /* Add any specific styles for workspace card */
+}
+
+.workspace-card .card-title {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
