@@ -155,7 +155,7 @@
 
 .advancement-item {
   padding: 4px 6px;
-  margin: 2px 0;
+    margin: 3px 12px 3px 0; /* Add right margin for scroll space */
   background: white;
   border: 1px solid #ddd;
   border-radius: 3px;
@@ -189,7 +189,7 @@
   
   .advancement-item {
     padding: 8px 10px;
-    margin: 3px 0;
+    margin: 3px 12px 3px 0; /* Add right margin for scroll space */
     font-size: 0.9em;
     min-height: 36px;
     display: flex;
@@ -213,10 +213,12 @@
   
   .advancement-list {
     min-height: 80px;
+    padding-right: 12px; /* Extra scroll space */
   }
   
   .current-goal-zone {
     min-height: 40px;
+    padding-right: 12px; /* Extra scroll space */
   }
   
   .current-goal-zone .zone-hint {
@@ -253,16 +255,6 @@
   opacity: 0.8;
 }
 
-/* Compact form fields */
-.advancement-card .form-field {
-  margin-bottom: 8px;
-}
-
-.advancement-card .form-field strong {
-  font-size: 0.9em;
-  display: block;
-  margin-bottom: 4px;
-}
 
 /* Current Goal Zone - Compact */
 .current-goal-zone {
