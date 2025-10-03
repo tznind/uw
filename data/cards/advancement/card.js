@@ -200,48 +200,108 @@ function initializeAdvancementCard() {
         
         // Add touch event listeners (mobile)
         let touchStarted = false;
+        let isDragging = false;
         let startX, startY;
+        const DRAG_THRESHOLD = 8; // pixels to move before starting drag
         
         item.addEventListener('touchstart', function(e) {
             touchStarted = true;
+            isDragging = false;
             const touch = e.touches[0];
             startX = touch.clientX;
             startY = touch.clientY;
-            item.classList.add('dragging');
         });
         
         item.addEventListener('touchmove', function(e) {
             if (!touchStarted) return;
-            e.preventDefault(); // Prevent scrolling
             
             const touch = e.touches[0];
             const deltaX = touch.clientX - startX;
             const deltaY = touch.clientY - startY;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
             
-            // Move the item visually
-            item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-            item.style.zIndex = '1000';
+            // Only start dragging if we've moved far enough
+            if (!isDragging && distance > DRAG_THRESHOLD) {
+                isDragging = true;
+                item.classList.add('dragging');
+            }
             
-            // Find what we're hovering over
-            const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
-            const dropZone = elementBelow ? elementBelow.closest('.advancement-list') : null;
-            
-            // Highlight drop zones
-            document.querySelectorAll('.advancement-list').forEach(zone => {
-                zone.classList.remove('drag-over');
-            });
-            if (dropZone) {
-                dropZone.classList.add('drag-over');
+            // Only prevent scrolling and do drag behavior if we're actually dragging
+            if (isDragging) {
+                e.preventDefault(); // Prevent scrolling only when dragging
+                
+                // Move the item visually
+                item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+                item.style.zIndex = '1000';
+                
+                // Find what we're hovering over - hide dragged element first
+                const originalDisplay = item.style.display;
+                item.style.display = 'none';
+                const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+                item.style.display = originalDisplay;
+                
+                let dropZone = null;
+                if (elementBelow) {
+                    // Try multiple ways to find the drop zone
+                    dropZone = elementBelow.closest('.advancement-list') ||
+                              elementBelow.querySelector('.advancement-list') ||
+                              (elementBelow.classList.contains('advancement-list') ? elementBelow : null);
+                }
+                
+                // Highlight drop zones
+                document.querySelectorAll('.advancement-list').forEach(zone => {
+                    zone.classList.remove('drag-over');
+                });
+                if (dropZone) {
+                    dropZone.classList.add('drag-over');
+                }
             }
         });
         
         item.addEventListener('touchend', function(e) {
             if (!touchStarted) return;
-            touchStarted = false;
             
-            const touch = e.changedTouches[0];
-            const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
-            const dropZone = elementBelow ? elementBelow.closest('.advancement-list') : null;
+            let dropZone = null;
+            
+            // Only try to find drop zone if we were actually dragging
+            if (isDragging) {
+                const touch = e.changedTouches[0];
+                
+                // Hide dragged element to get accurate drop zone detection
+                const originalDisplay = item.style.display;
+                item.style.display = 'none';
+                const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+                item.style.display = originalDisplay;
+                
+                console.log('Touch end - elementBelow:', elementBelow?.className || elementBelow?.tagName || 'null');
+                
+                if (elementBelow) {
+                    // More comprehensive drop zone detection
+                    dropZone = elementBelow.closest('.advancement-list') ||
+                              elementBelow.querySelector('.advancement-list') ||
+                              (elementBelow.classList.contains('advancement-list') ? elementBelow : null);
+                    
+                    console.log('Found dropZone:', dropZone?.id || 'none');
+                    
+                    // If still no zone found, check if we're in a zone's vicinity
+                    if (!dropZone) {
+                        const zones = document.querySelectorAll('.advancement-list');
+                        const touchRect = { x: touch.clientX, y: touch.clientY };
+                        
+                        zones.forEach(zone => {
+                            const rect = zone.getBoundingClientRect();
+                            const buffer = 20; // 20px buffer around zones
+                            
+                            if (touchRect.x >= rect.left - buffer && 
+                                touchRect.x <= rect.right + buffer &&
+                                touchRect.y >= rect.top - buffer && 
+                                touchRect.y <= rect.bottom + buffer) {
+                                dropZone = zone;
+                            }
+                        });
+                    }
+                }
+            }
             
             // Reset visual state
             item.style.transform = '';
@@ -251,10 +311,14 @@ function initializeAdvancementCard() {
                 zone.classList.remove('drag-over');
             });
             
-            // Handle drop
-            if (dropZone && dropZone !== item.parentElement) {
+            // Handle drop only if we found a valid zone and were dragging
+            if (isDragging && dropZone && dropZone !== item.parentElement) {
                 handleTouchDrop(item, dropZone);
             }
+            
+            // Reset state
+            touchStarted = false;
+            isDragging = false;
         });
         
         // Add double-tap fallback for mobile
