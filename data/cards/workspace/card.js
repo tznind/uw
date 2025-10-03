@@ -1,0 +1,233 @@
+// Workspace Card JavaScript - Career-based workspace selection
+console.log('Workspace card script is loading!');
+(function() {
+    'use strict';
+    
+    // Define workspace options for each career
+    const CAREER_WORKSPACES = {
+        'Academic': [
+            {
+                id: 'medical',
+                title: 'Medical',
+                description: 'Sterile environment. Medbay, cryotubes, surgical servo arms, isolation chamber, recovery ward.'
+            },
+            {
+                id: 'research',
+                title: 'Research',
+                description: 'Sensors gather scientific readings. Laboratory, containment units, sample scanners, sealed storage.'
+            }
+        ],
+        'Clandestine': [
+            {
+                id: 'stealthy',
+                title: 'Stealthy',
+                description: 'Difficult to detect, high tech camouflage, cloaking or concealment. Scanning bafflers, sound dampening, hidden doors/rooms.'
+            },
+            {
+                id: 'secure',
+                title: 'Secure',
+                description: 'Sensors to track people and movement. Security cameras, monitoring stations, holding cells, security doors.'
+            }
+        ],
+        'Commercial': [
+            {
+                id: 'mercantile',
+                title: 'Mercantile',
+                description: 'Prominent advertisement, easy access. Large cargo storage space, automatic loader-unloader systems.'
+            },
+            {
+                id: 'leisure',
+                title: 'Leisure',
+                description: 'Relaxing, inviting, well-lit. Studio, lounge, entertainment systems, recreation area.'
+            }
+        ],
+        'Explorer': [
+            {
+                id: 'rugged',
+                title: 'Rugged',
+                description: 'Withstands harsh climates and weather. Decontamination units, hydroponics facilities, advanced water/air/waste recyclers, self-sufficient.'
+            },
+            {
+                id: 'survey',
+                title: 'Survey',
+                description: 'Planetary scanners (weather, geological activity, etc). Probe launcher, topography holo-projector, motor-pool.'
+            }
+        ],
+        'Industrial': [
+            {
+                id: 'refinery',
+                title: 'Refinery',
+                description: 'Heavy raw-material collectors. Gathers, processes raw matter into refined materials. Material storage tanks.'
+            },
+            {
+                id: 'manufactory',
+                title: 'Manufactory',
+                description: 'Engineering bays. Builds, upgrades and repairs. Workbenches, tool racks, winches, pulleys, lifts.'
+            }
+        ],
+        'Military': [
+            {
+                id: 'armored',
+                title: 'Armored',
+                description: 'Made of reinforced materials. Difficult to damage, can withstand direct impacts and explosions. Reinforced blast doors, structurally sound.'
+            },
+            {
+                id: 'barracks',
+                title: 'Barracks',
+                description: 'Efficient, defensible, practical. Berthing for many soldiers, lockers, gym, training ring, mobilization area.'
+            }
+        ],
+        'Personality': [
+            {
+                id: 'habitation',
+                title: 'Habitation',
+                description: 'Living space for many guests or crew. Communal eating rooms, extended life-support/facilities.'
+            },
+            {
+                id: 'stately',
+                title: 'Stately',
+                description: 'Expensive, luxurious, finely appointed décor. More expensive to maintain, but provides much higher quality of life.'
+            }
+        ],
+        'Scoundrel': [
+            {
+                id: 'facade',
+                title: 'Facade',
+                description: 'False identification/registry, disguised as something else. Crawlspaces, hidden compartments, false walls.'
+            },
+            {
+                id: 'sleazy',
+                title: 'Sleazy',
+                description: 'Ramshackle, grimy, dimly lit. Space for drinking, smoking, recreational drug use, or other vices.'
+            }
+        ],
+        'Starfarer': [
+            {
+                id: 'navigation',
+                title: 'Navigation',
+                description: 'Wide bay windows, observation decks, star-charts, holo-screens. Satellite uplinks, orbital tracking systems, airspace control/coordination tower.'
+            },
+            {
+                id: 'launchpad',
+                title: 'Launchpad',
+                description: 'Aircraft/shuttle hangar with wide bay doors, launchpads for shuttles and speeders.'
+            }
+        ],
+        'Technocrat': [
+            {
+                id: 'communication',
+                title: 'Communication',
+                description: 'High-powered communications array, transceivers, antennae. Screens, conference rooms, holo-projectors.'
+            },
+            {
+                id: 'observer',
+                title: 'Observer',
+                description: 'Advanced, multi-band sensors, capable of long-distance scans. Probe launchers. Recording equipment, shielded data storage.'
+            }
+        ]
+    };
+    
+    function getSelectedCareers() {
+        // Get careers from URL parameters or form fields
+        const params = new URLSearchParams(window.location.search);
+        const careers = [];
+        
+        // Check role2 and role3 (careers)
+        const role2 = params.get('role2') || document.querySelector('#role2')?.value;
+        const role3 = params.get('role3') || document.querySelector('#role3')?.value;
+        
+        if (role2) careers.push(role2);
+        if (role3) careers.push(role3);
+        
+        return careers;
+    }
+    
+    function populateWorkspaceOptions() {
+        const container = document.querySelector('#workspace-options');
+        if (!container) return;
+        
+        const careers = getSelectedCareers();
+        const options = [];
+        
+        // Collect all workspace options from selected careers
+        careers.forEach(career => {
+            if (CAREER_WORKSPACES[career]) {
+                options.push(...CAREER_WORKSPACES[career]);
+            }
+        });
+        
+        if (options.length === 0) {
+            // Show message if no careers selected
+            const message = careers.length === 0 
+                ? 'Select careers (Career 1 and/or Career 2) to see available workspace options.'
+                : 'No workspace options available for the selected careers.';
+            container.innerHTML = `<p class="no-careers-message">${message}</p>`;
+            return;
+        }
+        
+        // Generate radio buttons for all available options
+        let html = '';
+        options.forEach(option => {
+            html += `
+                <div class="workspace-option">
+                    <label>
+                        <input type="radio" name="workspace_selection" id="workspace_${option.id}" value="${option.id}">
+                        ${option.title}
+                    </label>
+                    <div class="description">${option.description}</div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+        
+        // Restore any previously selected workspace
+        restoreSelectedWorkspace();
+    }
+    
+    function restoreSelectedWorkspace() {
+        const params = new URLSearchParams(window.location.search);
+        const selectedWorkspace = params.get('workspace_selection');
+        
+        if (selectedWorkspace) {
+            const radio = document.querySelector(`#workspace_${selectedWorkspace}`);
+            if (radio) {
+                radio.checked = true;
+            }
+        }
+    }
+    
+    function initializeWorkspaceCard() {
+        console.log('Workspace card: Initializing career-based workspace options');
+        populateWorkspaceOptions();
+        
+        // Listen for career changes to update workspace options
+        document.addEventListener('change', function(event) {
+            if (event.target.id === 'role2' || event.target.id === 'role3') {
+                setTimeout(() => populateWorkspaceOptions(), 100);
+            }
+        });
+    }
+    
+    // Register with CardHelpers for automatic reinitialization
+    if (window.CardHelpers) {
+        window.CardHelpers.registerCard('workspace', initializeWorkspaceCard);
+        
+        // If card already exists, initialize it immediately
+        if (document.querySelector('[data-card-id="workspace"]')) {
+            console.log('Workspace card already exists, initializing immediately');
+            initializeWorkspaceCard();
+        }
+    } else {
+        // Fallback
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeWorkspaceCard);
+        } else {
+            initializeWorkspaceCard();
+        }
+    }
+    
+    // Export for debugging
+    window.initializeWorkspaceCard = initializeWorkspaceCard;
+    
+})();
