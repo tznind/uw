@@ -139,8 +139,6 @@
 
 .advancement-list {
   min-height: 80px;
-  max-height: 160px;
-  overflow-y: auto;
   border: 2px dashed #dee2e6;
   border-radius: 0 0 3px 3px;
   padding: 6px;
@@ -189,7 +187,7 @@
   
   .advancement-item {
     padding: 8px 10px;
-    margin: 3px 12px 3px 0; /* Add right margin for scroll space */
+    margin: 3px 0;
     font-size: 0.9em;
     min-height: 36px;
     display: flex;
@@ -212,13 +210,11 @@
   }
   
   .advancement-list {
-    min-height: 80px;
-    padding-right: 12px; /* Extra scroll space */
+    min-height: 60px;
   }
   
   .current-goal-zone {
     min-height: 40px;
-    padding-right: 12px; /* Extra scroll space */
   }
   
   .current-goal-zone .zone-hint {
@@ -331,7 +327,6 @@
   
   .advancement-list {
     min-height: 60px;
-    max-height: 120px;
   }
 }
 
