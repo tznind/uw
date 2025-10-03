@@ -11,13 +11,60 @@ function initializeAdvancementCard() {
         console.error('Advancement card: Available container not found!');
         return;
     }
-    const advancements = [
-        'Increase a stat by +1',
-        'Gain a new move from your careers',
-        'Gain a new move from another career',
-        'Gain a new move from your origin',
-        'Change your class'
-    ];
+    // Career-specific advancement definitions
+    const careerAdvancements = {
+        'Academic': [
+            'A life is saved or destroyed by science.',
+            'A vital lesson is imparted.',
+            'An experiment yields surprising results.',
+            'A subject is thoroughly analyzed.',
+            'A fascinating phenomenon is explained.'
+        ],
+        'Clandestine': [
+            'An intentional "accident" happens.',
+            'A victim experiences true fear.',
+            'A conspiracy is uncovered.',
+            'An act is performed covertly.',
+            'A dark secret is extracted.'
+        ]
+    };
+    
+    // Get current careers from URL parameters or form fields (like workspace card does)
+    function getSelectedCareers() {
+        const params = new URLSearchParams(window.location.search);
+        const careers = [];
+        
+        // Check role2 and role3 (careers)
+        const role2 = params.get('role2') || document.querySelector('#role2')?.value;
+        const role3 = params.get('role3') || document.querySelector('#role3')?.value;
+        
+        if (role2) careers.push(role2);
+        if (role3) careers.push(role3);
+        
+        return careers;
+    }
+    
+    const careers = getSelectedCareers();
+    console.log('Detected careers:', careers);
+    let advancements = [];
+    
+    // Collect all advancements from selected careers
+    careers.forEach(career => {
+        if (careerAdvancements[career]) {
+            console.log(`Adding ${careerAdvancements[career].length} advancements from ${career}`);
+            advancements.push(...careerAdvancements[career]);
+        } else {
+            console.log(`No advancements defined for career: ${career}`);
+        }
+    });
+    
+    // Remove duplicates if any exist
+    advancements = [...new Set(advancements)];
+    
+    // Fallback to Academic if no advancements found
+    if (advancements.length === 0) {
+        advancements = careerAdvancements['Academic'] || [];
+    }
     
     availableContainer.innerHTML = '';
     
@@ -35,19 +82,19 @@ function initializeAdvancementCard() {
         const item = document.createElement('div');
         item.className = 'advancement-item';
         item.textContent = text;
-        item.id = `advancement_${index}`;
+        item.id = `a${index}`;
         item.draggable = true;
-        item.dataset.advancementId = `advancement_${index}`;
+        item.dataset.advancementId = `a${index}`;
         
         // Check if hidden input already exists (created by main persistence system)
-        let numberInput = document.querySelector(`input[name="advancement_${index}"]`);
+        let numberInput = document.querySelector(`input[name="a${index}"]`);
         
         if (!numberInput) {
             // Create hidden number input for URL persistence (0=available, 1=current, 2=achieved)
             numberInput = document.createElement('input');
             numberInput.type = 'number';
-            numberInput.id = `advancement_${index}_state`; // Different ID to avoid conflicts
-            numberInput.name = `advancement_${index}`; // Keep same name for URL params
+            numberInput.id = `a${index}_state`; // Different ID to avoid conflicts
+            numberInput.name = `a${index}`; // Keep same name for URL params
             numberInput.min = '0';
             numberInput.max = '2';
             numberInput.value = '0'; // Default to available
@@ -63,11 +110,16 @@ function initializeAdvancementCard() {
         } else {
             // Check URL parameters as fallback
             const urlParams = new URLSearchParams(window.location.search);
-            // Check both possible parameter names
-            if (urlParams.has(`advancement_${index}`)) {
+            // Check both possible parameter names (short and legacy)
+            if (urlParams.has(`a${index}`)) {
+                savedState = parseInt(urlParams.get(`a${index}`));
+                numberInput.value = savedState.toString();
+            } else if (urlParams.has(`advancement_${index}`)) {
+                // Legacy support for old long IDs
                 savedState = parseInt(urlParams.get(`advancement_${index}`));
                 numberInput.value = savedState.toString();
             } else if (urlParams.has(`advancement_${index}_state`)) {
+                // Legacy support for old long IDs
                 savedState = parseInt(urlParams.get(`advancement_${index}_state`));
                 numberInput.value = savedState.toString();
             }
@@ -192,6 +244,13 @@ function initializeAdvancementCard() {
     
     // Set up drop zones
     setupDropZones();
+    
+    // Listen for career changes to update advancement options (like workspace card does)
+    document.addEventListener('change', function(event) {
+        if (event.target.id === 'role2' || event.target.id === 'role3') {
+            setTimeout(() => initializeAdvancementCard(), 100);
+        }
+    });
 }
 
 function updateAdvancementState(advancementId, newState) {
