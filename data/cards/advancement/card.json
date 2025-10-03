@@ -1,0 +1,13 @@
+{
+  "id": "advancement",
+  "title": "Advancement",
+  "path": "data/cards/advancement",
+  "description": "Track character advancement and experience",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

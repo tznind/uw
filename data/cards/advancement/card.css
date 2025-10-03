@@ -1,0 +1,9 @@
+/* Advancement Card Styles */
+.advancement-card {
+  /* Add any specific styles for advancement card */
+}
+
+.advancement-card .card-title {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
