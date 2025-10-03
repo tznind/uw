@@ -1,16 +1,5 @@
-// Advancement Card JavaScript - Minimal version for debugging
-console.log('Advancement card script is loading!');
-console.log('CardHelpers available:', !!window.CardHelpers);
-console.log('Document ready state:', document.readyState);
-
-// Simple initialization function
+// Advancement Card JavaScript
 function initializeAdvancementCard() {
-    console.log('Advancement card: Starting initialization');
-    
-    // Debug URL parameters at the start
-    const urlParams = new URLSearchParams(window.location.search);
-    console.log('Current URL:', window.location.href);
-    console.log('All URL parameters:', Object.fromEntries(urlParams));
     
     // Find containers
     const availableContainer = document.querySelector('#available-advancements');
@@ -18,19 +7,10 @@ function initializeAdvancementCard() {
     const achievedContainer = document.querySelector('#achieved-advancements');
     const hiddenContainer = document.querySelector('.hidden-advancement-state');
     
-    console.log('Containers found:', {
-        available: !!availableContainer,
-        currentGoal: !!currentGoalContainer,
-        achieved: !!achievedContainer,
-        hidden: !!hiddenContainer
-    });
-    
     if (!availableContainer) {
-        console.error('Available container not found!');
+        console.error('Advancement card: Available container not found!');
         return;
     }
-    
-    // Simple test - just add some items
     const advancements = [
         'Increase a stat by +1',
         'Gain a new move from your careers',
@@ -49,10 +29,6 @@ function initializeAdvancementCard() {
         newHiddenContainer.style.display = 'none';
         availableContainer.parentElement.parentElement.appendChild(newHiddenContainer);
         hiddenContainerElement = newHiddenContainer;
-        console.log('Created new hidden container');
-    } else {
-        // Don't clear existing container - preserve any existing inputs
-        console.log('Found existing hidden container with', hiddenContainerElement.children.length, 'inputs');
     }
     
     advancements.forEach((text, index) => {
@@ -76,9 +52,6 @@ function initializeAdvancementCard() {
             numberInput.max = '2';
             numberInput.value = '0'; // Default to available
             hiddenContainerElement.appendChild(numberInput);
-            console.log(`Created new hidden input for advancement_${index}`);
-        } else {
-            console.log(`Found existing hidden input for advancement_${index} with value: ${numberInput.value}`);
         }
         
         // Check if there's a saved state (either from existing input or URL)
@@ -87,60 +60,27 @@ function initializeAdvancementCard() {
         if (numberInput.value && numberInput.value !== '0') {
             // Input already has a value (likely from main persistence system)
             savedState = parseInt(numberInput.value);
-            console.log(`Using existing input value for advancement_${index}: ${savedState}`);
         } else {
             // Check URL parameters as fallback
             const urlParams = new URLSearchParams(window.location.search);
             // Check both possible parameter names
             if (urlParams.has(`advancement_${index}`)) {
                 savedState = parseInt(urlParams.get(`advancement_${index}`));
-                console.log(`Found URL param advancement_${index}=${savedState}`);
                 numberInput.value = savedState.toString();
-                console.log(`Set ${numberInput.id || numberInput.name} value to ${savedState}`);
             } else if (urlParams.has(`advancement_${index}_state`)) {
                 savedState = parseInt(urlParams.get(`advancement_${index}_state`));
-                console.log(`Found URL param advancement_${index}_state=${savedState}`);
                 numberInput.value = savedState.toString();
-                console.log(`Set ${numberInput.id || numberInput.name} value to ${savedState}`);
             }
         }
         
-        console.log(`Processing advancement_${index} with final savedState: ${savedState}`);
-        
-        if (savedState >= 0 && savedState <= 2) {
-            // Apply appropriate styling and placement based on saved state
-            if (savedState === 1) {
-                // Current goal
-                item.classList.add('in-current-goal');
-                if (currentGoalContainer) {
-                    currentGoalContainer.appendChild(item);
-                    const hint = currentGoalContainer.querySelector('.zone-hint');
-                    if (hint) hint.style.display = 'none';
-                    currentGoalContainer.classList.add('has-item');
-                    console.log(`Restored ${item.id} to current goal`);
-                    return; // Skip adding to available container
-                }
-            } else if (savedState === 2) {
-                // Achieved
-                item.classList.add('achieved');
-                if (achievedContainer) {
-                    achievedContainer.appendChild(item);
-                    console.log(`Restored ${item.id} to achieved`);
-                    return; // Skip adding to available container
-                }
-            }
-        }
-        
-        // Add drag event listeners (desktop)
+        // Add drag event listeners (desktop) - BEFORE state restoration so all items get them
         item.addEventListener('dragstart', function(e) {
-            console.log('Drag started for:', text);
             e.dataTransfer.effectAllowed = 'move';
             e.dataTransfer.setData('text/plain', item.id);
             item.classList.add('dragging');
         });
         
         item.addEventListener('dragend', function(e) {
-            console.log('Drag ended for:', text);
             item.classList.remove('dragging');
         });
         
@@ -154,7 +94,6 @@ function initializeAdvancementCard() {
             startX = touch.clientX;
             startY = touch.clientY;
             item.classList.add('dragging');
-            console.log('Touch started for:', text);
         });
         
         item.addEventListener('touchmove', function(e) {
@@ -200,11 +139,8 @@ function initializeAdvancementCard() {
             
             // Handle drop
             if (dropZone && dropZone !== item.parentElement) {
-                console.log(`Touch moving ${item.id} to ${dropZone.id}`);
                 handleTouchDrop(item, dropZone);
             }
-            
-        console.log('Touch ended for:', text);
         });
         
         // Add double-tap fallback for mobile
@@ -215,20 +151,47 @@ function initializeAdvancementCard() {
             if (tapLength < 500 && tapLength > 0) {
                 // Double tap detected
                 e.preventDefault();
-                console.log('Double tap detected on:', text);
                 cycleThroughZones(item);
             }
             lastTap = currentTime;
         });
         
-        availableContainer.appendChild(item);
-        console.log(`Added draggable advancement: ${text}`);
+        // Now handle state restoration and placement AFTER event listeners are set up
+        if (savedState >= 0 && savedState <= 2) {
+            // Apply appropriate styling and placement based on saved state
+            if (savedState === 1) {
+                // Current goal
+                item.classList.add('in-current-goal');
+                if (currentGoalContainer) {
+                    currentGoalContainer.appendChild(item);
+                    const hint = currentGoalContainer.querySelector('.zone-hint');
+                    if (hint) hint.style.display = 'none';
+                    currentGoalContainer.classList.add('has-item');
+                } else {
+                    // Fallback to available if current goal container not found
+                    availableContainer.appendChild(item);
+                }
+            } else if (savedState === 2) {
+                // Achieved
+                item.classList.add('achieved');
+                if (achievedContainer) {
+                    achievedContainer.appendChild(item);
+                } else {
+                    // Fallback to available if achieved container not found
+                    availableContainer.appendChild(item);
+                }
+            } else {
+                // Available (default)
+                availableContainer.appendChild(item);
+            }
+        } else {
+            // Invalid state, default to available
+            availableContainer.appendChild(item);
+        }
     });
     
     // Set up drop zones
     setupDropZones();
-    
-    console.log('Advancement card initialization complete');
 }
 
 function updateAdvancementState(advancementId, newState) {
@@ -242,9 +205,6 @@ function updateAdvancementState(advancementId, newState) {
     
     if (numberInput) {
         numberInput.value = newState.toString();
-        console.log(`Updated ${advancementId} state to ${newState}`);
-    } else {
-        console.warn(`Hidden input not found for ${advancementId}`);
     }
 }
 
@@ -268,14 +228,11 @@ function cycleThroughZones(item) {
     }
     
     if (targetZone) {
-        console.log(`Double-tap cycling ${item.id} from ${currentContainer.id} to ${targetZone.id}`);
         handleTouchDrop(item, targetZone);
     }
 }
 
 function handleTouchDrop(draggedElement, zone) {
-    console.log(`Touch drop: Moving ${draggedElement.id} to ${zone.id}`);
-    
     // Same logic as desktop drop but without dataTransfer
     if (draggedElement && zone !== draggedElement.parentElement) {
         // Handle current goal zone hint
@@ -286,7 +243,6 @@ function handleTouchDrop(draggedElement, zone) {
             // Only allow one item in current goal
             const existingItem = zone.querySelector('.advancement-item');
             if (existingItem) {
-                console.log('Moving existing current goal back to available (touch)');
                 const availableZone = document.querySelector('#available-advancements');
                 availableZone.appendChild(existingItem);
                 
@@ -341,20 +297,15 @@ function handleTouchDrop(draggedElement, zone) {
             const form = document.querySelector('form');
             if (form) {
                 window.Persistence.saveToURL(form);
-                console.log('Touch state saved to URL');
             }
         }
-        
-        console.log(`Touch drop successful: ${draggedElement.id} moved to ${zone.id} with state ${newState}`);
     }
 }
 
 function setupDropZones() {
-    console.log('Setting up drop zones');
     const dropZones = document.querySelectorAll('.advancement-list');
     
     dropZones.forEach(zone => {
-        console.log('Setting up drop zone:', zone.id);
         
         zone.addEventListener('dragover', function(e) {
             e.preventDefault();
@@ -382,8 +333,6 @@ function setupDropZones() {
             const draggedElement = document.getElementById(draggedId);
             
             if (draggedElement && zone !== draggedElement.parentElement) {
-                console.log(`Moving ${draggedId} to ${zone.id}`);
-                
                 // Handle current goal zone hint
                 if (zone.id === 'current-goal') {
                     const hint = zone.querySelector('.zone-hint');
@@ -392,7 +341,6 @@ function setupDropZones() {
                     // Only allow one item in current goal
                     const existingItem = zone.querySelector('.advancement-item');
                     if (existingItem) {
-                        console.log('Moving existing current goal back to available');
                         const availableZone = document.querySelector('#available-advancements');
                         availableZone.appendChild(existingItem);
                         
@@ -447,11 +395,8 @@ function setupDropZones() {
                     const form = document.querySelector('form');
                     if (form) {
                         window.Persistence.saveToURL(form);
-                        console.log('State saved to URL');
                     }
                 }
-                
-                console.log(`Successfully moved ${draggedId} to ${zone.id} with state ${newState}`);
             }
         });
     });
@@ -459,24 +404,16 @@ function setupDropZones() {
 
 // Initialize card when ready
 if (window.CardHelpers) {
-    // Register callback with CardHelpers
-    console.log('Registering advancement card initialization callback');
-    
     window.CardHelpers.registerCard('advancement', initializeAdvancementCard);
     
     // Try immediate initialization
     const cardElement = document.querySelector('[data-card-id="advancement"]') || document.querySelector('.advancement-card');
     if (cardElement) {
-        console.log('Advancement card found, initializing immediately');
         initializeAdvancementCard();
-    } else {
-        console.log('Advancement card not found, will wait for callback');
     }
 } else {
-    console.log('CardHelpers not available, using direct initialization');
     initializeAdvancementCard();
 }
 
 // Export for manual testing
 window.initializeAdvancementCard = initializeAdvancementCard;
-console.log('Advancement card script loaded successfully');
