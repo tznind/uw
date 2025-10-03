@@ -35,8 +35,8 @@
 .title-controls {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-right: 30px; /* Space for collapse button */
+  gap: 8px;
+  margin-right: 35px; /* Space for collapse button */
   font-size: 0.8em;
 }
 
@@ -45,11 +45,15 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  min-height: 24px; /* Ensure consistent height */
 }
 
 .xp-label {
   font-weight: 600;
   color: #666;
+  line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
 .xp-check {
@@ -58,33 +62,41 @@
   gap: 2px;
   cursor: pointer;
   font-weight: 500;
+  line-height: 1;
 }
 
 .xp-check input[type="checkbox"] {
   margin: 0;
   transform: scale(0.9);
+  vertical-align: middle;
 }
 
 /* Inline Level */
 .level-inline {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
+  min-height: 24px; /* Match XP height */
 }
 
 .level-inline label {
   font-weight: 600;
   color: #666;
+  line-height: 1;
+  display: flex;
+  align-items: center;
 }
 
 .level-inline input[type="number"] {
-  width: 35px;
+  width: 42px;
+  height: 20px;
   padding: 2px 4px;
   text-align: center;
   font-size: 12px;
   font-weight: bold;
   border: 1px solid #ddd;
   border-radius: 2px;
+  vertical-align: middle;
 }
 
 /* Compact form fields */
@@ -213,8 +225,8 @@
   }
   
   .title-controls {
-    gap: 8px;
-    margin-right: 35px;
+    gap: 12px;
+    margin-right: 40px;
   }
   
   .xp-check input[type="checkbox"] {
