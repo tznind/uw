@@ -117,13 +117,13 @@
   transform: rotate(5deg);
 }
 
-.advancement-item.current-goal {
-  border-color: #28a745;
-  background: #d4edda;
+.advancement-item.in-current-goal {
+  border-color: #ffc107;
+  background: #fff3cd;
   font-weight: bold;
 }
 
-.advancement-item.current-goal::before {
+.advancement-item.in-current-goal::before {
   content: "🎯 ";
 }
 
@@ -143,25 +143,53 @@
   font-weight: bold;
 }
 
-/* Current Goal Display */
-.current-goal {
-  padding: 10px;
-  background: #fff3cd;
-  border: 1px solid #ffeaa7;
-  border-radius: 4px;
-  min-height: 40px;
+/* Single column for current goal */
+.single-column {
+  max-width: 100%;
+}
+
+/* Current Goal Zone */
+.current-goal-zone {
+  background: #fff3cd !important;
+  border: 2px dashed #ffc107 !important;
+  min-height: 80px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-.current-goal.has-goal {
-  background: #d4edda;
-  border-color: #c3e6cb;
+.current-goal-zone.drag-over {
+  background: #ffeaa7 !important;
+  border-color: #fd7e14 !important;
 }
 
-.current-goal .goal-text {
-  font-weight: bold;
-  color: #155724;
+.current-goal-zone .zone-hint {
+  color: #856404;
+  font-style: italic;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+/* Available Zone */
+.available-zone {
+  background: #f8f9fa !important;
+  border: 2px dashed #dee2e6 !important;
+}
+
+.available-zone.drag-over {
+  background: #e3f2fd !important;
+  border-color: #007bff !important;
+}
+
+/* Achieved Zone */
+.achieved-zone {
+  background: #d4edda !important;
+  border: 2px dashed #c3e6cb !important;
+}
+
+.achieved-zone.drag-over {
+  background: #c8e6c9 !important;
+  border-color: #28a745 !important;
 }
 
 /* Hidden elements */

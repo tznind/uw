@@ -1,287 +1,157 @@
-// Advancement Card JavaScript - XP tracking and drag-and-drop advancements
+// Advancement Card JavaScript - Minimal version for debugging
 console.log('Advancement card script is loading!');
-(function() {
-    'use strict';
+console.log('CardHelpers available:', !!window.CardHelpers);
+console.log('Document ready state:', document.readyState);
+
+// Simple initialization function
+function initializeAdvancementCard() {
+    console.log('Advancement card: Starting initialization');
     
-    // Define available advancements (these could be loaded from data later)
-    const AVAILABLE_ADVANCEMENTS = [
+    // Find containers
+    const availableContainer = document.querySelector('#available-advancements');
+    const currentGoalContainer = document.querySelector('#current-goal');
+    const achievedContainer = document.querySelector('#achieved-advancements');
+    const hiddenContainer = document.querySelector('.hidden-advancement-state');
+    
+    console.log('Containers found:', {
+        available: !!availableContainer,
+        currentGoal: !!currentGoalContainer,
+        achieved: !!achievedContainer,
+        hidden: !!hiddenContainer
+    });
+    
+    if (!availableContainer) {
+        console.error('Available container not found!');
+        return;
+    }
+    
+    // Simple test - just add some items
+    const advancements = [
         'Increase a stat by +1',
         'Gain a new move from your careers',
         'Gain a new move from another career',
         'Gain a new move from your origin',
-        'Change your class',
-        'Acquire a signature asset',
-        'Gain a new attachment',
-        'Retire to safety',
-        'Create a new character concept',
-        'Advance the story'
+        'Change your class'
     ];
     
-    let draggedElement = null;
-    
-    function createAdvancementItem(text, id, isAchieved = false) {
+    availableContainer.innerHTML = '';
+    advancements.forEach((text, index) => {
         const item = document.createElement('div');
-        item.className = `advancement-item ${isAchieved ? 'achieved' : ''}`;
-        item.draggable = true;
-        item.dataset.advancementId = id;
+        item.className = 'advancement-item';
         item.textContent = text;
+        item.id = `advancement_${index}`;
+        item.draggable = true;
+        item.dataset.advancementId = `advancement_${index}`;
         
         // Add drag event listeners
-        item.addEventListener('dragstart', handleDragStart);
-        item.addEventListener('dragend', handleDragEnd);
-        item.addEventListener('contextmenu', handleRightClick);
-        
-        return item;
-    }
-    
-    function handleDragStart(e) {
-        draggedElement = e.target;
-        e.target.classList.add('dragging');
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/html', e.target.outerHTML);
-    }
-    
-    function handleDragEnd(e) {
-        e.target.classList.remove('dragging');
-        draggedElement = null;
-    }
-    
-    function handleRightClick(e) {
-        e.preventDefault();
-        const advancementId = e.target.dataset.advancementId;
-        const isInAvailable = e.target.parentElement.id === 'available-advancements';
-        
-        if (isInAvailable) {
-            setCurrentGoal(advancementId, e.target.textContent);
-        }
-    }
-    
-    function setCurrentGoal(advancementId, text) {
-        // Update hidden input
-        const currentGoalInput = document.querySelector('#current_goal');
-        if (currentGoalInput) {
-            currentGoalInput.value = advancementId;
-        }
-        
-        // Update display
-        const goalDisplay = document.querySelector('#current-goal-display');
-        if (goalDisplay) {
-            goalDisplay.className = 'current-goal has-goal';
-            goalDisplay.innerHTML = `<span class="goal-text">🎯 ${text}</span>`;
-        }
-        
-        // Update visual indicators
-        updateCurrentGoalVisuals(advancementId);
-        
-        // Trigger persistence
-        if (window.Persistence) {
-            const form = document.querySelector('form');
-            if (form) window.Persistence.saveToURL(form);
-        }
-    }
-    
-    function updateCurrentGoalVisuals(currentGoalId) {
-        // Remove current-goal class from all items
-        document.querySelectorAll('.advancement-item').forEach(item => {
-            item.classList.remove('current-goal');
+        item.addEventListener('dragstart', function(e) {
+            console.log('Drag started for:', text);
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', item.id);
+            item.classList.add('dragging');
         });
         
-        // Add current-goal class to the selected item
-        if (currentGoalId) {
-            const goalItem = document.querySelector(`[data-advancement-id="${currentGoalId}"]`);
-            if (goalItem) {
-                goalItem.classList.add('current-goal');
-            }
-        }
-    }
+        item.addEventListener('dragend', function(e) {
+            console.log('Drag ended for:', text);
+            item.classList.remove('dragging');
+        });
+        
+        availableContainer.appendChild(item);
+        console.log(`Added draggable advancement: ${text}`);
+    });
     
-    function populateAdvancementLists() {
-        const availableContainer = document.querySelector('#available-advancements');
-        const achievedContainer = document.querySelector('#achieved-advancements');
-        const hiddenContainer = document.querySelector('.hidden-advancement-state');
+    // Set up drop zones
+    setupDropZones();
+    
+    console.log('Advancement card initialization complete');
+}
+
+function setupDropZones() {
+    console.log('Setting up drop zones');
+    const dropZones = document.querySelectorAll('.advancement-list');
+    
+    dropZones.forEach(zone => {
+        console.log('Setting up drop zone:', zone.id);
         
-        if (!availableContainer || !achievedContainer || !hiddenContainer) return;
+        zone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            zone.classList.add('drag-over');
+        });
         
-        // Clear containers
-        availableContainer.innerHTML = '';
-        achievedContainer.innerHTML = '';
-        hiddenContainer.innerHTML = '';
+        zone.addEventListener('dragenter', function(e) {
+            e.preventDefault();
+            zone.classList.add('drag-over');
+        });
         
-        // Create items and hidden checkboxes
-        AVAILABLE_ADVANCEMENTS.forEach((text, index) => {
-            const id = `advancement_${index}`;
-            
-            // Create hidden checkbox for URL persistence
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = id;
-            checkbox.name = id;
-            hiddenContainer.appendChild(checkbox);
-            
-            // Check if this advancement is achieved (from URL)
-            const isAchieved = checkbox.checked;
-            
-            // Create visual item
-            const item = createAdvancementItem(text, id, isAchieved);
-            
-            // Place in appropriate container
-            if (isAchieved) {
-                achievedContainer.appendChild(item);
-            } else {
-                availableContainer.appendChild(item);
+        zone.addEventListener('dragleave', function(e) {
+            // Only remove if we're actually leaving the zone
+            if (!zone.contains(e.relatedTarget)) {
+                zone.classList.remove('drag-over');
             }
         });
         
-        // Restore current goal
-        restoreCurrentGoal();
-    }
-    
-    function restoreCurrentGoal() {
-        const currentGoalInput = document.querySelector('#current_goal');
-        const currentGoalId = currentGoalInput?.value;
-        
-        if (currentGoalId) {
-            const goalItem = document.querySelector(`[data-advancement-id="${currentGoalId}"]`);
-            if (goalItem) {
-                const goalText = goalItem.textContent;
-                setCurrentGoal(currentGoalId, goalText);
-            }
-        }
-    }
-    
-    function setupDragAndDrop() {
-        const containers = document.querySelectorAll('.advancement-list');
-        
-        containers.forEach(container => {
-            container.addEventListener('dragover', allowDrop);
-            container.addEventListener('drop', handleDrop);
-            container.addEventListener('dragenter', handleDragEnter);
-            container.addEventListener('dragleave', handleDragLeave);
-        });
-    }
-    
-    function allowDrop(e) {
-        e.preventDefault();
-        e.dataTransfer.dropEffect = 'move';
-    }
-    
-    function handleDragEnter(e) {
-        e.preventDefault();
-        e.target.classList.add('drag-over');
-    }
-    
-    function handleDragLeave(e) {
-        e.target.classList.remove('drag-over');
-    }
-    
-    function handleDrop(e) {
-        e.preventDefault();
-        e.target.classList.remove('drag-over');
-        
-        if (draggedElement) {
-            const targetContainer = e.target.closest('.advancement-list');
-            const advancementId = draggedElement.dataset.advancementId;
+        zone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            zone.classList.remove('drag-over');
             
-            if (targetContainer && targetContainer !== draggedElement.parentElement) {
-                // Move the item
-                targetContainer.appendChild(draggedElement);
+            const draggedId = e.dataTransfer.getData('text/plain');
+            const draggedElement = document.getElementById(draggedId);
+            
+            if (draggedElement && zone !== draggedElement.parentElement) {
+                console.log(`Moving ${draggedId} to ${zone.id}`);
                 
-                // Update the hidden checkbox
-                const checkbox = document.querySelector(`#${advancementId}`);
-                if (checkbox) {
-                    checkbox.checked = targetContainer.id === 'achieved-advancements';
+                // Handle current goal zone hint
+                if (zone.id === 'current-goal') {
+                    const hint = zone.querySelector('.zone-hint');
+                    if (hint) hint.style.display = 'none';
                     
-                    // Update visual state
-                    if (checkbox.checked) {
-                        draggedElement.classList.add('achieved');
-                        // Clear current goal if moving to achieved
-                        if (draggedElement.classList.contains('current-goal')) {
-                            clearCurrentGoal();
-                        }
-                    } else {
-                        draggedElement.classList.remove('achieved');
+                    // Only allow one item in current goal
+                    const existingItem = zone.querySelector('.advancement-item');
+                    if (existingItem) {
+                        console.log('Moving existing current goal back to available');
+                        const availableZone = document.querySelector('#available-advancements');
+                        availableZone.appendChild(existingItem);
                     }
                 }
                 
-                // Save to URL
-                if (window.Persistence) {
-                    const form = document.querySelector('form');
-                    if (form) window.Persistence.saveToURL(form);
-                }
-            }
-        }
-    }
-    
-    function clearCurrentGoal() {
-        const currentGoalInput = document.querySelector('#current_goal');
-        if (currentGoalInput) {
-            currentGoalInput.value = '';
-        }
-        
-        const goalDisplay = document.querySelector('#current-goal-display');
-        if (goalDisplay) {
-            goalDisplay.className = 'current-goal';
-            goalDisplay.innerHTML = '<em>Select a current goal by right-clicking an available advancement</em>';
-        }
-        
-        // Remove visual indicators
-        document.querySelectorAll('.advancement-item').forEach(item => {
-            item.classList.remove('current-goal');
-        });
-    }
-    
-    function initializeAdvancementCard() {
-        console.log('Advancement card: Initializing XP tracking and drag-and-drop advancements');
-        
-        // Populate advancement lists
-        populateAdvancementLists();
-        
-        // Set up drag and drop
-        setupDragAndDrop();
-        
-        // Add double-click alternative to drag-and-drop
-        document.addEventListener('dblclick', function(e) {
-            if (e.target.classList.contains('advancement-item')) {
-                const item = e.target;
-                const currentContainer = item.parentElement;
-                const targetContainer = currentContainer.id === 'available-advancements' 
-                    ? document.querySelector('#achieved-advancements')
-                    : document.querySelector('#available-advancements');
+                // Move the item
+                zone.appendChild(draggedElement);
                 
-                if (targetContainer) {
-                    // Simulate drag and drop
-                    draggedElement = item;
-                    const dropEvent = new Event('drop');
-                    Object.defineProperty(dropEvent, 'target', { value: targetContainer });
-                    handleDrop(dropEvent);
+                // Check if we need to show the current goal hint again
+                const currentGoal = document.querySelector('#current-goal');
+                if (currentGoal && !currentGoal.querySelector('.advancement-item')) {
+                    const hint = currentGoal.querySelector('.zone-hint');
+                    if (hint) hint.style.display = 'block';
                 }
+                
+                console.log(`Successfully moved ${draggedId} to ${zone.id}`);
             }
         });
-    }
+    });
     
-    // Make drag and drop functions global for HTML onclick handlers
-    window.allowDrop = allowDrop;
-    window.drop = handleDrop;
+    console.log(`Set up ${dropZones.length} drop zones`);
+}
+
+// Simple registration with CardHelpers
+console.log('About to register advancement card');
+if (window.CardHelpers) {
+    console.log('Registering advancement card with CardHelpers');
+    window.CardHelpers.registerCard('advancement', initializeAdvancementCard);
     
-    // Register with CardHelpers for automatic reinitialization
-    if (window.CardHelpers) {
-        window.CardHelpers.registerCard('advancement', initializeAdvancementCard);
-        
-        // If card already exists, initialize it immediately
-        if (document.querySelector('[data-card-id="advancement"]')) {
-            console.log('Advancement card already exists, initializing immediately');
-            initializeAdvancementCard();
-        }
+    // Try immediate initialization
+    const cardElement = document.querySelector('[data-card-id="advancement"]') || document.querySelector('.advancement-card');
+    if (cardElement) {
+        console.log('Advancement card found, initializing immediately');
+        initializeAdvancementCard();
     } else {
-        // Fallback
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeAdvancementCard);
-        } else {
-            initializeAdvancementCard();
-        }
+        console.log('Advancement card not found, will wait for callback');
     }
-    
-    // Export for debugging
-    window.initializeAdvancementCard = initializeAdvancementCard;
-    
-})();
+} else {
+    console.log('CardHelpers not available, using direct initialization');
+    initializeAdvancementCard();
+}
+
+// Export for manual testing
+window.initializeAdvancementCard = initializeAdvancementCard;
+console.log('Advancement card script loaded successfully');
