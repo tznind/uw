@@ -7,6 +7,11 @@ console.log('Document ready state:', document.readyState);
 function initializeAdvancementCard() {
     console.log('Advancement card: Starting initialization');
     
+    // Debug URL parameters at the start
+    const urlParams = new URLSearchParams(window.location.search);
+    console.log('Current URL:', window.location.href);
+    console.log('All URL parameters:', Object.fromEntries(urlParams));
+    
     // Find containers
     const availableContainer = document.querySelector('#available-advancements');
     const currentGoalContainer = document.querySelector('#current-goal');
@@ -37,14 +42,17 @@ function initializeAdvancementCard() {
     availableContainer.innerHTML = '';
     
     // Create hidden container for persistence if it doesn't exist
-    if (!hiddenContainer) {
+    let hiddenContainerElement = hiddenContainer;
+    if (!hiddenContainerElement) {
         const newHiddenContainer = document.createElement('div');
         newHiddenContainer.className = 'hidden-advancement-state';
         newHiddenContainer.style.display = 'none';
         availableContainer.parentElement.parentElement.appendChild(newHiddenContainer);
-        hiddenContainer = newHiddenContainer;
+        hiddenContainerElement = newHiddenContainer;
+        console.log('Created new hidden container');
     } else {
-        hiddenContainer.innerHTML = '';
+        // Don't clear existing container - preserve any existing inputs
+        console.log('Found existing hidden container with', hiddenContainerElement.children.length, 'inputs');
     }
     
     advancements.forEach((text, index) => {
@@ -55,43 +63,70 @@ function initializeAdvancementCard() {
         item.draggable = true;
         item.dataset.advancementId = `advancement_${index}`;
         
-        // Create hidden number input for URL persistence (0=available, 1=current, 2=achieved)
-        const numberInput = document.createElement('input');
-        numberInput.type = 'number';
-        numberInput.id = `advancement_${index}`;
-        numberInput.name = `advancement_${index}`;
-        numberInput.min = '0';
-        numberInput.max = '2';
-        numberInput.value = '0'; // Default to available
-        hiddenContainer.appendChild(numberInput);
+        // Check if hidden input already exists (created by main persistence system)
+        let numberInput = document.querySelector(`input[name="advancement_${index}"]`);
         
-        // Check if there's a saved state in URL
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.has(`advancement_${index}`)) {
-            const savedState = parseInt(urlParams.get(`advancement_${index}`));
-            if (savedState >= 0 && savedState <= 2) {
+        if (!numberInput) {
+            // Create hidden number input for URL persistence (0=available, 1=current, 2=achieved)
+            numberInput = document.createElement('input');
+            numberInput.type = 'number';
+            numberInput.id = `advancement_${index}_state`; // Different ID to avoid conflicts
+            numberInput.name = `advancement_${index}`; // Keep same name for URL params
+            numberInput.min = '0';
+            numberInput.max = '2';
+            numberInput.value = '0'; // Default to available
+            hiddenContainerElement.appendChild(numberInput);
+            console.log(`Created new hidden input for advancement_${index}`);
+        } else {
+            console.log(`Found existing hidden input for advancement_${index} with value: ${numberInput.value}`);
+        }
+        
+        // Check if there's a saved state (either from existing input or URL)
+        let savedState = 0; // Default to available
+        
+        if (numberInput.value && numberInput.value !== '0') {
+            // Input already has a value (likely from main persistence system)
+            savedState = parseInt(numberInput.value);
+            console.log(`Using existing input value for advancement_${index}: ${savedState}`);
+        } else {
+            // Check URL parameters as fallback
+            const urlParams = new URLSearchParams(window.location.search);
+            // Check both possible parameter names
+            if (urlParams.has(`advancement_${index}`)) {
+                savedState = parseInt(urlParams.get(`advancement_${index}`));
+                console.log(`Found URL param advancement_${index}=${savedState}`);
                 numberInput.value = savedState.toString();
-                
-                // Apply appropriate styling and placement
-                if (savedState === 1) {
-                    // Current goal
-                    item.classList.add('in-current-goal');
-                    if (currentGoalContainer) {
-                        currentGoalContainer.appendChild(item);
-                        const hint = currentGoalContainer.querySelector('.zone-hint');
-                        if (hint) hint.style.display = 'none';
-                        currentGoalContainer.classList.add('has-item');
-                        console.log(`Restored ${item.id} to current goal`);
-                        return; // Skip adding to available container
-                    }
-                } else if (savedState === 2) {
-                    // Achieved
-                    item.classList.add('achieved');
-                    if (achievedContainer) {
-                        achievedContainer.appendChild(item);
-                        console.log(`Restored ${item.id} to achieved`);
-                        return; // Skip adding to available container
-                    }
+                console.log(`Set ${numberInput.id || numberInput.name} value to ${savedState}`);
+            } else if (urlParams.has(`advancement_${index}_state`)) {
+                savedState = parseInt(urlParams.get(`advancement_${index}_state`));
+                console.log(`Found URL param advancement_${index}_state=${savedState}`);
+                numberInput.value = savedState.toString();
+                console.log(`Set ${numberInput.id || numberInput.name} value to ${savedState}`);
+            }
+        }
+        
+        console.log(`Processing advancement_${index} with final savedState: ${savedState}`);
+        
+        if (savedState >= 0 && savedState <= 2) {
+            // Apply appropriate styling and placement based on saved state
+            if (savedState === 1) {
+                // Current goal
+                item.classList.add('in-current-goal');
+                if (currentGoalContainer) {
+                    currentGoalContainer.appendChild(item);
+                    const hint = currentGoalContainer.querySelector('.zone-hint');
+                    if (hint) hint.style.display = 'none';
+                    currentGoalContainer.classList.add('has-item');
+                    console.log(`Restored ${item.id} to current goal`);
+                    return; // Skip adding to available container
+                }
+            } else if (savedState === 2) {
+                // Achieved
+                item.classList.add('achieved');
+                if (achievedContainer) {
+                    achievedContainer.appendChild(item);
+                    console.log(`Restored ${item.id} to achieved`);
+                    return; // Skip adding to available container
                 }
             }
         }
@@ -197,10 +232,19 @@ function initializeAdvancementCard() {
 }
 
 function updateAdvancementState(advancementId, newState) {
-    const numberInput = document.querySelector(`#${advancementId}`);
+    // Try to find input with _state suffix first (our created inputs)
+    let numberInput = document.querySelector(`#${advancementId}_state`);
+    
+    // If not found, try to find by name attribute (persistence system inputs)
+    if (!numberInput) {
+        numberInput = document.querySelector(`input[name="${advancementId}"]`);
+    }
+    
     if (numberInput) {
         numberInput.value = newState.toString();
         console.log(`Updated ${advancementId} state to ${newState}`);
+    } else {
+        console.warn(`Hidden input not found for ${advancementId}`);
     }
 }
 
