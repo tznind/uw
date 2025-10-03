@@ -26,6 +26,62 @@ function initializeAdvancementCard() {
             'A conspiracy is uncovered.',
             'An act is performed covertly.',
             'A dark secret is extracted.'
+        ],
+        'Commercial': [
+            'A solution is purchased.',
+            'A frivolous expense is made.',
+            'A celebration is held.',
+            'A rich resource is found.',
+            'A cargo unit is exchanged.'
+        ],
+        'Explorer': [
+            'An alien wilderness is traversed.',
+            'A bold act fails spectacularly.',
+            'A needed item is scrounged up.',
+            'A ludicrous stunt turns the tides.',
+            'A forgotten place is excavated.'
+        ],
+        'Industrial': [
+            'A piece of junk proves pivotal.',
+            'A piece of technology is "improved".',
+            'A breakage occurs.',
+            'An explosion alters the situation.',
+            'A structural weakness is exposed.'
+        ],
+        'Military': [
+            'An objective is taken by force.',
+            'A perilous order is obeyed.',
+            'An injury is sustained.',
+            'A problem is resolved with firepower.',
+            'A worthy enemy is exterminated.'
+        ],
+        'Personality': [
+            'A relationship changes drastically.',
+            'A statement starts or ends a fight.',
+            'A difficult promise is upheld.',
+            'A rumor spreads like wildfire.',
+            'An unlikely hero is exalted.'
+        ],
+        'Scoundrel': [
+            'A deal ends in betrayal.',
+            'A broken law goes unpunished.',
+            'A valuable is stolen.',
+            'A threat is pre-emptively removed.',
+            'An unsuspecting victim is exploited.'
+        ],
+        'Starfarer': [
+            'A passenger reaches a destination.',
+            'A solution leverages gravity.',
+            'A piloting maneuver causes a reversal.',
+            'A system is pushed to the limit.',
+            'A new culture is experienced.'
+        ],
+        'Technocrat': [
+            'A system\'s security is breached.',
+            'A solution is found on the SectorNet.',
+            'A computer crash causes chaos.',
+            'A pivotal data cluster is accessed.',
+            'An offending program is expunged.'
         ]
     };
     
@@ -45,16 +101,12 @@ function initializeAdvancementCard() {
     }
     
     const careers = getSelectedCareers();
-    console.log('Detected careers:', careers);
     let advancements = [];
     
     // Collect all advancements from selected careers
     careers.forEach(career => {
         if (careerAdvancements[career]) {
-            console.log(`Adding ${careerAdvancements[career].length} advancements from ${career}`);
             advancements.push(...careerAdvancements[career]);
-        } else {
-            console.log(`No advancements defined for career: ${career}`);
         }
     });
     
