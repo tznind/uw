@@ -43,7 +43,7 @@ function initializeAdvancementCard() {
         item.draggable = true;
         item.dataset.advancementId = `advancement_${index}`;
         
-        // Add drag event listeners
+        // Add drag event listeners (desktop)
         item.addEventListener('dragstart', function(e) {
             console.log('Drag started for:', text);
             e.dataTransfer.effectAllowed = 'move';
@@ -56,6 +56,83 @@ function initializeAdvancementCard() {
             item.classList.remove('dragging');
         });
         
+        // Add touch event listeners (mobile)
+        let touchStarted = false;
+        let startX, startY;
+        
+        item.addEventListener('touchstart', function(e) {
+            touchStarted = true;
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            item.classList.add('dragging');
+            console.log('Touch started for:', text);
+        });
+        
+        item.addEventListener('touchmove', function(e) {
+            if (!touchStarted) return;
+            e.preventDefault(); // Prevent scrolling
+            
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            
+            // Move the item visually
+            item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+            item.style.zIndex = '1000';
+            
+            // Find what we're hovering over
+            const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+            const dropZone = elementBelow ? elementBelow.closest('.advancement-list') : null;
+            
+            // Highlight drop zones
+            document.querySelectorAll('.advancement-list').forEach(zone => {
+                zone.classList.remove('drag-over');
+            });
+            if (dropZone) {
+                dropZone.classList.add('drag-over');
+            }
+        });
+        
+        item.addEventListener('touchend', function(e) {
+            if (!touchStarted) return;
+            touchStarted = false;
+            
+            const touch = e.changedTouches[0];
+            const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+            const dropZone = elementBelow ? elementBelow.closest('.advancement-list') : null;
+            
+            // Reset visual state
+            item.style.transform = '';
+            item.style.zIndex = '';
+            item.classList.remove('dragging');
+            document.querySelectorAll('.advancement-list').forEach(zone => {
+                zone.classList.remove('drag-over');
+            });
+            
+            // Handle drop
+            if (dropZone && dropZone !== item.parentElement) {
+                console.log(`Touch moving ${item.id} to ${dropZone.id}`);
+                handleTouchDrop(item, dropZone);
+            }
+            
+        console.log('Touch ended for:', text);
+        });
+        
+        // Add double-tap fallback for mobile
+        let lastTap = 0;
+        item.addEventListener('touchend', function(e) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 500 && tapLength > 0) {
+                // Double tap detected
+                e.preventDefault();
+                console.log('Double tap detected on:', text);
+                cycleThroughZones(item);
+            }
+            lastTap = currentTime;
+        });
+        
         availableContainer.appendChild(item);
         console.log(`Added draggable advancement: ${text}`);
     });
@@ -64,6 +141,72 @@ function initializeAdvancementCard() {
     setupDropZones();
     
     console.log('Advancement card initialization complete');
+}
+
+function cycleThroughZones(item) {
+    const currentContainer = item.parentElement;
+    let targetZone;
+    
+    // Cycle: Available -> Current Goal -> Achieved -> Available
+    switch (currentContainer.id) {
+        case 'available-advancements':
+            targetZone = document.querySelector('#current-goal');
+            break;
+        case 'current-goal':
+            targetZone = document.querySelector('#achieved-advancements');
+            break;
+        case 'achieved-advancements':
+            targetZone = document.querySelector('#available-advancements');
+            break;
+        default:
+            targetZone = document.querySelector('#available-advancements');
+    }
+    
+    if (targetZone) {
+        console.log(`Double-tap cycling ${item.id} from ${currentContainer.id} to ${targetZone.id}`);
+        handleTouchDrop(item, targetZone);
+    }
+}
+
+function handleTouchDrop(draggedElement, zone) {
+    console.log(`Touch drop: Moving ${draggedElement.id} to ${zone.id}`);
+    
+    // Same logic as desktop drop but without dataTransfer
+    if (draggedElement && zone !== draggedElement.parentElement) {
+        // Handle current goal zone hint
+        if (zone.id === 'current-goal') {
+            const hint = zone.querySelector('.zone-hint');
+            if (hint) hint.style.display = 'none';
+            
+            // Only allow one item in current goal
+            const existingItem = zone.querySelector('.advancement-item');
+            if (existingItem) {
+                console.log('Moving existing current goal back to available (touch)');
+                const availableZone = document.querySelector('#available-advancements');
+                availableZone.appendChild(existingItem);
+            }
+        }
+        
+        // Move the item
+        zone.appendChild(draggedElement);
+        
+        // Update current goal zone styling
+        const currentGoal = document.querySelector('#current-goal');
+        if (currentGoal) {
+            const hasItem = currentGoal.querySelector('.advancement-item');
+            const hint = currentGoal.querySelector('.zone-hint');
+            
+            if (hasItem) {
+                currentGoal.classList.add('has-item');
+                if (hint) hint.style.display = 'none';
+            } else {
+                currentGoal.classList.remove('has-item');
+                if (hint) hint.style.display = 'block';
+            }
+        }
+        
+        console.log(`Touch drop successful: ${draggedElement.id} moved to ${zone.id}`);
+    }
 }
 
 function setupDropZones() {
@@ -118,11 +261,19 @@ function setupDropZones() {
                 // Move the item
                 zone.appendChild(draggedElement);
                 
-                // Check if we need to show the current goal hint again
+                // Update current goal zone styling
                 const currentGoal = document.querySelector('#current-goal');
-                if (currentGoal && !currentGoal.querySelector('.advancement-item')) {
+                if (currentGoal) {
+                    const hasItem = currentGoal.querySelector('.advancement-item');
                     const hint = currentGoal.querySelector('.zone-hint');
-                    if (hint) hint.style.display = 'block';
+                    
+                    if (hasItem) {
+                        currentGoal.classList.add('has-item');
+                        if (hint) hint.style.display = 'none';
+                    } else {
+                        currentGoal.classList.remove('has-item');
+                        if (hint) hint.style.display = 'block';
+                    }
                 }
                 
                 console.log(`Successfully moved ${draggedId} to ${zone.id}`);
