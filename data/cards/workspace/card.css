@@ -7,3 +7,45 @@
   color: #2c3e50;
   margin-bottom: 15px;
 }
+
+.workspace-options {
+  margin-top: 10px;
+}
+
+.workspace-option {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.workspace-option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.workspace-option label {
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+}
+
+.workspace-option .description {
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #666;
+  font-style: italic;
+  margin-left: 22px;
+}
+
+.no-careers-message {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.workspace-notes {
+  resize: vertical;
+  width: 100%;
+}
