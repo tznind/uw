@@ -113,12 +113,22 @@ function initializeAdvancementCard() {
     // Remove duplicates if any exist
     advancements = [...new Set(advancements)];
     
-    // Fallback to Academic if no advancements found
+    // If no careers selected, show no advancements
     if (advancements.length === 0) {
-        advancements = careerAdvancements['Academic'] || [];
+        console.log('No careers selected, showing empty advancement list');
     }
     
     availableContainer.innerHTML = '';
+    
+    // Show message if no advancements available
+    if (advancements.length === 0) {
+        const message = document.createElement('div');
+        message.className = 'no-careers-message';
+        message.style.cssText = 'text-align: center; color: #666; font-style: italic; padding: 20px 10px;';
+        message.textContent = 'Select careers (Career 1 and/or Career 2) to see available advancements.';
+        availableContainer.appendChild(message);
+        return; // Exit early since there are no advancements to process
+    }
     
     // Create hidden container for persistence if it doesn't exist
     let hiddenContainerElement = hiddenContainer;
