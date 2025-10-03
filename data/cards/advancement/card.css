@@ -182,14 +182,14 @@
 /* Better touch targets for mobile */
 @media (hover: none) and (pointer: coarse) {
   .advancement-card {
-    padding: 10px 12px !important;
+    padding: 8px 10px !important;
   }
   
   .advancement-item {
-    padding: 8px 10px;
-    margin: 3px 0;
-    font-size: 0.9em;
-    min-height: 36px;
+    padding: 6px 8px;
+    margin: 2px 0;
+    font-size: 0.85em;
+    min-height: 28px;
     display: flex;
     align-items: center;
     touch-action: none;
@@ -198,6 +198,7 @@
     -webkit-touch-callout: none;
   }
   
+  /* Keep drag dots for touch feedback */
   .advancement-item::after {
     content: "⋮⋮";
     position: absolute;
