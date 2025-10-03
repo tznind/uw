@@ -35,6 +35,18 @@ function initializeAdvancementCard() {
     ];
     
     availableContainer.innerHTML = '';
+    
+    // Create hidden container for persistence if it doesn't exist
+    if (!hiddenContainer) {
+        const newHiddenContainer = document.createElement('div');
+        newHiddenContainer.className = 'hidden-advancement-state';
+        newHiddenContainer.style.display = 'none';
+        availableContainer.parentElement.parentElement.appendChild(newHiddenContainer);
+        hiddenContainer = newHiddenContainer;
+    } else {
+        hiddenContainer.innerHTML = '';
+    }
+    
     advancements.forEach((text, index) => {
         const item = document.createElement('div');
         item.className = 'advancement-item';
@@ -42,6 +54,47 @@ function initializeAdvancementCard() {
         item.id = `advancement_${index}`;
         item.draggable = true;
         item.dataset.advancementId = `advancement_${index}`;
+        
+        // Create hidden number input for URL persistence (0=available, 1=current, 2=achieved)
+        const numberInput = document.createElement('input');
+        numberInput.type = 'number';
+        numberInput.id = `advancement_${index}`;
+        numberInput.name = `advancement_${index}`;
+        numberInput.min = '0';
+        numberInput.max = '2';
+        numberInput.value = '0'; // Default to available
+        hiddenContainer.appendChild(numberInput);
+        
+        // Check if there's a saved state in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has(`advancement_${index}`)) {
+            const savedState = parseInt(urlParams.get(`advancement_${index}`));
+            if (savedState >= 0 && savedState <= 2) {
+                numberInput.value = savedState.toString();
+                
+                // Apply appropriate styling and placement
+                if (savedState === 1) {
+                    // Current goal
+                    item.classList.add('in-current-goal');
+                    if (currentGoalContainer) {
+                        currentGoalContainer.appendChild(item);
+                        const hint = currentGoalContainer.querySelector('.zone-hint');
+                        if (hint) hint.style.display = 'none';
+                        currentGoalContainer.classList.add('has-item');
+                        console.log(`Restored ${item.id} to current goal`);
+                        return; // Skip adding to available container
+                    }
+                } else if (savedState === 2) {
+                    // Achieved
+                    item.classList.add('achieved');
+                    if (achievedContainer) {
+                        achievedContainer.appendChild(item);
+                        console.log(`Restored ${item.id} to achieved`);
+                        return; // Skip adding to available container
+                    }
+                }
+            }
+        }
         
         // Add drag event listeners (desktop)
         item.addEventListener('dragstart', function(e) {
@@ -143,6 +196,14 @@ function initializeAdvancementCard() {
     console.log('Advancement card initialization complete');
 }
 
+function updateAdvancementState(advancementId, newState) {
+    const numberInput = document.querySelector(`#${advancementId}`);
+    if (numberInput) {
+        numberInput.value = newState.toString();
+        console.log(`Updated ${advancementId} state to ${newState}`);
+    }
+}
+
 function cycleThroughZones(item) {
     const currentContainer = item.parentElement;
     let targetZone;
@@ -184,7 +245,33 @@ function handleTouchDrop(draggedElement, zone) {
                 console.log('Moving existing current goal back to available (touch)');
                 const availableZone = document.querySelector('#available-advancements');
                 availableZone.appendChild(existingItem);
+                
+                // Update the existing item's state
+                updateAdvancementState(existingItem.dataset.advancementId, 0);
+                existingItem.classList.remove('achieved', 'in-current-goal');
             }
+        }
+        
+        // Determine new state based on zone
+        let newState = 0; // Available
+        if (zone.id === 'current-goal') {
+            newState = 1; // Current goal
+        } else if (zone.id === 'achieved-advancements') {
+            newState = 2; // Achieved
+        }
+        
+        // Update the hidden input
+        updateAdvancementState(draggedElement.dataset.advancementId, newState);
+        
+        // Update item styling based on zone
+        if (zone.id === 'achieved-advancements') {
+            draggedElement.classList.add('achieved');
+            draggedElement.classList.remove('in-current-goal');
+        } else if (zone.id === 'current-goal') {
+            draggedElement.classList.add('in-current-goal');
+            draggedElement.classList.remove('achieved');
+        } else {
+            draggedElement.classList.remove('achieved', 'in-current-goal');
         }
         
         // Move the item
@@ -205,7 +292,16 @@ function handleTouchDrop(draggedElement, zone) {
             }
         }
         
-        console.log(`Touch drop successful: ${draggedElement.id} moved to ${zone.id}`);
+        // Save to URL
+        if (window.Persistence) {
+            const form = document.querySelector('form');
+            if (form) {
+                window.Persistence.saveToURL(form);
+                console.log('Touch state saved to URL');
+            }
+        }
+        
+        console.log(`Touch drop successful: ${draggedElement.id} moved to ${zone.id} with state ${newState}`);
     }
 }
 
@@ -255,7 +351,33 @@ function setupDropZones() {
                         console.log('Moving existing current goal back to available');
                         const availableZone = document.querySelector('#available-advancements');
                         availableZone.appendChild(existingItem);
+                        
+                        // Update the existing item's state
+                        updateAdvancementState(existingItem.dataset.advancementId, 0);
+                        existingItem.classList.remove('achieved', 'in-current-goal');
                     }
+                }
+                
+                // Determine new state based on zone
+                let newState = 0; // Available
+                if (zone.id === 'current-goal') {
+                    newState = 1; // Current goal
+                } else if (zone.id === 'achieved-advancements') {
+                    newState = 2; // Achieved
+                }
+                
+                // Update the hidden input
+                updateAdvancementState(draggedElement.dataset.advancementId, newState);
+                
+                // Update item styling based on zone
+                if (zone.id === 'achieved-advancements') {
+                    draggedElement.classList.add('achieved');
+                    draggedElement.classList.remove('in-current-goal');
+                } else if (zone.id === 'current-goal') {
+                    draggedElement.classList.add('in-current-goal');
+                    draggedElement.classList.remove('achieved');
+                } else {
+                    draggedElement.classList.remove('achieved', 'in-current-goal');
                 }
                 
                 // Move the item
@@ -276,18 +398,26 @@ function setupDropZones() {
                     }
                 }
                 
-                console.log(`Successfully moved ${draggedId} to ${zone.id}`);
+                // Save to URL
+                if (window.Persistence) {
+                    const form = document.querySelector('form');
+                    if (form) {
+                        window.Persistence.saveToURL(form);
+                        console.log('State saved to URL');
+                    }
+                }
+                
+                console.log(`Successfully moved ${draggedId} to ${zone.id} with state ${newState}`);
             }
         });
     });
-    
-    console.log(`Set up ${dropZones.length} drop zones`);
 }
 
-// Simple registration with CardHelpers
-console.log('About to register advancement card');
+// Initialize card when ready
 if (window.CardHelpers) {
-    console.log('Registering advancement card with CardHelpers');
+    // Register callback with CardHelpers
+    console.log('Registering advancement card initialization callback');
+    
     window.CardHelpers.registerCard('advancement', initializeAdvancementCard);
     
     // Try immediate initialization

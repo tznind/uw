@@ -1,48 +1,42 @@
 <!-- Advancement Card for Uncharted Worlds -->
 <div class="card advancement-card">
-  <h3 class="card-title">📈 Advancement</h3>
+  <h3 class="card-title">
+    <span class="title-content">
+      <span class="title-text">📈 Advancement</span>
+      <span class="title-controls">
+        <span class="xp-inline">
+          <span class="xp-label">XP:</span>
+          <label class="xp-check"><input type="checkbox" id="xp1" name="xp1">1</label>
+          <label class="xp-check"><input type="checkbox" id="xp2" name="xp2">2</label>
+          <label class="xp-check"><input type="checkbox" id="xp3" name="xp3">3</label>
+        </span>
+        <span class="level-inline">
+          <label for="character_level">Lv:</label>
+          <input type="number" id="character_level" name="character_level" min="1" max="10" value="1">
+        </span>
+      </span>
+    </span>
+  </h3>
   
-  <!-- XP Tracking -->
-  <div class="form-field">
-    <div class="xp-tracking">
-      <div class="xp-boxes">
-        <strong>Experience Points:</strong>
-        <div class="xp-checkboxes">
-          <label><input type="checkbox" id="xp1" name="xp1"> 1</label>
-          <label><input type="checkbox" id="xp2" name="xp2"> 2</label>
-          <label><input type="checkbox" id="xp3" name="xp3"> 3</label>
-        </div>
-      </div>
-      <div class="level-box">
-        <label for="character_level">Level:</label>
-        <input type="number" id="character_level" name="character_level" min="1" max="10" value="1">
-      </div>
+  <!-- Current Goal Zone (no header) -->
+  <div class="form-field compact">
+    <div class="advancement-list current-goal-zone" id="current-goal" data-state="1" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <div class="zone-hint">🎯 Drag an advancement here to make it your current goal</div>
     </div>
   </div>
   
-  <!-- Current Goal Zone -->
-  <div class="form-field">
-    <strong>Current Goal:</strong>
-    <div class="advancement-column single-column">
-      <div class="advancement-list current-goal-zone" id="current-goal" data-state="1" ondrop="drop(event)" ondragover="allowDrop(event)">
-        <div class="zone-hint">🎯 Drag an advancement here to make it your current goal</div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Advancement Tracking -->
-  <div class="form-field">
-    <strong>Advancement Tracking:</strong>
+  <!-- Advancement Lists (no header) -->
+  <div class="form-field compact">
     <div class="advancement-lists">
       <div class="advancement-column">
-        <h4>Available Advancements</h4>
+        <h4>Available</h4>
         <div class="advancement-list available-zone" id="available-advancements" data-state="0" ondrop="drop(event)" ondragover="allowDrop(event)">
           <!-- Items will be populated by JavaScript -->
         </div>
       </div>
       
       <div class="advancement-column">
-        <h4>Achieved Advancements</h4>
+        <h4>Achieved</h4>
         <div class="advancement-list achieved-zone" id="achieved-advancements" data-state="2" ondrop="drop(event)" ondragover="allowDrop(event)">
           <!-- Completed items will appear here -->
         </div>

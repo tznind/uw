@@ -1,62 +1,105 @@
-/* Advancement Card Styles */
+/* Advancement Card Styles - Compact */
 .advancement-card {
-  /* Add any specific styles for advancement card */
+  /* Reduce horizontal padding */
+  padding: 8px 10px !important;
 }
 
 .advancement-card .card-title {
   color: #2c3e50;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
+  position: relative;
 }
 
-/* XP Tracking Styles - Compact */
-.xp-tracking {
+/* Ensure collapse button stays in position */
+.advancement-card .card-collapse-toggle {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Inline title layout */
+.title-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 8px;
-  background: #f8f9fa;
-  border: 1px solid #e0e0e0;
-  border-radius: 3px;
-  margin-bottom: 8px;
-  font-size: 0.9em;
+  width: 100%;
+  position: relative;
 }
 
-.xp-checkboxes {
+.title-text {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.title-controls {
   display: flex;
-  gap: 8px;
-  margin-top: 2px;
+  align-items: center;
+  gap: 12px;
+  margin-right: 30px; /* Space for collapse button */
+  font-size: 0.8em;
 }
 
-.xp-checkboxes label {
+/* Inline XP */
+.xp-inline {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xp-label {
+  font-weight: 600;
+  color: #666;
+}
+
+.xp-check {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.xp-check input[type="checkbox"] {
+  margin: 0;
+  transform: scale(0.9);
+}
+
+/* Inline Level */
+.level-inline {
   display: flex;
   align-items: center;
   gap: 3px;
-  font-weight: bold;
-  cursor: pointer;
-  font-size: 0.85em;
 }
 
-.xp-checkboxes input[type="checkbox"] {
-  transform: scale(1.0);
+.level-inline label {
+  font-weight: 600;
+  color: #666;
 }
 
-.level-box {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.level-box label {
-  font-weight: bold;
-  font-size: 0.85em;
-}
-
-.level-box input[type="number"] {
-  width: 50px;
-  padding: 3px;
+.level-inline input[type="number"] {
+  width: 35px;
+  padding: 2px 4px;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+}
+
+/* Compact form fields */
+.advancement-card .form-field {
+  margin-bottom: 6px;
+}
+
+.advancement-card .form-field.compact {
+  margin-bottom: 4px;
+}
+
+.advancement-card .form-field strong {
+  font-size: 0.9em;
+  display: block;
+  margin-bottom: 4px;
 }
 
 /* Advancement Lists Styles - Compact */
@@ -71,14 +114,15 @@
 }
 
 .advancement-column h4 {
-  margin: 0 0 4px 0;
-  padding: 4px 6px;
+  margin: 0 0 2px 0;
+  padding: 2px 4px;
   background: #e9ecef;
   border: 1px solid #dee2e6;
-  border-radius: 3px 3px 0 0;
-  font-size: 0.8em;
+  border-radius: 2px 2px 0 0;
+  font-size: 0.7em;
   text-align: center;
   font-weight: 600;
+  line-height: 1.2;
 }
 
 .advancement-list {
@@ -127,6 +171,10 @@
 
 /* Better touch targets for mobile */
 @media (hover: none) and (pointer: coarse) {
+  .advancement-card {
+    padding: 10px 12px !important;
+  }
+  
   .advancement-item {
     padding: 8px 10px;
     margin: 3px 0;
@@ -152,16 +200,25 @@
   }
   
   .advancement-list {
-    min-height: 100px;
+    min-height: 80px;
   }
   
   .current-goal-zone {
-    min-height: 48px;
+    min-height: 40px;
   }
   
   .current-goal-zone .zone-hint {
     font-size: 0.75em;
     padding: 4px;
+  }
+  
+  .title-controls {
+    gap: 8px;
+    margin-right: 35px;
+  }
+  
+  .xp-check input[type="checkbox"] {
+    transform: scale(1.1);
   }
 }
 
@@ -176,24 +233,12 @@
 }
 
 .advancement-item.achieved {
-  background: #d1ecf1;
-  border-color: #bee5eb;
+  text-decoration: line-through;
+  text-decoration-color: #999;
+  text-decoration-thickness: 2px;
+  color: #666;
+  font-style: italic;
   opacity: 0.8;
-}
-
-.advancement-item.achieved::after {
-  content: "✓";
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #28a745;
-  font-weight: bold;
-}
-
-/* Single column for current goal */
-.single-column {
-  max-width: 100%;
 }
 
 /* Compact form fields */
@@ -211,11 +256,12 @@
 .current-goal-zone {
   background: #fff3cd !important;
   border: 2px dashed #ffc107 !important;
-  min-height: 32px;
+  min-height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
+  padding: 3px 6px;
+  border-radius: 3px;
 }
 
 .current-goal-zone.drag-over {
@@ -256,15 +302,15 @@
   border-color: #007bff !important;
 }
 
-/* Achieved Zone */
+/* Achieved Zone - Same as Available */
 .achieved-zone {
-  background: #d4edda !important;
-  border: 2px dashed #c3e6cb !important;
+  background: #f8f9fa !important;
+  border: 2px dashed #dee2e6 !important;
 }
 
 .achieved-zone.drag-over {
-  background: #c8e6c9 !important;
-  border-color: #28a745 !important;
+  background: #e3f2fd !important;
+  border-color: #007bff !important;
 }
 
 /* Hidden elements */
@@ -277,13 +323,6 @@
   .advancement-lists {
     flex-direction: column;
     gap: 8px;
-  }
-  
-  .xp-tracking {
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
-    padding: 4px 6px;
   }
   
   .advancement-list {
