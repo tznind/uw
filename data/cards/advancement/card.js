@@ -1,5 +1,6 @@
 // Advancement Card JavaScript
 function initializeAdvancementCard() {
+    console.log('Advancement card: Starting initialization');
     
     // Find containers
     const availableContainer = document.querySelector('#available-advancements');
@@ -155,8 +156,8 @@ function initializeAdvancementCard() {
             // Create hidden number input for URL persistence (0=available, 1=current, 2=achieved)
             numberInput = document.createElement('input');
             numberInput.type = 'number';
-            numberInput.id = `a${index}_state`; // Different ID to avoid conflicts
-            numberInput.name = `a${index}`; // Keep same name for URL params
+            numberInput.id = `a${index}_s`;
+            numberInput.name = `a${index}_s`;
             numberInput.min = '0';
             numberInput.max = '2';
             numberInput.value = '0'; // Default to available
@@ -172,18 +173,10 @@ function initializeAdvancementCard() {
         } else {
             // Check URL parameters as fallback
             const urlParams = new URLSearchParams(window.location.search);
-            // Check both possible parameter names (short and legacy)
-            if (urlParams.has(`a${index}`)) {
-                savedState = parseInt(urlParams.get(`a${index}`));
+            if (urlParams.has(`a${index}_s`)) {
+                savedState = parseInt(urlParams.get(`a${index}_s`));
                 numberInput.value = savedState.toString();
-            } else if (urlParams.has(`advancement_${index}`)) {
-                // Legacy support for old long IDs
-                savedState = parseInt(urlParams.get(`advancement_${index}`));
-                numberInput.value = savedState.toString();
-            } else if (urlParams.has(`advancement_${index}_state`)) {
-                // Legacy support for old long IDs
-                savedState = parseInt(urlParams.get(`advancement_${index}_state`));
-                numberInput.value = savedState.toString();
+                console.log(`Found URL param a${index}_s=${savedState}`);
             }
         }
         
@@ -377,19 +370,19 @@ function initializeAdvancementCard() {
             setTimeout(() => initializeAdvancementCard(), 100);
         }
     });
+    
+    console.log('Advancement card initialization complete');
 }
 
 function updateAdvancementState(advancementId, newState) {
-    // Try to find input with _state suffix first (our created inputs)
-    let numberInput = document.querySelector(`#${advancementId}_state`);
-    
-    // If not found, try to find by name attribute (persistence system inputs)
-    if (!numberInput) {
-        numberInput = document.querySelector(`input[name="${advancementId}"]`);
-    }
+    console.log(`Updating advancement ${advancementId} to state ${newState}`);
+    const numberInput = document.querySelector(`#${advancementId}_s`);
     
     if (numberInput) {
         numberInput.value = newState.toString();
+        console.log(`Set input #${advancementId}_s value to ${numberInput.value}`);
+    } else {
+        console.warn(`Could not find hidden input #${advancementId}_s`);
     }
 }
 
@@ -588,15 +581,22 @@ function setupDropZones() {
 }
 
 // Initialize card when ready
+console.log('Advancement card script loaded, attempting initialization');
 if (window.CardHelpers) {
+    console.log('CardHelpers found, registering advancement card');
     window.CardHelpers.registerCard('advancement', initializeAdvancementCard);
     
     // Try immediate initialization
     const cardElement = document.querySelector('[data-card-id="advancement"]') || document.querySelector('.advancement-card');
+    console.log('Looking for card element:', !!cardElement, cardElement?.className);
     if (cardElement) {
+        console.log('Card element found, initializing immediately');
         initializeAdvancementCard();
+    } else {
+        console.log('Card element not found, waiting for callback');
     }
 } else {
+    console.log('CardHelpers not available, direct initialization');
     initializeAdvancementCard();
 }
 
