@@ -628,6 +628,7 @@
        "id":"rel",
        "title":"Relic",
        "description":"Create a Class 3 melee weapon. Choose one: It is a symbol of your order; It is a sign of your greatness; It is feared and reviled. A Relic is almost indestructible. If you become separated, you always have a vague, painful sense of where it is.",
+       "grantsCard": "custom-melee",
        "category":"Skills"
    },
    {

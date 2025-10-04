@@ -1,0 +1,61 @@
+<!-- Custom Melee Weapon Card for Uncharted Worlds -->
+<div class="card custom-melee-card">
+  <div class="card-header">
+    <h3 class="card-title">⚔️ Custom Melee Weapon</h3>
+  </div>
+  
+  <!-- Basic Info -->
+  <div class="form-field">
+    <label for="cm_nm">Name:</label>
+    <input type="text" id="cm_nm" name="cm_nm" placeholder="Your weapon's name">
+  </div>
+  
+  <!-- Weapon description -->
+  <div style="margin-top: 8px; padding: 6px; background: #f0f8ff; border-radius: 4px; font-size: 0.9em; color: #333;">
+    <strong>Melee Weapon:</strong> One or two-handed melee weapon. Optimal Range: Melee.<br>
+    Choose <strong>1 free upgrade</strong> plus <strong>1 upgrade per Class</strong> (e.g., Class 1 = 2 total, Class 2 = 3 total, etc.).
+  </div>
+    
+  <!-- Upgrades Section -->
+  <div class="form-field">
+    <h4>Upgrades</h4>
+    <p class="upgrade-description">Select upgrades based on your weapon's Class. You get 1 free upgrade plus 1 per Class level.</p>
+    
+    <div class="upgrades-grid">
+      <label><input type="checkbox" id="cm_con" name="cm_con"> <strong>Consecrated</strong><br><small class="upgrade-desc">Dedicated to a cause. Causes great harm to enemies of the cause.</small></label>
+      <label><input type="checkbox" id="cm_dan" name="cm_dan"> <strong>Dangerous</strong><br><small class="upgrade-desc">Causes harm to anyone but its true owner.</small></label>
+      <label><input type="checkbox" id="cm_dis" name="cm_dis"> <strong>Disruptive</strong><br><small class="upgrade-desc">Harms shields, supernatural forces, magic, and incorporeal creatures.</small></label>
+      <label><input type="checkbox" id="cm_ele" name="cm_ele"> <strong>Elemental</strong><br><small class="upgrade-desc">Creates a lasting elemental reaction. Ex: fire, corrosion, frost, smoke, etc.</small></label>
+      <label><input type="checkbox" id="cm_liv" name="cm_liv"> <strong>Living</strong><br><small class="upgrade-desc">A living organic creature. Minor mobility. Regrows and regenerates if hurt.</small></label>
+      <label><input type="checkbox" id="cm_pai" name="cm_pai"> <strong>Paired</strong><br><small class="upgrade-desc">Two weapons that act in perfect tandem. Mediocre if used separately.</small></label>
+      <label><input type="checkbox" id="cm_rad" name="cm_rad"> <strong>Radiant</strong><br><small class="upgrade-desc">Glows with light. Unleashes blinding flashes.</small></label>
+      <label><input type="checkbox" id="cm_spe" name="cm_spe"> <strong>Specialized</strong><br><small class="upgrade-desc">Choose a skill. Lessens/diverts/absorbs some of the consequences of failures.</small></label>
+      <label><input type="checkbox" id="cm_sum" name="cm_sum"> <strong>Summoned</strong><br><small class="upgrade-desc">Called into existence from nothing, can be dismissed.</small></label>
+      <label><input type="checkbox" id="cm_swi" name="cm_swi"> <strong>Switching</strong><br><small class="upgrade-desc">Choose 2 basic upgrades. The weapon can switch forms between those two.</small></label>
+      <label><input type="checkbox" id="cm_syp" name="cm_syp"> <strong>Syphon</strong><br><small class="upgrade-desc">Choose the element or concept this weapon drinks (heat, blood, fear, etc.).</small></label>
+      <label><input type="checkbox" id="cm_vir" name="cm_vir"> <strong>Virtual</strong><br><small class="upgrade-desc">A cyber weapon program that also exists inside the SectorNet.</small></label>
+      <label><input type="checkbox" id="cm_cnc" name="cm_cnc"> <strong>Concealed</strong><br><small class="upgrade-desc">Inconspicuous, easily hidden, doesn't show on scanners.</small></label>
+      <label><input type="checkbox" id="cm_def" name="cm_def"> <strong>Defensive</strong><br><small class="upgrade-desc">Can parry, deflect, and disarm.</small></label>
+      <label><input type="checkbox" id="cm_des" name="cm_des"> <strong>Destructive</strong><br><small class="upgrade-desc">Causes property damage and damages machinery and vehicles.</small></label>
+      <label><input type="checkbox" id="cm_ene" name="cm_ene"> <strong>Energy</strong><br><small class="upgrade-desc">Glows with incandescent energy, melts, burns, cauterizes.</small></label>
+      <label><input type="checkbox" id="cm_fle" name="cm_fle"> <strong>Flexible</strong><br><small class="upgrade-desc">Whip-like length capable of binding and lashing. Optimal Range: Adjacent</small></label>
+      <label><input type="checkbox" id="cm_glo" name="cm_glo"> <strong>Glove</strong><br><small class="upgrade-desc">A heavy, weaponized glove. Can still manipulate objects.</small></label>
+      <label><input type="checkbox" id="cm_haf" name="cm_haf"> <strong>Hafted</strong><br><small class="upgrade-desc">Two handed. Long reach. Sweeping attacks. Range: Melee, Adjacent</small></label>
+      <label><input type="checkbox" id="cm_hea" name="cm_hea"> <strong>Heavy</strong><br><small class="upgrade-desc">Two handed. Massive, resilient. Heavy, devastating attacks, hard to block.</small></label>
+      <label><input type="checkbox" id="cm_imp" name="cm_imp"> <strong>Impact</strong><br><small class="upgrade-desc">Heavy kinetic force that breaks bones and knocks people over.</small></label>
+      <label><input type="checkbox" id="cm_pie" name="cm_pie"> <strong>Piercing</strong><br><small class="upgrade-desc">Can pin targets, pierce thin materials, and stab with great accuracy.</small></label>
+      <label><input type="checkbox" id="cm_rip" name="cm_rip"> <strong>Ripper</strong><br><small class="upgrade-desc">Loud mechanical motion rips, tears, grinds or shreds</small></label>
+      <label><input type="checkbox" id="cm_sev" name="cm_sev"> <strong>Severing</strong><br><small class="upgrade-desc">Chops, cuts, causes bleeding and can sever limbs.</small></label>
+      <label><input type="checkbox" id="cm_sho" name="cm_sho"> <strong>Shock</strong><br><small class="upgrade-desc">Electrocutes, harms electronics and robots. Can stun on low settings.</small></label>
+      <label><input type="checkbox" id="cm_sty" name="cm_sty"> <strong>Stylish</strong><br><small class="upgrade-desc">Looks impressive, distinctive, and unique.</small></label>
+      <label><input type="checkbox" id="cm_thr" name="cm_thr"> <strong>Thrown</strong><br><small class="upgrade-desc">Range: Adjacent, Close. Handful of one-handed throwing weapons.</small></label>
+    </div>
+    
+    <!-- Details Section -->
+    <div class="form-field" style="margin-top: 15px;">
+      <label for="cm_details">Details:</label>
+      <textarea id="cm_details" name="cm_details" placeholder="Additional details about your weapon's upgrades, modifications, or special features..." rows="3" style="width: 100%; resize: vertical;"></textarea>
+    </div>
+  </div>
+  
+</div>
