@@ -90,6 +90,27 @@ function initializeAdvancementCard() {
             'A limitation is surpassed.',
             'A body\'s limits are reached.',
             'An old wound causes new pain.'
+        ],
+        'Chosen': [
+            'A heresy is vanquished.',
+            'A scripture is fulfilled.',
+            'A prayer is heeded.',
+            'A sinner repents.',
+            'A death is denied.'
+        ],
+        'Consul': [
+            'An abuse of power is resisted.',
+            'A taste of exotica is enjoyed.',
+            'A voice is no longer silenced.',
+            'An embarrassment proves critical.',
+            'A foreign belief is embraced.'
+        ],
+        'Fanatic': [
+            'An opponent is shown the error of their ways.',
+            'A problem is purged by fire.',
+            'A fear proves to be justified.',
+            'An injustice is rectified.',
+            'A hero suffers for their cause.'
         ]
     };
     

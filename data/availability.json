@@ -217,5 +217,29 @@
     "fas": false,
     "tech": false,
     "stro": false
+  },
+  "Chosen": {
+    "cards": ["workspace", "advancement"],
+    "pac": false,
+    "loh": false,
+    "wis": false,
+    "insc": false,
+    "rel": false
+  },
+  "Consul": {
+    "cards": ["workspace", "advancement"],
+    "tri": false,
+    "lin": false,
+    "medi": false,
+    "adv": false,
+    "ada": false
+  },
+  "Fanatic": {
+    "cards": ["workspace", "advancement"],
+    "brav": false,
+    "nem": false,
+    "ter": false,
+    "obs": false,
+    "mart": false
   }
 }

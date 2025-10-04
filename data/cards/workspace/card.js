@@ -136,6 +136,42 @@ console.log('Workspace card script is loading!');
                 title: 'Collector',
                 description: 'Tools and machinery designed to gather a specific type of fuel into appropriate storage units.'
             }
+        ],
+        'Chosen': [
+            {
+                id: 'ceremonial',
+                title: 'Ceremonial',
+                description: 'An elaborate, gaudy space, covered in trappings of religious and/or spiritual significance, suitable for religious celebrations.'
+            },
+            {
+                id: 'holy',
+                title: 'Holy',
+                description: 'A peaceful, austere space wholly dedicated to a greater being or spiritual force. A place of quiet contemplation and prayer.'
+            }
+        ],
+        'Consul': [
+            {
+                id: 'habitat',
+                title: 'Habitat',
+                description: 'Highly controlled, sealed space. Mimics natural habitats or planetary environments. Self-contained life support, gravity simulators, and so on.'
+            },
+            {
+                id: 'culinary',
+                title: 'Culinary',
+                description: 'Designed to produce and serve food, either providing a wide variety of dishes, or tailored to a specific species or culture.'
+            }
+        ],
+        'Fanatic': [
+            {
+                id: 'discipline',
+                title: 'Discipline',
+                description: 'Secure, private, sound-proofed confines. Provides extreme mental and physical conditioning, exertion, torture, or self-punishment.'
+            },
+            {
+                id: 'shrine',
+                title: 'Shrine',
+                description: 'A deeply personal space entirely devoted to your obsession, filled with samples, inspirations, trinkets and memorabilia.'
+            }
         ]
     };
     
