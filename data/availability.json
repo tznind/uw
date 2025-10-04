@@ -15,71 +15,84 @@
     "ai": false,
     "ce": false,
     "cuf": false,
-    "srv": false
+    "srv": false,
+    "gs": false
   },
   "Brutal": {
     "cards": ["health", "workspace", "advancement"],
     "ass": false,
     "tou": false,
     "sne": false,
-    "bra": false
+    "bra": false,
+    "gs": false
   },
   "Colonist": {
     "cards": ["health", "workspace", "advancement"],
     "tin": false,
     "cuv": false,
     "hli": false,
-    "rsr": false
+    "rsr": false,
+    "gs": false
   },
   "Crowded": {
     "cards": ["health", "workspace", "advancement"],
     "cnt": false,
     "net": false,
     "bri": false,
-    "aff": false
+    "aff": false,
+    "gs": false
   },
   "Galactic": {
     "cards": ["health", "workspace", "advancement"],
     "pro": false,
     "wei": false,
     "rep": false,
-    "fin": false
+    "fin": false,
+    "gs": false
   },
   "Impoverished": {
     "cards": ["health", "workspace", "advancement"],
     "ste": false,
     "rec": false,
     "cri": false,
-    "scr": false
+    "scr": false,
+    "gs": false
   },
   "Privileged": {
     "cards": ["health", "workspace", "advancement"],
     "lux": false,
     "fam": false,
     "sca": false,
-    "dec": false
+    "dec": false,
+    "gs": false
   },
   "Productive": {
     "cards": ["health", "workspace", "advancement"],
     "cal": false,
     "acu": false,
     "voc": false,
-    "edu": false
+    "edu": false,
+    "gs": false
   },
   "Regimented": {
     "cards": ["health", "workspace", "advancement"],
     "lea": false,
     "tac": false,
     "ded": false,
-    "dis": false
+    "dis": false,
+    "gs": false
   },
   "Rustic": {
     "cards": ["health", "workspace", "advancement"],
     "con": false,
     "sur": false,
     "che": false,
-    "hl": false
+    "hl": false,
+    "gs": false
   },
+
+
+  
   "Clandestine": {
     "cards": ["workspace", "advancement"],
     "ste": false,
