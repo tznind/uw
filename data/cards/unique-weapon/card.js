@@ -17,6 +17,28 @@ console.log('Unique Weapon card script is loading!');
         const firearmUpgrades = document.getElementById('firearm_upgrades');
         const heavyUpgrades = document.getElementById('heavy_upgrades');
         
+        // List of all firearm upgrade checkbox IDs
+        const firearmUpgradeCheckboxes = [
+            'uw_f_att', 'uw_f_burst', 'uw_f_con', 'uw_f_chem', 'uw_f_dest', 'uw_f_exp',
+            'uw_f_imp', 'uw_f_key', 'uw_f_las', 'uw_f_lau', 'uw_f_mou', 'uw_f_pen',
+            'uw_f_pla', 'uw_f_rap', 'uw_f_sco', 'uw_f_sho', 'uw_f_shr', 'uw_f_sil',
+            'uw_f_sta', 'uw_f_stu', 'uw_f_sty', 'uw_f_cha', 'uw_f_chg', 'uw_f_cns',
+            'uw_f_dis', 'uw_f_liv', 'uw_f_pai', 'uw_f_rad', 'uw_f_ric', 'uw_f_sum',
+            'uw_f_swi', 'uw_f_syp', 'uw_f_vir'
+        ];
+        
+        // List of all heavy weapon upgrade checkbox IDs  
+        const heavyUpgradeCheckboxes = [
+            'uw_h_bre', 'uw_h_chem', 'uw_h_con', 'uw_h_det', 'uw_h_imp', 'uw_h_key',
+            'uw_h_las', 'uw_h_pen', 'uw_h_pla', 'uw_h_see', 'uw_h_sho', 'uw_h_shr',
+            'uw_h_spr', 'uw_h_stu', 'uw_h_sty', 'uw_h_sus', 'uw_h_cha', 'uw_h_dis',
+            'uw_h_ipl', 'uw_h_liv', 'uw_h_ric', 'uw_h_sum', 'uw_h_swi', 'uw_h_tur',
+            'uw_h_vir', 'uw_h_vol'
+        ];
+        
+        // Combined list for hide untaken functionality
+        const allUpgradeCheckboxes = [...firearmUpgradeCheckboxes, ...heavyUpgradeCheckboxes];
+        
         if (!categorySelect || !subtypeField || !subtypeSelect || !weaponDescription) {
             console.log('Unique Weapon card elements not found yet');
             return;
@@ -77,6 +99,41 @@ console.log('Unique Weapon card script is loading!');
                 firearmUpgrades.style.display = 'none';
                 heavyUpgrades.style.display = 'none';
             }
+            
+            // Also update hide untaken functionality
+            updateUpgradeDisplay();
+        }
+        
+        // Function to update individual upgrade visibility (hide untaken)
+        function updateUpgradeDisplay() {
+            console.log('Unique Weapon: Updating upgrade display for hide untaken...');
+            
+            // Check if hide untaken is enabled
+            const hideUntakenCheckbox = document.getElementById('hide_untaken');
+            const hideUntaken = hideUntakenCheckbox ? hideUntakenCheckbox.checked : false;
+            
+            allUpgradeCheckboxes.forEach(checkboxId => {
+                const checkbox = document.getElementById(checkboxId);
+                if (checkbox) {
+                    const label = checkbox.closest('label');
+                    if (label) {
+                        if (checkbox.checked) {
+                            // Show and mark as selected
+                            label.classList.add('selected');
+                            label.style.display = '';
+                        } else {
+                            // Remove selected styling
+                            label.classList.remove('selected');
+                            // Hide if 'Hide untaken' is checked, else show
+                            if (hideUntaken) {
+                                label.style.display = 'none';
+                            } else {
+                                label.style.display = '';
+                            }
+                        }
+                    }
+                }
+            });
         }
         
         // Add event listeners
@@ -87,6 +144,17 @@ console.log('Unique Weapon card script is loading!');
         if (subtypeSelect) {
             subtypeSelect.addEventListener('change', updateWeaponInterface);
         }
+        
+        // Set up upgrade checkbox listeners for hide untaken functionality
+        allUpgradeCheckboxes.forEach(checkboxId => {
+            const checkbox = document.getElementById(checkboxId);
+            if (checkbox && !checkbox.hasAttribute('data-weapon-listener')) {
+                checkbox.addEventListener('change', function() {
+                    updateUpgradeDisplay();
+                });
+                checkbox.setAttribute('data-weapon-listener', 'true');
+            }
+        });
         
         // Initial update
         updateWeaponInterface();
