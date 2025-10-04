@@ -90,6 +90,15 @@
     "hl": false,
     "gs": false
   },
+  "Forlorn": {
+    "cards": ["health", "workspace", "advancement"],
+    "ins": false,
+    "bg": false,
+    "nav": false,
+    "tri": false,
+    "outc": false,
+    "gs": false
+  },
 
 
   

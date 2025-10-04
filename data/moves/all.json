@@ -597,6 +597,25 @@
    {
        "id":"hij",
        "title":"Hijack",
-       "description":"When you Access a system, it locks out everyone else. You can open the system to anyone you wish."
+       "description":"When you Access a system, it locks out everyone else. You can open the system to anyone you wish.",
+       "category":"Skills"
+   },
+   {
+       "id":"ins",
+       "title":"Insolence",
+       "description":"When you solve a problem by defying customs, propriety, and the desires of those around you, you can roll +Mettle instead of whatever the usual stat would be. This will likely be selfish, rude, and possibly hurtful.",
+       "category":"Skills"
+   },
+   {
+       "id":"tri",
+       "title":"Trinkets",
+       "description":"Whenever you successfully engage a foreign society (visit, experience, infiltrate, attack, etc.), gain a Class 1 Cargo of miscellaneous baubles, trinkets, and other cultural detritus.",
+       "category":"Skills"
+   },
+   {
+       "id":"outc",
+       "title":"Outcast",
+       "description":"You are an outsider, unwelcome in polite society. When operating alone or with other outcasts, you gain +1 to rolls where your outsider status is an advantage (sneaking, surviving, avoiding authority).",
+       "category":"Skills"
    }
 ]
