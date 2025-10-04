@@ -196,6 +196,18 @@ console.log('Workspace card script is loading!');
                 title: 'Nullified',
                 description: 'Sound absorbing, featureless, with full light control. Cancels and suppresses weak forms of psionic and supernatural energies.'
             }
+        ],
+        'Shaper': [
+            {
+                id: 'mystic',
+                title: 'Mystic',
+                description: 'Full of ancient tomes, curios, and baubles. Equipped for magical study and experimentation. Marked with runes of protection and binding. Cannot be entered or exited by supernatural beings, unless allowed.'
+            },
+            {
+                id: 'elemental',
+                title: 'Elemental',
+                description: 'Tied to a specific element (fire, frost, lightning, light or darkness). Generates and/or contains that element.'
+            }
         ]
     };
     

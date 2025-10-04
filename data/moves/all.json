@@ -905,5 +905,29 @@
        "title":"Clairvoyance",
        "description":"Meditation allows you to use your +Mettle to make Assessment about specific people, objects, and locations over any distance. The glimpses granted by a failed Clairvoyance can be extremely disturbing.",
        "category":"Skills"
+   },
+   {
+       "id":"telepo",
+       "title":"Teleport",
+       "description":"You can instantly move yourself and nearby targets across any distance, using +Mettle to overcome potential adversity, if you either: See your destination clearly; Know the destination intimately; Don't care where you end up, as long as it's Not Here.",
+       "category":"Skills"
+   },
+   {
+       "id":"reg",
+       "title":"Regeneration",
+       "description":"A moment of stillness allows you to reduce the severity of one of your injuries by one step, if available. This can regrow limbs/organs lost to Critical Injuries, and happens while you are dead.",
+       "category":"Skills"
+   },
+   {
+       "id":"evo",
+       "title":"Evoke",
+       "description":"Each time you Evoke the elements, choose between Fire, Frost, Lightning, Darkness, and Light. You may create and manipulate that element as part of any Move or Skill. You may wield it as a weapon when you Launch Assault or Open Fire. You may only Evoke one element at a time.",
+       "category":"Skills"
+   },
+   {
+       "id":"trans",
+       "title":"Transform",
+       "description":"You can take on the form and bodily capabilities of a physical subject up to three times bigger or smaller than you: Immediately after an Assessment of the subject; At any time by spending a Data Point about the subject. You can return to your original form at any time.",
+       "category":"Skills"
    }
 ]

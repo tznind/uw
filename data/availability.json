@@ -257,5 +257,13 @@
     "pre": false,
     "comp": false,
     "cla": false
+  },
+  "Shaper": {
+    "cards": ["workspace", "advancement"],
+    "telepo": false,
+    "reg": false,
+    "alc": false,
+    "evo": false,
+    "trans": false
   }
 }

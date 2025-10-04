@@ -125,6 +125,13 @@ function initializeAdvancementCard() {
             'A mind is opened.',
             'A great disturbance gives pause.',
             'An unquiet psyche finds rest.'
+        ],
+        'Shaper': [
+            'An environment shifts to suit one\'s needs.',
+            'A universal law is transgressed.',
+            'A step is taken between two worlds.',
+            'A fundamental change is wrought.',
+            'A hard truth is reached.'
         ]
     };
     
