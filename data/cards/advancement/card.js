@@ -83,6 +83,55 @@ function initializeAdvancementCard() {
             'A computer crash causes chaos.',
             'A pivotal data cluster is accessed.',
             'An offending program is expunged.'
+        ],
+        'Augmented': [
+            'A surgical encounter is endured.',
+            'A key component is installed.',
+            'A limitation is surpassed.',
+            'A body\'s limits are reached.',
+            'An old wound causes new pain.'
+        ],
+        'Chosen': [
+            'A heresy is vanquished.',
+            'A scripture is fulfilled.',
+            'A prayer is heeded.',
+            'A sinner repents.',
+            'A death is denied.'
+        ],
+        'Consul': [
+            'An abuse of power is resisted.',
+            'A taste of exotica is enjoyed.',
+            'A voice is no longer silenced.',
+            'An embarrassment proves critical.',
+            'A foreign belief is embraced.'
+        ],
+        'Fanatic': [
+            'An opponent is shown the error of their ways.',
+            'A problem is purged by fire.',
+            'A fear proves to be justified.',
+            'An injustice is rectified.',
+            'A hero suffers for their cause.'
+        ],
+        'Kinetic': [
+            'A single pebble causes a landslide.',
+            'A plan is thwarted by gravity.',
+            'A great weight is lifted.',
+            'A danger is turned aside.',
+            'A moment balance is achieved.'
+        ],
+        'Psychic': [
+            'An unwilling pawn acts.',
+            'A future refused to change.',
+            'A mind is opened.',
+            'A great disturbance gives pause.',
+            'An unquiet psyche finds rest.'
+        ],
+        'Shaper': [
+            'An environment shifts to suit one\'s needs.',
+            'A universal law is transgressed.',
+            'A step is taken between two worlds.',
+            'A fundamental change is wrought.',
+            'A hard truth is reached.'
         ]
     };
     

@@ -124,6 +124,90 @@ console.log('Workspace card script is loading!');
                 title: 'Observer',
                 description: 'Advanced, multi-band sensors, capable of long-distance scans. Probe launchers. Recording equipment, shielded data storage.'
             }
+        ],
+        'Augmented': [
+            {
+                id: 'powered',
+                title: 'Powered',
+                description: 'A powerful generator or backup system. Converts fuel into power, can recharge batteries and energy cells.'
+            },
+            {
+                id: 'collector',
+                title: 'Collector',
+                description: 'Tools and machinery designed to gather a specific type of fuel into appropriate storage units.'
+            }
+        ],
+        'Chosen': [
+            {
+                id: 'ceremonial',
+                title: 'Ceremonial',
+                description: 'An elaborate, gaudy space, covered in trappings of religious and/or spiritual significance, suitable for religious celebrations.'
+            },
+            {
+                id: 'holy',
+                title: 'Holy',
+                description: 'A peaceful, austere space wholly dedicated to a greater being or spiritual force. A place of quiet contemplation and prayer.'
+            }
+        ],
+        'Consul': [
+            {
+                id: 'habitat',
+                title: 'Habitat',
+                description: 'Highly controlled, sealed space. Mimics natural habitats or planetary environments. Self-contained life support, gravity simulators, and so on.'
+            },
+            {
+                id: 'culinary',
+                title: 'Culinary',
+                description: 'Designed to produce and serve food, either providing a wide variety of dishes, or tailored to a specific species or culture.'
+            }
+        ],
+        'Fanatic': [
+            {
+                id: 'discipline',
+                title: 'Discipline',
+                description: 'Secure, private, sound-proofed confines. Provides extreme mental and physical conditioning, exertion, torture, or self-punishment.'
+            },
+            {
+                id: 'shrine',
+                title: 'Shrine',
+                description: 'A deeply personal space entirely devoted to your obsession, filled with samples, inspirations, trinkets and memorabilia.'
+            }
+        ],
+        'Kinetic': [
+            {
+                id: 'arena',
+                title: 'Arena',
+                description: 'Open area designed for physical activity. Contains protective measures and equipment appropriate to the activity.'
+            },
+            {
+                id: 'shielded',
+                title: 'Shielded',
+                description: 'A workspace designed to either provide a force field or augment existing defenses. Creates barriers between or within other workspaces.'
+            }
+        ],
+        'Psychic': [
+            {
+                id: 'tranquil',
+                title: 'Tranquil',
+                description: 'A peaceful, austere, quiet space, suitable for meditation and deep thought. Simple decorations and few distractions.'
+            },
+            {
+                id: 'nullified',
+                title: 'Nullified',
+                description: 'Sound absorbing, featureless, with full light control. Cancels and suppresses weak forms of psionic and supernatural energies.'
+            }
+        ],
+        'Shaper': [
+            {
+                id: 'mystic',
+                title: 'Mystic',
+                description: 'Full of ancient tomes, curios, and baubles. Equipped for magical study and experimentation. Marked with runes of protection and binding. Cannot be entered or exited by supernatural beings, unless allowed.'
+            },
+            {
+                id: 'elemental',
+                title: 'Elemental',
+                description: 'Tied to a specific element (fire, frost, lightning, light or darkness). Generates and/or contains that element.'
+            }
         ]
     };
     

@@ -1,0 +1,10 @@
+{
+  "id": "custom-melee",
+  "title": "Custom Melee Weapon",
+  "path": "data/cards/custom-melee",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}

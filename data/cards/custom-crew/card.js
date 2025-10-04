@@ -11,7 +11,9 @@ console.log('*** CUSTOM CREW SCRIPT STARTING ***');
     const upgradeCheckboxes = [
         'cc_arm', 'cc_art', 'cc_ath', 'cc_bea', 'cc_bui', 'cc_cri',
         'cc_equ', 'cc_fea', 'cc_imp', 'cc_inf', 'cc_loy', 'cc_mec',
-        'cc_med', 'cc_num', 'cc_rug', 'cc_ste', 'cc_tea', 'cc_wre'
+        'cc_med', 'cc_num', 'cc_rug', 'cc_ste', 'cc_tea', 'cc_wre',
+        'cc_ali', 'cc_att', 'cc_cyb', 'cc_eni', 'cc_reg', 'cc_spi',
+        'cc_sum', 'cc_vir', 'cc_zea'
     ];
     
     function setupUpgradeCheckboxes() {
@@ -31,7 +33,8 @@ console.log('*** CUSTOM CREW SCRIPT STARTING ***');
             'squad': 'Disciplined and stolid. Equipped with a similar type of weaponry (pistols, stun batons, rifles, etc). Able to guard areas and engage in small-scale combat.',
             'techs': 'Educated and well trained. Equipped with basic tools. Able to provide technical or manual assistance to a variety of scientific or engineering projects.',
             'gang': 'Crude and self-reliant. Equipped with a smattering of mismatched weaponry (pistols, shotguns, chains, knives, etc). Able to attack people or break things.',
-            'staff': 'Refined and professional. Able to serve guests, keep accounts, prepare meals and perform daily household chores.'
+            'staff': 'Refined and professional. Able to serve guests, keep accounts, prepare meals and perform daily household chores.',
+            'artificial': 'Choose form (robot, undead, golem, spirit, etc.). Obedient, but rarely takes initiative or acts on their own. Commanded with +Interface.'
         };
         
         // Function to update type description

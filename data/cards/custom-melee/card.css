@@ -1,0 +1,114 @@
+/* Custom Melee Weapon Card Styles */
+
+.custom-melee-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.custom-melee-card .card-header {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+}
+
+.custom-melee-card .card-title {
+    margin: 0;
+    color: #007bff;
+    font-size: 1.5em;
+}
+
+.custom-melee-card .form-field {
+    margin-bottom: 15px;
+}
+
+.custom-melee-card label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.custom-melee-card input[type="text"],
+.custom-melee-card textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.custom-melee-card textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+.custom-melee-card .upgrade-description {
+    font-size: 0.9em;
+    color: #666;
+    margin: 5px 0 10px 0;
+}
+
+.custom-melee-card .upgrades-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.custom-melee-card .upgrades-grid label {
+    display: flex;
+    align-items: flex-start;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background: #fafafa;
+    font-weight: normal;
+    margin-bottom: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.custom-melee-card .upgrades-grid label:hover {
+    background: #f0f8ff;
+    border-color: #007bff;
+}
+
+.custom-melee-card .upgrades-grid label.selected {
+    background: #e3f2fd;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 1px #1976d2;
+}
+
+.custom-melee-card .upgrades-grid input[type="checkbox"] {
+    margin-right: 8px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.custom-melee-card .upgrade-desc {
+    display: block;
+    font-weight: normal;
+    color: #666;
+    font-size: 0.85em;
+    margin-top: 2px;
+    line-height: 1.3;
+}
+
+.custom-melee-card h5 {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 15px 0 8px 0;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .custom-melee-card .upgrades-grid {
+        grid-template-columns: 1fr;
+    }
+}

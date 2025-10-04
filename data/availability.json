@@ -90,6 +90,51 @@
     "hl": false,
     "gs": false
   },
+  "Forlorn": {
+    "cards": ["health", "workspace", "advancement"],
+    "ins": false,
+    "bg": false,
+    "nav": false,
+    "tri": false,
+    "outc": false,
+    "gs": false
+  },
+  "Occult": {
+    "cards": ["health", "workspace", "advancement"],
+    "rit": false,
+    "rel": false,
+    "alc": false,
+    "ani": false,
+    "hex": false,
+    "gs": false
+  },
+  "Primal": {
+    "cards": ["health", "workspace", "advancement"],
+    "str": false,
+    "lau": false,
+    "ter": false,
+    "stro": false,
+    "hun": false,
+    "gs": false
+  },
+  "Programmed": {
+    "cards": ["health", "workspace", "advancement"],
+    "abn": false,
+    "fid": false,
+    "obs": false,
+    "lin": false,
+    "mem": false,
+    "gs": false
+  },
+  "Spiritual": {
+    "cards": ["health", "workspace", "advancement"],
+    "tra": false,
+    "pac": false,
+    "pre": false,
+    "insp": false,
+    "med": false,
+    "gs": false
+  },
 
 
   
@@ -164,5 +209,61 @@
     "pro": false,
     "net": false,
     "ai": false
+  },
+  "Augmented": {
+    "cards": ["workspace", "advancement"],
+    "har": false,
+    "bet": false,
+    "fas": false,
+    "tech": false,
+    "stro": false
+  },
+  "Chosen": {
+    "cards": ["workspace", "advancement"],
+    "pac": false,
+    "loh": false,
+    "wis": false,
+    "insc": false,
+    "rel": false
+  },
+  "Consul": {
+    "cards": ["workspace", "advancement"],
+    "tri": false,
+    "lin": false,
+    "medi": false,
+    "adv": false,
+    "ada": false
+  },
+  "Fanatic": {
+    "cards": ["workspace", "advancement"],
+    "brav": false,
+    "nem": false,
+    "ter": false,
+    "obs": false,
+    "mart": false
+  },
+  "Kinetic": {
+    "cards": ["workspace", "advancement"],
+    "tel": false,
+    "lau": false,
+    "ani": false,
+    "bar": false,
+    "fli": false
+  },
+  "Psychic": {
+    "cards": ["workspace", "advancement"],
+    "telep": false,
+    "prob": false,
+    "pre": false,
+    "comp": false,
+    "cla": false
+  },
+  "Shaper": {
+    "cards": ["workspace", "advancement"],
+    "telepo": false,
+    "reg": false,
+    "alc": false,
+    "evo": false,
+    "trans": false
   }
 }
