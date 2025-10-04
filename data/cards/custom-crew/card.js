@@ -11,7 +11,9 @@ console.log('*** CUSTOM CREW SCRIPT STARTING ***');
     const upgradeCheckboxes = [
         'cc_arm', 'cc_art', 'cc_ath', 'cc_bea', 'cc_bui', 'cc_cri',
         'cc_equ', 'cc_fea', 'cc_imp', 'cc_inf', 'cc_loy', 'cc_mec',
-        'cc_med', 'cc_num', 'cc_rug', 'cc_ste', 'cc_tea', 'cc_wre'
+        'cc_med', 'cc_num', 'cc_rug', 'cc_ste', 'cc_tea', 'cc_wre',
+        'cc_ali', 'cc_att', 'cc_cyb', 'cc_eni', 'cc_reg', 'cc_spi',
+        'cc_sum', 'cc_vir', 'cc_zea'
     ];
     
     function setupUpgradeCheckboxes() {
