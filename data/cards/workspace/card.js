@@ -183,6 +183,9 @@ console.log('Workspace card script is loading!');
         
         // Restore any previously selected workspace
         restoreSelectedWorkspace();
+        
+        // Set up hide untaken functionality
+        setupHideUntakenForWorkspace();
     }
     
     function restoreSelectedWorkspace() {
@@ -195,6 +198,62 @@ console.log('Workspace card script is loading!');
                 radio.checked = true;
             }
         }
+    }
+    
+    function updateWorkspaceDisplay() {
+        console.log('Workspace: Updating workspace display for hide untaken...');
+        
+        // Check if hide untaken is enabled
+        const hideUntakenCheckbox = document.getElementById('hide_untaken');
+        const hideUntaken = hideUntakenCheckbox ? hideUntakenCheckbox.checked : false;
+        
+        // Find all workspace radio buttons
+        const workspaceOptions = document.querySelectorAll('input[name="workspace_selection"]');
+        
+        workspaceOptions.forEach(radio => {
+            const workspaceOption = radio.closest('.workspace-option');
+            if (workspaceOption) {
+                if (radio.checked) {
+                    // Always show selected option
+                    workspaceOption.style.display = '';
+                    console.log(`Workspace: Showing selected ${radio.value}`);
+                } else {
+                    // Hide unselected if 'Hide untaken' is checked
+                    if (hideUntaken) {
+                        workspaceOption.style.display = 'none';
+                        console.log(`Workspace: Hiding unselected ${radio.value}`);
+                    } else {
+                        workspaceOption.style.display = '';
+                        console.log(`Workspace: Showing unselected ${radio.value}`);
+                    }
+                }
+            }
+        });
+    }
+    
+    function setupHideUntakenForWorkspace() {
+        console.log('Workspace: Setting up hide untaken functionality...');
+        
+        // Listen for changes to workspace radio buttons
+        const workspaceOptions = document.querySelectorAll('input[name="workspace_selection"]');
+        workspaceOptions.forEach(radio => {
+            if (!radio.hasAttribute('data-workspace-listener')) {
+                radio.addEventListener('change', updateWorkspaceDisplay);
+                radio.setAttribute('data-workspace-listener', 'true');
+                console.log(`Workspace: Added listener to ${radio.value}`);
+            }
+        });
+        
+        // Listen for changes to hide untaken checkbox
+        const hideUntakenCheckbox = document.getElementById('hide_untaken');
+        if (hideUntakenCheckbox && !hideUntakenCheckbox.hasAttribute('data-workspace-hide-listener')) {
+            hideUntakenCheckbox.addEventListener('change', updateWorkspaceDisplay);
+            hideUntakenCheckbox.setAttribute('data-workspace-hide-listener', 'true');
+            console.log('Workspace: Added listener to hide_untaken checkbox');
+        }
+        
+        // Initial update
+        updateWorkspaceDisplay();
     }
     
     function initializeWorkspaceCard() {
