@@ -11,7 +11,8 @@ console.log('*** CUSTOM FLYER SCRIPT STARTING ***');
     const upgradeCheckboxes = [
         'cf_ag', 'cf_ar', 'cf_am', 'cf_co', 'cf_lu', 'cf_ru',
         'cf_se', 'cf_sn', 'cf_sh', 'cf_st', 'cf_to', 'cf_tr',
-        'cf_tu', 'cf_wo'
+        'cf_tu', 'cf_wo', 'cf_ba', 'cf_bl', 'cf_cn', 'cf_fo',
+        'cf_ke', 'cf_la', 'cf_li', 'cf_su', 'cf_tf', 'cf_vi'
     ];
     
     function setupUpgradeCheckboxes() {

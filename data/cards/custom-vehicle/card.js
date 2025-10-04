@@ -11,7 +11,9 @@ console.log('*** CUSTOM VEHICLE SCRIPT STARTING ***');
     const upgradeCheckboxes = [
         'cv_ag', 'cv_ar', 'cv_bo', 'cv_co', 'cv_lu', 'cv_pl',
         'cv_re', 'cv_ru', 'cv_se', 'cv_sn', 'cv_st', 'cv_to',
-        'cv_tr', 'cv_tu', 'cv_wo'
+        'cv_tr', 'cv_tu', 'cv_wo', 'cv_ba', 'cv_bl', 'cv_cn',
+        'cv_fo', 'cv_ke', 'cv_li', 'cv_pf', 'cv_sh', 'cv_su',
+        'cv_tf', 'cv_vi'
     ];
     
     function setupUpgradeCheckboxes() {
