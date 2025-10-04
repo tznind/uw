@@ -843,5 +843,67 @@
            }
        ],
        "category":"Skills"
+   },
+   {
+       "id":"tel",
+       "title":"Telekinesis",
+       "description":"You can project physical actions over a short distance (interact, carry, punch, etc.), using the appropriate +Stats as if you were physically there.",
+       "category":"Skills"
+   },
+   {
+       "id":"bar",
+       "title":"Barrier",
+       "description":"You can project a flat or hemispherical barrier of force that deflects or resists impacts, leveraging your +Mettle as a manifestation of solid willpower. This is extremely encumbering; you will be Clumsy while maintaining it.",
+       "category":"Skills"
+   },
+   {
+       "id":"fli",
+       "title":"Flight",
+       "description":"You can soar, glide, and hover in midair.",
+       "category":"Skills"
+   },
+   {
+       "id":"telep",
+       "title":"Telepathy",
+       "description":"With a moment of focus, you can: Communicate mentally with someone within line of sight; Communicate mentally with someone you know well; Sense the general life force, health, and emotional state of everyone within a given area.",
+       "category":"Skills"
+   },
+   {
+       "id":"prob",
+       "title":"Probe",
+       "description":"Grasping the head of another being allows you to forcefully Access their mind (with +Interface), exactly as if it was a computer system.",
+       "category":"Skills"
+   },
+   {
+       "id":"comp",
+       "title":"Compel",
+       "description":"You can Command any group or individual, no matter their disposition, no matter the command.",
+       "outcomes": [
+           {
+               "range":"≥ 10",
+               "text":"Choose 1 consequence.",
+               "bullets": [
+                   "They only obey non-harmful parts of your command.",
+                   "They are stilted, clumsy, and obviously controlled.",
+                   "You suffer a mental or emotional debility as backlash."
+               ]
+           },
+           {
+               "range":"7-9",
+               "text":"Choose 2 consequences.",
+               "bullets": [
+                   "They only obey non-harmful parts of your command.",
+                   "They are stilted, clumsy, and obviously controlled.",
+                   "You suffer a mental or emotional debility as backlash."
+               ]
+           }
+       ],
+       "category":"Skills"
+   },
+   {
+       "id":"cla",
+       "title":"Clairvoyance",
+       "description":"Meditation allows you to use your +Mettle to make Assessment about specific people, objects, and locations over any distance. The glimpses granted by a failed Clairvoyance can be extremely disturbing.",
+       "category":"Skills"
    }
 ]

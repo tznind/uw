@@ -241,5 +241,21 @@
     "ter": false,
     "obs": false,
     "mart": false
+  },
+  "Kinetic": {
+    "cards": ["workspace", "advancement"],
+    "tel": false,
+    "lau": false,
+    "ani": false,
+    "bar": false,
+    "fli": false
+  },
+  "Psychic": {
+    "cards": ["workspace", "advancement"],
+    "telep": false,
+    "prob": false,
+    "pre": false,
+    "comp": false,
+    "cla": false
   }
 }

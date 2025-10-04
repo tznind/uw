@@ -111,6 +111,20 @@ function initializeAdvancementCard() {
             'A fear proves to be justified.',
             'An injustice is rectified.',
             'A hero suffers for their cause.'
+        ],
+        'Kinetic': [
+            'A single pebble causes a landslide.',
+            'A plan is thwarted by gravity.',
+            'A great weight is lifted.',
+            'A danger is turned aside.',
+            'A moment balance is achieved.'
+        ],
+        'Psychic': [
+            'An unwilling pawn acts.',
+            'A future refused to change.',
+            'A mind is opened.',
+            'A great disturbance gives pause.',
+            'An unquiet psyche finds rest.'
         ]
     };
     

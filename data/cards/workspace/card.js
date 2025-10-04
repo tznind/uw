@@ -172,6 +172,30 @@ console.log('Workspace card script is loading!');
                 title: 'Shrine',
                 description: 'A deeply personal space entirely devoted to your obsession, filled with samples, inspirations, trinkets and memorabilia.'
             }
+        ],
+        'Kinetic': [
+            {
+                id: 'arena',
+                title: 'Arena',
+                description: 'Open area designed for physical activity. Contains protective measures and equipment appropriate to the activity.'
+            },
+            {
+                id: 'shielded',
+                title: 'Shielded',
+                description: 'A workspace designed to either provide a force field or augment existing defenses. Creates barriers between or within other workspaces.'
+            }
+        ],
+        'Psychic': [
+            {
+                id: 'tranquil',
+                title: 'Tranquil',
+                description: 'A peaceful, austere, quiet space, suitable for meditation and deep thought. Simple decorations and few distractions.'
+            },
+            {
+                id: 'nullified',
+                title: 'Nullified',
+                description: 'Sound absorbing, featureless, with full light control. Cancels and suppresses weak forms of psionic and supernatural energies.'
+            }
         ]
     };
     
