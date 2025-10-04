@@ -31,7 +31,8 @@ console.log('*** CUSTOM CREW SCRIPT STARTING ***');
             'squad': 'Disciplined and stolid. Equipped with a similar type of weaponry (pistols, stun batons, rifles, etc). Able to guard areas and engage in small-scale combat.',
             'techs': 'Educated and well trained. Equipped with basic tools. Able to provide technical or manual assistance to a variety of scientific or engineering projects.',
             'gang': 'Crude and self-reliant. Equipped with a smattering of mismatched weaponry (pistols, shotguns, chains, knives, etc). Able to attack people or break things.',
-            'staff': 'Refined and professional. Able to serve guests, keep accounts, prepare meals and perform daily household chores.'
+            'staff': 'Refined and professional. Able to serve guests, keep accounts, prepare meals and perform daily household chores.',
+            'artificial': 'Choose form (robot, undead, golem, spirit, etc.). Obedient, but rarely takes initiative or acts on their own. Commanded with +Interface.'
         };
         
         // Function to update type description
