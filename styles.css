@@ -328,7 +328,7 @@ button:focus {
   border: 1px solid #e9ecef;
   border-radius: 6px;
   padding: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
   transition: box-shadow 0.2s;
   position: relative;
 }
@@ -811,7 +811,6 @@ button:focus {
 }
 
 .card-wrapper {
-  margin-bottom: 25px;
   position: relative;
 }
 
@@ -1060,7 +1059,7 @@ hr {
   /* Reduce move padding */
   .move {
     padding: 12px 8px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
   }
   
   /* Compress hex layout */
@@ -1128,10 +1127,6 @@ hr {
   #moves-container,
   #cards-container {
     margin: 20px 0;
-  }
-  
-  .card-wrapper {
-    margin-bottom: 20px;
   }
 }
 
