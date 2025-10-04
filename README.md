@@ -4,6 +4,9 @@ This is an [Uncharted Worlds](https://uncharted-worlds.com/) implementation of [
 
 It is online at https://tznind.github.io/uw/cs.html
 
+<a href="https://tznind.github.io/uw/cs.html">
+<img width="824" height="849" alt="image" src="https://github.com/user-attachments/assets/79df7d87-7cbc-48d2-a757-a8ee3309c93b" />
+</a>
 
 
 See https://github.com/tznind/lc for main template repository.
