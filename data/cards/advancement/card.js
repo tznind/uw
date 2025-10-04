@@ -364,6 +364,9 @@ function initializeAdvancementCard() {
     // Set up drop zones
     setupDropZones();
     
+    // Set up hide untaken functionality
+    setupHideUntakenForAdvancement();
+    
     // Listen for career changes to update advancement options (like workspace card does)
     document.addEventListener('change', function(event) {
         if (event.target.id === 'role2' || event.target.id === 'role3') {
@@ -372,6 +375,44 @@ function initializeAdvancementCard() {
     });
     
     console.log('Advancement card initialization complete');
+}
+
+function updateAdvancementDisplay() {
+    console.log('Advancement: Updating advancement display for hide untaken...');
+    
+    // Check if hide untaken is enabled
+    const hideUntakenCheckbox = document.getElementById('hide_untaken');
+    const hideUntaken = hideUntakenCheckbox ? hideUntakenCheckbox.checked : false;
+    
+    // Find the advancement lists container (Available/Achieved sections)
+    const advancementLists = document.querySelector('.advancement-lists');
+    
+    if (advancementLists) {
+        if (hideUntaken) {
+            // Hide Available/Achieved sections, leaving only current goal
+            advancementLists.style.display = 'none';
+            console.log('Advancement: Hiding Available/Achieved sections');
+        } else {
+            // Show Available/Achieved sections
+            advancementLists.style.display = '';
+            console.log('Advancement: Showing Available/Achieved sections');
+        }
+    }
+}
+
+function setupHideUntakenForAdvancement() {
+    console.log('Advancement: Setting up hide untaken functionality...');
+    
+    // Listen for changes to hide untaken checkbox
+    const hideUntakenCheckbox = document.getElementById('hide_untaken');
+    if (hideUntakenCheckbox && !hideUntakenCheckbox.hasAttribute('data-advancement-hide-listener')) {
+        hideUntakenCheckbox.addEventListener('change', updateAdvancementDisplay);
+        hideUntakenCheckbox.setAttribute('data-advancement-hide-listener', 'true');
+        console.log('Advancement: Added listener to hide_untaken checkbox');
+    }
+    
+    // Initial update
+    updateAdvancementDisplay();
 }
 
 function updateAdvancementState(advancementId, newState) {
