@@ -209,5 +209,13 @@
     "pro": false,
     "net": false,
     "ai": false
+  },
+  "Augmented": {
+    "cards": ["workspace", "advancement"],
+    "har": false,
+    "bet": false,
+    "fas": false,
+    "tech": false,
+    "stro": false
   }
 }

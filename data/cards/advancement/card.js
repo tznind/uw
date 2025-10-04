@@ -83,6 +83,13 @@ function initializeAdvancementCard() {
             'A computer crash causes chaos.',
             'A pivotal data cluster is accessed.',
             'An offending program is expunged.'
+        ],
+        'Augmented': [
+            'A surgical encounter is endured.',
+            'A key component is installed.',
+            'A limitation is surpassed.',
+            'A body\'s limits are reached.',
+            'An old wound causes new pain.'
         ]
     };
     

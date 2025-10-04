@@ -741,5 +741,29 @@
        "title":"Meditation",
        "description":"When you spend time in quiet contemplation and meditation, you may ask the GM one question about your current situation. The GM will give you a truthful but cryptic answer that may require interpretation.",
        "category":"Skills"
+   },
+   {
+       "id":"har",
+       "title":"Harder",
+       "description":"You resist damage as a Vehicle would: Incoming damage is reduced by one step before you Brace for Impact, unless that damage has Penetrating or Breaching.",
+       "category":"Skills"
+   },
+   {
+       "id":"bet",
+       "title":"Better",
+       "description":"Your body can support two additional cybernetic Mods. You gain two free cybermods if this Skill was chosen during character creation.",
+       "category":"Skills"
+   },
+   {
+       "id":"fas",
+       "title":"Faster",
+       "description":"Your run speed and reaction time are incredibly fast. You can include extreme acts of acrobatics, reflexes, and/or flexibility in your Moves (quick-drawing weapons, catching bullets, running up walls, outrunning explosions, sprinting on water, etc.).",
+       "category":"Skills"
+   },
+   {
+       "id":"tech",
+       "title":"Technologic",
+       "description":"You can establish a wireless mental connection to any computer system within line of sight. Open and Accessed systems remain connected to you as long as you are within signal range.",
+       "category":"Skills"
    }
 ]

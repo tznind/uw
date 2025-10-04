@@ -124,6 +124,18 @@ console.log('Workspace card script is loading!');
                 title: 'Observer',
                 description: 'Advanced, multi-band sensors, capable of long-distance scans. Probe launchers. Recording equipment, shielded data storage.'
             }
+        ],
+        'Augmented': [
+            {
+                id: 'powered',
+                title: 'Powered',
+                description: 'A powerful generator or backup system. Converts fuel into power, can recharge batteries and energy cells.'
+            },
+            {
+                id: 'collector',
+                title: 'Collector',
+                description: 'Tools and machinery designed to gather a specific type of fuel into appropriate storage units.'
+            }
         ]
     };
     
