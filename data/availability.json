@@ -99,6 +99,42 @@
     "outc": false,
     "gs": false
   },
+  "Occult": {
+    "cards": ["health", "workspace", "advancement"],
+    "rit": false,
+    "rel": false,
+    "alc": false,
+    "ani": false,
+    "hex": false,
+    "gs": false
+  },
+  "Primal": {
+    "cards": ["health", "workspace", "advancement"],
+    "str": false,
+    "lau": false,
+    "ter": false,
+    "stro": false,
+    "hun": false,
+    "gs": false
+  },
+  "Programmed": {
+    "cards": ["health", "workspace", "advancement"],
+    "abn": false,
+    "fid": false,
+    "obs": false,
+    "lin": false,
+    "mem": false,
+    "gs": false
+  },
+  "Spiritual": {
+    "cards": ["health", "workspace", "advancement"],
+    "tra": false,
+    "pac": false,
+    "pre": false,
+    "insp": false,
+    "med": false,
+    "gs": false
+  },
 
 
   

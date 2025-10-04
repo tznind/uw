@@ -617,5 +617,129 @@
        "title":"Outcast",
        "description":"You are an outsider, unwelcome in polite society. When operating alone or with other outcasts, you gain +1 to rolls where your outsider status is an advantage (sneaking, surviving, avoiding authority).",
        "category":"Skills"
+   },
+   {
+       "id":"rit",
+       "title":"Ritual",
+       "description":"When you entrust a situation to the power of your rituals, fortunes, hexes, and charms, you can roll +Expertise instead of whatever the usual stat would be. This will likely be complicated, unpredictable, and deeply unsettling.",
+       "category":"Skills"
+   },
+   {
+       "id":"rel",
+       "title":"Relic",
+       "description":"Create a Class 3 melee weapon. Choose one: It is a symbol of your order; It is a sign of your greatness; It is feared and reviled. A Relic is almost indestructible. If you become separated, you always have a vague, painful sense of where it is.",
+       "category":"Skills"
+   },
+   {
+       "id":"alc",
+       "title":"Alchemy",
+       "description":"When using a Ritual Kit to Patch Up a person, object, or material, choose from this list instead of the standard Patch Up: Spread rust, rot, or erosion; Purify, clean, and rejuvenate; Transmute one material into another.",
+       "category":"Skills"
+   },
+   {
+       "id":"ani",
+       "title":"Animate",
+       "description":"Choose a collection of objects. Those objects become a Class 1 Artificial Crew with an upgrade that matches the materials used. You can only have one Animated Crew at a time.",
+       "category":"Skills"
+   },
+   {
+       "id":"hex",
+       "title":"Hex",
+       "description":"When you place a curse or hex on someone, describe the misfortune you wish upon them. The next time they would succeed at something important, they fail instead. You can only have one active hex at a time.",
+       "category":"Skills"
+   },
+   {
+       "id":"str",
+       "title":"Strength",
+       "description":"When you handle a situation with rage, violence, and brute force, you can roll +Physique instead of whatever the usual stat would be. This will likely be loud, ugly, and possibly painful.",
+       "category":"Skills"
+   },
+   {
+       "id":"lau",
+       "title":"Launch",
+       "description":"You can propel small, inanimate objects with deadly speed and precision using +Mettle. Large, oddly shaped or defiant subjects (small vehicles, people) tend to be clumsier projectiles, and are propelled with +Physique.",
+       "category":"Skills"
+   },
+   {
+       "id":"ter",
+       "title":"Terrify",
+       "description":"When your presence becomes known, Roll+Influence or +Physique. On a 10+, people are meek and respectful. On a 7-9, people are cautious and worried. On a 6-, people are panicked and hostile.",
+       "outcomes": [
+           {
+               "range":"≥ 10",
+               "text":"People are meek and respectful."
+           },
+           {
+               "range":"7-9",
+               "text":"People are cautious and worried."
+           },
+           {
+               "range":"≤ 6",
+               "text":"People are panicked and hostile."
+           }
+       ],
+       "category":"Skills"
+   },
+   {
+       "id":"stro",
+       "title":"Stronger",
+       "description":"Your unarmed and melee attacks are Destructive, Impact, and Penetrating.",
+       "category":"Skills"
+   },
+   {
+       "id":"hun",
+       "title":"Hunt",
+       "description":"When tracking or pursuing prey through natural terrain, you gain +2 to relevant rolls. You can sense the general direction and distance of your quarry as long as you remain on their trail.",
+       "category":"Skills"
+   },
+   {
+       "id":"abn",
+       "title":"Abnegation",
+       "description":"When you black out and allow your programming to take over in order to solve a problem, you can roll +Interface instead of whatever the usual stat would be. Your programming won't undermine its own agenda.",
+       "category":"Skills"
+   },
+   {
+       "id":"obs",
+       "title":"Obsession",
+       "description":"Choose the subject of your Obsession. When you would gain a Data Point about a tangentially related subject, gain a Data Point about your Obsession instead.",
+       "category":"Skills",
+       "details": true
+   },
+   {
+       "id":"lin",
+       "title":"Linguist",
+       "description":"You can communicate passably in the languages of all known societies and species. A successful Assessment of a newly-encountered or long-dead culture grants you permanent access to their written and/or spoken language.",
+       "category":"Skills"
+   },
+   {
+       "id":"mem",
+       "title":"Memory Bank",
+       "description":"You have perfect recall of any information you've encountered. You can access detailed memories as if consulting a database, and never forget names, faces, numbers, or data.",
+       "category":"Skills"
+   },
+   {
+       "id":"tra",
+       "title":"Tranquility",
+       "description":"When you handle a situation with the wisdom of a koan, parable, or aphorism, you can roll +Influence instead of whatever the usual stat would be. This will likely be soft, subtle, and slow.",
+       "category":"Skills"
+   },
+   {
+       "id":"pac",
+       "title":"Pact",
+       "description":"Create a Faction consisting of just your deity. You gain 1 Favor and 3 Debt with it. You communicate with your deity through prayer and can call in Favors. Your deity makes demands and calls in your Debts through dreams and prophecy.",
+       "category":"Skills",
+       "details": true
+   },
+   {
+       "id":"pre",
+       "title":"Precognition",
+       "description":"If your mind is clear, you may suffer a minor mental debility (headache, nausea, vertigo, etc.) to declare that a roll you just made was merely a glimpse of possible future. Briefly describe the immediate or long-term consequences of that future, then reroll.",
+       "category":"Skills"
+   },
+   {
+       "id":"med",
+       "title":"Meditation",
+       "description":"When you spend time in quiet contemplation and meditation, you may ask the GM one question about your current situation. The GM will give you a truthful but cryptic answer that may require interpretation.",
+       "category":"Skills"
    }
 ]
