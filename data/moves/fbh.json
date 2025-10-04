@@ -1,0 +1,8 @@
+[ {
+       "id":"gs",
+       "title":"Group Skill",
+       "description":"Choose a skill from the group career you have agreed upon.",
+       "category":"Beyond Humanity",
+       "takeFrom":["*"]
+   }
+]

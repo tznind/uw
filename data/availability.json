@@ -6,9 +6,11 @@
     "che": false,
     "ded": false,
     "surg": false,
-    "tec": false
+    "tec": false,
+    "gs": false
   },
   "Advanced": {
+    "_movesFile": "data/moves/fbh.json",
     "cards": ["health", "workspace", "advancement"],
     "ai": false,
     "ce": false,
