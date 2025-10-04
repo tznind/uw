@@ -48,7 +48,7 @@
   min-height: 24px; /* Ensure consistent height */
 }
 
-.xp-label {
+.xp-inline label {
   font-weight: 600;
   color: #666;
   line-height: 1;
@@ -56,19 +56,17 @@
   align-items: center;
 }
 
-.xp-check {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  cursor: pointer;
-  font-weight: 500;
-  line-height: 1;
-}
-
-.xp-check input[type="checkbox"] {
-  margin: 0;
-  transform: scale(0.9);
+.xp-inline input[type="number"] {
+  width: 42px;
+  height: 20px;
+  padding: 2px 4px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  border-radius: 2px;
   vertical-align: middle;
+  margin: 0;
 }
 
 /* Inline Level */
@@ -228,8 +226,10 @@
     margin-right: 40px;
   }
   
-  .xp-check input[type="checkbox"] {
-    transform: scale(1.1);
+  .xp-inline input[type="number"] {
+    width: 48px;
+    height: 24px;
+    font-size: 14px;
   }
 }
 
