@@ -135,6 +135,29 @@
     "med": false,
     "gs": false
   },
+  "Human/Humanoid": {
+ 
+  },
+  "Robotic": {
+    "_movesFile": "data/moves/fbh.json",
+    "inorg": true,
+    "elect": true,
+    "upgrd": true,
+    "repair": true
+  },
+  "Xeno": {
+    "_movesFile": "data/moves/fbh.json",
+    "xeno": true
+  },
+  "Evolved": {
+    "_movesFile": "data/moves/fbh.json",
+    "evolvd": true
+  },
+  "Symbiotic": {
+    "sym": false,
+    "joi": false,
+    "gs": false
+  },
 
 
   
