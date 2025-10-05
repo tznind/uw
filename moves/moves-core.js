@@ -785,9 +785,16 @@ window.MovesCore = (function() {
         console.log('- "is" in available:', available.hasOwnProperty('is'), available['is']);
         
         const categorized = new Map(); // Map of category name to moves
+        const processedMoveIds = new Set(); // Track processed move IDs to prevent duplicates
         
         moves.forEach(move => {
             if (available.hasOwnProperty(move.id)) {
+                // Skip if we've already processed this move ID
+                if (processedMoveIds.has(move.id)) {
+                    console.log(`Skipping duplicate move: ${move.id} (${move.title})`);
+                    return;
+                }
+                
                 // Skip untaken moves if hideUntaken is true
                 if (hideUntaken && urlParams && !isMoveTaken(move, urlParams)) {
                     return;
@@ -799,6 +806,7 @@ window.MovesCore = (function() {
                     categorized.set(category, []);
                 }
                 categorized.get(category).push(move);
+                processedMoveIds.add(move.id);
             }
         });
         
