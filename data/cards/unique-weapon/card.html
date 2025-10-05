@@ -41,7 +41,6 @@
     
     <!-- Firearm Upgrades (hidden by default) -->
     <div id="firearm_upgrades" class="upgrades-grid" style="display: none;">
-      <h5 style="grid-column: 1 / -1; margin: 10px 0 5px 0;">Firearm Upgrades:</h5>
       <p style="grid-column: 1 / -1; margin: 5px 0; font-size: 0.9em; color: #666;">Pick 1 upgrade when designing a Class 1 Firearm, pick 2 for a Class 2, etc.</p>
       <label><input type="checkbox" id="uw_f_att" name="uw_f_att"> <strong>Attachment</strong><br><small class="upgrade-desc">Attach Class 0 Small weapon with Sharp, Ripper, Energy or Shock.</small></label>
       <label><input type="checkbox" id="uw_f_burst" name="uw_f_burst"> <strong>Burst</strong><br><small class="upgrade-desc">Instead of a single shot, sprays shots in a wide cone.</small></label>
@@ -64,11 +63,22 @@
       <label><input type="checkbox" id="uw_f_sta" name="uw_f_sta"> <strong>Stabilized</strong><br><small class="upgrade-desc">No recoil, can be used in micro-gravity environments.</small></label>
       <label><input type="checkbox" id="uw_f_stu" name="uw_f_stu"> <strong>Stun</strong><br><small class="upgrade-desc">Non-lethal. Stuns, snares or renders unconscious.</small></label>
       <label><input type="checkbox" id="uw_f_sty" name="uw_f_sty"> <strong>Stylish</strong><br><small class="upgrade-desc">Looks impressive, distinctive and unique.</small></label>
+      <label><input type="checkbox" id="uw_f_cha" name="uw_f_cha"> <strong>Channel</strong><br><small class="upgrade-desc">Choose a Skill. Characters with that Skill can use it through the weapon.</small></label>
+      <label><input type="checkbox" id="uw_f_chg" name="uw_f_chg"> <strong>Charged</strong><br><small class="upgrade-desc">Takes significant time to charge up, vastly increased damage at full charge.</small></label>
+      <label><input type="checkbox" id="uw_f_cns" name="uw_f_cns"> <strong>Consecrated</strong><br><small class="upgrade-desc">Dedicated to a cause. Causes great harm to enemies of the cause.</small></label>
+      <label><input type="checkbox" id="uw_f_dis" name="uw_f_dis"> <strong>Disruptive</strong><br><small class="upgrade-desc">Harms shields, supernatural forces, magic, and incorporeal creatures.</small></label>
+      <label><input type="checkbox" id="uw_f_liv" name="uw_f_liv"> <strong>Living</strong><br><small class="upgrade-desc">A living organic creature. Regrows its own ammo over time.</small></label>
+      <label><input type="checkbox" id="uw_f_pai" name="uw_f_pai"> <strong>Paired</strong><br><small class="upgrade-desc">Two pistols that act in perfect tandem. Mediocre if used separately.</small></label>
+      <label><input type="checkbox" id="uw_f_rad" name="uw_f_rad"> <strong>Radiant</strong><br><small class="upgrade-desc">Projectiles unleash blinding flashes and illuminate targets.</small></label>
+      <label><input type="checkbox" id="uw_f_ric" name="uw_f_ric"> <strong>Ricochet</strong><br><small class="upgrade-desc">Projectiles bounce off hard surfaces, allowing for trick shots.</small></label>
+      <label><input type="checkbox" id="uw_f_sum" name="uw_f_sum"> <strong>Summoned</strong><br><small class="upgrade-desc">Called into existence from nothing, can be dismissed.</small></label>
+      <label><input type="checkbox" id="uw_f_swi" name="uw_f_swi"> <strong>Switching</strong><br><small class="upgrade-desc">Choose 2 basic upgrades. The weapon can switch forms between those two.</small></label>
+      <label><input type="checkbox" id="uw_f_syp" name="uw_f_syp"> <strong>Syphon</strong><br><small class="upgrade-desc">Choose the element or concept this weapon drinks (heat, blood, fear, etc.).</small></label>
+      <label><input type="checkbox" id="uw_f_vir" name="uw_f_vir"> <strong>Virtual</strong><br><small class="upgrade-desc">A cyber weapon program that also exists inside the SectorNet.</small></label>
     </div>
     
     <!-- Heavy Weapon Upgrades (hidden by default) -->
     <div id="heavy_upgrades" class="upgrades-grid" style="display: none;">
-      <h5 style="grid-column: 1 / -1; margin: 10px 0 5px 0;">Heavy Weapon Upgrades:</h5>
       <p style="grid-column: 1 / -1; margin: 5px 0; font-size: 0.9em; color: #666;">Pick 1 upgrade when designing a Class 1 Heavy Weapon, pick 2 for a Class 2, etc.</p>
       <label><input type="checkbox" id="uw_h_bre" name="uw_h_bre"> <strong>Breaching</strong><br><small class="upgrade-desc">Damages starships and reinforced structures.</small></label>
       <label><input type="checkbox" id="uw_h_chem" name="uw_h_chem"> <strong>Chemical</strong><br><small class="upgrade-desc">Creates lasting chemical reaction. Ex: fire, corrosion, frost, smoke, etc.</small></label>
@@ -86,6 +96,17 @@
       <label><input type="checkbox" id="uw_h_stu" name="uw_h_stu"> <strong>Stun</strong><br><small class="upgrade-desc">Non-lethal. Stuns, snares or renders unconscious.</small></label>
       <label><input type="checkbox" id="uw_h_sty" name="uw_h_sty"> <strong>Stylish</strong><br><small class="upgrade-desc">Looks impressive, distinctive and unique.</small></label>
       <label><input type="checkbox" id="uw_h_sus" name="uw_h_sus"> <strong>Sustained</strong><br><small class="upgrade-desc">Unleashes a constant suppressing fire at multiple targets.</small></label>
+      <label><input type="checkbox" id="uw_h_cha" name="uw_h_cha"> <strong>Charged</strong><br><small class="upgrade-desc">Takes significant time to charge up, vastly increased damage at full charge.</small></label>
+      <label><input type="checkbox" id="uw_h_con" name="uw_h_con"> <strong>Consecrated</strong><br><small class="upgrade-desc">Dedicated to a cause. Causes great harm to enemies of the cause.</small></label>
+      <label><input type="checkbox" id="uw_h_dis" name="uw_h_dis"> <strong>Disruptive</strong><br><small class="upgrade-desc">Harms shields, supernatural forces, magic, and incorporeal creatures.</small></label>
+      <label><input type="checkbox" id="uw_h_ipl" name="uw_h_ipl"> <strong>Implosion</strong><br><small class="upgrade-desc">Creates a brief implosion that draws in nearby targets and objects.</small></label>
+      <label><input type="checkbox" id="uw_h_liv" name="uw_h_liv"> <strong>Living</strong><br><small class="upgrade-desc">A living organic creature. Regrows its own ammo over time.</small></label>
+      <label><input type="checkbox" id="uw_h_ric" name="uw_h_ric"> <strong>Ricochet</strong><br><small class="upgrade-desc">Projectiles bounce off hard surfaces, allowing for trick shots.</small></label>
+      <label><input type="checkbox" id="uw_h_sum" name="uw_h_sum"> <strong>Summoned</strong><br><small class="upgrade-desc">Called into existence from nothing, can be dismissed.</small></label>
+      <label><input type="checkbox" id="uw_h_swi" name="uw_h_swi"> <strong>Switching</strong><br><small class="upgrade-desc">Choose 2 basic upgrades. The weapon can switch forms between those two.</small></label>
+      <label><input type="checkbox" id="uw_h_tur" name="uw_h_tur"> <strong>Turret</strong><br><small class="upgrade-desc">Can be deployed and given simple directives. Fires using your +Interface.</small></label>
+      <label><input type="checkbox" id="uw_h_vir" name="uw_h_vir"> <strong>Virtual</strong><br><small class="upgrade-desc">A cyber weapon program that also exists inside the SectorNet.</small></label>
+      <label><input type="checkbox" id="uw_h_vol" name="uw_h_vol"> <strong>Volatile</strong><br><small class="upgrade-desc">Breaching, Impact, and Detonation on a roll of 10+, then needs to recharge.</small></label>
     </div>
     
     <!-- Details Section -->

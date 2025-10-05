@@ -11,7 +11,8 @@ console.log('*** CUSTOM OUTFIT SCRIPT STARTING ***');
     const upgradeCheckboxes = [
         'co_arm', 'co_car', 'co_com', 'co_con', 'co_imp', 'co_jum',
         'co_mes', 'co_rig', 'co_tou', 'co_sea', 'co_sen', 'co_shi',
-        'co_ste', 'co_vis'
+        'co_ste', 'co_vis', 'co_cns', 'co_dis', 'co_emo', 'co_fol',
+        'co_liv', 'co_sha', 'co_shf', 'co_sum', 'co_vir'
     ];
     
     function setupUpgradeCheckboxes() {
@@ -26,6 +27,7 @@ console.log('*** CUSTOM OUTFIT SCRIPT STARTING ***');
         const carapaceCheckbox = document.getElementById('co_car');
         const meshweaveCheckbox = document.getElementById('co_mes');
         const shieldedCheckbox = document.getElementById('co_shi');
+        const consecratedCheckbox = document.getElementById('co_cns');
         
         if (!typeSelect || !typeDescription) {
             console.log('Custom Outfit card elements not found yet');
@@ -114,6 +116,7 @@ console.log('*** CUSTOM OUTFIT SCRIPT STARTING ***');
         // Function to calculate and update armor
         function updateArmor() {
             let totalArmor = 0;
+            let conditionalArmor = '';
             
             // Armored upgrade: +2 Armor
             if (armoredCheckbox && armoredCheckbox.checked) {
@@ -135,10 +138,15 @@ console.log('*** CUSTOM OUTFIT SCRIPT STARTING ***');
                 totalArmor += 1;
             }
             
+            // Consecrated upgrade: +2 Armor (conditional)
+            if (consecratedCheckbox && consecratedCheckbox.checked) {
+                conditionalArmor = ' (+2 vs enemies of cause)';
+            }
+            
             // Update display
             const armorValueElement = document.getElementById('co_armor_value');
             if (armorValueElement) {
-                armorValueElement.textContent = totalArmor;
+                armorValueElement.textContent = totalArmor + conditionalArmor;
             }
             
             // Add visual feedback for armor values

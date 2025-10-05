@@ -90,11 +90,55 @@
     "hl": false,
     "gs": false
   },
+  "Forlorn": {
+    "cards": ["health", "workspace", "advancement"],
+    "ins": false,
+    "bg": false,
+    "nav": false,
+    "tri": false,
+    "outc": false,
+    "gs": false
+  },
+  "Occult": {
+    "cards": ["health", "workspace", "advancement"],
+    "rit": false,
+    "rel": false,
+    "alc": false,
+    "ani": false,
+    "hex": false,
+    "gs": false
+  },
+  "Primal": {
+    "cards": ["health", "workspace", "advancement"],
+    "str": false,
+    "lau": false,
+    "ter": false,
+    "stro": false,
+    "hun": false,
+    "gs": false
+  },
+  "Programmed": {
+    "cards": ["health", "workspace", "advancement"],
+    "abn": false,
+    "fid": false,
+    "obs": false,
+    "lin": false,
+    "mem": false,
+    "gs": false
+  },
+  "Spiritual": {
+    "cards": ["health", "workspace", "advancement"],
+    "tra": false,
+    "pac": false,
+    "pre": false,
+    "insp": false,
+    "med": false,
+    "gs": false
+  },
 
 
   
   "Clandestine": {
-    "cards": ["workspace", "advancement"],
     "ste": false,
     "sab": false,
     "srv": false,
@@ -102,7 +146,6 @@
     "ass": false
   },
   "Commercial": {
-    "cards": ["workspace", "advancement"],
     "out": false,
     "mar": false,
     "acu": false,
@@ -110,7 +153,6 @@
     "lux": false
   },
   "Explorer": {
-    "cards": ["workspace", "advancement"],
     "bg": false,
     "recon": false,
     "sur": false,
@@ -118,7 +160,6 @@
     "cuv": false
   },
   "Industrial": {
-    "cards": ["workspace", "advancement"],
     "rep": false,
     "con": false,
     "upg": false,
@@ -126,7 +167,6 @@
     "tin": false
   },
   "Military": {
-    "cards": ["workspace", "advancement"],
     "tac": false,
     "uw": false,
     "hli": false,
@@ -134,7 +174,6 @@
     "tou": false
   },
   "Personality": {
-    "cards": ["workspace", "advancement"],
     "fam": false,
     "lea": false,
     "cnt": false,
@@ -142,7 +181,6 @@
     "dipl": false
   },
   "Scoundrel": {
-    "cards": ["workspace", "advancement"],
     "cri": false,
     "sne": false,
     "sca": false,
@@ -150,7 +188,6 @@
     "add": false
   },
   "Starfarer": {
-    "cards": ["workspace", "advancement"],
     "wei": false,
     "cosm": false,
     "nav": false,
@@ -158,11 +195,75 @@
     "cuf": false
   },
   "Technocrat": {
-    "cards": ["workspace", "advancement"],
     "upl": false,
     "hij": false,
     "pro": false,
     "net": false,
     "ai": false
+  },
+  "Augmented": {
+    "har": false,
+    "bet": false,
+    "fas": false,
+    "tech": false,
+    "stro": false
+  },
+  "Chosen": {
+    "pac": false,
+    "loh": false,
+    "wis": false,
+    "insc": false,
+    "rel": false
+  },
+  "Consul": {
+    "tri": false,
+    "lin": false,
+    "medi": false,
+    "adv": false,
+    "ada": false
+  },
+  "Fanatic": {
+    "brav": false,
+    "nem": false,
+    "ter": false,
+    "obs": false,
+    "mart": false
+  },
+  "Kinetic": {
+    "tel": false,
+    "lau": false,
+    "ani": false,
+    "bar": false,
+    "fli": false
+  },
+  "Psychic": {
+    "telep": false,
+    "prob": false,
+    "pre": false,
+    "comp": false,
+    "cla": false
+  },
+  "Shaper": {
+    "telepo": false,
+    "reg": false,
+    "alc": false,
+    "evo": false,
+    "trans": false
+  },
+  "Cyber": {
+    "ada": false,
+    "amp": false,
+    "bea": false,
+    "cam": false,
+    "conn": false,
+    "imp": false,
+    "link": false,
+    "loc": false,
+    "per": false,
+    "proj": false,
+    "preh": false,
+    "rein": false,
+    "repl": false,
+    "stor": false
   }
 }

@@ -597,6 +597,7 @@
    {
        "id":"hij",
        "title":"Hijack",
-       "description":"When you Access a system, it locks out everyone else. You can open the system to anyone you wish."
+       "description":"When you Access a system, it locks out everyone else. You can open the system to anyone you wish.",
+       "category":"Skills"
    }
 ]
