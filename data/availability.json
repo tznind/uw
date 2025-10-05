@@ -150,10 +150,13 @@
     "xeno": true
   },
   "Evolved": {
-
+    "_movesFile": "data/moves/fbh.json",
+    "evolvd": true
   },
   "Symbiotic": {
-
+    "sym": false,
+    "joi": false,
+    "gs": false
   },
 
 

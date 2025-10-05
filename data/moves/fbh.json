@@ -53,7 +53,7 @@
            },
            {
                "range":"7-9",
-               "text":"choose 1, but you’ve reached the limit of what you can do; you cannot re-attempt to Patch Up the subject for now",
+               "text":"choose 1, but you've reached the limit of what you can do; you cannot re-attempt to Patch Up the subject for now",
                "bullets": [
                    "Spread rust, rot, or erosion",
                    "Purify, clean, and rejuvenate",
@@ -482,6 +482,89 @@
        "id":"xeno",
        "title":"Xeno",
        "description":"When designing a xeno species, create 3 Biomods from the Mod section. These \"biomods\" are evolutionary traits shared by the entire species, and every member of the species has them. Their society and culture will likely be affected by these traits as well, and their tools and equipment will likewise be very different.",
+       "details": true,
+       "category":"Species"
+   },
+   {
+       "id":"evolvd",
+       "title":"Evolved",
+       "description":"Choose a skill from any Career and describe the physiological adaptation that grants the skill in question. Every member of the evolved species exhibits that physiological characteristic.",
+       "category":"Species",
+       "details": true,
+       "takeFrom": ["Academic", "Augmented", "Chosen", "Clandestine", "Commercial", "Consul", "Explorer", "Fanatic", "Industrial", "Kinetic", "Military", "Personality", "Psychic", "Scoundrel", "Shaper", "Starfarer", "Technocrat"]
+   }
+   ,
+   {
+       "id":"sym",
+       "title":"Symbiosis",
+       "description":"When you enter a helpless or willing humanoid and assert control, the nature of your relationship determines how the joining unfolds.",
+       "pickOne": [
+           "Ascendant: The former host personality is preserved. The host is aware of its surroundings, and maintains its own thoughts and feelings. It can communicate with the symbiont.",
+           "Dominant: The former host is dormant and unaware of anything that transpires while the symbiont is in control.",
+           "Absolute: The former host personality is destroyed when the symbiont takes over the body. The body dies when the symbiont leaves."
+       ],
+       "category":"Species"
+   },
+   {
+       "id":"joi",
+       "title":"Joining (+Physique)",
+       "description":"When you enter a helpless or willing humanoid and assert control, Roll +Physique.",
+       "outcomes": [
+           {
+               "range":"≥ 10",
+               "text":"Choose 1 flaw:",
+               "bullets": [
+                   "The host's memories can't be Accessed.",
+                   "Occasional resistance, disobedience, unbidden memories or residual behaviors.",
+                   "Gain unexpected Debts (GM redistributes existing Debt).",
+                   "The host is flawed (-1 to a chosen stat while Joined).",
+                   "Gain unexpected, problematic contacts.",
+                   "The joining was traumatic (see page 42).",
+                   "The host will die when you leave."
+               ]
+           },
+           {
+               "range":"7-9",
+               "text":"Choose 2 flaws:",
+               "bullets": [
+                   "The host's memories can't be Accessed.",
+                   "Occasional resistance, disobedience, unbidden memories or residual behaviors.",
+                   "Gain unexpected Debts (GM redistributes existing Debt).",
+                   "The host is flawed (-1 to a chosen stat while Joined).",
+                   "Gain unexpected, problematic contacts.",
+                   "The joining was traumatic (see page 42).",
+                   "The host will die when you leave."
+               ]
+           },
+           {
+               "range":"≤ 6",
+               "text":"The GM chooses 3 flaws:",
+               "bullets": [
+                   "The host's memories can't be Accessed.",
+                   "Occasional resistance, disobedience, unbidden memories or residual behaviors.",
+                   "Gain unexpected Debts (GM redistributes existing Debt).",
+                   "The host is flawed (-1 to a chosen stat while Joined).",
+                   "Gain unexpected, problematic contacts.",
+                   "The joining was traumatic (see page 42).",
+                   "The host will die when you leave."
+               ]
+           },
+           {
+               "text":"The symbiont's natural health (+Physique) asserts itself over the host's physiology. "
+           },
+           {
+                "text":"Any injuries or physical debilities are left behind on the old body. The symbiont retains any mental and emotional debilities."
+           },
+           {
+            "text":"Any cybernetics or biomods are left behind on the old body. The symbiont gains any cybernetics or biomods on the new body."
+           },
+           {
+            "text":"Redistribute the character's Debt between available factions, based on the new host's relationships with said factions."
+           },
+           {
+            "text":"The host's memories can be Accessed as if they were a computer system; a higher +Interface allows the symbiont to parse memories and thoughts to find what they want to know."
+           }
+       ],
        "category":"Species"
    }
 ]
