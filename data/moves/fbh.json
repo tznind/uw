@@ -453,5 +453,35 @@
        "description":"Hollow section which can store a variety of small objects. Resists scans.",
        "details": true,
        "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"inorg",
+       "title":"Inorganic",
+       "description":"Robots are immune to the weaknesses and needs that affect organic species. Robotic characters don't need to eat, drink or breathe to function. They are unaffected by organic dangers such as asphyxiation, bleeding, infection and intoxication. While they are aware of physical contact, robots are not incapacitated by pain and can ignore physiological discomfort.",
+       "category":"Species"
+   },
+   {
+       "id":"elect",
+       "title":"Electronic",
+       "description":"Electromagnetic pulses and shock damage can cause significant damage to a robot's mind/central processor. Indirect exposure to electromagnetic harm can cause minor sensory, mental and emotional debilities in a robotic character, while full-force EMP damage could cause permanent trauma (see Trauma on page 42).",
+       "category":"Species"
+   },
+   {
+       "id":"upgrd",
+       "title":"Upgradable",
+       "description":"Robots can readily accept cybernetic upgrades to their base form. As such, robotic character can support 2 additional Mods. Mods are purchased and installed as normal (see Mods on page 22). However, robots can only support cybernetic modules, and cannot have bio-mods installed.",
+       "category":"Species"
+   },
+   {
+       "id":"repair",
+       "title":"Repairable",
+       "description":"Any damage or debility needs to be repaired. Patch Up will fix most issues, though severe damage requires a hired technician or a character with the Repair skill. The only truly essential components are the power core and their central processor. Other repairs, such as limb reattachment or replacement, are fairly routine procedures without much risk.",
+       "category":"Species"
+   },
+   {
+       "id":"xeno",
+       "title":"Xeno",
+       "description":"When designing a xeno species, create 3 Biomods from the Mod section. These \"biomods\" are evolutionary traits shared by the entire species, and every member of the species has them. Their society and culture will likely be affected by these traits as well, and their tools and equipment will likewise be very different.",
+       "category":"Species"
    }
 ]
