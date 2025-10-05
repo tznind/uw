@@ -43,9 +43,24 @@
    },
    {
        "id":"alc",
-       "title":"Alchemy",
-       "description":"When using a Ritual Kit to Patch Up a person, object, or material, choose from this list instead of the standard Patch Up: Spread rust, rot, or erosion; Purify, clean, and rejuvenate; Transmute one material into another.",
-       "category":"Skills"
+       "title":"Alchemy (+ Expertise)",
+       "description":"You can use a Ritual Kit to Patch Up a person, object, or material. choose from this list instead of the standard Patch Up:",
+       "category":"Skills",
+       "outcomes": [
+           {
+               "range":"≥ 10",
+               "text":"choose 1 from the list below."
+           },
+           {
+               "range":"7-9",
+               "text":"choose 1, but you’ve reached the limit of what you can do; you cannot re-attempt to Patch Up the subject for now",
+               "bullets": [
+                   "Spread rust, rot, or erosion",
+                   "Purify, clean, and rejuvenate",
+                   "Transmute one material into another."
+               ]
+           }
+       ]
    },
    {
        "id":"ani",
