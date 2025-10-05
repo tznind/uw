@@ -249,5 +249,13 @@
     "alc": false,
     "evo": false,
     "trans": false
+  },
+  "Cyber": {
+    "tec": false,
+    "upl": false,
+    "net": false,
+    "hij": false,
+    "ai": false,
+    "ada": true
   }
 }
