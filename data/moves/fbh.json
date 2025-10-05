@@ -347,5 +347,96 @@
        "description":"Choose a type of environment. You can function normally in that environment.",
        "details": true,
        "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"amp",
+       "title":"Amplifier",
+       "description":"Increases memory, attention, thought speed, and the range of supernatural abilities.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"bea",
+       "title":"Beauty",
+       "description":"Designed to be stunning, dazzling, and distracting.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"cam",
+       "title":"Camouflage",
+       "description":"Blend into your surroundings, especially when not moving.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"conn",
+       "title":"Connector",
+       "description":"Choose a type of vehicle, system, or organism. You can physically attach yourself to it, allowing a direct neural interaction.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"imp",
+       "title":"Implements",
+       "description":"Choose a Kit. It is built directly into your body.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"link",
+       "title":"Link",
+       "description":"Share thoughts and emotions with others who have the same link.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"loc",
+       "title":"Locomotion",
+       "description":"Choose a new means of locomotion: slithering, leaping, climbing, swimming, gliding, hovering.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"per",
+       "title":"Perception",
+       "description":"Choose a type of information. You can receive sensory data about it when you focus. The more specific the type of information, the more detailed the data collected.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"proj",
+       "title":"Projectile",
+       "description":"Create effects/projectiles like a Class 1 Firearm. Biomod: Regrow/refill ammunition over time. Cybermod: Spent ammo/cells can be replaced.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"preh",
+       "title":"Prehensile",
+       "description":"Independent extra limb (or pair of limbs) ending in a Class 0 Melee weapon.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"rein",
+       "title":"Reinforced",
+       "description":"+1 Armor. Difficult to damage/break.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"repl",
+       "title":"Replacement",
+       "description":"Create a Class 1 Melee Weapon that replaces a limb. Manual tasks using that limb are Clumsy without an appropriate upgrade (Glove, Flexible, Hidden, Living, etc.). Does not count towards Mod support maximum.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
+   },
+   {
+       "id":"stor",
+       "title":"Storage",
+       "description":"Hollow section which can store a variety of small objects. Resists scans.",
+       "details": true,
+       "category":"Cyber/Bio Mods"
    }
 ]
