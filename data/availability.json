@@ -139,7 +139,6 @@
 
   
   "Clandestine": {
-    "cards": ["workspace", "advancement"],
     "ste": false,
     "sab": false,
     "srv": false,
@@ -147,7 +146,6 @@
     "ass": false
   },
   "Commercial": {
-    "cards": ["workspace", "advancement"],
     "out": false,
     "mar": false,
     "acu": false,
@@ -155,7 +153,6 @@
     "lux": false
   },
   "Explorer": {
-    "cards": ["workspace", "advancement"],
     "bg": false,
     "recon": false,
     "sur": false,
@@ -163,7 +160,6 @@
     "cuv": false
   },
   "Industrial": {
-    "cards": ["workspace", "advancement"],
     "rep": false,
     "con": false,
     "upg": false,
@@ -171,7 +167,6 @@
     "tin": false
   },
   "Military": {
-    "cards": ["workspace", "advancement"],
     "tac": false,
     "uw": false,
     "hli": false,
@@ -179,7 +174,6 @@
     "tou": false
   },
   "Personality": {
-    "cards": ["workspace", "advancement"],
     "fam": false,
     "lea": false,
     "cnt": false,
@@ -187,7 +181,6 @@
     "dipl": false
   },
   "Scoundrel": {
-    "cards": ["workspace", "advancement"],
     "cri": false,
     "sne": false,
     "sca": false,
@@ -195,7 +188,6 @@
     "add": false
   },
   "Starfarer": {
-    "cards": ["workspace", "advancement"],
     "wei": false,
     "cosm": false,
     "nav": false,
@@ -203,7 +195,6 @@
     "cuf": false
   },
   "Technocrat": {
-    "cards": ["workspace", "advancement"],
     "upl": false,
     "hij": false,
     "pro": false,
@@ -211,7 +202,6 @@
     "ai": false
   },
   "Augmented": {
-    "cards": ["workspace", "advancement"],
     "har": false,
     "bet": false,
     "fas": false,
@@ -219,7 +209,6 @@
     "stro": false
   },
   "Chosen": {
-    "cards": ["workspace", "advancement"],
     "pac": false,
     "loh": false,
     "wis": false,
@@ -227,7 +216,6 @@
     "rel": false
   },
   "Consul": {
-    "cards": ["workspace", "advancement"],
     "tri": false,
     "lin": false,
     "medi": false,
@@ -235,7 +223,6 @@
     "ada": false
   },
   "Fanatic": {
-    "cards": ["workspace", "advancement"],
     "brav": false,
     "nem": false,
     "ter": false,
@@ -243,7 +230,6 @@
     "mart": false
   },
   "Kinetic": {
-    "cards": ["workspace", "advancement"],
     "tel": false,
     "lau": false,
     "ani": false,
@@ -251,7 +237,6 @@
     "fli": false
   },
   "Psychic": {
-    "cards": ["workspace", "advancement"],
     "telep": false,
     "prob": false,
     "pre": false,
@@ -259,7 +244,6 @@
     "cla": false
   },
   "Shaper": {
-    "cards": ["workspace", "advancement"],
     "telepo": false,
     "reg": false,
     "alc": false,

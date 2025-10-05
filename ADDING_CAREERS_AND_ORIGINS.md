@@ -5,14 +5,14 @@ This document describes how to add new careers and origins to the Uncharted Worl
 ## Overview
 
 The system distinguishes between **Origins** and **Careers** based on their card configuration:
-- **Origins** (Academic, Brutal, Colonist, etc.) - Have the **health card** (`["health", "workspace", "advancement"]`)
-- **Careers** (Clandestine, Commercial, Explorer, etc.) - Do **NOT** have the health card (`["workspace", "advancement"]`)
+- **Origins** (Academic, Brutal, Colonist, etc.) - Provide **all cards** (`["health", "workspace", "advancement"]`)
+- **Careers** (Clandestine, Commercial, Explorer, etc.) - Provide **no cards** (no "cards" property at all)
 
 ### ⚠️ IMPORTANT: Key Differences
 
-- **Origins**: Only get moves/skills and the health card. They do NOT get workspace options or advancement goals.
-- **Careers**: Get moves/skills, workspace options, and advancement goals. They do NOT get the health card.
-- **Origins have workspace/advancement cards listed in availability.json but these are ignored by the system.**
+- **Origins**: Provide all cards (health, workspace, advancement) and moves/skills. Origins do NOT get workspace options or advancement goals - these are provided by the cards themselves.
+- **Careers**: Provide only moves/skills. They have NO cards property. Workspace options and advancement goals are provided by the origin's cards.
+- **Only origins provide cards. Careers provide only additional skills/moves.**
 
 ## Required Files to Update
 
@@ -37,7 +37,7 @@ This is the main configuration file that defines what moves each career/origin h
 **Structure for Careers:**
 ```json
 "CareerName": {
-  "cards": ["workspace", "advancement"],  // Careers do NOT include "health"
+  // Careers have NO "cards" property - cards are provided by origins only
   "skillId1": false,
   "skillId2": false,
   "skillId3": false,
@@ -158,11 +158,11 @@ Only needed if the career/origin uses special "Beyond Humanity" mechanics.
 ### Adding a New Career
 
 1. **Choose 5 existing skills** from `data/moves/all.json` that fit the career theme
-2. **Add entry to `availability.json`** without `"health"` card
+2. **Add entry to `availability.json`** with NO "cards" property at all
 3. **Update `cs.html`** career dropdowns (lines 51 & 58)
 4. **Add workspace options** to `workspace/card.js`
 5. **Add advancement goals** to `advancement/card.js` 
-6. **Test** that it appears in dropdowns and does NOT show health card
+6. **Test** that it appears in dropdowns and provides only skills (cards come from origin)
 
 ## Example: Adding "Psyker" Origin
 
@@ -217,7 +217,7 @@ After adding new careers/origins:
 
 - [ ] New option appears in appropriate dropdown(s)
 - [ ] Selecting it shows the correct moves/skills
-- [ ] Origins show health card, careers do not
+- [ ] Origins provide all cards (health, workspace, advancement), careers provide no cards
 - [ ] Workspace options appear when career is selected
 - [ ] Advancement goals appear when career/origin is selected
 - [ ] URL persistence works (selections are saved in URL)
