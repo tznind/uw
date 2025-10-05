@@ -3,7 +3,7 @@
        "id":"edu",
        "title":"Education",
        "description":"When you gain one or more Data Points about a subject, each ally that was present or involved also gains a Data Point about the subject.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"con",
@@ -55,13 +55,13 @@
                "text":"It will have reduced potency or have unintended side effects."
            }
        ],
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"hl",
        "title":"Hard Labor",
        "description":"You can perform long grueling hours of physical labor with minimal rest. You've collected a wide variety of aches, pains and minor ailments from doing this. You gain +1 to your Physique stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"lea",
@@ -91,13 +91,13 @@
                ]
            }
        ],
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"dis",
        "title":"Discipline",
        "description":"You know the rules, the codes, the processes, the scripture, the laws. They give you stability. You don't deal well with change. You gain +1 to your Mettle stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"cal",
@@ -126,7 +126,7 @@
        "id":"voc",
        "title":"Vocation",
        "description":"You've spent many years training in a variety of techniques and trades. Sadly, you've never had time for fun or relaxation. You gain +1 to your Expertise stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"lux",
@@ -173,7 +173,7 @@
        "id":"dec",
        "title":"Decorum",
        "description":"You are well versed in the rules of etiquette, civility and propriety. You can carry yourself with grace in formal affairs, but are ill-at-ease in casual settings. You gain +1 to your Influence stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"ste",
@@ -197,7 +197,7 @@
        "id":"scr",
        "title":"Scrappy",
        "description":"Life has beaten you down, but you never, ever give up. No matter how bad things get, you rarely back down, even when you really should. You gain +1 to your Mettle stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"pro",
@@ -221,7 +221,7 @@
        "id":"fin",
        "title":"Fine Tuning",
        "description":"You're adept at interfacing with climate controlled living spaces; natural environments tend to be uncomfortable. You gain +1 to your Interface stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"cnt",
@@ -257,7 +257,7 @@
        "id":"aff",
        "title":"Affable",
        "description":"You get along well with almost everyone in your own way. You are most comfortable around others, and get lonely quickly. You gain +1 to your Influence stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"tin",
@@ -293,7 +293,7 @@
        "id":"rsr",
        "title":"Resourceful",
        "description":"You're good at making do with limited resources, and getting the most out of what you have, making you a bit of a hoarder. You gain +1 to your Expertise stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"ass",
@@ -339,7 +339,7 @@
        "id":"bra",
        "title":"Branded",
        "description":"You have a prominent, recognisable physical mark (scars, burns, tattoos, prison barcode, slave brand), as a testament to the hardships you've survived. You gain +1 to your Physique stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"ai",
@@ -352,7 +352,7 @@
        "id":"ce",
        "title":"Cutting Edge",
        "description":"Interacting with new, advanced technology comes naturally to you. On the other hand, dealing with old, clunky, obsolete dreck is rather aggravating. You gain +1 to your Interface stat, to a maximum of +2.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"cuf",
@@ -371,13 +371,13 @@
        "id":"surg",
        "title":"Surgery",
        "description":"When using a medical facility, your Patch Up can be used to install prosthetics and perform surgical reconstruction on living beings. This treats critical injuries.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"tec",
        "title":"Technobabble",
        "description":"You can Command crew using Expertise rather than Influence. Subjects of your Command can perform minor technical or scientific tasks, no matter their skill set.",
-       "category":"Skills"
+       "category":"Origin Skills"
    },
    {
        "id":"sab",

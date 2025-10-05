@@ -13,6 +13,7 @@ The system distinguishes between **Origins** and **Careers** based on their card
 - **Origins**: Provide all cards (health, workspace, advancement) and moves/skills. Origins do NOT get workspace options or advancement goals - these are provided by the cards themselves.
 - **Careers**: Provide only moves/skills. They have NO cards property. Workspace options and advancement goals are provided by the origin's cards.
 - **Only origins provide cards. Careers provide only additional skills/moves.**
+- **Origin Skills vs Skills**: Some skills are only available through origins (categorized as "Origin Skills"), while others can be accessed through either origins or careers (categorized as "Skills").
 
 ## Required Files to Update
 
@@ -50,7 +51,8 @@ This is the main configuration file that defines what moves each career/origin h
 - Each career/origin should have exactly 5 skills
 - All skill values are set to `false` by default (unchecked)
 - The `"gs"` (Group Skill) is typically only for origins
-- Skill IDs must match those defined in `data/moves/all.json`
+- Skill IDs must match those defined in `data/moves/all.json` or `data/moves/fbh.json`
+- **Move Categories**: Use "Origin Skills" for moves only available via origins, "Skills" for moves available via either origins or careers, and "Cyber/Bio Mods" for cybernetic/biological modifications
 
 ### 2. `cs.html` - HTML Form Dropdowns
 
@@ -218,6 +220,7 @@ After adding new careers/origins:
 - [ ] New option appears in appropriate dropdown(s)
 - [ ] Selecting it shows the correct moves/skills
 - [ ] Origins provide all cards (health, workspace, advancement), careers provide no cards
+- [ ] Origin Skills appear in "Origin Skills" category before regular Skills
 - [ ] Workspace options appear when career is selected
 - [ ] Advancement goals appear when career/origin is selected
 - [ ] URL persistence works (selections are saved in URL)
