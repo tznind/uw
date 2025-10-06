@@ -527,48 +527,49 @@ window.MovesCore = (function() {
      */
     function createCategoryHeader(categoryName, moveCount = 1) {
         const headerElement = document.createElement("h3");
-        headerElement.className = "category-header";
+        headerElement.className = "category-header tree-node";
         
-        // Add collapse functionality only if there's more than 1 move
-        if (moveCount > 1) {
-            headerElement.classList.add('collapsible');
-            
-            // Create text span
-            const textSpan = document.createElement("span");
-            textSpan.className = "category-header-text";
-            textSpan.textContent = categoryName;
-            
-            // Create collapse toggle
-            const collapseToggle = document.createElement("span");
-            collapseToggle.className = "category-collapse-toggle";
-            collapseToggle.innerHTML = "-"; // Start expanded
-            collapseToggle.setAttribute('aria-label', `Toggle ${categoryName} category`);
-            
-            // Make header clickable
-            headerElement.style.cursor = 'pointer';
-            headerElement.setAttribute('role', 'button');
-            headerElement.setAttribute('tabindex', '0');
-            headerElement.setAttribute('aria-expanded', 'true');
-            
-            // Add click handler
-            headerElement.addEventListener('click', function() {
+        // Always add collapse functionality for tree-like appearance
+        headerElement.classList.add('collapsible');
+        
+        // Create expand/collapse triangle
+        const triangle = document.createElement("span");
+        triangle.className = "tree-triangle";
+        triangle.innerHTML = "▼"; // Down arrow (expanded state)
+        
+        // Create text span
+        const textSpan = document.createElement("span");
+        textSpan.className = "category-header-text";
+        textSpan.textContent = categoryName;
+        
+        // Create move count indicator
+        const countSpan = document.createElement("span");
+        countSpan.className = "category-move-count";
+        countSpan.textContent = `(${moveCount})`;
+        
+        // Make header clickable
+        headerElement.style.cursor = 'pointer';
+        headerElement.setAttribute('role', 'button');
+        headerElement.setAttribute('tabindex', '0');
+        headerElement.setAttribute('aria-expanded', 'true');
+        headerElement.setAttribute('aria-label', `Toggle ${categoryName} category with ${moveCount} move${moveCount === 1 ? '' : 's'}`);
+        
+        // Add click handler
+        headerElement.addEventListener('click', function() {
+            toggleCategoryCollapse(headerElement);
+        });
+        
+        // Add keyboard handler
+        headerElement.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
                 toggleCategoryCollapse(headerElement);
-            });
-            
-            // Add keyboard handler
-            headerElement.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleCategoryCollapse(headerElement);
-                }
-            });
-            
-            headerElement.appendChild(textSpan);
-            headerElement.appendChild(collapseToggle);
-        } else {
-            // Single move - no collapse functionality
-            headerElement.textContent = categoryName;
-        }
+            }
+        });
+        
+        headerElement.appendChild(triangle);
+        headerElement.appendChild(textSpan);
+        headerElement.appendChild(countSpan);
         
         return headerElement;
     }
@@ -577,8 +578,8 @@ window.MovesCore = (function() {
      * Toggle collapse/expand state for a category
      */
     function toggleCategoryCollapse(headerElement) {
-        const collapseToggle = headerElement.querySelector('.category-collapse-toggle');
-        if (!collapseToggle) return;
+        const triangle = headerElement.querySelector('.tree-triangle');
+        if (!triangle) return;
         
         const isCurrentlyCollapsed = headerElement.classList.contains('collapsed');
         
@@ -594,17 +595,17 @@ window.MovesCore = (function() {
         }
         
         if (isCurrentlyCollapsed) {
-            // Expand - show moves and change to minus sign
+            // Expand
             headerElement.classList.remove('collapsed');
-            collapseToggle.innerHTML = '-';
+            triangle.textContent = "▼"; // Down arrow
             headerElement.setAttribute('aria-expanded', 'true');
             categoryMoves.forEach(move => {
                 move.style.display = '';
             });
         } else {
-            // Collapse - hide moves and change to plus sign
+            // Collapse
             headerElement.classList.add('collapsed');
-            collapseToggle.innerHTML = '+';
+            triangle.textContent = "▶"; // Right arrow
             headerElement.setAttribute('aria-expanded', 'false');
             categoryMoves.forEach(move => {
                 move.style.display = 'none';
