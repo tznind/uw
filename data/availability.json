@@ -29,5 +29,10 @@
     "adapt1": false,
     "is": false,
     "inspire1": false
+  },
+  "Everyone": {
+    "_movesFile": "data/moves/everyone.json",
+    "cards": ["common"],
+    "universal": true
   }
 }
