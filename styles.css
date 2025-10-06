@@ -956,6 +956,52 @@ h3 {
   font-weight: 600;
 }
 
+/* === CATEGORY COLLAPSE FUNCTIONALITY === */
+.category-header.collapsible {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  margin: 20px 0 10px 0;
+}
+
+.category-header.collapsible:hover {
+  background: #e9ecef;
+}
+
+.category-header.collapsible:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+}
+
+.category-header-text {
+  flex-grow: 1;
+}
+
+.category-collapse-toggle {
+  font-size: 18px;
+  font-weight: bold;
+  color: #495057;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  padding: 2px 8px;
+  border-radius: 4px;
+  min-width: 24px;
+  text-align: center;
+  transition: background-color 0.2s;
+  pointer-events: none; /* Clicks pass through to the header */
+}
+
+.category-header.collapsed .category-collapse-toggle {
+  background: #f8f9fa;
+}
+
 
 /* === DIVIDERS === */
 hr {
