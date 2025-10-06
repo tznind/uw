@@ -233,7 +233,7 @@
        "category":"Skills"
    },
    {
-       "id":"ada",
+       "id":"adap",
        "title":"Adaptive",
        "description":"You can partake of all the most exotic consumables (food, drink, narcotics, etc.) avoiding those that are poisonous to your species. You can use machinery, games, devices, vehicles, tools, equipment, and weapons not designed for your species.",
        "category":"Skills"
@@ -396,7 +396,20 @@
        "title":"Implements",
        "description":"Choose a Kit. It is built directly into your body.",
        "details": true,
-       "category":"Cyber/Bio Mods"
+       "category":"Cyber/Bio Mods",
+       "pickOne": [
+  "Art Kit - Tools to create visual artwork. Paints, brushes, writing implements, paper, chisels, files, twine, tarps, music instruments, etc.",
+  "Broadcast Kit - Tools to send and receive signals. Collapsible broadcast antenna, signal boosters, wires, vid screens, recording hardware, portable data drives, etc.",
+  "Computer Kit - Tools to access, program, diagnose and repair computer systems. Laptops, diagnostic tools, wires, handheld power sources, portable data drives, etc.",
+  "Engineering Kit - Tools to repair and dismantle machinery. Hammers, drills, cutters, wrenches, welders, grips, cables, diagnostic tools, cage lamps, miscellaneous spare parts, etc.",
+  "Infiltration Kit - Tools to gain access to forbidden places. Mechanical lockpicks, intrusion hardware, chloroform, glass cutters, disguises, ropes, climbing tools, etc.",
+  "Medical Kit - Tools to perform medical treatments. Bandages, scalpels, gels, stimms, scissors, pain killers, surgical braces, dermal regen spray, etc.",
+  "Research Kit - Tools to study and experiment out in the field. Specimen jars, hammer and chisel, scalpels, chemical analyser, data recorder, etc.",
+  "Ritual Kit - Tools to practice religious and mystic ceremonies. Candles, incense, chalk, dusts, oils, texts, totems, charms, etc.",
+  "Survey Kit - Tools to observe and monitor. Range finders, tracking devices, motion sensors, deep scanner tripod, holo-map projector, data recorder, deployable transmitter, etc.",
+  "VR Kit - Tools to connect to local cyberscapes. Virtual reality headset, vital-sign monitors, glove-based interface, universal jacks, external storage drives, etc.",
+  "Wilderness Kit - Tools to traverse hostile landscapes. Ropes, climbing tools, light sources, breather mask, tent, sleeping bag, heat lamp, thermal blanket, water filter, etc."
+]
    },
    {
        "id":"link",
@@ -508,7 +521,7 @@
    {
        "id":"joi",
        "title":"Joining (+Physique)",
-       "description":"When you enter a helpless or willing humanoid and assert control, Roll +Physique.",
+       "description":"When you enter a helpless or willing humanoid and assert control, Roll +Physique.  The symbiont's natural health (+Physique) asserts itself over the host's physiology. Any injuries or physical debilities are left behind on the old body. The symbiont retains any mental and emotional debilities. Any cybernetics or biomods are left behind on the old body. The symbiont gains any cybernetics or biomods on the new body. Redistribute the character's Debt between available factions, based on the new host's relationships with said factions. The host's memories can be Accessed as if they were a computer system; a higher +Interface allows the symbiont to parse memories and thoughts to find what they want to know.",
        "outcomes": [
            {
                "range":"≥ 10",
@@ -548,21 +561,6 @@
                    "The joining was traumatic (see page 42).",
                    "The host will die when you leave."
                ]
-           },
-           {
-               "text":"The symbiont's natural health (+Physique) asserts itself over the host's physiology. "
-           },
-           {
-                "text":"Any injuries or physical debilities are left behind on the old body. The symbiont retains any mental and emotional debilities."
-           },
-           {
-            "text":"Any cybernetics or biomods are left behind on the old body. The symbiont gains any cybernetics or biomods on the new body."
-           },
-           {
-            "text":"Redistribute the character's Debt between available factions, based on the new host's relationships with said factions."
-           },
-           {
-            "text":"The host's memories can be Accessed as if they were a computer system; a higher +Interface allows the symbiont to parse memories and thoughts to find what they want to know."
            }
        ],
        "category":"Species"
