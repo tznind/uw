@@ -522,14 +522,97 @@ window.MovesCore = (function() {
 
     /**
      * Create category header element
+     * @param {string} categoryName - The name of the category
+     * @param {number} moveCount - Number of moves in this category
      */
-    function createCategoryHeader(categoryName) {
+    function createCategoryHeader(categoryName, moveCount = 1) {
         const headerElement = document.createElement("h3");
-        headerElement.className = "category-header";
-        headerElement.textContent = categoryName;
+        headerElement.className = "category-header tree-node";
+        
+        // Always add collapse functionality for tree-like appearance
+        headerElement.classList.add('collapsible');
+        
+        // Create expand/collapse triangle
+        const triangle = document.createElement("span");
+        triangle.className = "tree-triangle";
+        triangle.innerHTML = "▼"; // Down arrow (expanded state)
+        
+        // Create text span
+        const textSpan = document.createElement("span");
+        textSpan.className = "category-header-text";
+        textSpan.textContent = categoryName;
+        
+        // Create move count indicator
+        const countSpan = document.createElement("span");
+        countSpan.className = "category-move-count";
+        countSpan.textContent = `(${moveCount})`;
+        
+        // Make header clickable
+        headerElement.style.cursor = 'pointer';
+        headerElement.setAttribute('role', 'button');
+        headerElement.setAttribute('tabindex', '0');
+        headerElement.setAttribute('aria-expanded', 'true');
+        headerElement.setAttribute('aria-label', `Toggle ${categoryName} category with ${moveCount} move${moveCount === 1 ? '' : 's'}`);
+        
+        // Add click handler
+        headerElement.addEventListener('click', function() {
+            toggleCategoryCollapse(headerElement);
+        });
+        
+        // Add keyboard handler
+        headerElement.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleCategoryCollapse(headerElement);
+            }
+        });
+        
+        headerElement.appendChild(triangle);
+        headerElement.appendChild(textSpan);
+        headerElement.appendChild(countSpan);
+        
         return headerElement;
     }
 
+    /**
+     * Toggle collapse/expand state for a category
+     */
+    function toggleCategoryCollapse(headerElement) {
+        const triangle = headerElement.querySelector('.tree-triangle');
+        if (!triangle) return;
+        
+        const isCurrentlyCollapsed = headerElement.classList.contains('collapsed');
+        
+        // Find all moves in this category (next siblings until next header or end)
+        const categoryMoves = [];
+        let nextElement = headerElement.nextElementSibling;
+        
+        while (nextElement && !nextElement.classList.contains('category-header')) {
+            if (nextElement.classList.contains('move')) {
+                categoryMoves.push(nextElement);
+            }
+            nextElement = nextElement.nextElementSibling;
+        }
+        
+        if (isCurrentlyCollapsed) {
+            // Expand
+            headerElement.classList.remove('collapsed');
+            triangle.textContent = "▼"; // Down arrow
+            headerElement.setAttribute('aria-expanded', 'true');
+            categoryMoves.forEach(move => {
+                move.style.display = '';
+            });
+        } else {
+            // Collapse
+            headerElement.classList.add('collapsed');
+            triangle.textContent = "▶"; // Right arrow
+            headerElement.setAttribute('aria-expanded', 'false');
+            categoryMoves.forEach(move => {
+                move.style.display = 'none';
+            });
+        }
+    }
+    
     /**
      * Toggle collapse/expand state for a single move
      */
@@ -843,10 +926,10 @@ window.MovesCore = (function() {
         
         // Render categories in sorted order
         sortedCategories.forEach(categoryName => {
-            const categoryHeader = createCategoryHeader(categoryName);
+            const categoryMoves = categorized.get(categoryName);
+            const categoryHeader = createCategoryHeader(categoryName, categoryMoves.length);
             movesContainer.appendChild(categoryHeader);
             
-            const categoryMoves = categorized.get(categoryName);
             categoryMoves.forEach(move => {
                 const moveElement = renderMove(move, mergedAvailability, urlParams);
                 movesContainer.appendChild(moveElement);
@@ -870,6 +953,7 @@ window.MovesCore = (function() {
         renderMove,
         renderMovesForRole,
         toggleMoveCollapse,
+        toggleCategoryCollapse,
         collapseAllMoves,
         expandAllMoves,
         getCurrentCollapseState,
