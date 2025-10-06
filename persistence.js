@@ -251,9 +251,6 @@ window.Persistence = (function() {
                 window.Layout.layoutApplication();
             }
             // Regular moves and takeFrom moves don't need layout update for checkbox changes - just URL persistence
-        } else if (target.id && target.id.includes('takeFrom_') && (target.id.endsWith('_role') || target.id.endsWith('_move'))) {
-            // TakeFrom dropdown changed - needs full layout to update learned move display
-            window.Layout.layoutApplication();
         }
         // Other changes don't need immediate layout updates
     }
