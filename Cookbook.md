@@ -458,17 +458,20 @@ data/cards/mycard/
 
 #### Custom JavaScript (card.js)
 ```javascript
-(function() {
-    'use strict';
+// Export initialization function for the card system
+window.CardInitializers = window.CardInitializers || {};
+window.CardInitializers.mycard = function() {
+    // Custom card logic here
+    console.log('My card initialized!');
     
-    function initializeMyCard() {
-        // Custom card logic here
-        console.log('My card initialized!');
+    // Example: Add custom event handlers
+    const field = document.getElementById('mycard_field');
+    if (field) {
+        field.addEventListener('input', function() {
+            // Custom validation or logic
+        });
     }
-    
-    // Initialize when card loads
-    setTimeout(initializeMyCard, 100);
-})();
+};
 ```
 
 #### Supported Input Types

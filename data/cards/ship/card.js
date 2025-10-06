@@ -66,18 +66,8 @@
         });
     }
     
-    // Create global initialization function that can be called whenever card is recreated  
-    window.initializeShip = function() {
-        console.log('Initializing Ship card...');
-        initializeShipCard();
-    };
-    
-    // Register with CardHelpers for proper lifecycle management
-    if (window.CardHelpers) {
-        window.CardHelpers.registerCard('ship', initializeShipCard);
-    } else {
-        // Fallback for development
-        setTimeout(initializeShipCard, 100);
-    }
+    // Export initialization function for the card system to call
+    window.CardInitializers = window.CardInitializers || {};
+    window.CardInitializers.ship = initializeShipCard;
     
 })();
