@@ -160,25 +160,8 @@ console.log('Unique Weapon card script is loading!');
         updateWeaponInterface();
     }
     
-    // Register with CardHelpers for automatic reinitialization
-    if (window.CardHelpers) {
-        window.CardHelpers.registerCard('unique-weapon', initializeUniqueWeaponCard);
-        
-        // If card already exists, initialize it immediately
-        if (document.querySelector('[data-card-id="unique-weapon"]')) {
-            console.log('Unique Weapon card already exists, initializing immediately');
-            initializeUniqueWeaponCard();
-        }
-    } else {
-        // Fallback
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeUniqueWeaponCard);
-        } else {
-            initializeUniqueWeaponCard();
-        }
-    }
-    
-    // Export for debugging
-    window.initializeUniqueWeaponCard = initializeUniqueWeaponCard;
+    // Export initialization function for the card system
+    window.CardInitializers = window.CardInitializers || {};
+    window.CardInitializers['unique-weapon'] = initializeUniqueWeaponCard;
     
 })();

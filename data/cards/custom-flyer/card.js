@@ -186,11 +186,9 @@ console.log('*** CUSTOM FLYER SCRIPT STARTING ***');
         updateUpgradeDisplay();
     }
     
-    // Create global initialization function that can be called whenever card is recreated
-    window.initializeCustomFlyerCard = function() {
-        console.log('Custom Flyer: Initializing Custom Flyer card...');
-        setupUpgradeCheckboxes();
-    };
+    // Export initialization function for the card system
+    window.CardInitializers = window.CardInitializers || {};
+    window.CardInitializers['custom-flyer'] = setupUpgradeCheckboxes;
     
     // Simple initialization for first load following Stonetop pattern
     console.log('Custom Flyer: Setting up initialization...');

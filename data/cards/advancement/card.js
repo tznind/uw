@@ -629,25 +629,6 @@ function setupDropZones() {
     });
 }
 
-// Initialize card when ready
-console.log('Advancement card script loaded, attempting initialization');
-if (window.CardHelpers) {
-    console.log('CardHelpers found, registering advancement card');
-    window.CardHelpers.registerCard('advancement', initializeAdvancementCard);
-    
-    // Try immediate initialization
-    const cardElement = document.querySelector('[data-card-id="advancement"]') || document.querySelector('.advancement-card');
-    console.log('Looking for card element:', !!cardElement, cardElement?.className);
-    if (cardElement) {
-        console.log('Card element found, initializing immediately');
-        initializeAdvancementCard();
-    } else {
-        console.log('Card element not found, waiting for callback');
-    }
-} else {
-    console.log('CardHelpers not available, direct initialization');
-    initializeAdvancementCard();
-}
-
-// Export for manual testing
-window.initializeAdvancementCard = initializeAdvancementCard;
+// Export initialization function for the card system
+window.CardInitializers = window.CardInitializers || {};
+window.CardInitializers.advancement = initializeAdvancementCard;

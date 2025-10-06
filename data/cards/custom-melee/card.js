@@ -87,36 +87,9 @@ console.log('*** CUSTOM MELEE SCRIPT STARTING ***');
         updateUpgradeDisplay();
     }
     
-    // Create global initialization function that can be called whenever card is recreated
-    window.initializeCustomMeleeCard = function() {
-        console.log('Custom Melee: Initializing Custom Melee card...');
-        setupUpgradeCheckboxes();
-    };
-    
-    // Simple initialization for first load following Stonetop pattern
-    console.log('Custom Melee: Setting up initialization...');
-    
-    // Try multiple times to catch the card when it's ready
-    setTimeout(function() {
-        console.log('Custom Melee: First attempt at 100ms...');
-        setupUpgradeCheckboxes();
-    }, 100);
-    
-    setTimeout(function() {
-        console.log('Custom Melee: Second attempt at 1000ms...');
-        setupUpgradeCheckboxes();
-    }, 1000);
-    
-    setTimeout(function() {
-        console.log('Custom Melee: Third attempt at 2000ms...');
-        setupUpgradeCheckboxes();
-    }, 2000);
-    
-    // Also try immediately if DOM is ready
-    if (document.readyState !== 'loading') {
-        console.log('Custom Melee: DOM ready, trying immediately...');
-        setupUpgradeCheckboxes();
-    }
+    // Export initialization function for the card system
+    window.CardInitializers = window.CardInitializers || {};
+    window.CardInitializers['custom-melee'] = setupUpgradeCheckboxes;
     
 })();
 

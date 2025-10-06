@@ -15,25 +15,8 @@ console.log('Health card script is loading!');
         });
     }
     
-    // Register with CardHelpers for automatic reinitialization
-    if (window.CardHelpers) {
-        window.CardHelpers.registerCard('health', initializeHealthCard);
-        
-        // If card already exists, initialize it immediately
-        if (document.querySelector('[data-card-id="health"]')) {
-            console.log('Health card already exists, initializing immediately');
-            initializeHealthCard();
-        }
-    } else {
-        // Fallback
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeHealthCard);
-        } else {
-            initializeHealthCard();
-        }
-    }
-    
-    // Export for debugging
-    window.initializeHealthCard = initializeHealthCard;
+    // Export initialization function for the card system
+    window.CardInitializers = window.CardInitializers || {};
+    window.CardInitializers.health = initializeHealthCard;
     
 })();

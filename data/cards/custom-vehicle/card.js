@@ -186,11 +186,9 @@ console.log('*** CUSTOM VEHICLE SCRIPT STARTING ***');
         updateUpgradeDisplay();
     }
     
-    // Create global initialization function that can be called whenever card is recreated
-    window.initializeCustomVehicleCard = function() {
-        console.log('Custom Vehicle: Initializing Custom Vehicle card...');
-        setupUpgradeCheckboxes();
-    };
+    // Export initialization function for the card system
+    window.CardInitializers = window.CardInitializers || {};
+    window.CardInitializers['custom-vehicle'] = setupUpgradeCheckboxes;
     
     // Simple initialization for first load following Stonetop pattern
     console.log('Custom Vehicle: Setting up initialization...');

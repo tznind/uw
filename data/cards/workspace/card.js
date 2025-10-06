@@ -352,25 +352,8 @@ console.log('Workspace card script is loading!');
         });
     }
     
-    // Register with CardHelpers for automatic reinitialization
-    if (window.CardHelpers) {
-        window.CardHelpers.registerCard('workspace', initializeWorkspaceCard);
-        
-        // If card already exists, initialize it immediately
-        if (document.querySelector('[data-card-id="workspace"]')) {
-            console.log('Workspace card already exists, initializing immediately');
-            initializeWorkspaceCard();
-        }
-    } else {
-        // Fallback
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeWorkspaceCard);
-        } else {
-            initializeWorkspaceCard();
-        }
-    }
-    
-    // Export for debugging
-    window.initializeWorkspaceCard = initializeWorkspaceCard;
+    // Export initialization function for the card system
+    window.CardInitializers = window.CardInitializers || {};
+    window.CardInitializers.workspace = initializeWorkspaceCard;
     
 })();

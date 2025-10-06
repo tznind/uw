@@ -201,11 +201,9 @@ console.log('*** CUSTOM OUTFIT SCRIPT STARTING ***');
         updateUpgradeDisplay();
     }
     
-    // Create global initialization function that can be called whenever card is recreated
-    window.initializeCustomOutfitCard = function() {
-        console.log('Custom Outfit: Initializing Custom Outfit card...');
-        setupUpgradeCheckboxes();
-    };
+    // Export initialization function for the card system
+    window.CardInitializers = window.CardInitializers || {};
+    window.CardInitializers['custom-outfit'] = setupUpgradeCheckboxes;
     
     // Simple initialization for first load following Stonetop pattern
     console.log('Custom Outfit: Setting up initialization...');
