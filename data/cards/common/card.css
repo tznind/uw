@@ -6,6 +6,15 @@
     margin: 8px 0;
 }
 
+/* Ensure the card works well with the collapsible system */
+.card.common-equipment-card {
+    /* Card system styling will be applied */
+}
+
+.card.common-equipment-card .card-content.collapsed {
+    display: none;
+}
+
 .common-equipment-card h3 {
     margin-top: 0;
     color: #333;

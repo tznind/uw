@@ -487,25 +487,88 @@ data/cards/mycard/
 #### Built-in CSS Classes
 The system provides base CSS classes:
 - `.card` - Main card container with border and padding
-- `.card-title` - Card title heading styling
+- `.card-title` - Card title heading styling (automatically becomes collapsible)
 - `.card-section` - Logical sections within cards
 - `.form-field` - Individual input field containers
 - `.card-error` - Error state styling
+- `.card-content` - Wrapper for collapsible content (auto-generated)
+- `.card-collapse-toggle` - +/- button for expanding/collapsing (auto-generated)
+
+#### Card Collapse Functionality
+
+**All cards are automatically collapsible**. The system:
+- Converts any `<h3>` or `.card-title` element into a clickable collapse toggle
+- Wraps all content below the title in a `.card-content` div
+- Adds a +/- toggle button to the title
+- Preserves collapse state during re-renders
+- Starts cards in collapsed state by default
+
+**Required for collapse functionality:**
+```html
+<div class="card mycard-card">
+  <h3>Card Title</h3>  <!-- This becomes the collapsible header -->
+  <!-- Everything below becomes collapsible content -->
+</div>
+```
+
+**CSS for collapsed state:**
+```css
+.card.mycard-card .card-content.collapsed {
+  display: none;
+}
+```
+
+**Collapse controls:**
+- Click title or +/- button to toggle
+- Keyboard accessible (Tab to title, Enter/Space to toggle)
+- Global "Collapse All" / "Expand All" buttons affect all cards
+- State preserved when switching between roles
 
 ### Assigning Cards to Roles
 
-Edit `data/availability.json` and add a `_cards` array to any role:
+Edit `data/availability.json` and add a `cards` array to any role:
 
 ```json
 {
   "Navigator": {
     "_movesFile": "data/moves/navigator.json",
-    "_cards": ["ship", "crew"],
+    "cards": ["ship", "crew"],
     "moveId1": true,
     "moveId2": false
   }
 }
 ```
+
+### Everyone System - Universal Cards and Moves
+
+The "Everyone" role provides universal access to cards and moves for all characters:
+
+```json
+{
+  "Everyone": {
+    "_movesFile": "data/moves/everyone.json",
+    "cards": ["common"],
+    "universal_move": true,
+    "basic_combat": true,
+    "optional_skill": false
+  }
+}
+```
+
+**Key Features:**
+- **Automatic Inclusion**: Everyone moves/cards are automatically added to any selected role combination
+- **Invisible to Users**: "Everyone" never appears in role dropdowns or takeFrom lists
+- **Universal Access**: Perfect for basic equipment, common knowledge, fundamental abilities
+- **Same Structure**: Uses the same format as regular roles (moves file, cards array, move flags)
+
+**Use Cases:**
+- Basic combat moves available to all characters
+- Common equipment cards (weapons, armor, tools)
+- Universal knowledge or social moves
+- Core mechanics that every character should have access to
+
+**Implementation:**
+The system automatically merges Everyone's availability data with any selected roles, making the moves and cards available without the user needing to select "Everyone" explicitly.
 
 ### Examples
 
