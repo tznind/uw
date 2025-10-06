@@ -1,72 +1,12 @@
 [
   {
-    "id": "ev001",
-    "title": "Basic Combat - Everyone knows how to fight",
-    "description": "Every character can engage in basic combat using their training and available weapons.",
-    "outcomes": [
-      {
-        "range": "≥ 10",
-        "text": "You strike true and deal damage as intended.",
-        "bullets": []
-      },
-      {
-        "range": "7–9",
-        "text": "You hit but choose one:",
-        "bullets": [
-          "You expose yourself to counterattack",
-          "Your weapon is damaged or depleted",
-          "You only deal minor damage"
-        ]
-      },
-      {
-        "range": "≤ 6",
-        "text": "You miss and the enemy retaliates:",
-        "bullets": [
-          "Take damage from the enemy's response",
-          "Your position is compromised",
-          "Your weapon jams or breaks"
-        ]
-      }
-    ]
-  },
-  {
-    "id": "ev002",
-    "title": "General Knowledge - Understanding the world",
-    "description": "Draw upon your knowledge of culture, hierarchy, and procedures to navigate social situations or identify threats.",
-    "outcomes": [
-      {
-        "range": "≥ 10",
-        "text": "Your knowledge serves you well. You understand the situation completely.",
-        "bullets": []
-      },
-      {
-        "range": "7–9",
-        "text": "You recall useful information, but:",
-        "bullets": [
-          "The knowledge is incomplete or outdated",
-          "Others notice your inquiries",
-          "The information comes with unwanted implications"
-        ]
-      },
-      {
-        "range": "≤ 6",
-        "text": "Your knowledge fails you:",
-        "bullets": [
-          "You misremember critical details",
-          "Your questions reveal ignorance to the wrong people",
-          "The situation is more complex than you realized"
-        ]
-      }
-    ]
-  },
-  {
     "id": "universal",
     "title": "Universal Access - Available to all characters",
-    "description": "This represents moves and abilities that every character would have access to, regardless of their specific role.",
+    "description": "This demonstrates the Everyone role functionality - this move appears for any selected role combination.",
     "outcomes": [
       {
         "range": "",
-        "text": "This move is always available to demonstrate the Everyone role functionality."
+        "text": "This move is always available to demonstrate how the Everyone system works."
       }
     ]
   }
