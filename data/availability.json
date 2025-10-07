@@ -273,7 +273,9 @@
     "evo": false,
     "trans": false
   },
-  "Cyber": {
+  "Everyone": {
+    "_movesFile": "data/moves/cyber.json",
+    "cards": [],
     "ada": false,
     "amp": false,
     "bea": false,
