@@ -274,8 +274,10 @@
     "trans": false
   },
   "Everyone": {
-    "_movesFile": "data/moves/cyber.json",
+    "_movesFile": "data/moves/everyone.json",
     "cards": [],
+    "face_adversity": true,
+    "assessment": true,
     "ada": false,
     "amp": false,
     "bea": false,
