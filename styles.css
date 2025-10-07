@@ -872,13 +872,18 @@ button:focus {
 
 /* Reduce card title padding when collapsed */
 .card-wrapper.collapsed .card-title {
-  padding-bottom: 5px;
-  margin-bottom: 5px;
+  padding-bottom: 2px;
+  margin-bottom: 2px;
+}
+
+/* Reduce card padding when collapsed */
+.card-wrapper.collapsed .card {
+  padding: 8px 12px;
 }
 
 /* Reduce card wrapper margin when collapsed */
 .card-wrapper.collapsed {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .card-section {

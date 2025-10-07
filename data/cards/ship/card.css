@@ -17,6 +17,11 @@
   font-size: 24px;
 }
 
+/* Smaller emoji when collapsed */
+.card-wrapper.collapsed .ship-card .card-title::before {
+  font-size: 18px;
+}
+
 .ship-stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
