@@ -1,8 +1,6 @@
 # LC
 This repository is a template for building interactive [PbtA-style](https://en.wikipedia.org/wiki/Powered_by_the_Apocalypse?utm_source=chatgpt.com) character sheets.
 
-> **Note:** The main limitation is URL length for complex characters. See [LIMITATIONS.md](./LIMITATIONS.md) for details.
-
 ## Live Character Sheet
 
 Players can create their own characters, choose skills etc. Data is saved only into the address bar (URL) - allowing sharing/saving for later e.g. as a bookmark.
@@ -45,6 +43,11 @@ https://your_name.github.io/your_repository_name/cs.html
 ### Cookbook
 
 For more detailed description of how to create various types of moves see [Cookbook.md](./Cookbook.md)
+
+### Url Length 
+There is a maximum url Length of ~8000 characters.  This is enforced by GitHub Pages. In practice, you should not reach this unless you have a large number of free text inputs into which your players add a lot of text. 
+
+See [LIMITATIONS.md](./LIMITATIONS.md) for details.
 
 ## Powered by the Apocalypse
 
