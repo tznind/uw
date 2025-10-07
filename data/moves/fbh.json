@@ -2,8 +2,16 @@
        "id":"gs",
        "title":"Group Skill",
        "description":"Choose a skill from the group career you have agreed upon.",
-       "category":"Beyond Humanity",
+       "category":"Extra",
        "takeFrom":["*"]
+   },
+   {
+       "id":"drastic_upheaval",
+       "title":"Drastic Upheaval",
+       "description":"Choose a new advancement from any career",
+       "category":"Extra",
+       "takeFrom":["*"],
+       "multiple":3
    },
    {
        "id":"ins",
@@ -213,9 +221,19 @@
    {
        "id":"medi",
        "title":"Mediate",
-       "description":"When you successfully interfere or Get Involved in an interpersonal situation (including Cramped Quarters), choose 1: Each participant gains a Data Point about another participant; Escalate the situation - The choices are now Fight or Flight; Defuse the situation - Violence is currently not an option.",
-       "category":"Skills"
-   },
+       "description":"When you successfully interfere or Get Involved in an interpersonal situation (including Cramped Quarters).",
+       "category":"Skills",
+       "outcomes":[
+        {
+            "text":"Choose 1",
+            "bullets": [
+                "Each participant gains a Data Point about another participant.",
+                "Escalate the situation - The choices are now Fight or Flight.",
+                "Defuse the situation - Violence is currently not an option."
+            ]
+        }
+       ]
+    },
    {
        "id":"adv",
        "title":"Advise",

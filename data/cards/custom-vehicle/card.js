@@ -110,10 +110,10 @@ console.log('*** CUSTOM VEHICLE SCRIPT STARTING ***');
         armorDisplay.style.borderRadius = '4px';
         armorDisplay.style.fontSize = '1.1em';
         
-        // Insert armor display after the Brace for Impact help section
-        const braceForImpactDetails = document.querySelector('.custom-vehicle-card details');
-        if (braceForImpactDetails && braceForImpactDetails.parentNode) {
-            braceForImpactDetails.parentNode.insertBefore(armorDisplay, braceForImpactDetails.nextSibling);
+        // Insert armor display after the health status section
+        const healthSection = document.querySelector('.custom-vehicle-card .health-options').parentNode;
+        if (healthSection && healthSection.parentNode) {
+            healthSection.parentNode.insertBefore(armorDisplay, healthSection.nextSibling);
         }
     }
     

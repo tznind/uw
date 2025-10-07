@@ -107,10 +107,10 @@ console.log('*** CUSTOM FLYER SCRIPT STARTING ***');
         armorDisplay.style.borderRadius = '4px';
         armorDisplay.style.fontSize = '1.1em';
         
-        // Insert armor display after the Brace for Impact help section
-        const braceForImpactDetails = document.querySelector('.custom-flyer-card details');
-        if (braceForImpactDetails && braceForImpactDetails.parentNode) {
-            braceForImpactDetails.parentNode.insertBefore(armorDisplay, braceForImpactDetails.nextSibling);
+        // Insert armor display after the health status section
+        const healthSection = document.querySelector('.custom-flyer-card .health-options').parentNode;
+        if (healthSection && healthSection.parentNode) {
+            healthSection.parentNode.insertBefore(armorDisplay, healthSection.nextSibling);
         }
     }
     

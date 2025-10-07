@@ -1,13 +1,427 @@
 [
   {
-    "id": "universal",
-    "title": "Universal Access - Available to all characters",
-    "description": "This demonstrates the Everyone role functionality - this move appears for any selected role combination.",
+    "id": "face_adversity",
+    "title": "Face Adversity (+Stat)",
+    "category": "Common Moves",
+    "description": "When you overcome opposition or danger using stealth, piloting, accuracy, discipline (Roll+Mettle); knowledge, mechanics, first-aid (Roll+Expertise); athletics, endurance, strength, health (Roll+Physique); charm, diplomacy, bargaining, lies (Roll+Influence); or open computer systems and networks (Roll+Interface).",
     "outcomes": [
       {
-        "range": "",
-        "text": "This move is always available to demonstrate how the Everyone system works."
+        "range": "≥ 10",
+        "text": "You overcome the opposition or danger, just as you described."
+      },
+      {
+        "range": "7-9", 
+        "text": "The danger is overcome, but at a price; the GM will offer you a cost or a hard choice."
       }
     ]
+  },
+  {
+    "id": "assessment",
+    "title": "Assessment (+Stat)",
+    "category": "Common Moves",
+    "description": "When you collect critical information about an important, dangerous or mysterious subject using stealth, focus, cunning (Roll+Mettle); research and experimentation (Roll+Expertise); exploration, labor, strenuous activity (Roll+Physique); informants, interviews, gossip (Roll+Influence); or the SectorNet or open networks (Roll+Interface).",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You gain significant information about the subject, and earn a Data Point about it as well."
+      },
+      {
+        "range": "7-9",
+        "text": "The GM will reveal interesting, potentially useful information about the subject. Or they might ask you to do so."
+      },
+      {
+        "range": "≤ 6",
+        "text": "The GM will reveal facts about the subject you probably wish were not true."
+      }
+    ]
+  },
+  {
+    "id": "get_involved",
+    "title": "Get Involved (+Stat)",
+    "category": "Common Moves",
+    "description": "When an ally makes a Move and you affect the result using stealth, piloting, accuracy, or bravery (Roll+Mettle); education, mechanics or first aid (Roll+Expertise); athletics, endurance, strength or health (Roll+Physique); charm, diplomacy, bargaining or lies (Roll+Influence); or open computer systems and networks (Roll+Interface).",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Choose 1:",
+        "bullets": [
+          "Improve a failure(6-) into a partial success (7-9).",
+          "Improve a partial success(7-9) into a full success (10+).",
+          "Downgrade a full success(10+) into a partial success(7-9).",
+          "Downgrade a partial success(7-9) into a failure(6-)."
+        ]
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but you incur a cost, complication or hard choice in order to get involved."
+      }
+    ]
+  },
+  {
+    "id": "open_fire",
+    "title": "Open Fire (+Mettle)",
+    "category": "Common Moves",
+    "description": "When you engage enemy forces in long ranged, cover-to-cover firefights, describe your tactics, primary targets and Roll+Mettle.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You win this engagement. Your targets are dead, injured, incapacitated, retreating, pinned, surrendering, etc."
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but the GM will choose 1 or more of the following consequences:",
+        "bullets": [
+          "You suffer harm during the exchange.",
+          "The exchange causes undesirable collateral damage.",
+          "The battle shifts, changing threats or adding new ones.",
+          "The targets actually suffer a lesser fate (GM chooses)."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "launch_assault",
+    "title": "Launch Assault (+Physique)",
+    "category": "Common Moves",
+    "description": "When you engage enemy forces in chaotic close-quarters combat, describe your tactics and primary targets, then Roll+Physique.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You win this engagement. Your targets are dead, injured, incapacitated, retreating, pinned, surrendering, etc."
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but the GM will choose 1 or more of the following consequences:",
+        "bullets": [
+          "You suffer harm during the exchange.",
+          "The exchange causes undesirable collateral damage.",
+          "The battle shifts, changing threats or adding new ones.",
+          "The targets actually suffer a lesser fate (GM chooses)."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "patch_up",
+    "title": "Patch Up (+Expertise)",
+    "category": "Common Moves",
+    "description": "When using appropriate medical supplies/tools to repair harm to people or machinery, Roll+Expertise.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Choose 1 from the list below."
+      },
+      {
+        "range": "7-9",
+        "text": "Choose 1, but you've reached the limit of what you can do; you cannot re-attempt to Patch Up the subject for now."
+      }
+    ],
+    "bullets": [
+      "Treat a single minor, major or severe injury/damage",
+      "Treat a malfunction or minor debility",
+      "Stabilize a major debility",
+      "Perform a medical/technical procedure"
+    ]
+  },
+  {
+    "id": "command",
+    "title": "Command (+Influence)",
+    "category": "Common Moves",
+    "description": "When you issue a command to a group that is inclined to follow your orders, Roll+Influence.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "They follow those orders to the best of their ability, though there may be costs in time, resources or personnel."
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but their disposition or effectiveness has been significantly impacted in some way. This crew will not accept a new Command until those issues have been dealt with."
+      }
+    ]
+  },
+  {
+    "id": "access",
+    "title": "Access (+Interface)",
+    "category": "Common Moves",
+    "description": "When you spend several minutes accessing a locked, protected system or network with the appropriate tools, Roll+Interface.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Credentials verified, access granted. The system is now open to Interface-based Moves."
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but your breach is detected. The owners of the system will likely retaliate soon, either electronically, legally or physically."
+      }
+    ]
+  },
+  {
+    "id": "brace_for_impact",
+    "title": "Brace for Impact (+Armor)",
+    "category": "Common Moves",
+    "description": "When you would suffer harm, the GM will tell you the Severity (Minor, Major, Severe, Critical or Fatal). Roll+Armor.",
+    "outcomes": [
+      {
+        "range": "≥ 13",
+        "text": "The severity is reduced by two levels."
+      },
+      {
+        "range": "10-12",
+        "text": "The severity is reduced by one level."
+      },
+      {
+        "range": "7-9",
+        "text": "You suffer an injury of that severity."
+      },
+      {
+        "range": "≤ 6",
+        "text": "You also suffer debilities, incur costs/troubles, or suffer an injury of a greater severity, at the GM's discretion."
+      }
+    ]
+  },
+  {
+    "id": "shields_up",
+    "title": "Shields Up",
+    "category": "Enterprise Moves",
+    "description": "When one of the starship sections would suffer damage from outside, the pilot Rolls 2d6. If a character is at the shield station, they Roll instead, and add their +Interface.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "The severity of the damage is reduced by two."
+      },
+      {
+        "range": "7-9",
+        "text": "The severity of the damage is reduced by one."
+      },
+      {
+        "range": "≤ 6",
+        "text": "Shields down! The section suffers damage, and the shields need to be repaired or recharged before they can be used again."
+      }
+    ]
+  },
+  {
+    "id": "wild_jump",
+    "title": "Wild Jump",
+    "category": "Enterprise Moves",
+    "description": "When you force your ship to make a Wild Jump, Roll 2d6.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "The crew only suffers nausea, headaches and other minor effects. You reach a point within a week's travel of your destination, or choose from the list below."
+      },
+      {
+        "range": "7-9",
+        "text": "The illness and hallucinations are pronounced. The GM chooses one from the list below:",
+        "bullets": [
+          "You find an uncharted world, ready for exploration.",
+          "You find exploitable resources, there for the taking.",
+          "You discover a scientifically-interesting phenomenon.",
+          "You discover wreckage or ruins of unknown origin.",
+          "You find a new path to a well-known destination.",
+          "You encounter a faction or culture that is new to you."
+        ]
+      },
+      {
+        "range": "≤ 6",
+        "text": "The GM will describe the ugly, debilitating, terrifying consequences. It's full of stars."
+      }
+    ],
+    "bullets": [
+      "You find an uncharted world, ready for exploration.",
+      "You find exploitable resources, there for the taking.",
+      "You discover a scientifically-interesting phenomenon.",
+      "You discover wreckage or ruins of unknown origin.",
+      "You find a new path to a well-known destination.",
+      "You encounter a faction or culture that is new to you."
+    ]
+  },
+  {
+    "id": "cramped_quarters",
+    "title": "Cramped Quarters",
+    "category": "Enterprise Moves",
+    "description": "When you've been trapped in cramped quarters with the same people for a significant amount of time (a leg of an interstellar journey, etc), choose a character trapped here with you and Roll 2d6.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Describe how the two of you bonded over the past few days."
+      },
+      {
+        "range": "7-9",
+        "text": "Reveal/discover the answer to their question about an aspect of yourself or your past."
+      },
+      {
+        "range": "≤ 6",
+        "text": "Describe what caused the newest hurt feelings or bad blood between you."
+      }
+    ]
+  },
+  {
+    "id": "acquisition",
+    "title": "Acquisition (+Cargo)",
+    "category": "Enterprise Moves",
+    "description": "When you demand important services or assets from a market able to supply those demands, Roll+0. If you offer a cargo unit as part of the deal, Roll+ that cargo's Class.",
+    "outcomes": [
+      {
+        "range": "≥ 13",
+        "text": "The deal goes through; you get what you asked for."
+      },
+      {
+        "range": "10-12",
+        "text": "The deal goes through if the seller/market is amiably disposed toward the deal. Otherwise, as 7-9."
+      },
+      {
+        "range": "7-9",
+        "text": "The deal will only go through if you accept a cost, a task or a lesser asset/service instead of what you asked for."
+      },
+      {
+        "range": "≤ 6",
+        "text": "The deal will only go through if you call in a Favor."
+      }
+    ]
+  },
+  {
+    "id": "barter",
+    "title": "Barter (+Cargo)",
+    "category": "Enterprise Moves",
+    "description": "When you exchange a foreign unit of cargo for local trade goods, Roll + the Class of the cargo unit.",
+    "outcomes": [
+      {
+        "range": "≥ 13",
+        "text": "You attract the attention of a faction or individual with a unique item or service to trade."
+      },
+      {
+        "range": "10-12",
+        "text": "You get a higher Class cargo of local goods in exchange, to a max of Class 4."
+      },
+      {
+        "range": "7-9",
+        "text": "You get a higher Class cargo, to a max of Class 4, and the GM chooses one flaw:",
+        "bullets": [
+          "The negotiations take many days to complete.",
+          "The goods need special care (fragile, hazardous, etc).",
+          "The goods are very odd, distasteful or bizarre.",
+          "The provenance or legality of the goods is dubious."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "drastic_upheaval",
+    "title": "Drastic Upheaval",
+    "description": "Choose a new advancement from any career",
+    "category": "Extra",
+    "takeFrom": ["*"],
+    "multiple": 3
+  },
+  {
+    "id": "ada",
+    "title": "Adaptation",
+    "description": "Choose a type of environment. You can function normally in that environment.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "amp",
+    "title": "Amplifier",
+    "description": "Increases memory, attention, thought speed, and the range of supernatural abilities.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "bea",
+    "title": "Beauty",
+    "description": "Designed to be stunning, dazzling, and distracting.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "cam",
+    "title": "Camouflage",
+    "description": "Blend into your surroundings, especially when not moving.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "conn",
+    "title": "Connector",
+    "description": "Choose a type of vehicle, system, or organism. You can physically attach yourself to it, allowing a direct neural interaction.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "imp",
+    "title": "Implements",
+    "description": "Choose a Kit. It is built directly into your body.",
+    "details": true,
+    "category": "Cyber/Bio Mods",
+    "pickOne": [
+      "Art Kit - Tools to create visual artwork. Paints, brushes, writing implements, paper, chisels, files, twine, tarps, music instruments, etc.",
+      "Broadcast Kit - Tools to send and receive signals. Collapsible broadcast antenna, signal boosters, wires, vid screens, recording hardware, portable data drives, etc.",
+      "Computer Kit - Tools to access, program, diagnose and repair computer systems. Laptops, diagnostic tools, wires, handheld power sources, portable data drives, etc.",
+      "Engineering Kit - Tools to repair and dismantle machinery. Hammers, drills, cutters, wrenches, welders, grips, cables, diagnostic tools, cage lamps, miscellaneous spare parts, etc.",
+      "Infiltration Kit - Tools to gain access to forbidden places. Mechanical lockpicks, intrusion hardware, chloroform, glass cutters, disguises, ropes, climbing tools, etc.",
+      "Medical Kit - Tools to perform medical treatments. Bandages, scalpels, gels, stimms, scissors, pain killers, surgical braces, dermal regen spray, etc.",
+      "Research Kit - Tools to study and experiment out in the field. Specimen jars, hammer and chisel, scalpels, chemical analyser, data recorder, etc.",
+      "Ritual Kit - Tools to practice religious and mystic ceremonies. Candles, incense, chalk, dusts, oils, texts, totems, charms, etc.",
+      "Survey Kit - Tools to observe and monitor. Range finders, tracking devices, motion sensors, deep scanner tripod, holo-map projector, data recorder, deployable transmitter, etc.",
+      "VR Kit - Tools to connect to local cyberscapes. Virtual reality headset, vital-sign monitors, glove-based interface, universal jacks, external storage drives, etc.",
+      "Wilderness Kit - Tools to traverse hostile landscapes. Ropes, climbing tools, light sources, breather mask, tent, sleeping bag, heat lamp, thermal blanket, water filter, etc."
+    ]
+  },
+  {
+    "id": "link",
+    "title": "Link",
+    "description": "Share thoughts and emotions with others who have the same link.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "loc",
+    "title": "Locomotion",
+    "description": "Choose a new means of locomotion: slithering, leaping, climbing, swimming, gliding, hovering.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "per",
+    "title": "Perception",
+    "description": "Choose a type of information. You can receive sensory data about it when you focus. The more specific the type of information, the more detailed the data collected.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "proj",
+    "title": "Projectile",
+    "description": "Create effects/projectiles like a Class 1 Firearm. Biomod: Regrow/refill ammunition over time. Cybermod: Spent ammo/cells can be replaced.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "preh",
+    "title": "Prehensile",
+    "description": "Independent extra limb (or pair of limbs) ending in a Class 0 Melee weapon.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "rein",
+    "title": "Reinforced",
+    "description": "+1 Armor. Difficult to damage/break.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "repl",
+    "title": "Replacement",
+    "description": "Create a Class 1 Melee Weapon that replaces a limb. Manual tasks using that limb are Clumsy without an appropriate upgrade (Glove, Flexible, Hidden, Living, etc.). Does not count towards Mod support maximum.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
+  },
+  {
+    "id": "stor",
+    "title": "Storage",
+    "description": "Hollow section which can store a variety of small objects. Resists scans.",
+    "details": true,
+    "category": "Cyber/Bio Mods"
   }
 ]
