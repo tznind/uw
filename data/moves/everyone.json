@@ -45,10 +45,10 @@
         "range": "≥ 10",
         "text": "Choose 1:",
         "bullets": [
-          "Turn a failure(6-) into a partial success (7-9).",
-          "Turn a partial success(7-9) into a full success (10+).",
-          "Turn a full success(10+) into a partial success(7-9).",
-          "Turn a partial success(7-9) into a failure(6-)."
+          "Improve a failure(6-) into a partial success (7-9).",
+          "Improve a partial success(7-9) into a full success (10+).",
+          "Downgrade a full success(10+) into a partial success(7-9).",
+          "Downgrade a partial success(7-9) into a failure(6-)."
         ]
       },
       {
