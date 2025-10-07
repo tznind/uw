@@ -20,6 +20,7 @@
     "gs": false
   },
   "Brutal": {
+    "description": "The Brutal were forged in the most volatile conditions; war zones, slavery or in barbaric, bloodthirsty societies. Life was short and cruel, blood and pain are the norm. There was no room for weakness or mercy, no place for honor or fair play.",
     "cards": ["health", "workspace", "advancement"],
     "ass": false,
     "tou": false,
@@ -36,6 +37,7 @@
     "gs": false
   },
   "Crowded": {
+    "description": "The Crowded have lived their lives shoulder-to-shoulder with humanity. They come from the cramped confines of heavily-populated hive cities, underground facilities, domes and space stations. They are one face among billions.",
     "cards": ["health", "workspace", "advancement"],
     "cnt": false,
     "net": false,
@@ -52,6 +54,7 @@
     "gs": false
   },
   "Impoverished": {
+    "description": "The Impoverished grew up on the margins, in the slums, in slavery and prisons and filth. They have little to call their own, only what they could scrape and scrounge together. They've fought tooth and nail to survive against oppressive conditions.",
     "cards": ["health", "workspace", "advancement"],
     "ste": false,
     "rec": false,
@@ -68,6 +71,7 @@
     "gs": false
   },
   "Productive": {
+    "description": "The Productive live in societies, cultures or groups that place high importance on education and social responsibility. From a young age they begin training for their destined profession, devoting any spare time to higher education and secondary vocations.",
     "cards": ["health", "workspace", "advancement"],
     "cal": false,
     "acu": false,
@@ -84,6 +88,7 @@
     "gs": false
   },
   "Rustic": {
+    "description": "The Rustic were raised on the very edges of galactic society, on the most inhospitable and savage worlds. With only basic machinery and tools, they were forced to toil by the sweat of their brow, shaping the hostile landscape.",
     "cards": ["health", "workspace", "advancement"],
     "con": false,
     "sur": false,
@@ -142,9 +147,10 @@
     "gs": false
   },
   "Human/Humanoid": {
- 
+    "description": "Humanoids are by far the most common type of spacefaring species. They have the same general body shape; two arms, two legs, a head that contains most of their sensory and cognitive organs, and a trunk-like body that contains the remaining organs."
   },
   "Robotic": {
+    "description": "As a species, robots are humanoid constructs built by another species, often with a subservient role in mind. Humanoid robots tend to share certain broad physical characteristics with their creators, especially size and bodily proportions, since the two need to function in the same spaces and use the same technology.",
     "_movesFile": "data/moves/fbh.json",
     "inorg": true,
     "elect": true,
@@ -152,14 +158,17 @@
     "repair": true
   },
   "Xeno": {
+    "description": "While the vast majority of spacefaring species are bipedal humanoids, every so often a species with a very different configuration reaches the stars. These xeno species have unique evolutionary advantages which set them apart from the usual bipeds.",
     "_movesFile": "data/moves/fbh.json",
     "xeno": true
   },
   "Evolved": {
+    "description": "The physiology of certain bipedal species grants them innate abilities that would take others decades to master. The species' cultures, societies, and technology tend to revolve around this natural propensity, and it is often a source of both prejudice and pride when dealing with other peoples.",
     "_movesFile": "data/moves/fbh.json",
     "evolvd": true
   },
   "Symbiotic": {
+    "description": "Symbionts are very small organic creatures whose unique biology requires them to inhabit a host humanoid in order to travel and interact with the galaxy at large. The relationship between a symbiont and their chosen host varies from species to species, though most tend towards some form of parasitism.",
     "sym": true,
     "joi": true,
     "gs": false
@@ -231,6 +240,7 @@
     "cuf": false
   },
   "Technocrat": {
+    "description": "The Technocrat career is the most wired-in and computer-centric of the careers, focusing on programming, data and electronic warfare. Other careers benefit from the Technocrat's mastery of the computer systems that run almost all of civilized space. An Academic Technocrat's thirst for information knows no bounds, Technocrat Starfarers are comms officers, and Military Technocrats control battlefield information.",
     "upl": false,
     "hij": false,
     "pro": false,
