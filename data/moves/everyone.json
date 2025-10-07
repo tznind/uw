@@ -36,6 +36,150 @@
     ]
   },
   {
+    "id": "get_involved",
+    "title": "Get Involved (+Stat)",
+    "category": "Common Moves",
+    "description": "When an ally makes a Move and you affect the result using stealth, piloting, accuracy, or bravery (Roll+Mettle); education, mechanics or first aid (Roll+Expertise); athletics, endurance, strength or health (Roll+Physique); charm, diplomacy, bargaining or lies (Roll+Influence); or open computer systems and networks (Roll+Interface).",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Choose 1:",
+        "bullets": [
+          "Turn a failure(6-) into a partial success (7-9).",
+          "Turn a partial success(7-9) into a full success (10+).",
+          "Turn a full success(10+) into a partial success(7-9).",
+          "Turn a partial success(7-9) into a failure(6-)."
+        ]
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but you incur a cost, complication or hard choice in order to get involved."
+      }
+    ]
+  },
+  {
+    "id": "open_fire",
+    "title": "Open Fire (+Mettle)",
+    "category": "Common Moves",
+    "description": "When you engage enemy forces in long ranged, cover-to-cover firefights, describe your tactics, primary targets and Roll+Mettle.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You win this engagement. Your targets are dead, injured, incapacitated, retreating, pinned, surrendering, etc."
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but the GM will choose 1 or more of the following consequences:",
+        "bullets": [
+          "You suffer harm during the exchange.",
+          "The exchange causes undesirable collateral damage.",
+          "The battle shifts, changing threats or adding new ones.",
+          "The targets actually suffer a lesser fate (GM chooses)."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "launch_assault",
+    "title": "Launch Assault (+Physique)",
+    "category": "Common Moves",
+    "description": "When you engage enemy forces in chaotic close-quarters combat, describe your tactics and primary targets, then Roll+Physique.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "You win this engagement. Your targets are dead, injured, incapacitated, retreating, pinned, surrendering, etc."
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but the GM will choose 1 or more of the following consequences:",
+        "bullets": [
+          "You suffer harm during the exchange.",
+          "The exchange causes undesirable collateral damage.",
+          "The battle shifts, changing threats or adding new ones.",
+          "The targets actually suffer a lesser fate (GM chooses)."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "patch_up",
+    "title": "Patch Up (+Expertise)",
+    "category": "Common Moves",
+    "description": "When using appropriate medical supplies/tools to repair harm to people or machinery, Roll+Expertise.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Choose 1 from the list below."
+      },
+      {
+        "range": "7-9",
+        "text": "Choose 1, but you've reached the limit of what you can do; you cannot re-attempt to Patch Up the subject for now."
+      }
+    ],
+    "bullets": [
+      "Treat a single minor, major or severe injury/damage",
+      "Treat a malfunction or minor debility",
+      "Stabilize a major debility",
+      "Perform a medical/technical procedure"
+    ]
+  },
+  {
+    "id": "command",
+    "title": "Command (+Influence)",
+    "category": "Common Moves",
+    "description": "When you issue a command to a group that is inclined to follow your orders, Roll+Influence.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "They follow those orders to the best of their ability, though there may be costs in time, resources or personnel."
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but their disposition or effectiveness has been significantly impacted in some way. This crew will not accept a new Command until those issues have been dealt with."
+      }
+    ]
+  },
+  {
+    "id": "access",
+    "title": "Access (+Interface)",
+    "category": "Common Moves",
+    "description": "When you spend several minutes accessing a locked, protected system or network with the appropriate tools, Roll+Interface.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Credentials verified, access granted. The system is now open to Interface-based Moves."
+      },
+      {
+        "range": "7-9",
+        "text": "As above, but your breach is detected. The owners of the system will likely retaliate soon, either electronically, legally or physically."
+      }
+    ]
+  },
+  {
+    "id": "brace_for_impact",
+    "title": "Brace for Impact (+Armor)",
+    "category": "Common Moves",
+    "description": "When you would suffer harm, the GM will tell you the Severity (Minor, Major, Severe, Critical or Fatal). Roll+Armor.",
+    "outcomes": [
+      {
+        "range": "≥ 13",
+        "text": "The severity is reduced by two levels."
+      },
+      {
+        "range": "10-12",
+        "text": "The severity is reduced by one level."
+      },
+      {
+        "range": "7-9",
+        "text": "You suffer an injury of that severity."
+      },
+      {
+        "range": "≤ 6",
+        "text": "You also suffer debilities, incur costs/troubles, or suffer an injury of a greater severity, at the GM's discretion."
+      }
+    ]
+  },
+  {
     "id": "ada",
     "title": "Adaptation",
     "description": "Choose a type of environment. You can function normally in that environment.",
