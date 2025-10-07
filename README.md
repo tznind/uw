@@ -1,6 +1,8 @@
 # LC
 This repository is a template for building interactive [PbtA-style](https://en.wikipedia.org/wiki/Powered_by_the_Apocalypse?utm_source=chatgpt.com) character sheets.
 
+> **Note:** The main limitation is URL length for complex characters. See [LIMITATIONS.md](./LIMITATIONS.md) for details.
+
 ## Live Character Sheet
 
 Players can create their own characters, choose skills etc. Data is saved only into the address bar (URL) - allowing sharing/saving for later e.g. as a bookmark.
