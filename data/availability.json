@@ -1,7 +1,7 @@
 {
   "Navigator": {
     "_movesFile": "data/moves/navigator.json",
-    "description": "",
+    "description": "Expert in charting courses through unknown space and navigating dangerous stellar phenomena.",
     "cards": [],
     "a1b2c3": true,
     "d4e5f6": false,
@@ -12,7 +12,7 @@
   },
   "Mech Adept": {
     "_movesFile": "data/moves/mech-adept.json",
-    "description": "",
+    "description": "Mechanical genius skilled in engineering, robotics, and maintaining critical ship systems.",
     "cards": [],
     "m1a2b3": false,
     "m4c5d6": false,
@@ -23,7 +23,7 @@
   },
   "Lord Commander": {
     "_movesFile": "data/moves/lord-commander.json",
-    "description": "",
+    "description": "Natural leader who inspires the crew and makes crucial tactical decisions in combat and crisis.",
     "cards": ["ship"],
     "l1a2b3": false,
     "l4c5d6": false,
@@ -35,7 +35,7 @@
   },
   "Everyone": {
     "_movesFile": "data/moves/everyone.json",
-    "description": "",
+    "description": "Universal moves available to all characters.",
     "cards": ["common"],
     "universal": true
   }

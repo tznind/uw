@@ -222,6 +222,17 @@ window.Utils = (function() {
         return Object.keys(window.availableMap).filter(role => role !== 'Everyone');
     }
 
+    /**
+     * Get description for a specific role
+     * @param {string} roleName - The name of the role to get description for
+     * @returns {string|null} The role description or null if not found
+     */
+    function getRoleDescription(roleName) {
+        if (!window.availableMap || !roleName) return null;
+        const roleData = window.availableMap[roleName];
+        return roleData ? (roleData.description || null) : null;
+    }
+
     // Public API
     return {
         debounce,
@@ -231,6 +242,7 @@ window.Utils = (function() {
         mergeRoleAvailability,
         roleMatchesPattern,
         getMatchingRoles,
-        getAllAvailableRoles
+        getAllAvailableRoles,
+        getRoleDescription
     };
 })();
