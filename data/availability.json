@@ -1,5 +1,6 @@
 {
   "Academic": {
+    "description": "The Academic career represents years of study and learning, with a strong focus on science and logic. Academics can be found in specialist positions in other fields, leveraging their years of study; Military Academics tend to be field medics, Clandestine Academics are often detectives, Academic Explorers range from xenobiologists to expeditionary researchers.",
     "_movesFile": "data/moves/all.json",
     "cards": ["health", "workspace", "advancement"],
     "edu": false,
@@ -101,6 +102,7 @@
     "gs": false
   },
   "Occult": {
+    "description": "The Occult grew up surrounded by the strange and the powerful. They come from cultures deeply rooted in mysticism and the supernatural. Their way of life has been molded by rituals and secrets. They hail from heretic cabals or prestigious mystic academies. Many lived on the very edge of the abyss, and have spent their lives gazing into the dark heart of the cosmos.",
     "cards": ["health", "workspace", "advancement"],
     "rit": false,
     "rel": false,
@@ -110,6 +112,7 @@
     "gs": false
   },
   "Primal": {
+    "description": "The Primal hail from savage, primeval worlds. Their lives lack all but the most basic technologies. They are forced to fight for survival, for dominance, red in tooth and nail. From this crucible come the fiercest beings to step onto the galactic stage. Whether they are from a lost colony, an exiled people, or an uplifted species, they are intelligent, adaptable, passionate, and fierce beyond measure.",
     "cards": ["health", "workspace", "advancement"],
     "str": false,
     "lau": false,
@@ -119,6 +122,7 @@
     "gs": false
   },
   "Programmed": {
+    "description": "Where others have childhoods, the Programmed have indoctrination. Some are sleeper agents, living weapons in the arsenal of their creators. Others are members of interconnected hive-minds, carrying deeply-rooted genetic memories. They carry dormant knowledge and directives in their minds, never knowing when their latent indoctrination will surface next.",
     "cards": ["health", "workspace", "advancement"],
     "abn": false,
     "fid": false,
@@ -128,6 +132,7 @@
     "gs": false
   },
   "Spiritual": {
+    "description": "The Spiritual are born to serene lives of quiet contemplation. They come from distant monasteries, secluded temples and hidden shrines. Surrounded by strict asceticism, far away from temptation and worldly concerns, they train their bodies, minds, and souls for the eventual day when they must leave their cloistered lives.",
     "cards": ["health", "workspace", "advancement"],
     "tra": false,
     "pac": false,
@@ -163,6 +168,7 @@
 
   
   "Clandestine": {
+    "description": "The Clandestine career is a sinister profession, relying on information and invisibility. Clandestine operatives tend toward low profiles and subtlety, no matter their complimentary profession; Clandestine Industrials make terrifying saboteurs, Clandestine Scoundrels are deadly assassins, Clandestine Personalities are deft infiltrators and spies. Ironically, Clandestine operatives also make effective (if scary) law enforcement agents.",
     "ste": false,
     "sab": false,
     "srv": false,
@@ -170,6 +176,7 @@
     "ass": false
   },
   "Commercial": {
+    "description": "The Commercial career's strength lies in making deals, acquiring goods and managing the complex web of inter-faction debt and influence. Almost all other careers benefit in some way from the Commercial's purchasing power. Commercial Industrials turn scrap into profit, Commercial Technocrats are always aware of the best prices and opportunities, Commercial Starfarers haul cargo to the farthest reaches of space.",
     "out": false,
     "mar": false,
     "acu": false,
@@ -177,6 +184,7 @@
     "lux": false
   },
   "Explorer": {
+    "description": "The Explorer is the most daring and risky career, forever seeking new horizons and new treasures. Other careers that regularly deal with harsh environments and unexplored reaches benefit from the Explorer's courage and survival instinct. Commercial Explorers are prospectors or big game hunters seeking profit on hostile planets, Explorer Starfarers daredevil pilots and daring navigators, Military Explorers tend to be guerilla fighters or scouts.",
     "bg": false,
     "recon": false,
     "sur": false,
@@ -184,6 +192,7 @@
     "cuv": false
   },
   "Industrial": {
+    "description": "The Industrial career shapes its surroundings by constructing, improving and demolishing. Other careers benefit greatly from the Industrial's ability to create, repair, maintain a variety of machines. Industrial Explorers are settlers and pioneers, Industrial Academics tend to be inventors working on new prototypes, Industrial Scoundrels are scavengers and wreck-divers.",
     "rep": false,
     "con": false,
     "upg": false,
@@ -191,6 +200,7 @@
     "tin": false
   },
   "Military": {
+    "description": "The Military career specializes in combat, with a heavy reliance on command, discipline and strategy. Careers that have to deal with hostilities or war zones benefit greatly when combined with the Military career's command of the battlefield. Military Industrials are combat engineers, Military Personalities are generals and commanders, Commercial Military are well-equipped (and often expensive) mercenaries for hire.",
     "tac": false,
     "uw": false,
     "hli": false,
@@ -198,6 +208,7 @@
     "tou": false
   },
   "Personality": {
+    "description": "The Personality career revolves around influencing others through charm, good looks and oratory. Personality is useful to any career that relies on persuasion or fame. Commercial Personalities are powerful traders and brokers, Starfarer Personalities are interplanetary diplomats and negotiators, Explorer Personalities are famous explorers and daredevils.",
     "fam": false,
     "lea": false,
     "cnt": false,
@@ -205,6 +216,7 @@
     "dipl": false
   },
   "Scoundrel": {
+    "description": "The Scoundrel is the most underhanded career, relying on lies, violence, betrayal and theft to achieve goals. The Scoundrel career can be a benefit to other careers that live outside the law. Military Scoundrels are raiders and space pirates, Commercial Scoundrels are smugglers, Scoundrel Personalities are expert con-artists.",
     "cri": false,
     "sne": false,
     "sca": false,
@@ -226,6 +238,7 @@
     "ai": false
   },
   "Augmented": {
+    "description": "The Augmented career is the source of a wide variety of permanent physical and mental enhancements through deep cybernetics (though gene-modding and mutations can bring about similar effects). People from all walks of life embrace the Augmented lifestyle to upgrade their capabilities. Augmented Technocrats are hyper-connected; they are able to converse directly with their systems. Clandestine Augmented are swift, stealthy cyber-ninjas. Industrial Augmented are perpetually upgrading themselves with new add-ons.",
     "har": false,
     "bet": false,
     "fas": false,
@@ -233,6 +246,7 @@
     "stro": false
   },
   "Chosen": {
+    "description": "The Chosen career channels the powers of great, unknowable cosmic forces, often characterized as holy or unholy. The level of absolute faith required is exceptionally rare, but can manifest in any other career. Industrial Chosen are machine-worshiping tech-priests. Chosen Academics are healers and scholars, unravelling the mysteries of faith. Chosen Explorers are pilgrims and wanderers, seeking the divine in the most remote corners of untamed worlds.",
     "pac": false,
     "loh": false,
     "wis": false,
@@ -240,6 +254,7 @@
     "rel": false
   },
   "Consul": {
+    "description": "The Consul career employs diplomacy, politics, and a keen understanding of empires, species, and peoples. This deep understanding of others can prove invaluable to many other careers. Commercial Consuls are intergalactic entrepreneurs, dealing in the most exotic goods. Military Consuls are interpreters and cultural guides for peacekeeping forces. Consul Starfarers have Been There and Done That, no matter how far There is and how bizarre That may be.",
     "tri": false,
     "lin": false,
     "medi": false,
@@ -247,6 +262,7 @@
     "adap": false
   },
   "Fanatic": {
+    "description": "The Fanatic career is one of zealous devotion to a cause or ideal, focusing mind and body towards a singular purpose. Other careers benefit greatly from the Fanatic's single-minded fervor. Clandestine Fanatics are exceptionally paranoid inquisitors. Fanatic Personalities are passionate, patriotic, inspirational demagogues. Fanatic Scoundrels are desperate freedom fighters, willing to sacrifice all for their cause.",
     "brav": false,
     "nem": false,
     "ter": false,
@@ -254,6 +270,7 @@
     "mart": false
   },
   "Kinetic": {
+    "description": "The Kinetic career takes control of fundamental physical forces; projecting, accelerating, suspending and redirecting. Such direct control over physics can be leveraged by many other careers. Kinetic Starfarers are graceful masters of gravity manipulation. Augmented Kinetics are cybernetic monks, able to project terrific destructive punches. Industrial Kinetics are inventive artificers, surrounded by golems and force shields.",
     "tel": false,
     "lau": false,
     "ani": false,
@@ -261,6 +278,7 @@
     "fli": false
   },
   "Psychic": {
+    "description": "The Psychic career extends the senses, able to gaze into the past, glimpse the future, and reach into the hearts and minds of those nearby. Many careers have come to rely on this invasive knowledge. Psychic Personalities are councillors and viziers, staying behind the scenes. Psychic Technocrats are terrifying mind-benders, able to download, erase, and reprogram minds. Commercial Psychics are commercial telepaths, making business transactions at the speed of thought.",
     "telep": false,
     "prob": false,
     "pre": false,
@@ -268,6 +286,7 @@
     "cla": false
   },
   "Shaper": {
+    "description": "The Shaper career pushes at the very boundaries of reality, tapping into vast, primordial energies of the cosmos and making them dance. Shaper training provides controlled, reality-warping power to other careers. Military Shapers wield flame and lightning as weapons. Shaper Explorers adopt the forms of each new life they encounter. Academic Shapers are elusive magi, unravelling the mysteries of reality itself.",
     "telepo": false,
     "reg": false,
     "alc": false,
