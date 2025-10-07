@@ -180,6 +180,132 @@
     ]
   },
   {
+    "id": "shields_up",
+    "title": "Shields Up",
+    "category": "Enterprise Moves",
+    "description": "When one of the starship sections would suffer damage from outside, the pilot Rolls 2d6. If a character is at the shield station, they Roll instead, and add their +Interface.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "The severity of the damage is reduced by two."
+      },
+      {
+        "range": "7-9",
+        "text": "The severity of the damage is reduced by one."
+      },
+      {
+        "range": "≤ 6",
+        "text": "Shields down! The section suffers damage, and the shields need to be repaired or recharged before they can be used again."
+      }
+    ]
+  },
+  {
+    "id": "wild_jump",
+    "title": "Wild Jump",
+    "category": "Enterprise Moves",
+    "description": "When you force your ship to make a Wild Jump, Roll 2d6.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "The crew only suffers nausea, headaches and other minor effects. You reach a point within a week's travel of your destination, or choose from the list below."
+      },
+      {
+        "range": "7-9",
+        "text": "The illness and hallucinations are pronounced. The GM chooses one from the list below:",
+        "bullets": [
+          "You find an uncharted world, ready for exploration.",
+          "You find exploitable resources, there for the taking.",
+          "You discover a scientifically-interesting phenomenon.",
+          "You discover wreckage or ruins of unknown origin.",
+          "You find a new path to a well-known destination.",
+          "You encounter a faction or culture that is new to you."
+        ]
+      },
+      {
+        "range": "≤ 6",
+        "text": "The GM will describe the ugly, debilitating, terrifying consequences. It's full of stars."
+      }
+    ],
+    "bullets": [
+      "You find an uncharted world, ready for exploration.",
+      "You find exploitable resources, there for the taking.",
+      "You discover a scientifically-interesting phenomenon.",
+      "You discover wreckage or ruins of unknown origin.",
+      "You find a new path to a well-known destination.",
+      "You encounter a faction or culture that is new to you."
+    ]
+  },
+  {
+    "id": "cramped_quarters",
+    "title": "Cramped Quarters",
+    "category": "Enterprise Moves",
+    "description": "When you've been trapped in cramped quarters with the same people for a significant amount of time (a leg of an interstellar journey, etc), choose a character trapped here with you and Roll 2d6.",
+    "outcomes": [
+      {
+        "range": "≥ 10",
+        "text": "Describe how the two of you bonded over the past few days."
+      },
+      {
+        "range": "7-9",
+        "text": "Reveal/discover the answer to their question about an aspect of yourself or your past."
+      },
+      {
+        "range": "≤ 6",
+        "text": "Describe what caused the newest hurt feelings or bad blood between you."
+      }
+    ]
+  },
+  {
+    "id": "acquisition",
+    "title": "Acquisition (+Cargo)",
+    "category": "Enterprise Moves",
+    "description": "When you demand important services or assets from a market able to supply those demands, Roll+0. If you offer a cargo unit as part of the deal, Roll+ that cargo's Class.",
+    "outcomes": [
+      {
+        "range": "≥ 13",
+        "text": "The deal goes through; you get what you asked for."
+      },
+      {
+        "range": "10-12",
+        "text": "The deal goes through if the seller/market is amiably disposed toward the deal. Otherwise, as 7-9."
+      },
+      {
+        "range": "7-9",
+        "text": "The deal will only go through if you accept a cost, a task or a lesser asset/service instead of what you asked for."
+      },
+      {
+        "range": "≤ 6",
+        "text": "The deal will only go through if you call in a Favor."
+      }
+    ]
+  },
+  {
+    "id": "barter",
+    "title": "Barter (+Cargo)",
+    "category": "Enterprise Moves",
+    "description": "When you exchange a foreign unit of cargo for local trade goods, Roll + the Class of the cargo unit.",
+    "outcomes": [
+      {
+        "range": "≥ 13",
+        "text": "You attract the attention of a faction or individual with a unique item or service to trade."
+      },
+      {
+        "range": "10-12",
+        "text": "You get a higher Class cargo of local goods in exchange, to a max of Class 4."
+      },
+      {
+        "range": "7-9",
+        "text": "You get a higher Class cargo, to a max of Class 4, and the GM chooses one flaw:",
+        "bullets": [
+          "The negotiations take many days to complete.",
+          "The goods need special care (fragile, hazardous, etc).",
+          "The goods are very odd, distasteful or bizarre.",
+          "The provenance or legality of the goods is dubious."
+        ]
+      }
+    ]
+  },
+  {
     "id": "ada",
     "title": "Adaptation",
     "description": "Choose a type of environment. You can function normally in that environment.",
