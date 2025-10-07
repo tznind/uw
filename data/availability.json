@@ -11,6 +11,7 @@
     "gs": false
   },
   "Advanced": {
+    "description": "The Advanced grew up in prosperous, high tech societies, well ahead of the galactic technology curve, enjoying an unprecedented quality of life. Technologies and gadgets that would be rare or fantastical elsewhere were considered commonplace.",
     "_movesFile": "data/moves/fbh.json",
     "cards": ["health", "workspace", "advancement"],
     "ai": false,
@@ -29,6 +30,7 @@
     "gs": false
   },
   "Colonist": {
+    "description": "The Colonists are born and raised out on the fringes of galactic civilization, living in domes, colony pods or habitation modules, working diligently and tirelessly to terraform planets to make them more hospitable for the next generation.",
     "cards": ["health", "workspace", "advancement"],
     "tin": false,
     "cuv": false,
@@ -46,6 +48,7 @@
     "gs": false
   },
   "Galactic": {
+    "description": "The Galactics are born and raised in orbital stations, starships, and asteroid mining colonies. Most have lived their whole lives among the stars, surrounded and protected by machinery and electronics, breathing recycled air and eating hydroponic food.",
     "cards": ["health", "workspace", "advancement"],
     "pro": false,
     "wei": false,
@@ -63,6 +66,7 @@
     "gs": false
   },
   "Privileged": {
+    "description": "The Privileged are the nobility of the galaxy, the elite. Their families hold great power and influence, be it financial, political or religious. Moving in such exalted circles, wielding their family name and power, they have grown up expecting courtesy and respect.",
     "cards": ["health", "workspace", "advancement"],
     "lux": false,
     "fam": false,
@@ -80,6 +84,7 @@
     "gs": false
   },
   "Regimented": {
+    "description": "The Regimented have lived very strict lives. Whether in a militaristic society, a religious organisation or an authoritarian government, they have been indoctrinated to the advantages of discipline, obedience and loyalty.",
     "cards": ["health", "workspace", "advancement"],
     "lea": false,
     "tac": false,
