@@ -275,7 +275,7 @@
   },
   "Everyone": {
     "_movesFile": "data/moves/everyone.json",
-    "cards": [],
+    "cards": ["favours-debts"],
     "face_adversity": true,
     "assessment": true,
     "get_involved": true,

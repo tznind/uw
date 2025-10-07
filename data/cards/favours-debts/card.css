@@ -1,0 +1,83 @@
+/* Favours & Debts Card Styles */
+
+.favours-debts-card .card-title {
+  margin-bottom: 8px;
+}
+
+.favours-debts-card .section {
+  margin: 8px 0;
+}
+
+.favours-debts-card .section-title {
+  margin: 0 0 6px 0;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+.favours-debts-card .add-item {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin-left: 4px;
+}
+
+.favours-debts-card .add-item:hover {
+  background: #218838;
+}
+
+
+.favours-debts-card .item-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  gap: 6px;
+  align-items: center;
+  padding: 2px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.favours-debts-card .item-row:last-child {
+  border-bottom: none;
+}
+
+.favours-debts-card .item-faction {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+.favours-debts-card .item-details {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 0.85em;
+  resize: vertical;
+  min-height: 2rem;
+  font-family: inherit;
+}
+
+.favours-debts-card .remove-item {
+  background: #dc3545;
+  color: white;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favours-debts-card .remove-item:hover {
+  background: #c82333;
+}
+
+.favours-debts-card .remove-spacer {
+  width: 24px;
+}

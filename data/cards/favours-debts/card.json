@@ -1,0 +1,13 @@
+{
+  "id": "favours-debts",
+  "title": "Favours & Debts",
+  "path": "data/cards/favours-debts",
+  "description": "Track your relationships with factions",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}
