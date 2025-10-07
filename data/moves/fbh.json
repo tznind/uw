@@ -2,8 +2,16 @@
        "id":"gs",
        "title":"Group Skill",
        "description":"Choose a skill from the group career you have agreed upon.",
-       "category":"Beyond Humanity",
+       "category":"Extra",
        "takeFrom":["*"]
+   },
+   {
+       "id":"drastic_upheaval",
+       "title":"Drastic Upheaval",
+       "description":"Choose a new advancement from any career",
+       "category":"Extra",
+       "takeFrom":["*"],
+       "multiple":3
    },
    {
        "id":"ins",

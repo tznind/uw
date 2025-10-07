@@ -306,6 +306,14 @@
     ]
   },
   {
+    "id": "drastic_upheaval",
+    "title": "Drastic Upheaval",
+    "description": "Choose a new advancement from any career",
+    "category": "Extra",
+    "takeFrom": ["*"],
+    "multiple": 3
+  },
+  {
     "id": "ada",
     "title": "Adaptation",
     "description": "Choose a type of environment. You can function normally in that environment.",

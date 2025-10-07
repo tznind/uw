@@ -290,6 +290,7 @@
     "cramped_quarters": true,
     "acquisition": true,
     "barter": true,
+    "drastic_upheaval": false,
     "ada": false,
     "amp": false,
     "bea": false,
