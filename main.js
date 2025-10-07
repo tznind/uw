@@ -132,9 +132,10 @@
 
     /**
      * Show role description modal
+     * @param {string} roleSelectId - The ID of the role selector element
      */
-    function showRoleDescription() {
-        const roleSelect = document.getElementById('role');
+    function showRoleDescription(roleSelectId) {
+        const roleSelect = document.getElementById(roleSelectId);
         if (!roleSelect || !roleSelect.value) {
             alert('Please select a role first');
             return;
@@ -245,11 +246,14 @@
             copyButton.addEventListener('click', copyURLWithFeedback);
         }
 
-        // Role help button
-        const roleHelpButton = document.getElementById('role-help-button');
-        if (roleHelpButton) {
-            roleHelpButton.addEventListener('click', showRoleDescription);
-        }
+        // Role help buttons - dynamically attach to all role selectors
+        const roleSelectors = window.Utils.getRoleSelectors();
+        roleSelectors.forEach(selector => {
+            const helpButton = document.getElementById(`${selector.id}-help-button`);
+            if (helpButton) {
+                helpButton.addEventListener('click', () => showRoleDescription(selector.id));
+            }
+        });
 
         // Collapse all moves button
         const collapseAllButton = document.getElementById('collapse-all-moves');

@@ -91,6 +91,7 @@
     "gs": false
   },
   "Forlorn": {
+    "description": "The Forlorn are the lost, the forgotten, those far away from the bones of their ancestors. They were abandoned, or abducted, or are simply the last of their kind. The Forlorn grew up surrounded by societies and people that didn't understand them, that may have even feared or reviled them. In their hearts, the Forlorn know that they are alone. That they can rely on no one but themselves.",
     "cards": ["health", "workspace", "advancement"],
     "ins": false,
     "bg": false,
