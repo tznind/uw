@@ -233,6 +233,38 @@ window.Utils = (function() {
         return roleData ? (roleData.description || null) : null;
     }
 
+    /**
+     * Show loading indicator in top right
+     * @param {string} message - Optional custom loading message
+     */
+    function showLoading(message = 'Loading...') {
+        const indicator = document.getElementById('loading-indicator');
+        if (indicator) {
+            const textSpan = indicator.querySelector('span');
+            if (textSpan) {
+                textSpan.textContent = message;
+            }
+            indicator.classList.add('show');
+        }
+    }
+
+    /**
+     * Hide loading indicator
+     * @param {number} delay - Optional delay in ms before hiding
+     */
+    function hideLoading(delay = 0) {
+        const indicator = document.getElementById('loading-indicator');
+        if (indicator) {
+            if (delay > 0) {
+                setTimeout(() => {
+                    indicator.classList.remove('show');
+                }, delay);
+            } else {
+                indicator.classList.remove('show');
+            }
+        }
+    }
+
     // Public API
     return {
         debounce,
@@ -243,6 +275,8 @@ window.Utils = (function() {
         roleMatchesPattern,
         getMatchingRoles,
         getAllAvailableRoles,
-        getRoleDescription
+        getRoleDescription,
+        showLoading,
+        hideLoading
     };
 })();
