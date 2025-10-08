@@ -34,7 +34,7 @@
   display: grid;
   grid-template-columns: 1fr 2fr auto;
   gap: 6px;
-  align-items: center;
+  align-items: start;
   padding: 2px 0;
   border-bottom: 1px solid #eee;
 }
