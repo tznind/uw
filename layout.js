@@ -40,6 +40,11 @@ window.Layout = (function() {
                 console.log('Layout: No roles selected, keeping containers empty');
                 // Restore scroll position
                 window.scrollTo(0, scrollY);
+
+                // Hide loading indicator
+                if (window.Utils) {
+                    window.Utils.hideLoading();
+                }
                 return;
             }
             

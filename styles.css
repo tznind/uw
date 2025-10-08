@@ -374,13 +374,13 @@ button:focus {
 /* Loading indicator in top right */
 .loading-indicator {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 8px;
+  right: 8px;
   background: rgba(0, 123, 255, 0.9);
   color: white;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 10px;
   font-weight: 600;
   opacity: 0;
   pointer-events: none;
@@ -388,8 +388,8 @@ button:focus {
   transition: opacity 0.3s ease-in-out;
   display: flex;
   align-items: center;
-  gap: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  gap: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .loading-indicator.show {
@@ -398,8 +398,8 @@ button:focus {
 
 /* Loading spinner animation */
 .loading-spinner {
-  width: 14px;
-  height: 14px;
+  width: 10px;
+  height: 10px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-top-color: white;
   border-radius: 50%;
