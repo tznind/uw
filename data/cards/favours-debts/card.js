@@ -89,16 +89,16 @@
       row.className = 'item-row';
       row.innerHTML = `
         <input type="text" class="item-faction" id="${type}${index}f" placeholder="Faction">
-        <textarea class="item-details" id="${type}${index}d" placeholder="Details"></textarea>
+        <input type="text" class="item-details" id="${type}${index}d" placeholder="Details">
         <button type="button" class="remove-item" onclick="removeItem('${type}', ${index})">×</button>
       `;
-      
+
       // Add event listeners for URL updates
-      const inputs = row.querySelectorAll('input, textarea');
+      const inputs = row.querySelectorAll('input');
       inputs.forEach(input => {
         input.addEventListener('input', updateURL);
       });
-      
+
       return row;
     }
     

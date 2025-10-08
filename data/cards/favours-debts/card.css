@@ -44,10 +44,11 @@
 }
 
 .favours-debts-card .item-faction {
-  padding: 4px;
+  padding: 1px 2px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  font-size: 0.85em;
+  font-size: clamp(0.5em, 2vw, 0.85em);
+  min-width: 0;
 }
 
 .favours-debts-card .item-details {
@@ -55,9 +56,6 @@
   border: 1px solid #ccc;
   border-radius: 3px;
   font-size: 0.85em;
-  resize: vertical;
-  min-height: 2rem;
-  font-family: inherit;
 }
 
 .favours-debts-card .remove-item {
