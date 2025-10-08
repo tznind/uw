@@ -310,7 +310,7 @@
   },
   "Everyone": {
     "_movesFile": "data/moves/everyone.json",
-    "cards": ["favours-debts"],
+    "cards": ["favours-debts", "data-points"],
     "face_adversity": true,
     "assessment": true,
     "get_involved": true,

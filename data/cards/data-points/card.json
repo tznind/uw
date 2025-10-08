@@ -1,0 +1,13 @@
+{
+  "id": "data-points",
+  "title": "Data Points",
+  "path": "data/cards/data-points",
+  "description": "Spend to gain +1 to relevant roll where information applies",
+  "version": "1.0.0",
+  "author": "Uncharted Worlds System",
+  "files": {
+    "html": "card.html",
+    "css": "card.css",
+    "js": "card.js"
+  }
+}
