@@ -84,6 +84,23 @@
       window.history.replaceState({}, '', newUrl);
     }
     
+    function adjustFactionFontSize(input) {
+      // Reset to default size first
+      input.style.fontSize = '';
+
+      // Check if text overflows
+      if (input.scrollWidth > input.clientWidth) {
+        let fontSize = 0.85; // Start at default size in em
+        input.style.fontSize = fontSize + 'em';
+
+        // Reduce font size until text fits or we hit minimum
+        while (input.scrollWidth > input.clientWidth && fontSize > 0.5) {
+          fontSize -= 0.05;
+          input.style.fontSize = fontSize + 'em';
+        }
+      }
+    }
+
     function createItemRow(index, type) {
       const row = document.createElement('div');
       row.className = 'item-row';
@@ -97,6 +114,15 @@
       const inputs = row.querySelectorAll('input');
       inputs.forEach(input => {
         input.addEventListener('input', updateURL);
+      });
+
+      // Add font size adjustment for faction input
+      const factionInput = row.querySelector('.item-faction');
+      factionInput.addEventListener('input', function() {
+        adjustFactionFontSize(this);
+      });
+      factionInput.addEventListener('blur', function() {
+        adjustFactionFontSize(this);
       });
 
       return row;
@@ -171,25 +197,33 @@
     for (let i = 0; i < favourCount; i++) {
       const row = createItemRow(i, 'fav');
       favoursContainer.appendChild(row);
-      
+
       // Populate values from URL
       const factionVal = urlParams.get(`fav${i}f`);
       const detailsVal = urlParams.get(`fav${i}d`);
-      
-      if (factionVal) document.getElementById(`fav${i}f`).value = factionVal;
+
+      const factionInput = document.getElementById(`fav${i}f`);
+      if (factionVal) {
+        factionInput.value = factionVal;
+        adjustFactionFontSize(factionInput);
+      }
       if (detailsVal) document.getElementById(`fav${i}d`).value = detailsVal;
     }
-    
+
     // Load existing debts from URL
     for (let i = 0; i < debtCount; i++) {
       const row = createItemRow(i, 'debt');
       debtsContainer.appendChild(row);
-      
+
       // Populate values from URL
       const factionVal = urlParams.get(`debt${i}f`);
       const detailsVal = urlParams.get(`debt${i}d`);
-      
-      if (factionVal) document.getElementById(`debt${i}f`).value = factionVal;
+
+      const factionInput = document.getElementById(`debt${i}f`);
+      if (factionVal) {
+        factionInput.value = factionVal;
+        adjustFactionFontSize(factionInput);
+      }
       if (detailsVal) document.getElementById(`debt${i}d`).value = detailsVal;
     }
     
