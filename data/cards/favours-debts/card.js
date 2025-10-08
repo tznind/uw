@@ -106,7 +106,7 @@
       row.className = 'item-row';
       row.innerHTML = `
         <input type="text" class="item-faction" id="${type}${index}f" placeholder="Faction">
-        <input type="text" class="item-details" id="${type}${index}d" placeholder="Details">
+        <input type="text" class="item-faction" id="${type}${index}d" placeholder="Details">
         <button type="button" class="remove-item" onclick="removeItem('${type}', ${index})">×</button>
       `;
 

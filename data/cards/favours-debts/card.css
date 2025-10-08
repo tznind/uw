@@ -51,13 +51,6 @@
   min-width: 0;
 }
 
-.favours-debts-card .item-details {
-  padding: 4px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 0.85em;
-}
-
 .favours-debts-card .remove-item {
   background: #dc3545;
   color: white;
