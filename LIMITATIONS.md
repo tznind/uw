@@ -24,3 +24,4 @@ You can get around this in a number of ways:
 
 - Share with tiny url e.g. https://tinyurl.com/4v8a9fxd (above 8,000 char url)
 - Share as file attachment
+- Create a gist and share link to gist
