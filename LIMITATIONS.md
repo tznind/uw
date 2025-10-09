@@ -16,4 +16,11 @@ You can help avoid reaching this limit by:
 - avoiding too many free text input boxes
 - adding character limits to free text inputs
 
+## Sharing long urls
 
+Some tools e.g. Discord have a maximum length on posts. Sharing urls over 2,000 characters can run into this maximum.
+
+You can get around this in a number of ways:
+
+- Share with tiny url e.g. https://tinyurl.com/4v8a9fxd (above 8,000 char url)
+- Share as file attachment
