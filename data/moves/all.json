@@ -386,26 +386,26 @@
        "outcomes": [
            {
                "range":"≥ 10",
-               "text":"The target of your tampering is doomed to fail, just as you planned.",
-       "category":"Skills"
+               "text":"The target of your tampering is doomed to fail, just as you planned."
            },
            {
                "range":"7-9",
-               "text":"The target of your tampering is doomed to fail spectacularly, horrifically or comically, at the GM's discretion.",
-       "category":"Skills"
+               "text":"The target of your tampering is doomed to fail spectacularly, horrifically or comically, at the GM's discretion."
            }
        ]
    },
    {
        "id":"int",
        "title":"Interrogation",
-       "description":"When you question someone who is at your mercy, gain 3 Data Points about them: their lives, their job, their transactions, their friends, their family, their guilt, their shame, etc."
+       "description":"When you question someone who is at your mercy, gain 3 Data Points about them: their lives, their job, their transactions, their friends, their family, their guilt, their shame, etc.",
+       "category":"Skills"
    },
    {
        "id":"out",
        "title":"Outfit",
        "description":"Own a unique Class 3 Attire. If your attire is ever lost or damaged, you can abandon it and spend an extended period of time claiming new attire as your Outfit, adding an extra upgrade to it.",
-       "grantsCard": "custom-outfit"
+       "grantsCard": "custom-outfit",
+       "category":"Skills"
    },
    {
        "id":"mar",

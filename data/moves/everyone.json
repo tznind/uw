@@ -109,18 +109,18 @@
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "Choose 1 from the list below."
+        "text": "Choose 1.",
+        "bullets": [
+          "Treat a single minor, major or severe injury/damage",
+          "Treat a malfunction or minor debility",
+          "Stabilize a major debility",
+          "Perform a medical/technical procedure"
+        ]
       },
       {
         "range": "7-9",
         "text": "Choose 1, but you've reached the limit of what you can do; you cannot re-attempt to Patch Up the subject for now."
       }
-    ],
-    "bullets": [
-      "Treat a single minor, major or severe injury/damage",
-      "Treat a malfunction or minor debility",
-      "Stabilize a major debility",
-      "Perform a medical/technical procedure"
     ]
   },
   {
