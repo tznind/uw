@@ -1,586 +1,487 @@
-[ {
-       "id":"gs",
-       "title":"Group Skill",
-       "description":"Choose a skill from the group career you have agreed upon.",
-       "category":"Extra",
-       "takeFrom":["*"]
+[
+   {
+      "id": "gs",
+      "title": "Group Skill",
+      "description": "Choose a skill from the group career you have agreed upon.",
+      "category": "Extra",
+      "takeFrom": [
+         "*"
+      ]
    },
    {
-       "id":"drastic_upheaval",
-       "title":"Drastic Upheaval",
-       "description":"Choose a new advancement from any career",
-       "category":"Extra",
-       "takeFrom":["*"],
-       "multiple":3
+      "id": "ins",
+      "title": "Insolence",
+      "description": "When you solve a problem by defying customs, propriety, and the desires of those around you, you can roll +Mettle instead of whatever the usual stat would be. This will likely be selfish, rude, and possibly hurtful.",
+      "category": "Skills"
    },
    {
-       "id":"ins",
-       "title":"Insolence",
-       "description":"When you solve a problem by defying customs, propriety, and the desires of those around you, you can roll +Mettle instead of whatever the usual stat would be. This will likely be selfish, rude, and possibly hurtful.",
-       "category":"Skills"
+      "id": "tri",
+      "title": "Trinkets",
+      "description": "Whenever you successfully engage a foreign society (visit, experience, infiltrate, attack, etc.), gain a Class 1 Cargo of miscellaneous baubles, trinkets, and other cultural detritus.",
+      "category": "Skills"
    },
    {
-       "id":"tri",
-       "title":"Trinkets",
-       "description":"Whenever you successfully engage a foreign society (visit, experience, infiltrate, attack, etc.), gain a Class 1 Cargo of miscellaneous baubles, trinkets, and other cultural detritus.",
-       "category":"Skills"
+      "id": "outc",
+      "title": "Outcast",
+      "description": "You are an outsider, unwelcome in polite society. When operating alone or with other outcasts, you gain +1 to rolls where your outsider status is an advantage (sneaking, surviving, avoiding authority).",
+      "category": "Skills"
    },
    {
-       "id":"outc",
-       "title":"Outcast",
-       "description":"You are an outsider, unwelcome in polite society. When operating alone or with other outcasts, you gain +1 to rolls where your outsider status is an advantage (sneaking, surviving, avoiding authority).",
-       "category":"Skills"
+      "id": "rit",
+      "title": "Ritual",
+      "description": "When you entrust a situation to the power of your rituals, fortunes, hexes, and charms, you can roll +Expertise instead of whatever the usual stat would be. This will likely be complicated, unpredictable, and deeply unsettling.",
+      "category": "Skills"
    },
    {
-       "id":"rit",
-       "title":"Ritual",
-       "description":"When you entrust a situation to the power of your rituals, fortunes, hexes, and charms, you can roll +Expertise instead of whatever the usual stat would be. This will likely be complicated, unpredictable, and deeply unsettling.",
-       "category":"Skills"
+      "id": "rel",
+      "title": "Relic",
+      "description": "Create a Class 3 melee weapon. A Relic is almost indestructible. If you become separated, you always have a vague, painful sense of where it is.",
+      "grantsCard": "custom-melee",
+      "pickOne": [
+         "It is a symbol of your order",
+         "It is a sign of your greatness",
+         "It is feared and reviled"
+      ],
+      "category": "Skills"
    },
    {
-       "id":"rel",
-       "title":"Relic",
-       "description":"Create a Class 3 melee weapon. A Relic is almost indestructible. If you become separated, you always have a vague, painful sense of where it is.",
-       "grantsCard": "custom-melee",
-       "pickOne":[
-             "It is a symbol of your order",
-             "It is a sign of your greatness",
-             "It is feared and reviled"
-        ],
-       "category":"Skills"
-   },
-   {
-       "id":"alc",
-       "title":"Alchemy (+ Expertise)",
-       "description":"You can use a Ritual Kit to Patch Up a person, object, or material. choose from this list instead of the standard Patch Up:",
-       "category":"Skills",
-       "outcomes": [
-           {
-               "range":"≥ 10",
-               "text":"choose 1 from the list below."
-           },
-           {
-               "range":"7-9",
-               "text":"choose 1, but you've reached the limit of what you can do; you cannot re-attempt to Patch Up the subject for now",
-               "bullets": [
-                   "Spread rust, rot, or erosion",
-                   "Purify, clean, and rejuvenate",
-                   "Transmute one material into another."
-               ]
-           }
-       ]
-   },
-   {
-       "id":"ani",
-       "title":"Animate",
-       "description":"Choose a collection of objects. Those objects become a Class 1 Artificial Crew with an upgrade that matches the materials used. You can only have one Animated Crew at a time.",
-       "category":"Skills"
-   },
-   {
-       "id":"hex",
-       "title":"Hex",
-       "description":"When you place a curse or hex on someone, describe the misfortune you wish upon them. The next time they would succeed at something important, they fail instead. You can only have one active hex at a time.",
-       "category":"Skills"
-   },
-   {
-       "id":"str",
-       "title":"Strength",
-       "description":"When you handle a situation with rage, violence, and brute force, you can roll +Physique instead of whatever the usual stat would be. This will likely be loud, ugly, and possibly painful.",
-       "category":"Skills"
-   },
-   {
-       "id":"lau",
-       "title":"Launch",
-       "description":"You can propel small, inanimate objects with deadly speed and precision using +Mettle. Large, oddly shaped or defiant subjects (small vehicles, people) tend to be clumsier projectiles, and are propelled with +Physique.",
-       "category":"Skills"
-   },
-   {
-       "id":"ter",
-       "title":"Terrify",
-       "description":"When your presence becomes known, Roll+Influence or +Physique. On a 10+, people are meek and respectful. On a 7-9, people are cautious and worried. On a 6-, people are panicked and hostile.",
-       "outcomes": [
-           {
-               "range":"≥ 10",
-               "text":"People are meek and respectful."
-           },
-           {
-               "range":"7-9",
-               "text":"People are cautious and worried."
-           },
-           {
-               "range":"≤ 6",
-               "text":"People are panicked and hostile."
-           }
-       ],
-       "category":"Skills"
-   },
-   {
-       "id":"stro",
-       "title":"Stronger",
-       "description":"Your unarmed and melee attacks are Destructive, Impact, and Penetrating.",
-       "category":"Skills"
-   },
-   {
-       "id":"hun",
-       "title":"Hunt",
-       "description":"When tracking or pursuing prey through natural terrain, you gain +2 to relevant rolls. You can sense the general direction and distance of your quarry as long as you remain on their trail.",
-       "category":"Skills"
-   },
-   {
-       "id":"abn",
-       "title":"Abnegation",
-       "description":"When you black out and allow your programming to take over in order to solve a problem, you can roll +Interface instead of whatever the usual stat would be. Your programming won't undermine its own agenda.",
-       "category":"Skills"
-   },
-   {
-       "id":"obs",
-       "title":"Obsession",
-       "description":"Choose the subject of your Obsession. When you would gain a Data Point about a tangentially related subject, gain a Data Point about your Obsession instead.",
-       "category":"Skills",
-       "details": true
-   },
-   {
-       "id":"lin",
-       "title":"Linguist",
-       "description":"You can communicate passably in the languages of all known societies and species. A successful Assessment of a newly-encountered or long-dead culture grants you permanent access to their written and/or spoken language.",
-       "category":"Skills"
-   },
-   {
-       "id":"mem",
-       "title":"Memory Bank",
-       "description":"You have perfect recall of any information you've encountered. You can access detailed memories as if consulting a database, and never forget names, faces, numbers, or data.",
-       "category":"Skills"
-   },
-   {
-       "id":"tra",
-       "title":"Tranquility",
-       "description":"When you handle a situation with the wisdom of a koan, parable, or aphorism, you can roll +Influence instead of whatever the usual stat would be. This will likely be soft, subtle, and slow.",
-       "category":"Skills"
-   },
-   {
-       "id":"pac",
-       "title":"Pact",
-       "description":"Create a Faction consisting of just your deity. You gain 1 Favor and 3 Debt with it. You communicate with your deity through prayer and can call in Favors. Your deity makes demands and calls in your Debts through dreams and prophecy.",
-       "category":"Skills",
-       "details": true
-   },
-   {
-       "id":"pre",
-       "title":"Precognition",
-       "description":"If your mind is clear, you may suffer a minor mental debility (headache, nausea, vertigo, etc.) to declare that a roll you just made was merely a glimpse of possible future. Briefly describe the immediate or long-term consequences of that future, then reroll.",
-       "category":"Skills"
-   },
-   {
-       "id":"med",
-       "title":"Meditation",
-       "description":"When you spend time in quiet contemplation and meditation, you may ask the GM one question about your current situation. The GM will give you a truthful but cryptic answer that may require interpretation.",
-       "category":"Skills"
-   },
-   {
-       "id":"har",
-       "title":"Harder",
-       "description":"You resist damage as a Vehicle would: Incoming damage is reduced by one step before you Brace for Impact, unless that damage has Penetrating or Breaching.",
-       "category":"Skills"
-   },
-   {
-       "id":"bet",
-       "title":"Better",
-       "description":"Your body can support two additional cybernetic Mods. You gain two free cybermods if this Skill was chosen during character creation.",
-       "category":"Skills"
-   },
-   {
-       "id":"fas",
-       "title":"Faster",
-       "description":"Your run speed and reaction time are incredibly fast. You can include extreme acts of acrobatics, reflexes, and/or flexibility in your Moves (quick-drawing weapons, catching bullets, running up walls, outrunning explosions, sprinting on water, etc.).",
-       "category":"Skills"
-   },
-   {
-       "id":"tech",
-       "title":"Technologic",
-       "description":"You can establish a wireless mental connection to any computer system within line of sight. Open and Accessed systems remain connected to you as long as you are within signal range.",
-       "category":"Skills"
-   },
-   {
-       "id":"loh",
-       "title":"Lay On Hands",
-       "description":"Your Patch Up takes only a few seconds. You do not need tools or materials to perform a Patch Up, just a touch and a word.",
-       "category":"Skills"
-   },
-   {
-       "id":"wis",
-       "title":"Wisdom",
-       "description":"When you are in Cramped Quarters with yourself or another, choose any number of the following: Peace - Each participant recovers from a minor debility; Quiet - Get Involved has no effect on the Cramped Quarters; Enlightenment - Do not roll, simply use the 7-9 result; Introspection - Each participant may change their XP trigger.",
-       "category":"Skills"
-   },
-   {
-       "id":"insc",
-       "title":"Inscribe",
-       "description":"When you perform a Patch Up using a Ritual Kit, you can very temporarily add an Attire upgrade to a person or set of Attire.",
-       "category":"Skills"
-   },
-   {
-       "id":"medi",
-       "title":"Mediate",
-       "description":"When you successfully interfere or Get Involved in an interpersonal situation (including Cramped Quarters).",
-       "category":"Skills",
-       "outcomes":[
-        {
-            "text":"Choose 1",
+      "id": "alc",
+      "title": "Alchemy (+ Expertise)",
+      "description": "You can use a Ritual Kit to Patch Up a person, object, or material. choose from this list instead of the standard Patch Up:",
+      "category": "Skills",
+      "outcomes": [
+         {
+            "range": "\u2265 10",
+            "text": "choose 1 from the list below."
+         },
+         {
+            "range": "7-9",
+            "text": "choose 1, but you've reached the limit of what you can do; you cannot re-attempt to Patch Up the subject for now",
             "bullets": [
-                "Each participant gains a Data Point about another participant.",
-                "Escalate the situation - The choices are now Fight or Flight.",
-                "Defuse the situation - Violence is currently not an option."
+               "Spread rust, rot, or erosion",
+               "Purify, clean, and rejuvenate",
+               "Transmute one material into another."
             ]
-        }
-       ]
-    },
-   {
-       "id":"adv",
-       "title":"Advise",
-       "description":"When you steer someone towards a decision or desire, Roll+Influence.",
-       "outcomes": [
-           {
-               "range":"≥ 10",
-               "text":"They readily accept your advice and will act on it if they can."
-           },
-           {
-               "range":"7-9",
-               "text":"They're cautious, conflicted or confused. They need time before they're ready to act."
-           }
-       ],
-       "category":"Skills"
+         }
+      ]
    },
    {
-       "id":"adap",
-       "title":"Adaptive",
-       "description":"You can partake of all the most exotic consumables (food, drink, narcotics, etc.) avoiding those that are poisonous to your species. You can use machinery, games, devices, vehicles, tools, equipment, and weapons not designed for your species.",
-       "category":"Skills"
+      "id": "ani",
+      "title": "Animate",
+      "description": "Choose a collection of objects. Those objects become a Class 1 Artificial Crew with an upgrade that matches the materials used. You can only have one Animated Crew at a time.",
+      "category": "Skills"
    },
    {
-       "id":"brav",
-       "title":"Bravery",
-       "description":"You feel no terror, revulsion or hopelessness. You never have to Face Adversity to overcome emotions. Any Crew you Command is Fearless.",
-       "category":"Skills"
+      "id": "hex",
+      "title": "Hex",
+      "description": "When you place a curse or hex on someone, describe the misfortune you wish upon them. The next time they would succeed at something important, they fail instead. You can only have one active hex at a time.",
+      "category": "Skills"
    },
    {
-       "id":"nem",
-       "title":"Nemesis",
-       "description":"Whenever you fail a Move, declare who or what caused you to fail. You gain a Data Point about that subject.",
-       "category":"Skills"
+      "id": "str",
+      "title": "Strength",
+      "description": "When you handle a situation with rage, violence, and brute force, you can roll +Physique instead of whatever the usual stat would be. This will likely be loud, ugly, and possibly painful.",
+      "category": "Skills"
    },
    {
-       "id":"mart",
-       "title":"Martyr",
-       "description":"When a nearby victim would suffer harm or consequences, you may interpose yourself and Roll+Mettle.",
-       "outcomes": [
-           {
-               "range":"≥ 10",
-               "text":"They are protected, and you suffer a lesser consequence."
-           },
-           {
-               "range":"7-9",
-               "text":"You suffer instead of them."
-           },
-           {
-               "range":"≤ 6",
-               "text":"You share in their suffering."
-           }
-       ],
-       "category":"Skills"
+      "id": "lau",
+      "title": "Launch",
+      "description": "You can propel small, inanimate objects with deadly speed and precision using +Mettle. Large, oddly shaped or defiant subjects (small vehicles, people) tend to be clumsier projectiles, and are propelled with +Physique.",
+      "category": "Skills"
    },
    {
-       "id":"tel",
-       "title":"Telekinesis",
-       "description":"You can project physical actions over a short distance (interact, carry, punch, etc.), using the appropriate +Stats as if you were physically there.",
-       "category":"Skills"
+      "id": "ter",
+      "title": "Terrify",
+      "description": "When your presence becomes known, Roll+Influence or +Physique. On a 10+, people are meek and respectful. On a 7-9, people are cautious and worried. On a 6-, people are panicked and hostile.",
+      "outcomes": [
+         {
+            "range": "\u2265 10",
+            "text": "People are meek and respectful."
+         },
+         {
+            "range": "7-9",
+            "text": "People are cautious and worried."
+         },
+         {
+            "range": "\u2264 6",
+            "text": "People are panicked and hostile."
+         }
+      ],
+      "category": "Skills"
    },
    {
-       "id":"bar",
-       "title":"Barrier",
-       "description":"You can project a flat or hemispherical barrier of force that deflects or resists impacts, leveraging your +Mettle as a manifestation of solid willpower. This is extremely encumbering; you will be Clumsy while maintaining it.",
-       "category":"Skills"
+      "id": "stro",
+      "title": "Stronger",
+      "description": "Your unarmed and melee attacks are Destructive, Impact, and Penetrating.",
+      "category": "Skills"
    },
    {
-       "id":"fli",
-       "title":"Flight",
-       "description":"You can soar, glide, and hover in midair.",
-       "category":"Skills"
+      "id": "hun",
+      "title": "Hunt",
+      "description": "When tracking or pursuing prey through natural terrain, you gain +2 to relevant rolls. You can sense the general direction and distance of your quarry as long as you remain on their trail.",
+      "category": "Skills"
    },
    {
-       "id":"telep",
-       "title":"Telepathy",
-       "description":"With a moment of focus, you can: Communicate mentally with someone within line of sight; Communicate mentally with someone you know well; Sense the general life force, health, and emotional state of everyone within a given area.",
-       "category":"Skills"
+      "id": "abn",
+      "title": "Abnegation",
+      "description": "When you black out and allow your programming to take over in order to solve a problem, you can roll +Interface instead of whatever the usual stat would be. Your programming won't undermine its own agenda.",
+      "category": "Skills"
    },
    {
-       "id":"prob",
-       "title":"Probe",
-       "description":"Grasping the head of another being allows you to forcefully Access their mind (with +Interface), exactly as if it was a computer system.",
-       "category":"Skills"
+      "id": "obs",
+      "title": "Obsession",
+      "description": "Choose the subject of your Obsession. When you would gain a Data Point about a tangentially related subject, gain a Data Point about your Obsession instead.",
+      "category": "Skills",
+      "details": true
    },
    {
-       "id":"comp",
-       "title":"Compel",
-       "description":"You can Command any group or individual, no matter their disposition, no matter the command.",
-       "outcomes": [
-           {
-               "range":"≥ 10",
-               "text":"Choose 1 consequence.",
-               "bullets": [
-                   "They only obey non-harmful parts of your command.",
-                   "They are stilted, clumsy, and obviously controlled.",
-                   "You suffer a mental or emotional debility as backlash."
-               ]
-           },
-           {
-               "range":"7-9",
-               "text":"Choose 2 consequences.",
-               "bullets": [
-                   "They only obey non-harmful parts of your command.",
-                   "They are stilted, clumsy, and obviously controlled.",
-                   "You suffer a mental or emotional debility as backlash."
-               ]
-           }
-       ],
-       "category":"Skills"
+      "id": "lin",
+      "title": "Linguist",
+      "description": "You can communicate passably in the languages of all known societies and species. A successful Assessment of a newly-encountered or long-dead culture grants you permanent access to their written and/or spoken language.",
+      "category": "Skills"
    },
    {
-       "id":"cla",
-       "title":"Clairvoyance",
-       "description":"Meditation allows you to use your +Mettle to make Assessment about specific people, objects, and locations over any distance. The glimpses granted by a failed Clairvoyance can be extremely disturbing.",
-       "category":"Skills"
+      "id": "mem",
+      "title": "Memory Bank",
+      "description": "You have perfect recall of any information you've encountered. You can access detailed memories as if consulting a database, and never forget names, faces, numbers, or data.",
+      "category": "Skills"
    },
    {
-       "id":"telepo",
-       "title":"Teleport",
-       "description":"You can instantly move yourself and nearby targets across any distance, using +Mettle to overcome potential adversity, if you either: See your destination clearly; Know the destination intimately; Don't care where you end up, as long as it's Not Here.",
-       "category":"Skills"
+      "id": "tra",
+      "title": "Tranquility",
+      "description": "When you handle a situation with the wisdom of a koan, parable, or aphorism, you can roll +Influence instead of whatever the usual stat would be. This will likely be soft, subtle, and slow.",
+      "category": "Skills"
    },
    {
-       "id":"reg",
-       "title":"Regeneration",
-       "description":"A moment of stillness allows you to reduce the severity of one of your injuries by one step, if available. This can regrow limbs/organs lost to Critical Injuries, and happens while you are dead.",
-       "category":"Skills"
+      "id": "pac",
+      "title": "Pact",
+      "description": "Create a Faction consisting of just your deity. You gain 1 Favor and 3 Debt with it. You communicate with your deity through prayer and can call in Favors. Your deity makes demands and calls in your Debts through dreams and prophecy.",
+      "category": "Skills",
+      "details": true
    },
    {
-       "id":"evo",
-       "title":"Evoke",
-       "description":"Each time you Evoke the elements, choose between Fire, Frost, Lightning, Darkness, and Light. You may create and manipulate that element as part of any Move or Skill. You may wield it as a weapon when you Launch Assault or Open Fire. You may only Evoke one element at a time.",
-       "category":"Skills"
+      "id": "pre",
+      "title": "Precognition",
+      "description": "If your mind is clear, you may suffer a minor mental debility (headache, nausea, vertigo, etc.) to declare that a roll you just made was merely a glimpse of possible future. Briefly describe the immediate or long-term consequences of that future, then reroll.",
+      "category": "Skills"
    },
    {
-       "id":"trans",
-       "title":"Transform",
-       "description":"You can take on the form and bodily capabilities of a physical subject up to three times bigger or smaller than you: Immediately after an Assessment of the subject; At any time by spending a Data Point about the subject. You can return to your original form at any time.",
-       "category":"Skills"
+      "id": "med",
+      "title": "Meditation",
+      "description": "When you spend time in quiet contemplation and meditation, you may ask the GM one question about your current situation. The GM will give you a truthful but cryptic answer that may require interpretation.",
+      "category": "Skills"
    },
    {
-       "id":"ada",
-       "title":"Adaptation",
-       "description":"Choose a type of environment. You can function normally in that environment.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "har",
+      "title": "Harder",
+      "description": "You resist damage as a Vehicle would: Incoming damage is reduced by one step before you Brace for Impact, unless that damage has Penetrating or Breaching.",
+      "category": "Skills"
    },
    {
-       "id":"amp",
-       "title":"Amplifier",
-       "description":"Increases memory, attention, thought speed, and the range of supernatural abilities.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "bet",
+      "title": "Better",
+      "description": "Your body can support two additional cybernetic Mods. You gain two free cybermods if this Skill was chosen during character creation.",
+      "category": "Skills"
    },
    {
-       "id":"bea",
-       "title":"Beauty",
-       "description":"Designed to be stunning, dazzling, and distracting.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "fas",
+      "title": "Faster",
+      "description": "Your run speed and reaction time are incredibly fast. You can include extreme acts of acrobatics, reflexes, and/or flexibility in your Moves (quick-drawing weapons, catching bullets, running up walls, outrunning explosions, sprinting on water, etc.).",
+      "category": "Skills"
    },
    {
-       "id":"cam",
-       "title":"Camouflage",
-       "description":"Blend into your surroundings, especially when not moving.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "tech",
+      "title": "Technologic",
+      "description": "You can establish a wireless mental connection to any computer system within line of sight. Open and Accessed systems remain connected to you as long as you are within signal range.",
+      "category": "Skills"
    },
    {
-       "id":"conn",
-       "title":"Connector",
-       "description":"Choose a type of vehicle, system, or organism. You can physically attach yourself to it, allowing a direct neural interaction.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "loh",
+      "title": "Lay On Hands",
+      "description": "Your Patch Up takes only a few seconds. You do not need tools or materials to perform a Patch Up, just a touch and a word.",
+      "category": "Skills"
    },
    {
-       "id":"imp",
-       "title":"Implements",
-       "description":"Choose a Kit. It is built directly into your body.",
-       "details": true,
-       "category":"Cyber/Bio Mods",
-       "pickOne": [
-  "Art Kit - Tools to create visual artwork. Paints, brushes, writing implements, paper, chisels, files, twine, tarps, music instruments, etc.",
-  "Broadcast Kit - Tools to send and receive signals. Collapsible broadcast antenna, signal boosters, wires, vid screens, recording hardware, portable data drives, etc.",
-  "Computer Kit - Tools to access, program, diagnose and repair computer systems. Laptops, diagnostic tools, wires, handheld power sources, portable data drives, etc.",
-  "Engineering Kit - Tools to repair and dismantle machinery. Hammers, drills, cutters, wrenches, welders, grips, cables, diagnostic tools, cage lamps, miscellaneous spare parts, etc.",
-  "Infiltration Kit - Tools to gain access to forbidden places. Mechanical lockpicks, intrusion hardware, chloroform, glass cutters, disguises, ropes, climbing tools, etc.",
-  "Medical Kit - Tools to perform medical treatments. Bandages, scalpels, gels, stimms, scissors, pain killers, surgical braces, dermal regen spray, etc.",
-  "Research Kit - Tools to study and experiment out in the field. Specimen jars, hammer and chisel, scalpels, chemical analyser, data recorder, etc.",
-  "Ritual Kit - Tools to practice religious and mystic ceremonies. Candles, incense, chalk, dusts, oils, texts, totems, charms, etc.",
-  "Survey Kit - Tools to observe and monitor. Range finders, tracking devices, motion sensors, deep scanner tripod, holo-map projector, data recorder, deployable transmitter, etc.",
-  "VR Kit - Tools to connect to local cyberscapes. Virtual reality headset, vital-sign monitors, glove-based interface, universal jacks, external storage drives, etc.",
-  "Wilderness Kit - Tools to traverse hostile landscapes. Ropes, climbing tools, light sources, breather mask, tent, sleeping bag, heat lamp, thermal blanket, water filter, etc."
-]
+      "id": "wis",
+      "title": "Wisdom",
+      "description": "When you are in Cramped Quarters with yourself or another, choose any number of the following: Peace - Each participant recovers from a minor debility; Quiet - Get Involved has no effect on the Cramped Quarters; Enlightenment - Do not roll, simply use the 7-9 result; Introspection - Each participant may change their XP trigger.",
+      "category": "Skills"
    },
    {
-       "id":"link",
-       "title":"Link",
-       "description":"Share thoughts and emotions with others who have the same link.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "insc",
+      "title": "Inscribe",
+      "description": "When you perform a Patch Up using a Ritual Kit, you can very temporarily add an Attire upgrade to a person or set of Attire.",
+      "category": "Skills"
    },
    {
-       "id":"loc",
-       "title":"Locomotion",
-       "description":"Choose a new means of locomotion: slithering, leaping, climbing, swimming, gliding, hovering.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "medi",
+      "title": "Mediate",
+      "description": "When you successfully interfere or Get Involved in an interpersonal situation (including Cramped Quarters).",
+      "category": "Skills",
+      "outcomes": [
+         {
+            "text": "Choose 1",
+            "bullets": [
+               "Each participant gains a Data Point about another participant.",
+               "Escalate the situation - The choices are now Fight or Flight.",
+               "Defuse the situation - Violence is currently not an option."
+            ]
+         }
+      ]
    },
    {
-       "id":"per",
-       "title":"Perception",
-       "description":"Choose a type of information. You can receive sensory data about it when you focus. The more specific the type of information, the more detailed the data collected.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "adv",
+      "title": "Advise",
+      "description": "When you steer someone towards a decision or desire, Roll+Influence.",
+      "outcomes": [
+         {
+            "range": "\u2265 10",
+            "text": "They readily accept your advice and will act on it if they can."
+         },
+         {
+            "range": "7-9",
+            "text": "They're cautious, conflicted or confused. They need time before they're ready to act."
+         }
+      ],
+      "category": "Skills"
    },
    {
-       "id":"proj",
-       "title":"Projectile",
-       "description":"Create effects/projectiles like a Class 1 Firearm. Biomod: Regrow/refill ammunition over time. Cybermod: Spent ammo/cells can be replaced.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "adap",
+      "title": "Adaptive",
+      "description": "You can partake of all the most exotic consumables (food, drink, narcotics, etc.) avoiding those that are poisonous to your species. You can use machinery, games, devices, vehicles, tools, equipment, and weapons not designed for your species.",
+      "category": "Skills"
    },
    {
-       "id":"preh",
-       "title":"Prehensile",
-       "description":"Independent extra limb (or pair of limbs) ending in a Class 0 Melee weapon.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "brav",
+      "title": "Bravery",
+      "description": "You feel no terror, revulsion or hopelessness. You never have to Face Adversity to overcome emotions. Any Crew you Command is Fearless.",
+      "category": "Skills"
    },
    {
-       "id":"rein",
-       "title":"Reinforced",
-       "description":"+1 Armor. Difficult to damage/break.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "nem",
+      "title": "Nemesis",
+      "description": "Whenever you fail a Move, declare who or what caused you to fail. You gain a Data Point about that subject.",
+      "category": "Skills"
    },
    {
-       "id":"repl",
-       "title":"Replacement",
-       "description":"Create a Class 1 Melee Weapon that replaces a limb. Manual tasks using that limb are Clumsy without an appropriate upgrade (Glove, Flexible, Hidden, Living, etc.). Does not count towards Mod support maximum.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "mart",
+      "title": "Martyr",
+      "description": "When a nearby victim would suffer harm or consequences, you may interpose yourself and Roll+Mettle.",
+      "outcomes": [
+         {
+            "range": "\u2265 10",
+            "text": "They are protected, and you suffer a lesser consequence."
+         },
+         {
+            "range": "7-9",
+            "text": "You suffer instead of them."
+         },
+         {
+            "range": "\u2264 6",
+            "text": "You share in their suffering."
+         }
+      ],
+      "category": "Skills"
    },
    {
-       "id":"stor",
-       "title":"Storage",
-       "description":"Hollow section which can store a variety of small objects. Resists scans.",
-       "details": true,
-       "category":"Cyber/Bio Mods"
+      "id": "tel",
+      "title": "Telekinesis",
+      "description": "You can project physical actions over a short distance (interact, carry, punch, etc.), using the appropriate +Stats as if you were physically there.",
+      "category": "Skills"
    },
    {
-       "id":"inorg",
-       "title":"Inorganic",
-       "description":"Robots are immune to the weaknesses and needs that affect organic species. Robotic characters don't need to eat, drink or breathe to function. They are unaffected by organic dangers such as asphyxiation, bleeding, infection and intoxication. While they are aware of physical contact, robots are not incapacitated by pain and can ignore physiological discomfort.",
-       "category":"Species"
+      "id": "bar",
+      "title": "Barrier",
+      "description": "You can project a flat or hemispherical barrier of force that deflects or resists impacts, leveraging your +Mettle as a manifestation of solid willpower. This is extremely encumbering; you will be Clumsy while maintaining it.",
+      "category": "Skills"
    },
    {
-       "id":"elect",
-       "title":"Electronic",
-       "description":"Electromagnetic pulses and shock damage can cause significant damage to a robot's mind/central processor. Indirect exposure to electromagnetic harm can cause minor sensory, mental and emotional debilities in a robotic character, while full-force EMP damage could cause permanent trauma (see Trauma on page 42).",
-       "category":"Species"
+      "id": "fli",
+      "title": "Flight",
+      "description": "You can soar, glide, and hover in midair.",
+      "category": "Skills"
    },
    {
-       "id":"upgrd",
-       "title":"Upgradable",
-       "description":"Robots can readily accept cybernetic upgrades to their base form. As such, robotic character can support 2 additional Mods. Mods are purchased and installed as normal (see Mods on page 22). However, robots can only support cybernetic modules, and cannot have bio-mods installed.",
-       "category":"Species"
+      "id": "telep",
+      "title": "Telepathy",
+      "description": "With a moment of focus, you can: Communicate mentally with someone within line of sight; Communicate mentally with someone you know well; Sense the general life force, health, and emotional state of everyone within a given area.",
+      "category": "Skills"
    },
    {
-       "id":"repair",
-       "title":"Repairable",
-       "description":"Any damage or debility needs to be repaired. Patch Up will fix most issues, though severe damage requires a hired technician or a character with the Repair skill. The only truly essential components are the power core and their central processor. Other repairs, such as limb reattachment or replacement, are fairly routine procedures without much risk.",
-       "category":"Species"
+      "id": "prob",
+      "title": "Probe",
+      "description": "Grasping the head of another being allows you to forcefully Access their mind (with +Interface), exactly as if it was a computer system.",
+      "category": "Skills"
    },
    {
-       "id":"xeno",
-       "title":"Xeno",
-       "description":"When designing a xeno species, create 3 Biomods from the Mod section. These \"biomods\" are evolutionary traits shared by the entire species, and every member of the species has them. Their society and culture will likely be affected by these traits as well, and their tools and equipment will likewise be very different.",
-       "details": true,
-       "category":"Species"
+      "id": "comp",
+      "title": "Compel",
+      "description": "You can Command any group or individual, no matter their disposition, no matter the command.",
+      "outcomes": [
+         {
+            "range": "\u2265 10",
+            "text": "Choose 1 consequence.",
+            "bullets": [
+               "They only obey non-harmful parts of your command.",
+               "They are stilted, clumsy, and obviously controlled.",
+               "You suffer a mental or emotional debility as backlash."
+            ]
+         },
+         {
+            "range": "7-9",
+            "text": "Choose 2 consequences.",
+            "bullets": [
+               "They only obey non-harmful parts of your command.",
+               "They are stilted, clumsy, and obviously controlled.",
+               "You suffer a mental or emotional debility as backlash."
+            ]
+         }
+      ],
+      "category": "Skills"
    },
    {
-       "id":"evolvd",
-       "title":"Evolved",
-       "description":"Choose a skill from any Career and describe the physiological adaptation that grants the skill in question. Every member of the evolved species exhibits that physiological characteristic.",
-       "category":"Species",
-       "details": true,
-       "takeFrom": ["Academic", "Augmented", "Chosen", "Clandestine", "Commercial", "Consul", "Explorer", "Fanatic", "Industrial", "Kinetic", "Military", "Personality", "Psychic", "Scoundrel", "Shaper", "Starfarer", "Technocrat"]
-   }
-   ,
-   {
-       "id":"sym",
-       "title":"Symbiosis",
-       "description":"When you enter a helpless or willing humanoid and assert control, the nature of your relationship determines how the joining unfolds.",
-       "pickOne": [
-           "Ascendant: The former host personality is preserved. The host is aware of its surroundings, and maintains its own thoughts and feelings. It can communicate with the symbiont.",
-           "Dominant: The former host is dormant and unaware of anything that transpires while the symbiont is in control.",
-           "Absolute: The former host personality is destroyed when the symbiont takes over the body. The body dies when the symbiont leaves."
-       ],
-       "category":"Species"
+      "id": "cla",
+      "title": "Clairvoyance",
+      "description": "Meditation allows you to use your +Mettle to make Assessment about specific people, objects, and locations over any distance. The glimpses granted by a failed Clairvoyance can be extremely disturbing.",
+      "category": "Skills"
    },
    {
-       "id":"joi",
-       "title":"Joining (+Physique)",
-       "description":"When you enter a helpless or willing humanoid and assert control, Roll +Physique.  The symbiont's natural health (+Physique) asserts itself over the host's physiology. Any injuries or physical debilities are left behind on the old body. The symbiont retains any mental and emotional debilities. Any cybernetics or biomods are left behind on the old body. The symbiont gains any cybernetics or biomods on the new body. Redistribute the character's Debt between available factions, based on the new host's relationships with said factions. The host's memories can be Accessed as if they were a computer system; a higher +Interface allows the symbiont to parse memories and thoughts to find what they want to know.",
-       "outcomes": [
-           {
-               "range":"≥ 10",
-               "text":"Choose 1 flaw:",
-               "bullets": [
-                   "The host's memories can't be Accessed.",
-                   "Occasional resistance, disobedience, unbidden memories or residual behaviors.",
-                   "Gain unexpected Debts (GM redistributes existing Debt).",
-                   "The host is flawed (-1 to a chosen stat while Joined).",
-                   "Gain unexpected, problematic contacts.",
-                   "The joining was traumatic (see page 42).",
-                   "The host will die when you leave."
-               ]
-           },
-           {
-               "range":"7-9",
-               "text":"Choose 2 flaws:",
-               "bullets": [
-                   "The host's memories can't be Accessed.",
-                   "Occasional resistance, disobedience, unbidden memories or residual behaviors.",
-                   "Gain unexpected Debts (GM redistributes existing Debt).",
-                   "The host is flawed (-1 to a chosen stat while Joined).",
-                   "Gain unexpected, problematic contacts.",
-                   "The joining was traumatic (see page 42).",
-                   "The host will die when you leave."
-               ]
-           },
-           {
-               "range":"≤ 6",
-               "text":"The GM chooses 3 flaws:",
-               "bullets": [
-                   "The host's memories can't be Accessed.",
-                   "Occasional resistance, disobedience, unbidden memories or residual behaviors.",
-                   "Gain unexpected Debts (GM redistributes existing Debt).",
-                   "The host is flawed (-1 to a chosen stat while Joined).",
-                   "Gain unexpected, problematic contacts.",
-                   "The joining was traumatic (see page 42).",
-                   "The host will die when you leave."
-               ]
-           }
-       ],
-       "category":"Species"
+      "id": "telepo",
+      "title": "Teleport",
+      "description": "You can instantly move yourself and nearby targets across any distance, using +Mettle to overcome potential adversity, if you either: See your destination clearly; Know the destination intimately; Don't care where you end up, as long as it's Not Here.",
+      "category": "Skills"
+   },
+   {
+      "id": "reg",
+      "title": "Regeneration",
+      "description": "A moment of stillness allows you to reduce the severity of one of your injuries by one step, if available. This can regrow limbs/organs lost to Critical Injuries, and happens while you are dead.",
+      "category": "Skills"
+   },
+   {
+      "id": "evo",
+      "title": "Evoke",
+      "description": "Each time you Evoke the elements, choose between Fire, Frost, Lightning, Darkness, and Light. You may create and manipulate that element as part of any Move or Skill. You may wield it as a weapon when you Launch Assault or Open Fire. You may only Evoke one element at a time.",
+      "category": "Skills"
+   },
+   {
+      "id": "trans",
+      "title": "Transform",
+      "description": "You can take on the form and bodily capabilities of a physical subject up to three times bigger or smaller than you: Immediately after an Assessment of the subject; At any time by spending a Data Point about the subject. You can return to your original form at any time.",
+      "category": "Skills"
+   },
+   {
+      "id": "inorg",
+      "title": "Inorganic",
+      "description": "Robots are immune to the weaknesses and needs that affect organic species. Robotic characters don't need to eat, drink or breathe to function. They are unaffected by organic dangers such as asphyxiation, bleeding, infection and intoxication. While they are aware of physical contact, robots are not incapacitated by pain and can ignore physiological discomfort.",
+      "category": "Species"
+   },
+   {
+      "id": "elect",
+      "title": "Electronic",
+      "description": "Electromagnetic pulses and shock damage can cause significant damage to a robot's mind/central processor. Indirect exposure to electromagnetic harm can cause minor sensory, mental and emotional debilities in a robotic character, while full-force EMP damage could cause permanent trauma (see Trauma on page 42).",
+      "category": "Species"
+   },
+   {
+      "id": "upgrd",
+      "title": "Upgradable",
+      "description": "Robots can readily accept cybernetic upgrades to their base form. As such, robotic character can support 2 additional Mods. Mods are purchased and installed as normal (see Mods on page 22). However, robots can only support cybernetic modules, and cannot have bio-mods installed.",
+      "category": "Species"
+   },
+   {
+      "id": "repair",
+      "title": "Repairable",
+      "description": "Any damage or debility needs to be repaired. Patch Up will fix most issues, though severe damage requires a hired technician or a character with the Repair skill. The only truly essential components are the power core and their central processor. Other repairs, such as limb reattachment or replacement, are fairly routine procedures without much risk.",
+      "category": "Species"
+   },
+   {
+      "id": "xeno",
+      "title": "Xeno",
+      "description": "When designing a xeno species, create 3 Biomods from the Mod section. These \"biomods\" are evolutionary traits shared by the entire species, and every member of the species has them. Their society and culture will likely be affected by these traits as well, and their tools and equipment will likewise be very different.",
+      "details": true,
+      "category": "Species"
+   },
+   {
+      "id": "evolvd",
+      "title": "Evolved",
+      "description": "Choose a skill from any Career and describe the physiological adaptation that grants the skill in question. Every member of the evolved species exhibits that physiological characteristic.",
+      "category": "Species",
+      "details": true,
+      "takeFrom": [
+         "Academic",
+         "Augmented",
+         "Chosen",
+         "Clandestine",
+         "Commercial",
+         "Consul",
+         "Explorer",
+         "Fanatic",
+         "Industrial",
+         "Kinetic",
+         "Military",
+         "Personality",
+         "Psychic",
+         "Scoundrel",
+         "Shaper",
+         "Starfarer",
+         "Technocrat"
+      ]
+   },
+   {
+      "id": "sym",
+      "title": "Symbiosis",
+      "description": "When you enter a helpless or willing humanoid and assert control, the nature of your relationship determines how the joining unfolds.",
+      "pickOne": [
+         "Ascendant: The former host personality is preserved. The host is aware of its surroundings, and maintains its own thoughts and feelings. It can communicate with the symbiont.",
+         "Dominant: The former host is dormant and unaware of anything that transpires while the symbiont is in control.",
+         "Absolute: The former host personality is destroyed when the symbiont takes over the body. The body dies when the symbiont leaves."
+      ],
+      "category": "Species"
+   },
+   {
+      "id": "joi",
+      "title": "Joining (+Physique)",
+      "description": "When you enter a helpless or willing humanoid and assert control, Roll +Physique.  The symbiont's natural health (+Physique) asserts itself over the host's physiology. Any injuries or physical debilities are left behind on the old body. The symbiont retains any mental and emotional debilities. Any cybernetics or biomods are left behind on the old body. The symbiont gains any cybernetics or biomods on the new body. Redistribute the character's Debt between available factions, based on the new host's relationships with said factions. The host's memories can be Accessed as if they were a computer system; a higher +Interface allows the symbiont to parse memories and thoughts to find what they want to know.",
+      "outcomes": [
+         {
+            "range": "\u2265 10",
+            "text": "Choose 1 flaw:",
+            "bullets": [
+               "The host's memories can't be Accessed.",
+               "Occasional resistance, disobedience, unbidden memories or residual behaviors.",
+               "Gain unexpected Debts (GM redistributes existing Debt).",
+               "The host is flawed (-1 to a chosen stat while Joined).",
+               "Gain unexpected, problematic contacts.",
+               "The joining was traumatic (see page 42).",
+               "The host will die when you leave."
+            ]
+         },
+         {
+            "range": "7-9",
+            "text": "Choose 2 flaws:",
+            "bullets": [
+               "The host's memories can't be Accessed.",
+               "Occasional resistance, disobedience, unbidden memories or residual behaviors.",
+               "Gain unexpected Debts (GM redistributes existing Debt).",
+               "The host is flawed (-1 to a chosen stat while Joined).",
+               "Gain unexpected, problematic contacts.",
+               "The joining was traumatic (see page 42).",
+               "The host will die when you leave."
+            ]
+         },
+         {
+            "range": "\u2264 6",
+            "text": "The GM chooses 3 flaws:",
+            "bullets": [
+               "The host's memories can't be Accessed.",
+               "Occasional resistance, disobedience, unbidden memories or residual behaviors.",
+               "Gain unexpected Debts (GM redistributes existing Debt).",
+               "The host is flawed (-1 to a chosen stat while Joined).",
+               "Gain unexpected, problematic contacts.",
+               "The joining was traumatic (see page 42).",
+               "The host will die when you leave."
+            ]
+         }
+      ],
+      "category": "Species"
    }
 ]
