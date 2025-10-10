@@ -5,7 +5,23 @@
       "description": "Choose a skill from the group career you have agreed upon.",
       "category": "Extra",
       "takeFrom": [
-         "*"
+         "Academic",
+         "Augmented",
+         "Chosen",
+         "Clandestine",
+         "Commercial",
+         "Consul",
+         "Explorer",
+         "Fanatic",
+         "Industrial",
+         "Kinetic",
+         "Military",
+         "Personality",
+         "Psychic",
+         "Scoundrel",
+         "Shaper",
+         "Starfarer",
+         "Technocrat"
       ]
    },
    {
