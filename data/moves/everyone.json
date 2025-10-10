@@ -302,7 +302,7 @@
     "title": "Drastic Upheaval",
     "description": "Choose a new advancement from any career",
     "category": "Extra",
-    "takeFrom": ["*"],
+    "takeFrom": ["Clandestine", "Commercial", "Explorer", "Industrial", "Military", "Personality", "Scoundrel", "Starfarer", "Technocrat", "Augmented", "Chosen", "Consul", "Fanatic", "Kinetic", "Psychic", "Shaper"],
     "multiple": 3
   },
   {
