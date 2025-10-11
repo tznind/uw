@@ -26,7 +26,7 @@
    },
    {
       "id": "ins",
-      "title": "Insolence",
+      "title": "Insolence (+Mettle)",
       "description": "When you solve a problem by defying customs, propriety, and the desires of those around you, you can roll +Mettle instead of whatever the usual stat would be. This will likely be selfish, rude, and possibly hurtful.",
       "category": "Skills"
    },
@@ -44,7 +44,7 @@
    },
    {
       "id": "rit",
-      "title": "Ritual",
+      "title": "Ritual (+Expertise)",
       "description": "When you entrust a situation to the power of your rituals, fortunes, hexes, and charms, you can roll +Expertise instead of whatever the usual stat would be. This will likely be complicated, unpredictable, and deeply unsettling.",
       "category": "Skills"
    },
@@ -95,7 +95,7 @@
    },
    {
       "id": "str",
-      "title": "Strength",
+      "title": "Strength (+Physique)",
       "description": "When you handle a situation with rage, violence, and brute force, you can roll +Physique instead of whatever the usual stat would be. This will likely be loud, ugly, and possibly painful.",
       "category": "Skills"
    },
@@ -139,7 +139,7 @@
    },
    {
       "id": "abn",
-      "title": "Abnegation",
+      "title": "Abnegation (+Interface)",
       "description": "When you black out and allow your programming to take over in order to solve a problem, you can roll +Interface instead of whatever the usual stat would be. Your programming won't undermine its own agenda.",
       "category": "Skills"
    },
@@ -164,7 +164,7 @@
    },
    {
       "id": "tra",
-      "title": "Tranquility",
+      "title": "Tranquility (+Influence)",
       "description": "When you handle a situation with the wisdom of a koan, parable, or aphorism, you can roll +Influence instead of whatever the usual stat would be. This will likely be soft, subtle, and slow.",
       "category": "Skills"
    },
@@ -247,7 +247,7 @@
    },
    {
       "id": "adv",
-      "title": "Advise",
+      "title": "Advise (+Influence)",
       "description": "When you steer someone towards a decision or desire, Roll+Influence.",
       "outcomes": [
          {
@@ -281,7 +281,7 @@
    },
    {
       "id": "mart",
-      "title": "Martyr",
+      "title": "Martyr (+Mettle)",
       "description": "When a nearby victim would suffer harm or consequences, you may interpose yourself and Roll+Mettle.",
       "outcomes": [
          {
@@ -307,7 +307,7 @@
    },
    {
       "id": "bar",
-      "title": "Barrier",
+      "title": "Barrier (+Mettle)",
       "description": "You can project a flat or hemispherical barrier of force that deflects or resists impacts, leveraging your +Mettle as a manifestation of solid willpower. This is extremely encumbering; you will be Clumsy while maintaining it.",
       "category": "Skills"
    },
@@ -325,7 +325,7 @@
    },
    {
       "id": "prob",
-      "title": "Probe",
+      "title": "Probe (+Interface)",
       "description": "Grasping the head of another being allows you to forcefully Access their mind (with +Interface), exactly as if it was a computer system.",
       "category": "Skills"
    },
@@ -357,13 +357,13 @@
    },
    {
       "id": "cla",
-      "title": "Clairvoyance",
+      "title": "Clairvoyance (+Mettle)",
       "description": "Meditation allows you to use your +Mettle to make Assessment about specific people, objects, and locations over any distance. The glimpses granted by a failed Clairvoyance can be extremely disturbing.",
       "category": "Skills"
    },
    {
       "id": "telepo",
-      "title": "Teleport",
+      "title": "Teleport (+Mettle)",
       "description": "You can instantly move yourself and nearby targets across any distance, using +Mettle to overcome potential adversity, if you either: See your destination clearly; Know the destination intimately; Don't care where you end up, as long as it's Not Here.",
       "category": "Skills"
    },

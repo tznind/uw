@@ -1,7 +1,7 @@
 [
   {
     "id": "face_adversity",
-    "title": "Face Adversity (+Stat)",
+    "title": "Face Adversity",
     "category": "Common Moves",
     "description": "When you overcome opposition or danger using stealth, piloting, accuracy, discipline (Roll+Mettle); knowledge, mechanics, first-aid (Roll+Expertise); athletics, endurance, strength, health (Roll+Physique); charm, diplomacy, bargaining, lies (Roll+Influence); or open computer systems and networks (Roll+Interface).",
     "outcomes": [
@@ -17,7 +17,7 @@
   },
   {
     "id": "assessment",
-    "title": "Assessment (+Stat)",
+    "title": "Assessment",
     "category": "Common Moves",
     "description": "When you collect critical information about an important, dangerous or mysterious subject using stealth, focus, cunning (Roll+Mettle); research and experimentation (Roll+Expertise); exploration, labor, strenuous activity (Roll+Physique); informants, interviews, gossip (Roll+Influence); or the SectorNet or open networks (Roll+Interface).",
     "outcomes": [
@@ -37,7 +37,7 @@
   },
   {
     "id": "get_involved",
-    "title": "Get Involved (+Stat)",
+    "title": "Get Involved",
     "category": "Common Moves",
     "description": "When an ally makes a Move and you affect the result using stealth, piloting, accuracy, or bravery (Roll+Mettle); education, mechanics or first aid (Roll+Expertise); athletics, endurance, strength or health (Roll+Physique); charm, diplomacy, bargaining or lies (Roll+Influence); or open computer systems and networks (Roll+Interface).",
     "outcomes": [

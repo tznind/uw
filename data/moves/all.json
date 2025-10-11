@@ -43,7 +43,7 @@
    },
    {
        "id":"che",
-       "title":"Chemistry",
+       "title":"Chemistry (+Expertise)",
        "description":"When creating an antidote, vaccine, drug, poison or pathogen in a lab, state the effect you want it to have and its method of transmission (spray, injector, pill, etc). Roll+Expertise.",
        "outcomes": [
            {
@@ -150,7 +150,7 @@
    },
    {
        "id":"sca",
-       "title":"Scapegoat",
+       "title":"Scapegoat (+Expertise)",
        "description":"When you would suffer social, legal or financial consequences, name someone and Roll+Expertise.",
        "outcomes": [
            {
@@ -308,7 +308,7 @@
    },
    {
        "id":"sne",
-       "title":"Sneak Attack",
+       "title":"Sneak Attack (+Mettle)",
        "description":"When you get the drop on someone, Roll+Mettle.",
        "outcomes": [
            {
@@ -426,7 +426,7 @@
    },
    {
        "id":"bg",
-       "title":"Boldly Go",
+       "title":"Boldly Go (+Mettle)",
        "description":"When leading an expedition into the unknown, Roll+Mettle.",
        "outcomes": [
            {
@@ -464,7 +464,7 @@
    },
    {
        "id":"dism",
-       "title":"Dismantle",
+       "title":"Dismantle (+Physique)",
        "description":"When forcefully dismantling, demolishing or breaking something, Roll+Physique.",
        "outcomes": [
            {
