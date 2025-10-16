@@ -32,7 +32,7 @@ The tool uses only text and SVG paths for current images (e.g., stats hexagons).
 
 It is purely static HTML/CSS/JS with all processing client-side. No backend, no database calls — just files delivered to the browser, where everything runs locally.
 
-GitHub Pages has a 100 GB/month bandwidth limit, which works out to roughly 200 K page loads per month or about 7,000 daily visitors.
+GitHub Pages has a soft 100 GB/month bandwidth limit, which works out to roughly 200 K page loads per month or about 7,000 daily visitors.
 
 The full fair use policy for GitHub Pages is here:
 
