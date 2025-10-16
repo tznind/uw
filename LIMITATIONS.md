@@ -26,7 +26,7 @@ You can get around this in a number of ways:
 - Share as file attachment
 - Create a gist and share link to gist
 
-## Github Pages hosting
+## Github Pages Hosting
 
 The tool uses only text and SVG paths for current images (e.g., stats hexagons). The images for custom cards are actually just emoji — i.e., text. As a result, a whole site is typically < 1MB.
 
