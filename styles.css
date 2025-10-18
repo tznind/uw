@@ -1545,3 +1545,19 @@ hr {
   outline: 2px solid #007bff;
   outline-offset: 2px;
 }
+
+/* === ORIGIN/CAREER IMAGE === */
+.origin-career-image {
+  float: right;
+  margin: 0 0 15px 15px;
+}
+
+#origin-career-img {
+  max-width: 180px;
+  height: auto;
+  display: block;
+}
+
+#origin-career-img.hidden {
+  display: none;
+}

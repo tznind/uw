@@ -178,11 +178,11 @@
 
         if (!origin) {
             // No origin selected, hide image
-            imgElement.style.display = 'none';
+            imgElement.classList.add('hidden');
             return;
         }
 
-        imgElement.style.display = 'block';
+        imgElement.classList.remove('hidden');
 
         // Combine the SVGs
         const combinedImageURL = await combineSVGs(origin, career1, career2);
