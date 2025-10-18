@@ -476,7 +476,14 @@ window.MovesCore = (function() {
 
             // Set CSS variable for the first granting role's watermark image
             const firstRole = grantingRoles[0];
-            const roleImageUrl = `data/img/${firstRole.toLowerCase()}.svg`;
+
+            // Check if this role is an origin (has cards property with "health")
+            const roleData = window.availableMap[firstRole];
+            const isOrigin = roleData && roleData.cards && roleData.cards.includes('health');
+
+            // Use _no_circle variant for origins, regular for careers
+            const suffix = isOrigin ? '_no_circle' : '';
+            const roleImageUrl = `data/img/${firstRole.toLowerCase()}${suffix}.svg`;
             moveDiv.style.setProperty('--role-watermark', `url('${roleImageUrl}')`);
         }
 
