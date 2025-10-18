@@ -34,10 +34,10 @@
      * @returns {Promise<string>} - Combined SVG as data URL
      */
     async function combineSVGs(originName, career1Name, career2Name) {
-        // Load all SVGs
-        const originPath = `/data/img/${originName.toLowerCase()}.svg`;
-        const career1Path = career1Name ? `/data/img/${career1Name.toLowerCase()}.svg` : null;
-        const career2Path = career2Name ? `/data/img/${career2Name.toLowerCase()}.svg` : null;
+        // Load all SVGs (use relative paths for GitHub Pages compatibility)
+        const originPath = `data/img/${originName.toLowerCase()}.svg`;
+        const career1Path = career1Name ? `data/img/${career1Name.toLowerCase()}.svg` : null;
+        const career2Path = career2Name ? `data/img/${career2Name.toLowerCase()}.svg` : null;
 
         const originDoc = await loadSVG(originPath);
         if (!originDoc) {
