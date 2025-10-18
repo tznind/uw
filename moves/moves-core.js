@@ -462,8 +462,9 @@ window.MovesCore = (function() {
         if (window.availableMap && currentRoles.length > 0) {
             currentRoles.forEach(role => {
                 const roleData = window.availableMap[role];
-                
-                if (roleData) {
+
+                // Check if this role has data for this specific move
+                if (roleData && roleData.hasOwnProperty(move.id)) {
                     grantingRoles.push(role);
                 }
             });
@@ -472,6 +473,11 @@ window.MovesCore = (function() {
         // Add data attribute for styling based on granting roles
         if (grantingRoles.length > 0) {
             moveDiv.setAttribute('data-granting-roles', grantingRoles.join(','));
+
+            // Set CSS variable for the first granting role's watermark image
+            const firstRole = grantingRoles[0];
+            const roleImageUrl = `data/img/${firstRole.toLowerCase()}.svg`;
+            moveDiv.style.setProperty('--role-watermark', `url('${roleImageUrl}')`);
         }
 
         // Create checkboxes and title

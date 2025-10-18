@@ -1572,18 +1572,18 @@ hr {
 
 /* === ROLE-BASED MOVE STYLING === */
 /* Style moves granted by Military with background watermark */
-.move[data-granting-roles*="Military"] {
+.move[data-granting-roles] {
   position: relative;
 }
 
-.move[data-granting-roles*="Military"]::before {
+.move[data-granting-roles]::before {
   content: '';
   position: absolute;
   top: 0;
   right: 0;
   width: 100px;
   height: 100px;
-  background-image: url('data/img/military.svg');
+  background-image: var(--role-watermark);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 80px 80px;
