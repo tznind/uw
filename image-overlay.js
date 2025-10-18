@@ -75,21 +75,42 @@
         combinedSVG.setAttribute('width', originSVG.getAttribute('width'));
         combinedSVG.setAttribute('height', originSVG.getAttribute('height'));
 
-        // Clone all children from origin SVG
+        // Get viewBox dimensions for clipping
+        const viewBox = originSVG.getAttribute('viewBox').split(' ');
+        const viewBoxX = parseFloat(viewBox[0]);
+        const viewBoxY = parseFloat(viewBox[1]);
+        const viewBoxWidth = parseFloat(viewBox[2]);
+        const viewBoxHeight = parseFloat(viewBox[3]);
+
+        // Create a clipPath definition to show only the left half (for career)
+        const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        const clipPath = document.createElementNS('http://www.w3.org/2000/svg', 'clipPath');
+        clipPath.setAttribute('id', 'leftHalfClip');
+
+        const clipRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        clipRect.setAttribute('x', viewBoxX);
+        clipRect.setAttribute('y', viewBoxY);
+        clipRect.setAttribute('width', viewBoxWidth / 2);
+        clipRect.setAttribute('height', viewBoxHeight);
+
+        clipPath.appendChild(clipRect);
+        defs.appendChild(clipPath);
+        combinedSVG.appendChild(defs);
+
+        // Clone all children from origin SVG (full, unclipped)
         Array.from(originSVG.children).forEach(child => {
             combinedSVG.appendChild(child.cloneNode(true));
         });
 
         // Clone all children from career SVG and overlay them with a vertical offset
-        // Create a group to hold the career elements with a transform
+        // Create a group to hold the career elements with a transform and clip-path
         const careerGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
-        // Get the viewBox height to calculate 28% offset (33% - 5%)
-        const viewBox = originSVG.getAttribute('viewBox').split(' ');
-        const viewBoxHeight = parseFloat(viewBox[3]);
+        // Use the viewBoxHeight we already calculated to get 28% offset (33% - 5%)
         const offsetY = viewBoxHeight * 0.28;
 
         careerGroup.setAttribute('transform', `translate(0, ${offsetY})`);
+        careerGroup.setAttribute('clip-path', 'url(#leftHalfClip)');
 
         Array.from(careerSVG.children).forEach(child => {
             careerGroup.appendChild(child.cloneNode(true));
