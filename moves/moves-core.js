@@ -462,8 +462,8 @@ window.MovesCore = (function() {
         if (window.availableMap && currentRoles.length > 0) {
             currentRoles.forEach(role => {
                 const roleData = window.availableMap[role];
-                if (roleData && roleData[move.id] === false) {
-                    // false means the role grants this move as a skill
+                
+                if (roleData) {
                     grantingRoles.push(role);
                 }
             });
