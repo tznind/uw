@@ -222,8 +222,11 @@
             career2Select.addEventListener('change', updateImage);
         }
 
-        // Initial update
-        updateImage();
+        // Initial update - delayed to allow persistence system to restore values
+        setTimeout(updateImage, 100);
+
+        // Also update after a longer delay to catch any late-loading values
+        setTimeout(updateImage, 500);
     }
 
     // Auto-initialize when DOM is ready
