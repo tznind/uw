@@ -455,7 +455,38 @@ window.MovesCore = (function() {
     function renderMove(move, available, urlParams, isNestedInCard = false) {
         const moveDiv = document.createElement("div");
         moveDiv.className = "move";
-        
+
+        // Find which roles grant this move (for styling purposes)
+        const grantingRoles = [];
+        const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
+        if (window.availableMap && currentRoles.length > 0) {
+            currentRoles.forEach(role => {
+                const roleData = window.availableMap[role];
+
+                // Check if this role has data for this specific move
+                if (roleData && roleData.hasOwnProperty(move.id)) {
+                    grantingRoles.push(role);
+                }
+            });
+        }
+
+        // Add data attribute for styling based on granting roles
+        if (grantingRoles.length > 0) {
+            moveDiv.setAttribute('data-granting-roles', grantingRoles.join(','));
+
+            // Set CSS variable for the first granting role's watermark image
+            const firstRole = grantingRoles[0];
+
+            // Check if this role is an origin (has cards property with "health")
+            const roleData = window.availableMap[firstRole];
+            const isOrigin = roleData && roleData.cards && roleData.cards.includes('health');
+
+            // Use _no_circle variant for origins, regular for careers
+            const suffix = isOrigin ? '_no_circle' : '';
+            const roleImageUrl = `data/img/${firstRole.toLowerCase()}${suffix}.svg`;
+            moveDiv.style.setProperty('--role-watermark', `url('${roleImageUrl}')`);
+        }
+
         // Create checkboxes and title
         const checkboxes = createMoveCheckboxes(move, available, urlParams);
         const titleContainer = createMoveTitle(move, checkboxes, urlParams, isNestedInCard);

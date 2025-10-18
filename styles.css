@@ -1545,3 +1545,50 @@ hr {
   outline: 2px solid #007bff;
   outline-offset: 2px;
 }
+
+/* === ORIGIN/CAREER IMAGE === */
+.origin-career-image {
+  float: right;
+  margin: 0 0 15px 15px;
+}
+
+#origin-career-img {
+  max-width: 180px;
+  height: auto;
+  display: block;
+}
+
+#origin-career-img.hidden {
+  display: none;
+}
+
+/* Shrink image to smaller size on mobile/tablet devices */
+@media (max-width: 768px) {
+  #origin-career-img {
+    max-width: 100px;
+  }
+}
+
+
+/* === ROLE-BASED MOVE STYLING === */
+/* Style moves granted by Military with background watermark */
+.move[data-granting-roles] {
+  position: relative;
+}
+
+.move[data-granting-roles]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background-image: var(--role-watermark);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80px 80px;
+  opacity: 0.15;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+}

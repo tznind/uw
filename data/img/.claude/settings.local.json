@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(svgo *.svg --multipass)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -26,20 +26,25 @@
   <form>
     <!-- Character Info Box -->
     <div class="character-info-box">
+      <!-- Origin/Career Image Display - Floated to top right -->
+      <div class="origin-career-image">
+        <img id="origin-career-img" src="data/img/forlorn.svg" alt="Origin/Career">
+      </div>
+
       <div class="basic-info">
         <div class="form-field">
           <label for="name">Name:</label>
           <input type="text" id="name" name="name">
         </div>
-        
+
         <div class="form-field">
           <label for="player">Player:</label>
           <input type="text" id="player" name="player">
         </div>
       </div>
-      
+
       <!-- Role selectors support data-roles attribute to limit which roles appear:
-           - Comma-separated list: data-roles="Navigator,Mech Adept" 
+           - Comma-separated list: data-roles="Navigator,Mech Adept"
            - Wildcard for all roles: data-roles="*"
            - No attribute: shows all roles (same as *) -->
 
@@ -81,7 +86,9 @@
             <input type="text" id="archetype" name="archetype" placeholder="e.g. Space Pirate">
           </div>
         </div>
-      
+
+      <div style="clear: both;"></div>
+
     </div>
 
     <div id="stats-container"></div>
@@ -141,6 +148,9 @@
 
 <!-- Layout system -->
 <script src="layout.js"></script>
+
+<!-- Image overlay system -->
+<script src="image-overlay.js"></script>
 
 <!-- Main application -->
 <script src="main.js"></script>
