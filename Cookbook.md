@@ -3,6 +3,7 @@
 This comprehensive guide covers creating roles, moves, and cards for the Rogue Trader character system.
 
 ## Table of Contents
+- [Help Buttons](#help-buttons)
 - [Customizing Stats](#customizing-stats)
 - [Creating Roles](#creating-roles)
 - [Basic Moves](#basic-moves)
@@ -14,6 +15,20 @@ This comprehensive guide covers creating roles, moves, and cards for the Rogue T
   - [Track Counter Moves](#track-counter-moves)
   - [Moves That Grant Cards](#moves-that-grant-cards)
 - [Cards System](#cards-system)
+
+---
+
+## Help Buttons
+
+Add contextual help anywhere in your HTML with automatic popup modals:
+
+```html
+<button type="button" class="help-icon"
+        data-help-title="Weakened"
+        data-help-text="Disadvantage on Strength and Dexterity">?</button>
+```
+
+The system automatically handles clicks, keyboard (Escape to close), and display. No additional JavaScript needed.
 
 ---
 
