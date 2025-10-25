@@ -126,5 +126,11 @@
       "Area",
       "Messy"
     ]
+  },
+  {
+    "id": "nav-ship",
+    "title": "Starship Command",
+    "description": "As a senior officer, you have been granted command of your own starship.",
+    "grantsCard": "ship"
   }
 ]
