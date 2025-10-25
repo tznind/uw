@@ -49,6 +49,15 @@ window.InlineCards = (function() {
                 // Try to initialize card-specific functionality
                 initializeCardFunctionality(cardId);
 
+                // Refresh persistence to restore URL parameters for the newly added card inputs
+                setTimeout(() => {
+                    const form = document.querySelector('form');
+                    if (form && window.Persistence) {
+                        console.log(`InlineCards.displayCard: Refreshing persistence for card ${cardId}`);
+                        window.Persistence.refreshPersistence(form);
+                    }
+                }, 50);
+
                 console.log(`Displayed card '${cardId}' inline in container '${containerId}'`);
             } else {
                 console.error(`InlineCards.displayCard: window.Cards not available`);
