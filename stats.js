@@ -28,6 +28,12 @@ window.renderStats = function(containerSelector, hexStats) {
 
     const wrapper = document.createElement("div");
     wrapper.className = "hex-input-wrapper";
+    
+    // Apply shape class if specified (default to hexagon)
+    const shape = stat.shape || "hexagon";
+    if (shape === "square") {
+      wrapper.classList.add("shape-square");
+    }
 
     const input = document.createElement("input");
     input.type = "text";

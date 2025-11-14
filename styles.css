@@ -418,6 +418,16 @@ button:focus {
   gap: 10px;
 }
 
+/* Push square containers down to align with hexagons */
+.hex-container:has(.shape-square) {
+  margin-top: 20px;
+}
+
+/* Adjust title spacing for square shapes */
+.hex-container:has(.shape-square) .hex-title {
+  margin-top: 15px;
+}
+
 .hex-input-wrapper {
   width: 120px;
   aspect-ratio: 1;
@@ -434,6 +444,72 @@ button:focus {
 /* Blue outline when input is focused */
 .hex-input-wrapper:focus-within {
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,1 95,25 95,75 50,99 5,75 5,25" stroke="%23007bff" stroke-width="2" fill="white"/></svg>') no-repeat center/contain;
+}
+
+/* Square shape variant */
+.hex-input-wrapper.shape-square {
+  width: 100px;
+  height: 100px;
+  background: white;
+  border: none;
+  position: relative;
+  filter: url(#rough-edge);
+  padding: 8px;
+}
+
+.hex-input-wrapper.shape-square::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 5px solid #000000;
+  border-radius: 6px;
+  pointer-events: none;
+  box-shadow: 
+    inset 1px 1px 0 rgba(0,0,0,0.1),
+    inset -1px -1px 0 rgba(0,0,0,0.1),
+    0 0 0 1px rgba(0,0,0,0.05);
+  clip-path: polygon(
+    0% 2%, 1% 0%, 3% 1%, 5% 0%, 7% 1%, 9% 0%, 
+    11% 1%, 13% 0%, 15% 2%, 17% 1%, 19% 2%, 21% 0%,
+    23% 1%, 25% 2%, 27% 1%, 29% 2%, 31% 1%, 33% 0%,
+    35% 2%, 37% 1%, 39% 2%, 41% 1%, 43% 2%, 45% 1%,
+    47% 2%, 49% 0%, 51% 1%, 53% 2%, 55% 1%, 57% 0%,
+    59% 2%, 61% 1%, 63% 2%, 65% 1%, 67% 0%, 69% 2%,
+    71% 1%, 73% 2%, 75% 0%, 77% 1%, 79% 2%, 81% 1%,
+    83% 0%, 85% 2%, 87% 1%, 89% 0%, 91% 2%, 93% 1%,
+    95% 0%, 97% 2%, 99% 1%, 100% 3%,
+    /* Right edge */
+    100% 5%, 99% 7%, 100% 9%, 99% 11%, 100% 13%, 99% 15%,
+    100% 17%, 99% 19%, 100% 21%, 99% 23%, 100% 25%, 99% 27%,
+    100% 29%, 99% 31%, 100% 33%, 99% 35%, 100% 37%, 99% 39%,
+    100% 41%, 99% 43%, 100% 45%, 99% 47%, 100% 49%, 99% 51%,
+    100% 53%, 99% 55%, 100% 57%, 99% 59%, 100% 61%, 99% 63%,
+    100% 65%, 99% 67%, 100% 69%, 99% 71%, 100% 73%, 99% 75%,
+    100% 77%, 99% 79%, 100% 81%, 99% 83%, 100% 85%, 99% 87%,
+    100% 89%, 99% 91%, 100% 93%, 99% 95%, 100% 97%, 99% 99%,
+    /* Bottom edge */
+    97% 100%, 95% 99%, 93% 100%, 91% 99%, 89% 100%, 87% 99%,
+    85% 100%, 83% 99%, 81% 100%, 79% 99%, 77% 100%, 75% 99%,
+    73% 100%, 71% 99%, 69% 100%, 67% 99%, 65% 100%, 63% 99%,
+    61% 100%, 59% 99%, 57% 100%, 55% 99%, 53% 100%, 51% 99%,
+    49% 100%, 47% 99%, 45% 100%, 43% 99%, 41% 100%, 39% 99%,
+    37% 100%, 35% 99%, 33% 100%, 31% 99%, 29% 100%, 27% 99%,
+    25% 100%, 23% 99%, 21% 100%, 19% 99%, 17% 100%, 15% 99%,
+    13% 100%, 11% 99%, 9% 100%, 7% 99%, 5% 100%, 3% 99%, 1% 100%,
+    /* Left edge */
+    0% 98%, 1% 96%, 0% 94%, 1% 92%, 0% 90%, 1% 88%,
+    0% 86%, 1% 84%, 0% 82%, 1% 80%, 0% 78%, 1% 76%,
+    0% 74%, 1% 72%, 0% 70%, 1% 68%, 0% 66%, 1% 64%,
+    0% 62%, 1% 60%, 0% 58%, 1% 56%, 0% 54%, 1% 52%,
+    0% 50%, 1% 48%, 0% 46%, 1% 44%, 0% 42%, 1% 40%,
+    0% 38%, 1% 36%, 0% 34%, 1% 32%, 0% 30%, 1% 28%,
+    0% 26%, 1% 24%, 0% 22%, 1% 20%, 0% 18%, 1% 16%,
+    0% 14%, 1% 12%, 0% 10%, 1% 8%, 0% 6%, 1% 4%
+  );
+}
+
+.hex-input-wrapper.shape-square:focus-within::before {
+  border-color: #007bff;
 }
 
 .hex-input-wrapper input {
@@ -459,6 +535,13 @@ button:focus {
   line-height: 1.1;
   max-width: 80px; /* Constrain to hex width */
   word-wrap: break-word;
+}
+
+/* Less restrictive placeholder for square */
+.hex-input-wrapper.shape-square input::placeholder {
+  font-size: clamp(7px, 1.2vw, 9px);
+  max-width: none;
+  letter-spacing: 0.2px;
 }
 
 /* Remove focus outline specifically for hex inputs */
