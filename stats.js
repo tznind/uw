@@ -1,4 +1,3 @@
-
 // Render hex stats inside a container
 window.renderStats = function(containerSelector, hexStats) {
   const container = document.querySelector(containerSelector);
@@ -18,7 +17,7 @@ window.renderStats = function(containerSelector, hexStats) {
   const urlParams = new URLSearchParams(location.search);
 
   hexStats.forEach(stat => {
-    if (!stat || !stat.id || !stat.title) {
+    if (!stat) {
       console.warn('Invalid stat data:', stat);
       return;
     }
@@ -26,31 +25,68 @@ window.renderStats = function(containerSelector, hexStats) {
     const hexContainer = document.createElement("div");
     hexContainer.className = "hex-container";
 
-    const wrapper = document.createElement("div");
-    wrapper.className = "hex-input-wrapper";
-    
     // Apply shape class if specified (default to hexagon)
     const shape = stat.shape || "hexagon";
-    if (shape === "square") {
-      wrapper.classList.add("shape-square");
+
+    // Handle clock shape differently
+    if (shape === "clock") {
+      if (!stat.clock || !stat.clock.type || !stat.clock.faces) {
+        console.warn('Clock stat missing required clock configuration:', stat);
+        return;
+      }
+      
+      const clockType = stat.clock.type;
+      const clockFaces = stat.clock.faces;
+      const clockFolder = `clocks/${clockType}`;
+      
+      const clockDiv = document.createElement("div");
+      clockDiv.className = "clock stat-clock";
+      clockDiv.id = stat.id || `clock_${Date.now()}`;
+      clockDiv.setAttribute('data-clock-folder', clockFolder);
+      clockDiv.setAttribute('data-clock-faces', clockFaces);
+      clockDiv.style.width = "100px";
+      clockDiv.style.height = "100px";
+      clockDiv.style.cursor = "pointer";
+      
+      // Create hidden input for persistence
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.id = clockDiv.id + "-value";
+      input.value = "0";
+      
+      hexContainer.appendChild(clockDiv);
+      hexContainer.appendChild(input);
+    } else {
+      // Standard stat (hexagon/square)
+      if (!stat.id || !stat.title) {
+        console.warn('Invalid stat data (missing id or title):', stat);
+        return;
+      }
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "hex-input-wrapper";
+      
+      if (shape === "square") {
+        wrapper.classList.add("shape-square");
+      }
+
+      const input = document.createElement("input");
+      input.type = "text";
+      input.id = stat.id;
+      input.name = stat.id;
+      input.placeholder = stat.title;
+      input.setAttribute('aria-label', stat.title);
+      
+      // Note: persistence.js will handle loading/saving values
+
+      wrapper.appendChild(input);
+      hexContainer.appendChild(wrapper);
+
+      const title = document.createElement("div");
+      title.className = "hex-title";
+      title.textContent = stat.title;
+      hexContainer.appendChild(title);
     }
-
-    const input = document.createElement("input");
-    input.type = "text";
-    input.id = stat.id;
-    input.name = stat.id;
-    input.placeholder = stat.title;
-    input.setAttribute('aria-label', stat.title);
-    
-    // Note: persistence.js will handle loading/saving values
-
-    wrapper.appendChild(input);
-    hexContainer.appendChild(wrapper);
-
-    const title = document.createElement("div");
-    title.className = "hex-title";
-    title.textContent = stat.title;
-    hexContainer.appendChild(title);
     
     // Add track display if stat has tracks
     if (stat.tracks && Array.isArray(stat.tracks) && stat.tracks.length > 0) {
@@ -64,6 +100,14 @@ window.renderStats = function(containerSelector, hexStats) {
   });
 
   container.appendChild(hexRow);
+
+  // Initialize any clocks that were just added
+  if (window.Clock) {
+    const newClocks = hexRow.querySelectorAll('.clock');
+    newClocks.forEach(clock => {
+      window.Clock.setupClock(clock);
+    });
+  }
 
   return hexRow;
 };

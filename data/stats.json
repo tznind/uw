@@ -43,5 +43,20 @@
     "id": "conviction",
     "title": "CONVICTION",
     "shape": "square"
+  },
+  {
+    "id": "prophecy",
+    "shape": "clock",
+    "clock": {
+      "type": "quarter_twelfths",
+      "faces": 6
+    },
+    "tracks": [
+      {
+        "name": "Signs",
+        "max": 3,
+        "shape": "circle"
+      }
+    ]
   }
 ]

@@ -21,6 +21,11 @@ window.Clock = (function() {
      * @param {HTMLElement} clockElement - The clock div element
      */
     function setupClock(clockElement) {
+        // Prevent double initialization
+        if (clockElement.dataset.clockInitialized === 'true') {
+            return;
+        }
+        
         const folder = clockElement.getAttribute('data-clock-folder');
         const faces = parseInt(clockElement.getAttribute('data-clock-faces'), 10);
         
@@ -56,6 +61,9 @@ window.Clock = (function() {
             const event = new Event('change', { bubbles: true });
             input.dispatchEvent(event);
         });
+        
+        // Mark as initialized to prevent double setup
+        clockElement.dataset.clockInitialized = 'true';
     }
 
     /**
