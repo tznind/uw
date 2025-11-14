@@ -36,6 +36,11 @@
                 await window.Layout.layoutApplication();
             }
 
+            // Initialize clocks after layout is complete
+            if (window.Clock) {
+                window.Clock.initializeClocks();
+            }
+
             console.log('Application initialized successfully');
 
         } catch (error) {
