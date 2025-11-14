@@ -74,10 +74,16 @@ window.Clock = (function() {
      */
     function updateClockDisplay(clockElement, folder, value) {
         const svgPath = `${folder}/${value}.svg`;
-        clockElement.style.backgroundImage = `url('${svgPath}')`;
-        clockElement.style.backgroundSize = 'contain';
-        clockElement.style.backgroundRepeat = 'no-repeat';
-        clockElement.style.backgroundPosition = 'center';
+        
+        // Preload image before changing display to avoid flicker
+        const img = new Image();
+        img.onload = () => {
+            clockElement.style.backgroundImage = `url('${svgPath}')`;
+            clockElement.style.backgroundSize = 'contain';
+            clockElement.style.backgroundRepeat = 'no-repeat';
+            clockElement.style.backgroundPosition = 'center';
+        };
+        img.src = svgPath;
     }
 
     /**
