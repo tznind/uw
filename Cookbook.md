@@ -65,6 +65,62 @@ Stats are defined in [stats.json](./data/stats.json). Each stat has an `id` (use
 ]
 ```
 
+### Stat Track Counters
+
+**When to use:** For stats that have associated resources that need tracking (like Armor, Wounds, Focus, etc.).
+
+Stats can include track counters that appear below the stat hexagon. These work identically to move track counters and support multiple shapes.
+
+```json
+[
+  {
+    "id": "mettle",
+    "title": "METTLE",
+    "tracks": [
+      {
+        "name": "Armor",
+        "max": 3,
+        "shape": "hexagon"
+      }
+    ]
+  },
+  {
+    "id": "physique",
+    "title": "PHYSIQUE",
+    "tracks": [
+      {
+        "name": "Wounds",
+        "max": 6,
+        "shape": "circle"
+      }
+    ]
+  }
+]
+```
+
+**Key Features:**
+- `tracks` array supports multiple counters per stat
+- `shape` options: "square" (default), "circle", "triangle", "hexagon"
+- `name` is optional - omit it to show just the shapes without a label
+- `max` defaults to 5 if not specified
+- Click shapes to increment/decrement current value
+- Values persist in URL automatically
+- Appears centered below the stat title
+
+**Example without labels:**
+```json
+{
+  "id": "expertise",
+  "title": "EXPERTISE",
+  "tracks": [
+    {
+      "max": 4,
+      "shape": "circle"
+    }
+  ]
+}
+```
+
 ---
 
 ## Creating Roles

@@ -16,6 +16,12 @@
         "type": "string",
         "description": "Display title of the stat (usually uppercase)"
       },
+      "shape": {
+        "type": "string",
+        "description": "Visual shape for the stat input container",
+        "enum": ["hexagon", "square"],
+        "default": "hexagon"
+      },
       "max": {
         "type": "integer",
         "description": "Maximum value for this stat",
@@ -29,6 +35,33 @@
         "minimum": -3,
         "maximum": 0,
         "default": -2
+      },
+      "tracks": {
+        "type": "array",
+        "description": "Array of tracking configurations for resources associated with this stat",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Display name for the tracked resource",
+              "examples": ["Wounds", "Armor", "Focus"]
+            },
+            "max": {
+              "type": "integer",
+              "description": "Maximum number of points that can be tracked",
+              "maximum": 10
+            },
+            "shape": {
+              "type": "string",
+              "description": "Visual shape for the track counters",
+              "enum": ["square", "circle", "triangle", "hexagon"],
+              "default": "square"
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
       }
     },
     "required": ["id", "title"],

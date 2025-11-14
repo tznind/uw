@@ -14,6 +14,8 @@ window.renderStats = function(containerSelector, hexStats) {
 
   const hexRow = document.createElement("div");
   hexRow.className = "hex-row";
+  
+  const urlParams = new URLSearchParams(location.search);
 
   hexStats.forEach(stat => {
     if (!stat || !stat.id || !stat.title) {
@@ -26,6 +28,12 @@ window.renderStats = function(containerSelector, hexStats) {
 
     const wrapper = document.createElement("div");
     wrapper.className = "hex-input-wrapper";
+    
+    // Apply shape class if specified (default to hexagon)
+    const shape = stat.shape || "hexagon";
+    if (shape === "square") {
+      wrapper.classList.add("shape-square");
+    }
 
     const input = document.createElement("input");
     input.type = "text";
@@ -43,6 +51,14 @@ window.renderStats = function(containerSelector, hexStats) {
     title.className = "hex-title";
     title.textContent = stat.title;
     hexContainer.appendChild(title);
+    
+    // Add track display if stat has tracks
+    if (stat.tracks && Array.isArray(stat.tracks) && stat.tracks.length > 0) {
+      const trackDisplay = createStatTrackDisplay(stat, urlParams);
+      if (trackDisplay) {
+        hexContainer.appendChild(trackDisplay);
+      }
+    }
 
     hexRow.appendChild(hexContainer);
   });
@@ -51,3 +67,157 @@ window.renderStats = function(containerSelector, hexStats) {
 
   return hexRow;
 };
+
+/**
+ * Create a track counter display for a stat
+ */
+function createStatTrackDisplay(stat, urlParams) {
+  if (!stat.tracks || !window.Track) {
+    return null;
+  }
+  
+  const trackConfigs = stat.tracks;
+  const trackContainer = document.createElement('div');
+  trackContainer.className = 'stat-track-counter';
+  
+  // Prevent clicks from bubbling
+  trackContainer.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+  
+  // Create each track counter
+  trackConfigs.forEach((trackConfig, index) => {
+    const trackId = trackConfigs.length > 1 ? `stat_${stat.id}_${index}` : `stat_${stat.id}`;
+    const currentValue = window.Track.getCurrentTrackValue(trackId, urlParams);
+    const maxValue = trackConfig.max || 5;
+    const shape = trackConfig.shape || 'square';
+    
+    // Create individual track container
+    const individualTrackContainer = document.createElement('div');
+    individualTrackContainer.className = 'stat-individual-track';
+    
+    // Create shapes container
+    const shapesContainer = document.createElement('div');
+    shapesContainer.className = 'track-shapes';
+    
+    // Create individual shapes
+    for (let i = 1; i <= maxValue; i++) {
+      const shapeElement = document.createElement('div');
+      shapeElement.className = `track-shape track-${shape}`;
+      shapeElement.dataset.value = i;
+      shapeElement.setAttribute('data-track-id', trackId);
+      
+      // Make focusable and accessible
+      shapeElement.setAttribute('tabindex', '0');
+      shapeElement.setAttribute('role', 'button');
+      shapeElement.setAttribute('aria-label', `${trackConfig.name} - Set to ${i} of ${maxValue}`);
+      
+      if (i <= currentValue) {
+        shapeElement.classList.add('filled');
+      }
+      
+      // Add click handler for toggling
+      shapeElement.addEventListener('click', (event) => {
+        event.stopPropagation();
+        handleStatTrackClick(trackId, i, maxValue);
+      });
+      
+      // Add keyboard handler
+      shapeElement.addEventListener('keydown', (event) => {
+        if (event.key === ' ' || event.key === 'Enter') {
+          event.preventDefault();
+          event.stopPropagation();
+          handleStatTrackClick(trackId, i, maxValue);
+        }
+      });
+      
+      shapesContainer.appendChild(shapeElement);
+    }
+    
+    // Create label showing track name and current/max (if name is provided)
+    if (trackConfig.name) {
+      const trackLabel = document.createElement('div');
+      trackLabel.className = 'stat-track-label';
+      trackLabel.textContent = `${trackConfig.name}: ${currentValue}/${maxValue}`;
+      individualTrackContainer.appendChild(trackLabel);
+    }
+    
+    individualTrackContainer.appendChild(shapesContainer);
+    trackContainer.appendChild(individualTrackContainer);
+  });
+  
+  return trackContainer;
+}
+
+/**
+ * Handle clicking on a stat track shape
+ */
+function handleStatTrackClick(trackId, clickedValue, maxValue) {
+  if (!window.Track) return;
+  
+  const currentValue = window.Track.getCurrentTrackValue(trackId, new URLSearchParams(location.search));
+  
+  let newValue;
+  if (clickedValue <= currentValue) {
+    // Clicking on a filled shape or lower - set to one less than clicked
+    newValue = clickedValue - 1;
+  } else {
+    // Clicking on an empty shape - fill up to that shape
+    newValue = clickedValue;
+  }
+  
+  // Clamp to valid range
+  newValue = Math.max(0, Math.min(newValue, maxValue));
+  
+  // Update display using Track module's function
+  if (window.Track.updateSingleTrackDisplay) {
+    window.Track.updateSingleTrackDisplay(trackId, newValue, maxValue);
+  } else {
+    // Fallback: update manually
+    updateStatTrackDisplay(trackId, newValue, maxValue);
+  }
+  
+  // Update URL
+  updateStatTrackValueInURL(trackId, newValue);
+}
+
+/**
+ * Update the visual display of a stat track counter
+ */
+function updateStatTrackDisplay(trackId, currentValue, maxValue) {
+  const shapes = document.querySelectorAll(`[data-track-id="${trackId}"]`);
+  shapes.forEach((shape) => {
+    const shapeValue = parseInt(shape.dataset.value);
+    if (shapeValue <= currentValue) {
+      shape.classList.add('filled');
+    } else {
+      shape.classList.remove('filled');
+    }
+  });
+  
+  // Update corresponding label (if it exists)
+  const trackContainer = shapes[0]?.closest('.stat-individual-track');
+  const label = trackContainer?.querySelector('.stat-track-label');
+  if (label && shapes.length > 0) {
+    const currentText = label.textContent;
+    const trackName = currentText.split(':')[0];
+    label.textContent = `${trackName}: ${currentValue}/${maxValue}`;
+  }
+}
+
+/**
+ * Update stat track value in URL parameters
+ */
+function updateStatTrackValueInURL(trackId, value) {
+  const params = new URLSearchParams(location.search);
+  const paramName = `track_${trackId}`;
+  
+  if (value > 0) {
+    params.set(paramName, value.toString());
+  } else {
+    params.delete(paramName);
+  }
+  
+  const newUrl = params.toString() ? '?' + params.toString() : location.pathname;
+  history.replaceState({}, '', newUrl);
+}

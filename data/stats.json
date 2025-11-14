@@ -1,22 +1,47 @@
 [
   {
     "id": "mettle",
-    "title": "METTLE"
+    "title": "METTLE",
+    "shape": "hexagon",
+    "tracks": [
+      {
+        "name": "Armor",
+        "max": 3,
+        "shape": "hexagon"
+      }
+    ]
   },
   {
     "id": "physique",
-    "title": "PHYSIQUE"
+    "title": "PHYSIQUE",
+    "shape": "hexagon",
+    "tracks": [
+      {
+        "name": "Wounds",
+        "max": 6,
+        "shape": "circle"
+      }
+    ]
   },
   {
     "id": "influence",
-    "title": "INFLUENCE"
+    "title": "INFLUENCE",
+    "shape": "hexagon"
   },
   {
     "id": "expertise",
-    "title": "EXPERTISE"
+    "title": "EXPERTISE",
+    "shape": "hexagon",
+    "tracks": [
+      {
+        "max": 4,
+        "shape": "circle"
+      }
+    ]
   },
   {
     "id": "conviction",
-    "title": "CONVICTION"
+    "title": "CONVICTION",
+    "shape": "square"
   }
 ]
