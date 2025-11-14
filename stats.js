@@ -49,7 +49,8 @@ window.renderStats = function(containerSelector, hexStats) {
       const input = document.createElement("input");
       input.type = "hidden";
       input.id = clockDiv.id + "-value";
-      input.value = "0";
+      // Read initial value from URL params (same pattern as tracks)
+      input.value = urlParams.get(input.id) || "0";
       
       hexContainer.appendChild(clockDiv);
       hexContainer.appendChild(input);

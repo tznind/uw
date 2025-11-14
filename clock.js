@@ -80,9 +80,28 @@ window.Clock = (function() {
         clockElement.style.backgroundPosition = 'center';
     }
 
+    /**
+     * Refresh all clock displays from their current input values
+     * Called after persistence loads to update visuals
+     */
+    function refreshClockDisplays() {
+        const clocks = document.querySelectorAll('.clock');
+        clocks.forEach(clock => {
+            const folder = clock.getAttribute('data-clock-folder');
+            const inputId = clock.id + '-value';
+            const input = document.getElementById(inputId);
+            
+            if (input && folder) {
+                const value = parseInt(input.value, 10) || 0;
+                updateClockDisplay(clock, folder, value);
+            }
+        });
+    }
+
     // Public API
     return {
         initializeClocks: initializeClocks,
-        setupClock: setupClock
+        setupClock: setupClock,
+        refreshClockDisplays: refreshClockDisplays
     };
 })();
