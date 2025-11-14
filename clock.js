@@ -46,20 +46,39 @@ window.Clock = (function() {
             clockElement.parentNode.insertBefore(input, clockElement.nextSibling);
         }
 
+        // Make focusable and accessible
+        clockElement.setAttribute('tabindex', '0');
+        clockElement.setAttribute('role', 'button');
+        clockElement.setAttribute('aria-label', `Clock - click to advance (current value: ${input.value})`);
+        
         // Initialize display from current value
         updateClockDisplay(clockElement, folder, parseInt(input.value, 10) || 0);
 
-        // Add click handler to advance clock
-        clockElement.addEventListener('click', () => {
+        // Function to advance the clock
+        const advanceClock = () => {
             let currentValue = parseInt(input.value, 10) || 0;
             let nextValue = (currentValue + 1) % (faces + 1); // 0 to faces inclusive
             
             input.value = nextValue;
             updateClockDisplay(clockElement, folder, nextValue);
+            
+            // Update aria-label
+            clockElement.setAttribute('aria-label', `Clock - click to advance (current value: ${nextValue})`);
 
             // Trigger change event on the hidden input so persistence picks it up
             const event = new Event('change', { bubbles: true });
             input.dispatchEvent(event);
+        };
+
+        // Add click handler to advance clock
+        clockElement.addEventListener('click', advanceClock);
+        
+        // Add keyboard handler for accessibility
+        clockElement.addEventListener('keydown', (event) => {
+            if (event.key === ' ' || event.key === 'Enter') {
+                event.preventDefault();
+                advanceClock();
+            }
         });
         
         // Mark as initialized to prevent double setup

@@ -46,6 +46,7 @@
   },
   {
     "id": "prophecy",
+    "title": "PROPHECY",
     "shape": "clock",
     "clock": {
       "type": "quarter_twelfths",

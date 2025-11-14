@@ -562,8 +562,8 @@ button:focus {
 
 /* === CLOCK STYLES === */
 .stat-clock {
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
   cursor: pointer;
   background-size: contain;
   background-repeat: no-repeat;
@@ -1371,8 +1371,8 @@ hr {
   }
   
   .stat-clock {
-    width: 125px;
-    height: 125px;
+    width: 110px;
+    height: 110px;
   }
   
   .move {
@@ -1462,8 +1462,8 @@ hr {
   }
   
   .stat-clock {
-    width: 105px;
-    height: 105px;
+    width: 90px;
+    height: 90px;
   }
   
   /* Reduce various section margins */

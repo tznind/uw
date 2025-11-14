@@ -54,6 +54,14 @@ window.renderStats = function(containerSelector, hexStats) {
       
       hexContainer.appendChild(clockDiv);
       hexContainer.appendChild(input);
+      
+      // Add title if provided
+      if (stat.title) {
+        const title = document.createElement("div");
+        title.className = "hex-title";
+        title.textContent = stat.title;
+        hexContainer.appendChild(title);
+      }
     } else {
       // Standard stat (hexagon/square)
       if (!stat.id || !stat.title) {
