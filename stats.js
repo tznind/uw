@@ -44,9 +44,6 @@ window.renderStats = function(containerSelector, hexStats) {
       clockDiv.id = stat.id || `clock_${Date.now()}`;
       clockDiv.setAttribute('data-clock-folder', clockFolder);
       clockDiv.setAttribute('data-clock-faces', clockFaces);
-      clockDiv.style.width = "100px";
-      clockDiv.style.height = "100px";
-      clockDiv.style.cursor = "pointer";
       
       // Create hidden input for persistence
       const input = document.createElement("input");

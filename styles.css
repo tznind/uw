@@ -560,6 +560,16 @@ button:focus {
   letter-spacing: 0.5px;
 }
 
+/* === CLOCK STYLES === */
+.stat-clock {
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* === STAT TRACK COUNTER STYLES === */
 .stat-track-counter {
   display: flex;
@@ -1360,6 +1370,11 @@ hr {
     margin-top: 12px;
   }
   
+  .stat-clock {
+    width: 125px;
+    height: 125px;
+  }
+  
   .move {
     padding: 15px;
   }
@@ -1444,6 +1459,11 @@ hr {
   
   .hex-title {
     font-size: 11px;
+  }
+  
+  .stat-clock {
+    width: 105px;
+    height: 105px;
   }
   
   /* Reduce various section margins */
