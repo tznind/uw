@@ -37,7 +37,7 @@ window.renderStats = function(containerSelector, hexStats) {
       
       const clockType = stat.clock.type;
       const clockFaces = stat.clock.faces;
-      const clockFolder = `clocks/${clockType}`;
+      const clockFolder = `data/clocks/${clockType}`;
       
       const clockDiv = document.createElement("div");
       clockDiv.className = "clock stat-clock";
