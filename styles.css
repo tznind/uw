@@ -597,6 +597,21 @@ button:focus {
   text-align: center;
 }
 
+/* Shapes wrapper allows placing a small end label after shapes */
+.stat-track-shapes-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-track-end-label {
+  font-size: 9px;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  opacity: 0.8;
+}
+
 /* Reuse track-shapes and track-shape styles from move tracks */
 /* The .track-shapes and .track-shape classes are already defined below */
 

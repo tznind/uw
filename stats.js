@@ -192,7 +192,20 @@ function createStatTrackDisplay(stat, urlParams) {
       individualTrackContainer.appendChild(trackLabel);
     }
     
-    individualTrackContainer.appendChild(shapesContainer);
+    // Create shapes container wrapper to include end label
+    const shapesWrapper = document.createElement('div');
+    shapesWrapper.className = 'stat-track-shapes-wrapper';
+    shapesWrapper.appendChild(shapesContainer);
+    
+    // Add end label if provided (after the shapes)
+    if (trackConfig.endLabel) {
+      const endLabel = document.createElement('span');
+      endLabel.className = 'stat-track-end-label';
+      endLabel.textContent = trackConfig.endLabel;
+      shapesWrapper.appendChild(endLabel);
+    }
+    
+    individualTrackContainer.appendChild(shapesWrapper);
     trackContainer.appendChild(individualTrackContainer);
   });
   
