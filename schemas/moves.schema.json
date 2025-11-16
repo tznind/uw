@@ -101,6 +101,11 @@
         "description": "If true, shows a free text input field for additional move details",
         "default": false
       },
+      "hideCheckbox": {
+        "type": "boolean",
+        "description": "If true and move is force-ticked via availability.json (set to true), the checkbox will be hidden while keeping the move content visible. Useful for moves that should look like part of the character sheet rather than selectable options, especially when combined with categories.",
+        "default": false
+      },
       "tracks": {
         "type": "array",
         "description": "Array of tracking configurations for multiple resources",

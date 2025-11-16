@@ -378,6 +378,46 @@ Beyond basic roll-based moves, the system supports several specialized move type
 - Categories appear as separate sections on the character sheet
 - Common categories: `"Advancement"`, `"Equipment"`, `"Companion"`
 
+### Hidden Checkbox Moves
+
+**When to use:** For moves that should appear as part of the character sheet layout rather than selectable options.
+
+#### Structure
+
+```json
+{
+  "id": "background",
+  "title": "Background",
+  "category": "Character Details",
+  "hideCheckbox": true,
+  "details": true,
+  "outcomes": [
+    {
+      "range": "",
+      "text": "Describe your character's background and history."
+    }
+  ]
+}
+```
+
+In `availability.json`, set the move to `true` to force it always on:
+
+```json
+{
+  "Navigator": {
+    "_movesFile": "data/moves/navigator.json",
+    "background": true
+  }
+}
+```
+
+**Key Features:**
+- `hideCheckbox: true` hides the checkbox when the move is force-ticked (set to `true` in availability.json)
+- The move content remains visible without the checkbox
+- Perfect for character sheet elements like backgrounds, notes, or permanent features
+- Works great with `category` to organize character sheet sections
+- Can be combined with `details: true` for freeform text input
+
 ### Track Counter Moves
 
 **When to use:** For moves that grant temporary points that can be spent for various effects (like Inspire, Hold, Focus, etc.).

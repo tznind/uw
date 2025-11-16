@@ -2,6 +2,7 @@
   {
     "id": "a1b2c3",
     "title": "Chart the Immaterium (+Conviction)",
+    "hideCheckbox": true,
     "description": "Plot a course through the warp using your navigator's gift and the ship's instruments. Roll +Conviction to pierce the veil between reality and the immaterium.",
     "outcomes": [
       {

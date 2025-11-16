@@ -60,8 +60,9 @@ window.MovesCore = (function() {
      * @param {Array} checkboxes - Array of checkbox elements
      * @param {URLSearchParams} urlParams - URL parameters
      * @param {boolean} isNestedInCard - Whether this move is nested inside a granted card
+     * @param {Object} available - Available moves map (needed for hideCheckbox logic)
      */
-    function createMoveTitle(move, checkboxes, urlParams, isNestedInCard = false) {
+    function createMoveTitle(move, checkboxes, urlParams, isNestedInCard = false, available = null) {
         const titleContainer = document.createElement("div");
         titleContainer.className = "move-title";
         // Make the whole title area act as a disclosure control (except interactive elements)
@@ -79,7 +80,12 @@ window.MovesCore = (function() {
             titleText.className = "move-title-text";
             titleText.textContent = move.title;
             
-            titleContainer.appendChild(checkbox);
+            // Hide checkbox if hideCheckbox is true AND move is force-ticked
+            const shouldHideCheckbox = move.hideCheckbox === true && available && available[move.id] === true;
+            
+            if (!shouldHideCheckbox) {
+                titleContainer.appendChild(checkbox);
+            }
             titleContainer.appendChild(titleText);
         } else {
             // Multiple checkboxes - put checkboxes inline before title
@@ -94,7 +100,12 @@ window.MovesCore = (function() {
             titleText.className = "move-title-text";
             titleText.textContent = move.title;
             
-            titleContainer.appendChild(checkboxContainer);
+            // Hide checkboxes if hideCheckbox is true AND move is force-ticked
+            const shouldHideCheckbox = move.hideCheckbox === true && available && available[move.id] === true;
+            
+            if (!shouldHideCheckbox) {
+                titleContainer.appendChild(checkboxContainer);
+            }
             titleContainer.appendChild(titleText);
         }
         
@@ -490,7 +501,7 @@ window.MovesCore = (function() {
 
         // Create checkboxes and title
         const checkboxes = createMoveCheckboxes(move, available, urlParams);
-        const titleContainer = createMoveTitle(move, checkboxes, urlParams, isNestedInCard);
+        const titleContainer = createMoveTitle(move, checkboxes, urlParams, isNestedInCard, available);
         moveDiv.appendChild(titleContainer);
         
         // Create collapsible content container
