@@ -428,6 +428,11 @@ button:focus {
   margin-top: 15px;
 }
 
+/* Push clock containers down to align with hexagons and squares */
+.hex-container:has(.stat-clock) {
+  margin-top: 5px;
+}
+
 .hex-input-wrapper {
   width: 120px;
   aspect-ratio: 1;
@@ -1385,6 +1390,10 @@ hr {
     margin-top: 12px;
   }
   
+  .hex-container:has(.stat-clock) {
+    margin-top: 4px;
+  }
+  
   .stat-clock {
     width: 110px;
     height: 110px;
@@ -1470,6 +1479,10 @@ hr {
   
   .hex-container:has(.shape-square) .hex-title {
     margin-top: 10px;
+  }
+  
+  .hex-container:has(.stat-clock) {
+    margin-top: 3px;
   }
   
   .hex-title {
