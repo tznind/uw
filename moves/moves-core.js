@@ -170,7 +170,7 @@ window.MovesCore = (function() {
         descriptionDiv.className = "move-description";
         
         const p = document.createElement("p");
-        p.textContent = move.description;
+        p.innerHTML = window.TextFormatter ? window.TextFormatter.format(move.description) : move.description;
         descriptionDiv.appendChild(p);
         
         return descriptionDiv;
@@ -183,19 +183,33 @@ window.MovesCore = (function() {
         const outcomeDiv = document.createElement("div");
         outcomeDiv.className = "outcome";
 
-        const p = document.createElement("p");
+        const formattedText = window.TextFormatter ? window.TextFormatter.format(outcome.text) : outcome.text;
+        
         if (outcome.range && outcome.range.trim() !== "") {
-            p.innerHTML = `<strong>${outcome.range}:</strong> ${outcome.text}`;
+            // Create a container div to handle range + text with better line break support
+            const rangeSpan = document.createElement("strong");
+            rangeSpan.className = "outcome-range";
+            rangeSpan.textContent = outcome.range + ":";
+            
+            const textSpan = document.createElement("span");
+            textSpan.className = "outcome-text";
+            textSpan.innerHTML = " " + formattedText;
+            
+            outcomeDiv.appendChild(rangeSpan);
+            outcomeDiv.appendChild(textSpan);
         } else {
-            p.innerHTML = outcome.text;
+            // No range, just add the text directly
+            const textDiv = document.createElement("div");
+            textDiv.className = "outcome-text";
+            textDiv.innerHTML = formattedText;
+            outcomeDiv.appendChild(textDiv);
         }
-        outcomeDiv.appendChild(p);
 
         if (outcome.bullets && outcome.bullets.length) {
             const ul = document.createElement("ul");
             outcome.bullets.forEach(bulletText => {
                 const li = document.createElement("li");
-                li.textContent = bulletText;
+                li.innerHTML = window.TextFormatter ? window.TextFormatter.format(bulletText) : bulletText;
                 ul.appendChild(li);
             });
             outcomeDiv.appendChild(ul);
@@ -323,7 +337,7 @@ window.MovesCore = (function() {
                 // Add the option text after all checkboxes
                 const optionText = document.createElement("span");
                 optionText.className = "pick-option-text";
-                optionText.textContent = option;
+                optionText.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
                 
                 li.appendChild(checkboxContainer);
                 li.appendChild(optionText);
@@ -356,7 +370,9 @@ window.MovesCore = (function() {
                 const label = document.createElement("label");
                 label.setAttribute('for', checkbox.id);
                 label.appendChild(checkbox);
-                label.appendChild(document.createTextNode(option));
+                const textSpan = document.createElement("span");
+                textSpan.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
+                label.appendChild(textSpan);
                 
                 li.appendChild(label);
                 pickList.appendChild(li);
@@ -422,7 +438,7 @@ window.MovesCore = (function() {
                 // Add the option text after all radio buttons
                 const optionText = document.createElement("span");
                 optionText.className = "pick-one-option-text";
-                optionText.textContent = option;
+                optionText.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
                 
                 li.appendChild(radioContainer);
                 li.appendChild(optionText);
@@ -458,7 +474,9 @@ window.MovesCore = (function() {
                 const label = document.createElement("label");
                 label.setAttribute('for', radio.id);
                 label.appendChild(radio);
-                label.appendChild(document.createTextNode(option));
+                const textSpan = document.createElement("span");
+                textSpan.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
+                label.appendChild(textSpan);
                 
                 li.appendChild(label);
                 pickOneList.appendChild(li);

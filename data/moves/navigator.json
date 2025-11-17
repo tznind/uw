@@ -3,7 +3,7 @@
     "id": "a1b2c3",
     "title": "Chart the Immaterium (+Conviction)",
     "hideCheckbox": true,
-    "description": "Plot a course through the warp using your navigator's gift and the ship's instruments. Roll +Conviction to pierce the veil between reality and the immaterium.",
+    "description": "Plot a course through the warp using your navigator's gift and the ship's instruments. Roll **+Conviction** to pierce the veil between reality and the immaterium.",
     "outcomes": [
       {
         "range": "≥ 10",
@@ -12,7 +12,7 @@
       },
       {
         "range": "7–9",
-        "text": "You reach the destination, but choose one:",
+        "text": "You reach the destination, but **choose one**:",
         "bullets": [
           "The voyage takes longer than expected",
           "The ship suffers debility or damage",
@@ -25,8 +25,8 @@
         "bullets": [
           "You emerge off-course",
           "The voyage has taken far too long",
-          "A warp intrusion threatens the ship",
-          "Your mind or soul suffers strain; mark 1 Debility or permanent stigma."
+          "A *warp intrusion* threatens the ship",
+          "Your mind or soul suffers strain; **mark 1 Debility** or permanent stigma"
         ]
       }
     ]
@@ -42,7 +42,7 @@
       },
       {
         "range": "7–9",
-        "text": "The signal is fuzzy, choose one:",
+        "text": "The signal is fuzzy, **choose one**:",
         "bullets": [
           "You misinterpret part of the message",
           "The beacon signals a false location"
@@ -52,8 +52,8 @@
         "range": "≤ 6",
         "text": "The signal is incomprehensible:",
         "bullets": [
-          "You feel psychic backlash",
-          "Your mind is shaken, mark 1 Debility"
+          "You feel *psychic backlash*",
+          "Your mind is shaken, **mark 1 Debility**"
         ]
       }
     ]
@@ -79,7 +79,7 @@
         "range": "≤ 6",
         "text": "Catastrophic:",
         "bullets": [
-          "Major warp disruption",
+          "Major *warp disruption*",
           "Crew suffers stress and debility"
         ]
       }
@@ -88,11 +88,11 @@
   {
     "id": "nav001",
     "title": "Navigator's Intuition - Sense warp disturbances",
-    "description": "Use your third eye to peer into the warp and detect supernatural threats or phenomena. Your navigator heritage allows you to sense what others cannot.",
+    "description": "Use your *third eye* to peer into the warp and detect supernatural threats or phenomena. Your navigator heritage allows you to sense what others cannot.",
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "Your third eye perceives all warp fluctuations clearly. You see the path forward.",
+        "text": "Your *third eye* perceives all warp fluctuations clearly. You see the path forward.",
         "bullets": []
       },
       {
@@ -100,16 +100,16 @@
         "text": "You sense the disturbance, but:",
         "bullets": [
           "The vision is clouded or confusing",
-          "You also attract unwanted attention from warp entities"
+          "You also attract unwanted attention from *warp entities*"
         ]
       },
       {
         "range": "≤ 6",
         "text": "The warp's touch overwhelms you:",
         "bullets": [
-          "You're stunned by psychic backlash",
+          "You're stunned by *psychic backlash*",
           "False visions mislead you",
-          "Mark 1 Debility from warp strain"
+          "**Mark 1 Debility** from warp strain"
         ]
       }
     ]
@@ -120,12 +120,12 @@
     "outcomes": [
       {
         "range": "",
-        "text": "Pick one"
+        "text": "**Pick one**"
       }
     ],
     "pick": [
-      "Area",
-      "Messy"
+      "**Area** - affects multiple targets",
+      "**Messy** - leaves collateral damage"
     ]
   },
   {
