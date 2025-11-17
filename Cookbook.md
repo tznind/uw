@@ -8,6 +8,7 @@ This comprehensive guide covers creating roles, moves, and cards for the Rogue T
   - [Stat Track Counters](#stat-track-counters)
   - [Clock Stats](#clock-stats)
 - [Creating Roles](#creating-roles)
+- [Text Formatting](#text-formatting)
 - [Basic Moves](#basic-moves)
 - [Advanced Move Types](#advanced-move-types)
   - [Pick One Moves (Radio Buttons)](#pick-one-moves-radio-buttons)
@@ -215,6 +216,43 @@ You can start with an empty json file for the moves:
 ]
 ```
 _/data/moves/new-role.json_
+
+---
+
+## Text Formatting
+
+All text fields in moves support basic markdown-style formatting for emphasis:
+
+- **Bold text:** Wrap text in double asterisks: `**bold text**`
+- *Italic text:* Wrap text in single asterisks: `*italic text*`
+
+**Where formatting works:**
+- Move descriptions (`description`)
+- Outcome text (`outcomes[].text`)
+- Bullet points (`outcomes[].bullets[]`)
+- Pick options (`pick[]`)
+- Pick one options (`pickOne[]`)
+
+**Example:**
+```json
+{
+  "id": "example",
+  "title": "Example Move",
+  "description": "When you act with **decisive force** or *careful precision*, roll +METTLE.",
+  "outcomes": [
+    {
+      "range": "≥ 10",
+      "text": "You succeed **completely** and may choose *one extra benefit*."
+    }
+  ],
+  "pick": [
+    "**Area** - affects multiple targets",
+    "*Messy* - leaves collateral damage"
+  ]
+}
+```
+
+**Note:** No external packages are required—this is built into the system.
 
 ---
 

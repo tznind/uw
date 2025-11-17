@@ -7,7 +7,7 @@
     "outcomes": [
       {
         "range": "≥ 10",
-        "text": "The passage is smooth and precise. You emerge exactly where intended.",
+        "text": "The passage is **smooth** and **precise**. You emerge exactly where intended.",
         "bullets": []
       },
       {
