@@ -49,8 +49,8 @@
     "title": "PROPHECY",
     "shape": "clock",
     "clock": {
-      "type": "quarter_twelfths",
-      "faces": 6
+      "type": "twelfths",
+      "faces": 12
     },
     "tracks": [
       {
