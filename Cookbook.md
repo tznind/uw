@@ -227,15 +227,6 @@ All text fields in moves and role descriptions support basic markdown-style form
 - *Italic text:* Wrap text in single asterisks: `*italic text*`
 - **Line breaks:** Use `\n` for a line break or `\n\n` for a paragraph break
 
-**Where formatting works:**
-- Move descriptions (`description`)
-- Outcome text (`outcomes[].text`)
-- Bullet points (`outcomes[].bullets[]`)
-- Pick options (`pick[]`)
-- Pick one options (`pickOne[]`)
-- Role descriptions in `availability.json`
-- Help button text (`data-help-text` attribute)
-
 **Example:**
 ```json
 {
@@ -261,8 +252,6 @@ All text fields in moves and role descriptions support basic markdown-style form
   "description": "Expert in charting courses through unknown space.\n\nNavigators possess a **third eye** that allows them to perceive the warp."
 }
 ```
-
-**Note:** No external packages are required—this is built into the system.
 
 ---
 
