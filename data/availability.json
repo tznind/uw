@@ -1,7 +1,7 @@
 {
   "Navigator": {
     "_movesFile": "data/moves/navigator.json",
-    "description": "Expert in charting courses through unknown space and navigating dangerous stellar phenomena.",
+    "description": "Expert in charting courses through unknown space and navigating dangerous stellar phenomena.\n\nNavigators possess a **third eye** that allows them to *perceive the warp* and guide ships through the immaterium.",
     "cards": [],
     "a1b2c3": true,
     "d4e5f6": false,

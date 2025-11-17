@@ -221,10 +221,11 @@ _/data/moves/new-role.json_
 
 ## Text Formatting
 
-All text fields in moves support basic markdown-style formatting for emphasis:
+All text fields in moves and role descriptions support basic markdown-style formatting:
 
 - **Bold text:** Wrap text in double asterisks: `**bold text**`
 - *Italic text:* Wrap text in single asterisks: `*italic text*`
+- **Line breaks:** Use `\n` for a line break or `\n\n` for a paragraph break
 
 **Where formatting works:**
 - Move descriptions (`description`)
@@ -232,13 +233,15 @@ All text fields in moves support basic markdown-style formatting for emphasis:
 - Bullet points (`outcomes[].bullets[]`)
 - Pick options (`pick[]`)
 - Pick one options (`pickOne[]`)
+- Role descriptions in `availability.json`
+- Help button text (`data-help-text` attribute)
 
 **Example:**
 ```json
 {
   "id": "example",
   "title": "Example Move",
-  "description": "When you act with **decisive force** or *careful precision*, roll +METTLE.",
+  "description": "When you act with **decisive force** or *careful precision*, roll +METTLE.\n\nYou may add your **Influence** to the roll if you're inspiring others.",
   "outcomes": [
     {
       "range": "≥ 10",
@@ -249,6 +252,13 @@ All text fields in moves support basic markdown-style formatting for emphasis:
     "**Area** - affects multiple targets",
     "*Messy* - leaves collateral damage"
   ]
+}
+```
+
+**Role Description Example:**
+```json
+"Navigator": {
+  "description": "Expert in charting courses through unknown space.\n\nNavigators possess a **third eye** that allows them to perceive the warp."
 }
 ```
 

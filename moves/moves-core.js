@@ -183,14 +183,27 @@ window.MovesCore = (function() {
         const outcomeDiv = document.createElement("div");
         outcomeDiv.className = "outcome";
 
-        const p = document.createElement("p");
         const formattedText = window.TextFormatter ? window.TextFormatter.format(outcome.text) : outcome.text;
+        
         if (outcome.range && outcome.range.trim() !== "") {
-            p.innerHTML = `<strong class="outcome-range">${outcome.range}:</strong> ${formattedText}`;
+            // Create a container div to handle range + text with better line break support
+            const rangeSpan = document.createElement("strong");
+            rangeSpan.className = "outcome-range";
+            rangeSpan.textContent = outcome.range + ":";
+            
+            const textSpan = document.createElement("span");
+            textSpan.className = "outcome-text";
+            textSpan.innerHTML = " " + formattedText;
+            
+            outcomeDiv.appendChild(rangeSpan);
+            outcomeDiv.appendChild(textSpan);
         } else {
-            p.innerHTML = formattedText;
+            // No range, just add the text directly
+            const textDiv = document.createElement("div");
+            textDiv.className = "outcome-text";
+            textDiv.innerHTML = formattedText;
+            outcomeDiv.appendChild(textDiv);
         }
-        outcomeDiv.appendChild(p);
 
         if (outcome.bullets && outcome.bullets.length) {
             const ul = document.createElement("ul");

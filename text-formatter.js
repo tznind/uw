@@ -31,6 +31,12 @@ window.TextFormatter = (function() {
         // Use a simpler approach: match *text* where text doesn't contain asterisks
         formatted = formatted.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
 
+        // Convert double newlines to paragraph breaks
+        formatted = formatted.replace(/\n\n/g, '</p><p>');
+        
+        // Convert single newlines to line breaks
+        formatted = formatted.replace(/\n/g, '<br>');
+
         return formatted;
     }
 

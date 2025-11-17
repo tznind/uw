@@ -847,6 +847,12 @@ button:focus {
 .outcome-range {
   color: #17a2b8;
   font-weight: 600;
+  display: inline;
+}
+
+.outcome-text {
+  color: #2c3e50;
+  display: inline;
 }
 
 .outcome ul {
