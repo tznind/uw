@@ -30,8 +30,12 @@ window.Track = (function() {
         // Create each track counter
         trackConfigs.forEach((trackConfig, index) => {
             const trackId = trackConfigs.length > 1 ? `${move.id}_${index}` : move.id;
+            console.log(`Track: trackId=${trackId}, move=${move.id}, index=${index}, numTracks=${trackConfigs.length}`);
             const currentValue = getCurrentTrackValue(trackId, urlParams);
-            const maxValue = trackConfig.max || 5;
+            // Check if there's a dynamic max in the URL, otherwise use default
+            const defaultMax = trackConfig.max || 5;
+            const maxValue = getTrackMaxValue(trackId, urlParams, defaultMax);
+            console.log(`Track: For ${trackId}, defaultMax=${defaultMax}, urlMax=${urlParams.get('track_' + trackId + '_max')}, using maxValue=${maxValue}`);
             const shape = trackConfig.shape || 'square';
             
             // Create individual track container
@@ -158,6 +162,15 @@ window.Track = (function() {
     }
 
     /**
+     * Get track max value from URL parameters, with fallback to default
+     */
+    function getTrackMaxValue(trackId, urlParams, defaultMax) {
+        const paramName = `track_${trackId}_max`;
+        const value = urlParams.get(paramName);
+        return value ? parseInt(value, 10) : defaultMax;
+    }
+
+    /**
      * Update track value in URL parameters
      */
     function updateTrackValueInURL(trackId, value) {
@@ -197,7 +210,8 @@ window.Track = (function() {
                 trackConfigs.forEach((trackConfig, index) => {
                     const trackId = trackConfigs.length > 1 ? `${move.id}_${index}` : move.id;
                     const currentValue = getCurrentTrackValue(trackId, urlParams);
-                    const maxValue = trackConfig.max || 5;
+                    const defaultMax = trackConfig.max || 5;
+                    const maxValue = getTrackMaxValue(trackId, urlParams, defaultMax);
                     console.log('Track system: Updating display for trackId:', trackId, 'value:', currentValue, 'max:', maxValue);
                     updateSingleTrackDisplay(trackId, currentValue, maxValue);
                 });

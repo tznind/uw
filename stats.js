@@ -139,7 +139,9 @@ function createStatTrackDisplay(stat, urlParams) {
   trackConfigs.forEach((trackConfig, index) => {
     const trackId = trackConfigs.length > 1 ? `stat_${stat.id}_${index}` : `stat_${stat.id}`;
     const currentValue = window.Track.getCurrentTrackValue(trackId, urlParams);
-    const maxValue = trackConfig.max || 5;
+    // Check if there's a dynamic max in the URL, otherwise use default
+    const defaultMax = trackConfig.max || 5;
+    const maxValue = getStatTrackMaxValue(trackId, urlParams, defaultMax);
     const shape = trackConfig.shape || 'square';
     
     // Create individual track container
@@ -266,6 +268,15 @@ function updateStatTrackDisplay(trackId, currentValue, maxValue) {
     const trackName = currentText.split(':')[0];
     label.textContent = `${trackName}: ${currentValue}/${maxValue}`;
   }
+}
+
+/**
+ * Get stat track max value from URL parameters, with fallback to default
+ */
+function getStatTrackMaxValue(trackId, urlParams, defaultMax) {
+  const paramName = `track_${trackId}_max`;
+  const value = urlParams.get(paramName);
+  return value ? parseInt(value, 10) : defaultMax;
 }
 
 /**
