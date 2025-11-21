@@ -32,7 +32,8 @@
     "lc001": true,
     "adapt1": false,
     "is": false,
-    "inspire1": false
+    "inspire1": false,
+    "battlehard": false
   },
   "Everyone": {
     "_movesFile": "data/moves/everyone.json",

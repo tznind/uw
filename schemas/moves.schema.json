@@ -129,6 +129,11 @@
               "description": "Visual shape for the track counters",
               "enum": ["square", "circle", "triangle", "hexagon"],
               "default": "square"
+            },
+            "dynamic": {
+              "type": "boolean",
+              "description": "If true, shows a 'max...' button to let user set custom max value",
+              "default": false
             }
           },
           "required": ["name"],

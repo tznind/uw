@@ -180,5 +180,25 @@
       "Expertise",
       "Conviction"
     ]
+  },
+  {
+    "id": "battlehard",
+    "title": "Battle-Hardened",
+    "description": "Each time you take this move (up to 3 times), click **max...** and increase your Valor maximum by 2. Spend Valor to reroll any die.",
+    "multiple": 3,
+    "tracks": [
+      {
+        "name": "Valor",
+        "max": 2,
+        "shape": "circle",
+        "dynamic": true
+      }
+    ],
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Your experience grants you resolve. Spend Valor to reroll any die roll."
+      }
+    ]
   }
 ]
