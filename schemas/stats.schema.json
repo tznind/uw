@@ -81,6 +81,11 @@
               "type": "string",
               "description": "Optional small text label shown after the shapes (e.g., 'doomed', 'corrupted')",
               "examples": ["doomed", "corrupted", "exhausted"]
+            },
+            "dynamic": {
+              "type": "boolean",
+              "description": "If true, shows a 'max...' button to let user set custom max value",
+              "default": false
             }
           },
           "required": [],
