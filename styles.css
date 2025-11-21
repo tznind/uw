@@ -1587,6 +1587,25 @@ hr {
   letter-spacing: 0.5px;
 }
 
+.track-max-button {
+  font-size: 9px;
+  padding: 1px 4px;
+  margin-left: 4px;
+  background: #f8f9fa;
+  border: 1px solid #6c757d;
+  border-radius: 2px;
+  cursor: pointer;
+  color: #495057;
+  font-weight: normal;
+  text-transform: lowercase;
+  transition: all 0.2s ease;
+}
+
+.track-max-button:hover {
+  background: #e9ecef;
+  border-color: #495057;
+}
+
 .track-shapes {
   display: flex;
   gap: 2px;

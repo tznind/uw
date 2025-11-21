@@ -36,6 +36,7 @@ window.Track = (function() {
             const defaultMax = trackConfig.max || 5;
             const maxValue = getTrackMaxValue(trackId, urlParams, defaultMax);
             console.log(`Track: For ${trackId}, defaultMax=${defaultMax}, urlMax=${urlParams.get('track_' + trackId + '_max')}, using maxValue=${maxValue}`);
+            console.log(`Track: trackConfig.dynamic=${trackConfig.dynamic}`);
             const shape = trackConfig.shape || 'square';
             
             // Create individual track container
@@ -84,6 +85,30 @@ window.Track = (function() {
             const trackLabel = document.createElement('div');
             trackLabel.className = 'track-label';
             trackLabel.textContent = `${trackConfig.name}: ${currentValue}/${maxValue}`;
+            
+            // Add dynamic max button if enabled
+            if (trackConfig.dynamic) {
+                console.log(`Track: Creating max button for ${trackId}`);
+                const maxButton = document.createElement('button');
+                maxButton.type = 'button';
+                maxButton.className = 'track-max-button';
+                maxButton.textContent = 'max...';
+                maxButton.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const newMax = prompt(`Enter new maximum for ${trackConfig.name}:`, maxValue);
+                    if (newMax !== null && newMax !== '') {
+                        const parsedMax = parseInt(newMax, 10);
+                        if (!isNaN(parsedMax) && parsedMax >= 1) {
+                            setTrackMaxValue(trackId, parsedMax);
+                        } else {
+                            alert('Please enter a valid number (minimum 1)');
+                        }
+                    }
+                });
+                trackLabel.appendChild(document.createTextNode(' '));
+                trackLabel.appendChild(maxButton);
+            }
             
             individualTrackContainer.appendChild(trackLabel);
             individualTrackContainer.appendChild(shapesContainer);
@@ -140,7 +165,18 @@ window.Track = (function() {
             // Extract track name from current label text
             const currentText = label.textContent;
             const trackName = currentText.split(':')[0];
+            
+            // Check if there's a max button we need to preserve
+            const existingButton = label.querySelector('.track-max-button');
+            
+            // Update the text
             label.textContent = `${trackName}: ${currentValue}/${maxValue}`;
+            
+            // Re-append the button if it existed
+            if (existingButton) {
+                label.appendChild(document.createTextNode(' '));
+                label.appendChild(existingButton);
+            }
         }
     }
 
@@ -168,6 +204,31 @@ window.Track = (function() {
         const paramName = `track_${trackId}_max`;
         const value = urlParams.get(paramName);
         return value ? parseInt(value, 10) : defaultMax;
+    }
+    
+    /**
+     * Set track max value in URL and trigger re-render
+     */
+    function setTrackMaxValue(trackId, maxValue) {
+        const params = new URLSearchParams(location.search);
+        const paramName = `track_${trackId}_max`;
+        
+        params.set(paramName, maxValue.toString());
+        
+        // Also clamp current value if it exceeds new max
+        const currentParamName = `track_${trackId}`;
+        const currentValue = params.get(currentParamName);
+        if (currentValue && parseInt(currentValue, 10) > maxValue) {
+            params.set(currentParamName, maxValue.toString());
+        }
+        
+        const newUrl = params.toString() ? '?' + params.toString() : location.pathname;
+        history.replaceState({}, '', newUrl);
+        
+        // Trigger re-render
+        if (window.Layout && window.Layout.layoutApplication) {
+            window.Layout.layoutApplication();
+        }
     }
 
     /**
