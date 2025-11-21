@@ -70,8 +70,30 @@ window.Clock = (function() {
             input.dispatchEvent(event);
         };
 
+        // Function to decrement the clock
+        const decrementClock = () => {
+            let currentValue = parseInt(input.value, 10) || 0;
+            let nextValue = currentValue === 0 ? faces : currentValue - 1;
+            
+            input.value = nextValue;
+            updateClockDisplay(clockElement, folder, nextValue);
+            
+            // Update aria-label
+            clockElement.setAttribute('aria-label', `Clock - click to advance (current value: ${nextValue})`);
+
+            // Trigger change event on the hidden input so persistence picks it up
+            const event = new Event('change', { bubbles: true });
+            input.dispatchEvent(event);
+        };
+
         // Add click handler to advance clock
         clockElement.addEventListener('click', advanceClock);
+        
+        // Add right-click handler to decrement clock
+        clockElement.addEventListener('contextmenu', (event) => {
+            event.preventDefault();
+            decrementClock();
+        });
         
         // Add keyboard handler for accessibility
         clockElement.addEventListener('keydown', (event) => {
