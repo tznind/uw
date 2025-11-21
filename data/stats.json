@@ -19,7 +19,8 @@
       {
         "name": "Wounds",
         "max": 6,
-        "shape": "circle"
+        "shape": "circle",
+        "dynamic": true
       }
     ]
   },

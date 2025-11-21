@@ -509,8 +509,11 @@ In `availability.json`, set the move to `true` to force it always on:
 - `tracks` array supports multiple counters (or single `track` for one)
 - Multiple tracks appear horizontally from right to left
 - `shape` options: "square" (default), "circle", "triangle", "hexagon"
+- `dynamic: true` adds a "max..." button to adjust maximum via prompt
 - Click shapes to increment/decrement current value
-- Values persist in URL and reset when move unchecked
+- Values persist in URL (current value: `track_{id}`, max: `track_{id}_max`)
+- Max can be set via URL: `track_inspire1_0_max=5` shows 5 shapes
+- Values reset when move unchecked
 
 ### Moves That Grant Cards
 
