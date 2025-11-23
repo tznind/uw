@@ -20,7 +20,8 @@
     "m7e8f9": false,
     "85757e": false,
     "ac001": false,
-    "is": false
+    "is": false,
+    "oddsends": false
   },
   "Lord Commander": {
     "_movesFile": "data/moves/lord-commander.json",

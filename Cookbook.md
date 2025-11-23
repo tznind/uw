@@ -507,13 +507,15 @@ In `availability.json`, set the move to `true` to force it always on:
 
 **Key Features:**
 - `tracks` array supports multiple counters (or single `track` for one)
-- Multiple tracks appear horizontally from right to left
+- **Few tracks (1-3)**: Appear horizontally in the title area, right to left
+- **Many tracks (4+)**: Automatically switch to a flexible flow layout below the title, perfect for inventory-style moves
 - `shape` options: "square" (default), "circle", "triangle", "hexagon"
 - `dynamic: true` adds a "max..." button to adjust maximum via prompt
 - Click shapes to increment/decrement current value
 - Values persist in URL (current value: `track_{id}`, max: `track_{id}_max`)
 - Max can be set via URL: `track_inspire1_0_max=5` shows 5 shapes
 - Values reset when move unchecked
+- Flow layout adapts to track size: items with 1-2 points are narrow, items with 6+ points are wider
 
 ### Moves That Grant Cards
 

@@ -61,6 +61,7 @@ window.MovesCore = (function() {
      * @param {URLSearchParams} urlParams - URL parameters
      * @param {boolean} isNestedInCard - Whether this move is nested inside a granted card
      * @param {Object} available - Available moves map (needed for hideCheckbox logic)
+     * @returns {Object} Object with titleContainer and optional trackDisplay (for grid mode)
      */
     function createMoveTitle(move, checkboxes, urlParams, isNestedInCard = false, available = null) {
         const titleContainer = document.createElement("div");
@@ -109,13 +110,24 @@ window.MovesCore = (function() {
             titleContainer.appendChild(titleText);
         }
         
+        // Determine if we need to handle track display
+        let trackDisplayForGrid = null;
+        const useGridLayout = move.tracks && move.tracks.length > 3;
+        
         // Add track display if move has tracking (support both single track and multiple tracks)
         if ((move.track || move.tracks) && window.Track) {
             console.log('MovesCore: Found track/tracks for move:', move.id, 'calling createTrackDisplay');
             const trackDisplay = window.Track.createTrackDisplay(move, urlParams);
             if (trackDisplay) {
-                console.log('MovesCore: Adding track display to title container for move:', move.id);
-                titleContainer.appendChild(trackDisplay);
+                if (useGridLayout) {
+                    // For grid layout (many tracks), return separately to be placed after title
+                    console.log('MovesCore: Storing track display for grid layout for move:', move.id);
+                    trackDisplayForGrid = trackDisplay;
+                } else {
+                    // For normal layout (few tracks), add to title as before
+                    console.log('MovesCore: Adding track display to title container for move:', move.id);
+                    titleContainer.appendChild(trackDisplay);
+                }
             } else {
                 console.log('MovesCore: createTrackDisplay returned null for move:', move.id);
             }
@@ -155,7 +167,11 @@ window.MovesCore = (function() {
         
         titleContainer.appendChild(collapseToggle);
         
-        return titleContainer;
+        // Return both title container and optional track display for grid mode
+        return {
+            titleContainer: titleContainer,
+            trackDisplayForGrid: trackDisplayForGrid
+        };
     }
 
     /**
@@ -519,8 +535,13 @@ window.MovesCore = (function() {
 
         // Create checkboxes and title
         const checkboxes = createMoveCheckboxes(move, available, urlParams);
-        const titleContainer = createMoveTitle(move, checkboxes, urlParams, isNestedInCard, available);
-        moveDiv.appendChild(titleContainer);
+        const titleResult = createMoveTitle(move, checkboxes, urlParams, isNestedInCard, available);
+        moveDiv.appendChild(titleResult.titleContainer);
+        
+        // If there's a grid-mode track display, add it after the title but before content
+        if (titleResult.trackDisplayForGrid) {
+            moveDiv.appendChild(titleResult.trackDisplayForGrid);
+        }
         
         // Create collapsible content container
         const contentContainer = document.createElement("div");

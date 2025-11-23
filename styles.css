@@ -1537,6 +1537,11 @@ hr {
     gap: 10px;
   }
   
+  .track-counter-grid .track-shape {
+    width: 12px;
+    height: 12px;
+  }
+  
   .track-shape {
     width: 12px;
     height: 12px;
@@ -1568,11 +1573,61 @@ hr {
   z-index: 200;
 }
 
+/* Grid layout for many tracks (>3) - using flex flow */
+.track-counter-grid {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px;
+  margin: 8px 0;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #555;
+}
+
 .individual-track {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 4px;
+}
+
+/* Individual tracks within flex layout */
+.track-counter-grid .individual-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+  transition: box-shadow 0.2s;
+  flex: 0 0 auto;
+  min-width: 70px;
+  max-width: 200px;
+}
+
+.track-counter-grid .individual-track:hover {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.track-counter-grid .track-label {
+  text-align: center;
+  font-size: 10px;
+  width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.track-counter-grid .track-shapes {
+  justify-content: center;
+  gap: 2px;
+  flex-wrap: wrap;
 }
 
 .move-title {
@@ -1710,6 +1765,16 @@ hr {
     position: static;
     align-items: flex-start;
     margin-top: 8px;
+  }
+  
+  .track-counter-grid {
+    gap: 4px;
+    padding: 6px;
+  }
+  
+  .track-counter-grid .individual-track {
+    padding: 4px;
+    min-width: 60px;
   }
   
   .track-shape {

@@ -123,5 +123,93 @@
         ]
       }
     ]
+  },
+  {
+    "id": "oddsends",
+    "title": "Odds and Ends",
+    "description": "You've accumulated a collection of useful oddities. Track each item and mark them off as you use them.",
+    "tracks": [
+      {
+        "name": "Self-Sealing Bolts",
+        "max": 3,
+        "shape": "square"
+      },
+      {
+        "name": "Rusty Springs",
+        "max": 2,
+        "shape": "circle"
+      },
+      {
+        "name": "Spare Fuses",
+        "max": 4,
+        "shape": "triangle"
+      },
+      {
+        "name": "Wire Coils",
+        "max": 1,
+        "shape": "hexagon"
+      },
+      {
+        "name": "Tattered Maps",
+        "max": 2,
+        "shape": "square"
+      },
+      {
+        "name": "Grenade Pins",
+        "max": 5,
+        "shape": "circle"
+      },
+      {
+        "name": "Blessed Seals",
+        "max": 3,
+        "shape": "triangle"
+      },
+      {
+        "name": "Power Cells",
+        "max": 6,
+        "shape": "hexagon"
+      },
+      {
+        "name": "Medical Salves",
+        "max": 4,
+        "shape": "square"
+      },
+      {
+        "name": "Signal Flares",
+        "max": 2,
+        "shape": "circle"
+      },
+      {
+        "name": "Spare Gears",
+        "max": 3,
+        "shape": "triangle"
+      },
+      {
+        "name": "Vox Batteries",
+        "max": 5,
+        "shape": "hexagon"
+      },
+      {
+        "name": "Lucky Charms",
+        "max": 1,
+        "shape": "square"
+      },
+      {
+        "name": "Ration Packs",
+        "max": 6,
+        "shape": "circle"
+      },
+      {
+        "name": "Lockpicks",
+        "max": 2,
+        "shape": "triangle"
+      }
+    ],
+    "outcomes": [
+      {
+        "range": "",
+        "text": "Each item can be spent at an appropriate moment to gain a narrative advantage or solve a specific problem. Ask the GM if unsure."
+      }
+    ]
   }
 ]
