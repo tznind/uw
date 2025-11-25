@@ -635,8 +635,8 @@ button:focus {
   text-transform: uppercase;
   letter-spacing: 0.3px;
   background: white;
-  border-top: 5px solid #000000;
-  border-bottom: 5px solid #000000;
+  border-top: 2px solid #000000;
+  border-bottom: 2px solid #000000;
   position: relative;
   z-index: 2;
   box-sizing: border-box;
@@ -655,7 +655,7 @@ button:focus {
   text-transform: uppercase;
   letter-spacing: 0.3px;
   background: white;
-  border-top: 5px solid #000000;
+  border-top: 2px solid #000000;
   position: relative;
   z-index: 2;
   box-sizing: border-box;
