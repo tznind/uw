@@ -46,6 +46,11 @@
     "shape": "square"
   },
   {
+    "id": "armourhp",
+    "title": "Armour,Hp",
+    "shape": "double-up"
+  },
+  {
     "id": "prophecy",
     "title": "PROPHECY",
     "shape": "clock",

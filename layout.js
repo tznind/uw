@@ -32,6 +32,9 @@ window.Layout = (function() {
             // Render stats (always shown)
             renderStats();
             
+            // Apply persistence to stats immediately after rendering
+            applyPersistenceState(urlParams);
+            
             // Clear containers first
             clearContainers();
             
