@@ -283,21 +283,34 @@ window.MovesCore = (function() {
         label.setAttribute('for', `move_${move.id}_dtl`);
         label.textContent = "Details:";
         
-        const input = document.createElement("input");
-        input.type = "text";
-        input.id = `move_${move.id}_dtl`;
-        input.name = `move_${move.id}_dtl`;
-        input.placeholder = "Add additional details...";
-        input.setAttribute('aria-label', `Details for ${move.title}`);
-        input.setAttribute('data-move-id', move.id);
+        const textarea = document.createElement("textarea");
+        textarea.id = `move_${move.id}_dtl`;
+        textarea.name = `move_${move.id}_dtl`;
+        textarea.placeholder = "Add additional details...";
+        textarea.setAttribute('aria-label', `Details for ${move.title}`);
+        textarea.setAttribute('data-move-id', move.id);
+        textarea.rows = 2; // Start with 2 rows
         
         // Restore value from URL if exists
-        if (urlParams.has(input.id)) {
-            input.value = urlParams.get(input.id);
+        if (urlParams.has(textarea.id)) {
+            textarea.value = urlParams.get(textarea.id);
         }
         
+        // Auto-grow functionality
+        const autoGrow = function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        };
+        
+        textarea.addEventListener('input', autoGrow);
+        
+        // Apply initial height after a short delay to ensure proper sizing
+        setTimeout(() => {
+            autoGrow.call(textarea);
+        }, 0);
+        
         detailsDiv.appendChild(label);
-        detailsDiv.appendChild(input);
+        detailsDiv.appendChild(textarea);
         
         return detailsDiv;
     }
