@@ -606,8 +606,23 @@ button:focus {
   z-index: 1;
 }
 
-.hex-input-wrapper.shape-double-up:focus-within::before {
+.hex-input-wrapper.shape-double-up .double-up-half::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hex-input-wrapper.shape-double-up .double-up-top-half:focus-within::before {
   border-color: #007bff;
+  border-bottom: none;
+}
+
+.hex-input-wrapper.shape-double-up .double-up-bottom-half:focus-within::before {
+  border-color: #007bff;
+  border-top: none;
 }
 
 .hex-input-wrapper.shape-double-up:focus-within::after {
