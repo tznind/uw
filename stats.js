@@ -112,15 +112,16 @@ window.renderStats = function(containerSelector, hexStats) {
       
       bottomHalf.appendChild(bottomInput);
       
+      // Create bottom title (bottom stat name)
+      const bottomTitle = document.createElement("div");
+      bottomTitle.className = "double-up-bottom-title";
+      bottomTitle.textContent = titles[1];
+      
       wrapper.appendChild(topHalf);
       wrapper.appendChild(middleTitle);
       wrapper.appendChild(bottomHalf);
+      wrapper.appendChild(bottomTitle);
       hexContainer.appendChild(wrapper);
-
-      const title = document.createElement("div");
-      title.className = "hex-title";
-      title.textContent = titles[1];
-      hexContainer.appendChild(title);
     } else {
       // Standard stat (hexagon/square)
       if (!stat.id || !stat.title) {
