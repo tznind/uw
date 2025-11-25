@@ -68,6 +68,37 @@ Stats are defined in [stats.json](./data/stats.json). Each stat has an `id` (use
 ]
 ```
 
+### Stat Shapes
+
+Stats can use different visual shapes by setting the `shape` property:
+
+- **hexagon** (default): Traditional hexagonal stat boxes
+- **square**: Square stat boxes with rough edges
+- **clock**: Visual clock faces for tracking progress (requires `clock` configuration)
+- **double-up**: Two half-height rectangles stacked vertically for tracking two related stats
+
+#### Double-Up Stats
+
+**When to use:** For tracking two closely related stats in the same space (like Armor/HP, Stress/Resolve, etc.).
+
+```json
+{
+  "id": "armourhp",
+  "title": "Armour,Hp",
+  "shape": "double-up"
+}
+```
+
+**Key Features:**
+- `title` must be comma-delimited with exactly two values (e.g., "Armour,Hp")
+- Creates two separate input fields, each with half height
+- Each stat shows its name as placeholder text (in grey) inside its box
+- First stat name appears as a label between the two boxes
+- Second stat name appears as a label below the entire container
+- Each input has independent focus highlighting
+- IDs are auto-generated as `{id}_top` and `{id}_bottom`
+- Same size as square stats (100px), fitting neatly in the stat row
+
 ### Stat Track Counters
 
 **When to use:** For stats that have associated resources that need tracking (like Armor, Wounds, Focus, etc.).
