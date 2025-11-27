@@ -39,6 +39,12 @@
             // Initialize clocks after layout is complete
             if (window.Clock) {
                 window.Clock.initializeClocks();
+
+                // IMPORTANT: Clock initialization creates hidden inputs for persistence
+                // We need to reload from URL to populate these newly created inputs
+                // and then refresh the visual displays
+                window.Persistence.loadFromURL(form);
+                window.Clock.refreshClockDisplays();
             }
 
             console.log('Application initialized successfully');

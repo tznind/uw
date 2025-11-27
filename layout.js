@@ -70,7 +70,20 @@ window.Layout = (function() {
             
             // Apply persistence to restore all form state immediately
             applyPersistenceState(urlParams);
-            
+
+            // Initialize clocks after cards are rendered
+            // This creates the hidden inputs for clock state persistence
+            if (window.Clock) {
+                window.Clock.initializeClocks();
+
+                // Reload persistence to populate newly created clock hidden inputs
+                const form = document.querySelector('form');
+                if (form && window.Persistence) {
+                    window.Persistence.loadFromURL(form);
+                    window.Clock.refreshClockDisplays();
+                }
+            }
+
             // Initialize takeFrom sections after persistence is applied
             if (window.TakeFrom) {
                 setTimeout(() => {
@@ -239,6 +252,16 @@ window.Layout = (function() {
                         }
 
                         applyPersistenceState(urlParams);
+
+                        // Initialize clocks after rendering
+                        if (window.Clock) {
+                            window.Clock.initializeClocks();
+                            const form = document.querySelector('form');
+                            if (form && window.Persistence) {
+                                window.Persistence.loadFromURL(form);
+                                window.Clock.refreshClockDisplays();
+                            }
+                        }
 
                         // Restore collapse state instead of expanding all
                         if (window.MovesCore && moveCollapseState) {
