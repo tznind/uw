@@ -114,13 +114,13 @@ label {
 }
 
 .glossary-term:hover {
-  color: #059669;
+  color: #6b7280;
   text-decoration-style: solid;
-  text-decoration-color: #059669;
+  text-decoration-color: #6b7280;
 }
 
 .glossary-term:active {
-  color: #047857;
+  color: #4b5563;
 }
 
 /* === ROLE DESCRIPTION MODAL === */
