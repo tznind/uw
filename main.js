@@ -367,6 +367,9 @@
             const text = glossaryTerm.getAttribute('data-term-text');
 
             if (title && text) {
+                // Close any existing modals before opening a new one
+                document.querySelectorAll('.role-description-modal').forEach(modal => modal.remove());
+
                 showHelpModal(title, text);
                 e.preventDefault();
                 e.stopPropagation();
