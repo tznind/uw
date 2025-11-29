@@ -79,7 +79,7 @@ window.MovesCore = (function() {
             
             const titleText = document.createElement("span");
             titleText.className = "move-title-text";
-            titleText.textContent = move.title;
+            titleText.innerHTML = window.TextFormatter ? window.TextFormatter.format(move.title) : move.title;
             
             // Hide checkbox if hideCheckbox is true AND move is force-ticked
             const shouldHideCheckbox = move.hideCheckbox === true && available && available[move.id] === true;
@@ -99,7 +99,7 @@ window.MovesCore = (function() {
             
             const titleText = document.createElement("span");
             titleText.className = "move-title-text";
-            titleText.textContent = move.title;
+            titleText.innerHTML = window.TextFormatter ? window.TextFormatter.format(move.title) : move.title;
             
             // Hide checkboxes if hideCheckbox is true AND move is force-ticked
             const shouldHideCheckbox = move.hideCheckbox === true && available && available[move.id] === true;
