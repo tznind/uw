@@ -123,6 +123,17 @@ label {
   color: #4b5563;
 }
 
+/* Hide help features when help is hidden */
+body.hide-help .glossary-term {
+  text-decoration: none;
+  pointer-events: none;
+  cursor: default;
+}
+
+body.hide-help .help-icon {
+  display: none;
+}
+
 /* === ROLE DESCRIPTION MODAL === */
 .role-description-modal {
   position: fixed;

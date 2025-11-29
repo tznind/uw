@@ -376,6 +376,18 @@
             }
         });
 
+        // Hide help checkbox handler
+        const hideHelpCheckbox = document.getElementById('hide_help');
+        if (hideHelpCheckbox) {
+            // Set initial state from checkbox
+            document.body.classList.toggle('hide-help', hideHelpCheckbox.checked);
+
+            // Toggle class when checkbox changes
+            hideHelpCheckbox.addEventListener('change', function() {
+                document.body.classList.toggle('hide-help', this.checked);
+            });
+        }
+
         // Note: Other event handlers (role changes, checkbox changes, etc.)
         // are now handled automatically by the persistence system
     }
