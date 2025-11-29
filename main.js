@@ -212,9 +212,13 @@
             <div class="role-description-content">
                 <button class="role-description-close" aria-label="Close">&times;</button>
                 <h3>${title}</h3>
-                <p>${formattedText}</p>
+                <div class="help-text"></div>
             </div>
         `;
+
+        // Insert formatted HTML separately to avoid escaping
+        const textContainer = modal.querySelector('.help-text');
+        textContainer.innerHTML = formattedText;
 
         // Close on background click
         modal.addEventListener('click', (e) => {

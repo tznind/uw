@@ -107,13 +107,7 @@ window.TextFormatter = (function() {
             return text;
         }
 
-        // Escape HTML to prevent XSS
-        let formatted = text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-            .replace(/'/g, '&#039;');
+        let formatted = text;
 
         // Apply bold (**text**) first
         formatted = formatted.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
