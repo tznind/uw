@@ -25,6 +25,29 @@ window.TextFormatter = (function() {
     }
 
     /**
+     * Build a lookup map from moves for fast matching
+     * @returns {Map} Map of lowercase move title to move data
+     */
+    function buildMovesLookup() {
+        const lookup = new Map();
+
+        if (window.moves && Array.isArray(window.moves)) {
+            window.moves.forEach(move => {
+                if (move.title && move.id) {
+                    // Store the move ID, title, and category for navigation
+                    lookup.set(move.title.toLowerCase(), {
+                        id: move.id,
+                        title: move.title,
+                        category: move.category || "Moves"
+                    });
+                }
+            });
+        }
+
+        return lookup;
+    }
+
+    /**
      * Escape special regex characters in a string
      * @param {string} str - String to escape
      * @returns {string} Escaped string safe for use in RegExp
@@ -97,6 +120,38 @@ window.TextFormatter = (function() {
     }
 
     /**
+     * Replace move references within bold tags with clickable links
+     * Looks for <strong> tags containing move titles and makes them clickable
+     * @param {string} html - HTML string with bold formatting already applied
+     * @param {Map} movesLookup - Map of lowercase move titles to move data
+     * @returns {string} HTML with move references wrapped in clickable spans
+     */
+    function linkifyMoveReferences(html, movesLookup) {
+        if (!movesLookup || movesLookup.size === 0) {
+            return html;
+        }
+
+        // Replace <strong> tags that contain move names
+        // We need to be careful to match whole move titles
+        movesLookup.forEach((moveData, moveTitleLower) => {
+            const moveTitle = moveData.title;
+            const escapedMoveId = moveData.id.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+            const escapedCategory = moveData.category.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+
+            // Create regex to match <strong>move title</strong> (case-insensitive)
+            const escapedTitle = escapeRegex(moveTitle);
+            const regex = new RegExp(`<strong>(${escapedTitle})</strong>`, 'gi');
+
+            // Replace with a span that has move reference data
+            html = html.replace(regex, function(match, capturedTitle) {
+                return `<span class="move-reference" data-move-id="${escapedMoveId}" data-move-category="${escapedCategory}"><strong>${capturedTitle}</strong></span>`;
+            });
+        });
+
+        return html;
+    }
+
+    /**
      * Format text with basic markdown-style syntax
      * Supports: **bold**, *italic*, and bullet lists
      * @param {string} text - The text to format
@@ -115,6 +170,10 @@ window.TextFormatter = (function() {
         // Apply italic (*text*) - single asterisks not already part of bold
         // Use a simpler approach: match *text* where text doesn't contain asterisks
         formatted = formatted.replace(/\*([^*]+?)\*/g, '<em>$1</em>');
+
+        // Build moves lookup and linkify move references (before glossary terms)
+        const movesLookup = buildMovesLookup();
+        formatted = linkifyMoveReferences(formatted, movesLookup);
 
         // Build terms lookup and linkify glossary terms
         const termsLookup = buildTermsLookup();
