@@ -227,6 +227,28 @@ body.hide-help .help-icon {
   cursor: pointer;
 }
 
+.hide-options {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.hide-options .hide-label {
+  color: #666;
+  font-weight: 600;
+}
+
+.hide-options label {
+  font-weight: 400;
+  color: #777;
+}
+
+.hide-options .separator {
+  color: #999;
+  margin: 0 2px;
+}
+
 /* === COLLAPSE CONTROLS === */
 .collapse-controls {
   display: flex;
