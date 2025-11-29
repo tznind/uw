@@ -103,6 +103,37 @@ label {
   box-shadow: 0 0 0 3px rgba(108, 117, 125, 0.3);
 }
 
+/* === GLOSSARY TERMS === */
+.glossary-term {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: currentColor;
+  text-underline-offset: 2px;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+
+.glossary-term:hover {
+  color: #6b7280;
+  text-decoration-style: solid;
+  text-decoration-color: #6b7280;
+}
+
+.glossary-term:active {
+  color: #4b5563;
+}
+
+/* Hide help features when help is hidden */
+body.hide-help .glossary-term {
+  text-decoration: none;
+  pointer-events: none;
+  cursor: default;
+}
+
+body.hide-help .help-icon {
+  display: none;
+}
+
 /* === ROLE DESCRIPTION MODAL === */
 .role-description-modal {
   position: fixed;
@@ -194,6 +225,28 @@ label {
 .ui-control input[type="checkbox"] {
   transform: scale(1.1);
   cursor: pointer;
+}
+
+.hide-options {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.hide-options .hide-label {
+  color: #666;
+  font-weight: 600;
+}
+
+.hide-options label {
+  font-weight: 400;
+  color: #777;
+}
+
+.hide-options .separator {
+  color: #999;
+  margin: 0 2px;
 }
 
 /* === COLLAPSE CONTROLS === */

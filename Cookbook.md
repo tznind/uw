@@ -256,9 +256,39 @@ All text fields in moves and role descriptions support basic markdown-style form
 
 - **Bold text:** Wrap text in double asterisks: `**bold text**`
 - *Italic text:* Wrap text in single asterisks: `*italic text*`
+- **Bullet lists:** Start lines with `- ` (dash and space) for bulleted lists
 - **Line breaks:** Use `\n` for a line break or `\n\n` for a paragraph break
+- **Glossary terms:** Any word in bold or italic that matches a term in `data/terms.json` becomes clickable with a popup definition
 
-**Example:**
+### Bullet Lists
+
+Consecutive lines starting with `- ` are automatically converted to HTML bullet lists:
+
+```json
+{
+  "text": "On a miss, choose one:\n- Take a **Debility**\n- Lose valuable equipment\n- Attract unwanted attention"
+}
+```
+
+Renders as a proper bulleted list with the "Debility" term clickable.
+
+### Glossary Terms
+
+Terms defined in `data/terms.json` are automatically detected in bold/italic text and made clickable. When clicked, they show a popup with the term's description.
+
+**Example `data/terms.json`:**
+```json
+[
+  {
+    "term": "Debility",
+    "description": "A lasting condition that hampers your effectiveness. While you have a **Debility**, take -1 ongoing to affected rolls."
+  }
+]
+```
+
+Now anywhere you write `**mark a Debility**` or `*suffer a Debility*`, the word "Debility" becomes clickable and shows the definition popup.
+
+**Move Example:**
 ```json
 {
   "id": "example",
@@ -268,6 +298,10 @@ All text fields in moves and role descriptions support basic markdown-style form
     {
       "range": "≥ 10",
       "text": "You succeed **completely** and may choose *one extra benefit*."
+    },
+    {
+      "range": "≤ 6",
+      "text": "You fail and must choose one:\n- Take a **Debility**\n- Lose your advantage\n- Face a new complication"
     }
   ],
   "pick": [
