@@ -142,13 +142,14 @@ window.TextFormatter = (function() {
 
         // Replace <strong> tags that contain move names
         // We need to be careful to match whole move titles
+        // Note: moveTitleLower is the lookup key (may be shortened), but we use it to match
         movesLookup.forEach((moveData, moveTitleLower) => {
-            const moveTitle = moveData.title;
             const escapedMoveId = moveData.id.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
             const escapedCategory = moveData.category.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
-            // Create regex to match <strong>move title</strong> (case-insensitive)
-            const escapedTitle = escapeRegex(moveTitle);
+            // Use the lookup key (which may be a shortened version) for matching
+            // This allows "augury" to match even though the full title is "Augury (+Weird)"
+            const escapedTitle = escapeRegex(moveTitleLower);
             const regex = new RegExp(`<strong>(${escapedTitle})</strong>`, 'gi');
 
             // Replace with a span that has move reference data
