@@ -31,6 +31,8 @@
   {
     "id": "l4c5d6",
     "title": "Strategic Gambit (+Expertise)",
+    "description": "Deploy a bold tactical maneuver. After success, you may use **Voice of Dominion** to ensure your orders are followed to the letter.",
+    "category": "Command Moves",
     "outcomes": [
       {
         "range": "≥ 10",
@@ -127,7 +129,7 @@
   {
     "id": "inspire1",
     "title": "Inspiring Presence (+Influence)",
-    "description": "When you rally your troops or inspire others through decisive action, roll **+Influence**. Twice per year you can Rally (hexagon) to prevent an ally dying.",
+    "description": "When you rally your troops or inspire others through decisive action, roll **+Influence**. Twice per year you can Rally (hexagon) to prevent an ally dying. This move works well with **Rally the Cohort** when commanding larger forces.",
     "details": true,
     "tracks": [
       {

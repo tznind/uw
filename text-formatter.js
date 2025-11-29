@@ -34,12 +34,21 @@ window.TextFormatter = (function() {
         if (window.moves && Array.isArray(window.moves)) {
             window.moves.forEach(move => {
                 if (move.title && move.id) {
-                    // Store the move ID, title, and category for navigation
-                    lookup.set(move.title.toLowerCase(), {
+                    const moveData = {
                         id: move.id,
                         title: move.title,
                         category: move.category || "Moves"
-                    });
+                    };
+
+                    // Store with full title (lowercase)
+                    lookup.set(move.title.toLowerCase(), moveData);
+
+                    // Also store a version without stat modifiers like "(+Influence)"
+                    // This allows matching "Rally the Cohort" to "Rally the Cohort (+Influence)"
+                    const titleWithoutStats = move.title.replace(/\s*\([^)]+\)\s*$/, '').trim();
+                    if (titleWithoutStats !== move.title) {
+                        lookup.set(titleWithoutStats.toLowerCase(), moveData);
+                    }
                 }
             });
         }
