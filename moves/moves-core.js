@@ -60,8 +60,10 @@ window.MovesCore = (function() {
      * @param {Array} checkboxes - Array of checkbox elements
      * @param {URLSearchParams} urlParams - URL parameters
      * @param {boolean} isNestedInCard - Whether this move is nested inside a granted card
+     * @param {Object} available - Available moves map (needed for hideCheckbox logic)
+     * @returns {Object} Object with titleContainer and optional trackDisplay (for grid mode)
      */
-    function createMoveTitle(move, checkboxes, urlParams, isNestedInCard = false) {
+    function createMoveTitle(move, checkboxes, urlParams, isNestedInCard = false, available = null) {
         const titleContainer = document.createElement("div");
         titleContainer.className = "move-title";
         // Make the whole title area act as a disclosure control (except interactive elements)
@@ -77,9 +79,14 @@ window.MovesCore = (function() {
             
             const titleText = document.createElement("span");
             titleText.className = "move-title-text";
-            titleText.textContent = move.title;
+            titleText.innerHTML = window.TextFormatter ? window.TextFormatter.format(move.title) : move.title;
             
-            titleContainer.appendChild(checkbox);
+            // Hide checkbox if hideCheckbox is true AND move is force-ticked
+            const shouldHideCheckbox = move.hideCheckbox === true && available && available[move.id] === true;
+            
+            if (!shouldHideCheckbox) {
+                titleContainer.appendChild(checkbox);
+            }
             titleContainer.appendChild(titleText);
         } else {
             // Multiple checkboxes - put checkboxes inline before title
@@ -92,19 +99,35 @@ window.MovesCore = (function() {
             
             const titleText = document.createElement("span");
             titleText.className = "move-title-text";
-            titleText.textContent = move.title;
+            titleText.innerHTML = window.TextFormatter ? window.TextFormatter.format(move.title) : move.title;
             
-            titleContainer.appendChild(checkboxContainer);
+            // Hide checkboxes if hideCheckbox is true AND move is force-ticked
+            const shouldHideCheckbox = move.hideCheckbox === true && available && available[move.id] === true;
+            
+            if (!shouldHideCheckbox) {
+                titleContainer.appendChild(checkboxContainer);
+            }
             titleContainer.appendChild(titleText);
         }
+        
+        // Determine if we need to handle track display
+        let trackDisplayForGrid = null;
+        const useGridLayout = move.tracks && move.tracks.length > 3;
         
         // Add track display if move has tracking (support both single track and multiple tracks)
         if ((move.track || move.tracks) && window.Track) {
             console.log('MovesCore: Found track/tracks for move:', move.id, 'calling createTrackDisplay');
             const trackDisplay = window.Track.createTrackDisplay(move, urlParams);
             if (trackDisplay) {
-                console.log('MovesCore: Adding track display to title container for move:', move.id);
-                titleContainer.appendChild(trackDisplay);
+                if (useGridLayout) {
+                    // For grid layout (many tracks), return separately to be placed after title
+                    console.log('MovesCore: Storing track display for grid layout for move:', move.id);
+                    trackDisplayForGrid = trackDisplay;
+                } else {
+                    // For normal layout (few tracks), add to title as before
+                    console.log('MovesCore: Adding track display to title container for move:', move.id);
+                    titleContainer.appendChild(trackDisplay);
+                }
             } else {
                 console.log('MovesCore: createTrackDisplay returned null for move:', move.id);
             }
@@ -144,7 +167,11 @@ window.MovesCore = (function() {
         
         titleContainer.appendChild(collapseToggle);
         
-        return titleContainer;
+        // Return both title container and optional track display for grid mode
+        return {
+            titleContainer: titleContainer,
+            trackDisplayForGrid: trackDisplayForGrid
+        };
     }
 
     /**
@@ -159,7 +186,7 @@ window.MovesCore = (function() {
         descriptionDiv.className = "move-description";
         
         const p = document.createElement("p");
-        p.textContent = move.description;
+        p.innerHTML = window.TextFormatter ? window.TextFormatter.format(move.description) : move.description;
         descriptionDiv.appendChild(p);
         
         return descriptionDiv;
@@ -172,19 +199,33 @@ window.MovesCore = (function() {
         const outcomeDiv = document.createElement("div");
         outcomeDiv.className = "outcome";
 
-        const p = document.createElement("p");
+        const formattedText = window.TextFormatter ? window.TextFormatter.format(outcome.text) : outcome.text;
+        
         if (outcome.range && outcome.range.trim() !== "") {
-            p.innerHTML = `<strong>${outcome.range}:</strong> ${outcome.text}`;
+            // Create a container div to handle range + text with better line break support
+            const rangeSpan = document.createElement("strong");
+            rangeSpan.className = "outcome-range";
+            rangeSpan.textContent = outcome.range + ":";
+            
+            const textSpan = document.createElement("span");
+            textSpan.className = "outcome-text";
+            textSpan.innerHTML = " " + formattedText;
+            
+            outcomeDiv.appendChild(rangeSpan);
+            outcomeDiv.appendChild(textSpan);
         } else {
-            p.innerHTML = outcome.text;
+            // No range, just add the text directly
+            const textDiv = document.createElement("div");
+            textDiv.className = "outcome-text";
+            textDiv.innerHTML = formattedText;
+            outcomeDiv.appendChild(textDiv);
         }
-        outcomeDiv.appendChild(p);
 
         if (outcome.bullets && outcome.bullets.length) {
             const ul = document.createElement("ul");
             outcome.bullets.forEach(bulletText => {
                 const li = document.createElement("li");
-                li.textContent = bulletText;
+                li.innerHTML = window.TextFormatter ? window.TextFormatter.format(bulletText) : bulletText;
                 ul.appendChild(li);
             });
             outcomeDiv.appendChild(ul);
@@ -242,21 +283,34 @@ window.MovesCore = (function() {
         label.setAttribute('for', `move_${move.id}_dtl`);
         label.textContent = "Details:";
         
-        const input = document.createElement("input");
-        input.type = "text";
-        input.id = `move_${move.id}_dtl`;
-        input.name = `move_${move.id}_dtl`;
-        input.placeholder = "Add additional details...";
-        input.setAttribute('aria-label', `Details for ${move.title}`);
-        input.setAttribute('data-move-id', move.id);
+        const textarea = document.createElement("textarea");
+        textarea.id = `move_${move.id}_dtl`;
+        textarea.name = `move_${move.id}_dtl`;
+        textarea.placeholder = "Add additional details...";
+        textarea.setAttribute('aria-label', `Details for ${move.title}`);
+        textarea.setAttribute('data-move-id', move.id);
+        textarea.rows = 2; // Start with 2 rows
         
         // Restore value from URL if exists
-        if (urlParams.has(input.id)) {
-            input.value = urlParams.get(input.id);
+        if (urlParams.has(textarea.id)) {
+            textarea.value = urlParams.get(textarea.id);
         }
         
+        // Auto-grow functionality
+        const autoGrow = function() {
+            this.style.height = 'auto';
+            this.style.height = this.scrollHeight + 'px';
+        };
+        
+        textarea.addEventListener('input', autoGrow);
+        
+        // Apply initial height after a short delay to ensure proper sizing
+        setTimeout(() => {
+            autoGrow.call(textarea);
+        }, 0);
+        
         detailsDiv.appendChild(label);
-        detailsDiv.appendChild(input);
+        detailsDiv.appendChild(textarea);
         
         return detailsDiv;
     }
@@ -312,7 +366,7 @@ window.MovesCore = (function() {
                 // Add the option text after all checkboxes
                 const optionText = document.createElement("span");
                 optionText.className = "pick-option-text";
-                optionText.textContent = option;
+                optionText.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
                 
                 li.appendChild(checkboxContainer);
                 li.appendChild(optionText);
@@ -345,7 +399,9 @@ window.MovesCore = (function() {
                 const label = document.createElement("label");
                 label.setAttribute('for', checkbox.id);
                 label.appendChild(checkbox);
-                label.appendChild(document.createTextNode(option));
+                const textSpan = document.createElement("span");
+                textSpan.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
+                label.appendChild(textSpan);
                 
                 li.appendChild(label);
                 pickList.appendChild(li);
@@ -411,7 +467,7 @@ window.MovesCore = (function() {
                 // Add the option text after all radio buttons
                 const optionText = document.createElement("span");
                 optionText.className = "pick-one-option-text";
-                optionText.textContent = option;
+                optionText.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
                 
                 li.appendChild(radioContainer);
                 li.appendChild(optionText);
@@ -447,7 +503,9 @@ window.MovesCore = (function() {
                 const label = document.createElement("label");
                 label.setAttribute('for', radio.id);
                 label.appendChild(radio);
-                label.appendChild(document.createTextNode(option));
+                const textSpan = document.createElement("span");
+                textSpan.innerHTML = window.TextFormatter ? window.TextFormatter.format(option) : option;
+                label.appendChild(textSpan);
                 
                 li.appendChild(label);
                 pickOneList.appendChild(li);
@@ -504,8 +562,13 @@ window.MovesCore = (function() {
 
         // Create checkboxes and title
         const checkboxes = createMoveCheckboxes(move, available, urlParams);
-        const titleContainer = createMoveTitle(move, checkboxes, urlParams, isNestedInCard);
-        moveDiv.appendChild(titleContainer);
+        const titleResult = createMoveTitle(move, checkboxes, urlParams, isNestedInCard, available);
+        moveDiv.appendChild(titleResult.titleContainer);
+        
+        // If there's a grid-mode track display, add it after the title but before content
+        if (titleResult.trackDisplayForGrid) {
+            moveDiv.appendChild(titleResult.trackDisplayForGrid);
+        }
         
         // Create collapsible content container
         const contentContainer = document.createElement("div");
