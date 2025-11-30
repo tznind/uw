@@ -201,8 +201,37 @@ window.TextFormatter = (function() {
         return formatted;
     }
 
+    /**
+     * Auto-format all elements with data-format-text attribute
+     * Elements can either have text in the attribute value or in their textContent
+     * After formatting, the attribute is set to "formatted" to avoid re-processing
+     * @param {string} selector - CSS selector for elements to format (default: '[data-format-text]:not([data-format-text="formatted"])')
+     */
+    function formatElements(selector = '[data-format-text]:not([data-format-text="formatted"])') {
+        const elements = document.querySelectorAll(selector);
+
+        elements.forEach(el => {
+            // Get source text from attribute value or element's text content
+            const sourceAttr = el.getAttribute('data-format-text');
+            const sourceText = sourceAttr && sourceAttr !== '' && sourceAttr !== 'formatted'
+                ? sourceAttr
+                : el.textContent;
+
+            // Format and update innerHTML
+            if (sourceText) {
+                el.innerHTML = format(sourceText);
+            }
+
+            // Mark as formatted to avoid re-processing
+            el.setAttribute('data-format-text', 'formatted');
+        });
+
+        console.log(`TextFormatter: Formatted ${elements.length} elements`);
+    }
+
     // Public API
     return {
-        format
+        format,
+        formatElements
     };
 })();

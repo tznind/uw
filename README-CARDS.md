@@ -108,6 +108,30 @@ window.CardInitializers.mycard = function() {
 - **System managed**: The card system calls your function when the card is rendered
 - **Clean separation**: Cards don't need to know about the global system
 
+## Text Formatting in Cards
+
+Card content can use **markdown-style formatting** with automatic move linking and glossary term highlighting.
+
+### Using `data-format-text` Attribute
+
+Add the `data-format-text` attribute to any element to enable automatic formatting:
+
+```html
+<div class="card mycard-card">
+  <h3>Card Title</h3>
+  <p data-format-text="Roll **Augury** to see the future. You gain **+1 forward**."></p>
+  <div data-format-text>Use **Rally the Cohort** to inspire your crew.</div>
+</div>
+```
+
+### Supported Formatting
+
+- **`**move name**`** → Clickable move reference (blue underline, navigates to move)
+- **Glossary terms** → Auto-detected, hoverable tooltips (dotted underline)
+- **`*italic*`** → Emphasized text
+- **`- bullet lists`** → Converted to HTML lists
+- **Line breaks** → Preserved as `<br>` tags
+
 ## Next Steps
 
 - **Styling**: Add `card.css` for custom themes
