@@ -34,7 +34,8 @@
     "adapt1": false,
     "is": false,
     "inspire1": false,
-    "battlehard": false
+    "battlehard": false,
+    "cmdstruct": false
   },
   "Everyone": {
     "_movesFile": "data/moves/everyone.json",

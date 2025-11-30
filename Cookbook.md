@@ -16,6 +16,7 @@ This comprehensive guide covers creating roles, moves, and cards for the Rogue T
   - [Take From Other Roles](#take-from-other-roles)
   - [Move Categories](#move-categories)
   - [Track Counter Moves](#track-counter-moves)
+  - [Submoves](#submoves)
   - [Moves That Grant Cards](#moves-that-grant-cards)
 - [Cards System](#cards-system)
 
@@ -581,6 +582,80 @@ In `availability.json`, set the move to `true` to force it always on:
 - Max can be set via URL: `track_inspire1_0_max=5` shows 5 shapes
 - Values reset when move unchecked
 - Flow layout adapts to track size: items with 1-2 points are narrow, items with 6+ points are wider
+
+### Submoves
+
+**When to use:** For moves that provide multiple related options or actions that each have their own outcomes (like different combat maneuvers, various command options, etc.).
+
+Submoves allow you to create a single move that contains multiple sub-actions, each with its own title, description, and outcomes. This is perfect for versatile abilities that offer different approaches.
+
+#### Structure
+
+<table>
+<tr>
+<td>
+<pre>
+{
+  "id": "cmdstruct",
+  "title": "Command Structure",
+  "description": "Your mastery of military hierarchy allows you to efficiently direct forces at all levels. You may use the following command options:",
+  "category": "Command Moves",
+  "submoves": [
+    {
+      "title": "Give an Order",
+      "description": "When you issue a direct command to subordinates in combat, roll **+Influence**.",
+      "outcomes": [
+        {
+          "range": "≥ 10",
+          "text": "They execute your order flawlessly.",
+          "bullets": []
+        },
+        {
+          "range": "7–9",
+          "text": "They carry out your order, but choose one:",
+          "bullets": [
+            "They take longer than expected",
+            "They suffer casualties",
+            "They complete it but are out of position"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Coordinate Forces",
+      "description": "When you orchestrate multiple units, roll **+Expertise**.",
+      "outcomes": [
+        {
+          "range": "≥ 10",
+          "text": "Perfect synchronization. Choose two:",
+          "bullets": [
+            "Maximize tactical advantage",
+            "Minimize casualties",
+            "Create an opening for allies"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</pre>
+</td>
+<td>
+<i>Submoves render below the main move description, each with their own title and outcomes.</i>
+</td>
+</tr>
+</table>
+
+**Key Features:**
+- `submoves` is an array of submove objects
+- Each submove has:
+  - `title` (required): The submove name
+  - `description` (optional): When/how to use this submove
+  - `outcomes` (optional): Array of outcomes, same format as regular moves
+- Submoves render **after** the main move's description and outcomes
+- A move can have both main outcomes **and** submoves
+- Text formatting works in all submove fields (bold, italic, bullets, etc.)
+- Perfect for moves that offer multiple tactical choices or approaches
 
 ### Moves That Grant Cards
 

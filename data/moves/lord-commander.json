@@ -202,5 +202,72 @@
         "text": "Your experience grants you resolve. Spend Valor to reroll any die roll."
       }
     ]
+  },
+  {
+    "id": "cmdstruct",
+    "title": "Command Structure",
+    "description": "Your mastery of military hierarchy allows you to efficiently direct forces at all levels. You may use the following command options:",
+    "category": "Command Moves",
+    "submoves": [
+      {
+        "title": "Give an Order",
+        "description": "When you issue a direct command to subordinates in combat, roll **+Influence**.",
+        "outcomes": [
+          {
+            "range": "≥ 10",
+            "text": "They execute your order flawlessly. Take **+1 forward** on any follow-up action.",
+            "bullets": []
+          },
+          {
+            "range": "7–9",
+            "text": "They carry out your order, but choose one:",
+            "bullets": [
+              "They take longer than expected—lose initiative",
+              "They suffer casualties executing the order",
+              "They complete it but are now out of position"
+            ]
+          },
+          {
+            "range": "≤ 6",
+            "text": "Your order is misunderstood or ignored:",
+            "bullets": [
+              "Confusion spreads through the ranks",
+              "They hesitate at a critical moment",
+              "A subordinate questions your judgment openly"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Coordinate Forces",
+        "description": "When you orchestrate multiple units working in concert, roll **+Expertise**.",
+        "outcomes": [
+          {
+            "range": "≥ 10",
+            "text": "Perfect synchronization. All units act as one coordinated force. Choose two:",
+            "bullets": [
+              "Maximize tactical advantage—enemies are caught in a pincer",
+              "Minimize casualties—your forces fight efficiently",
+              "Create an opening—allies gain **+1 forward**",
+              "Secure a strategic position"
+            ]
+          },
+          {
+            "range": "7–9",
+            "text": "Coordination holds, but it's not perfect. Choose one from the list above.",
+            "bullets": []
+          },
+          {
+            "range": "≤ 6",
+            "text": "Coordination breaks down:",
+            "bullets": [
+              "Units act at cross-purposes, creating chaos",
+              "Communication fails at a crucial moment",
+              "One unit is isolated and vulnerable"
+            ]
+          }
+        ]
+      }
+    ]
   }
 ]
