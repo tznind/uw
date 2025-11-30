@@ -181,6 +181,76 @@ body.hide-help .move-reference {
   cursor: default;
 }
 
+/* === BURGER MENU BUTTON === */
+.burger-menu {
+  font-size: 1.5em;
+  line-height: 1;
+  padding: 4px 12px;
+  min-width: auto;
+}
+
+/* === TABLE OF CONTENTS MODAL === */
+.contents-modal .contents-content {
+  max-height: 80vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.contents-list {
+  margin-top: 0.75em;
+}
+
+.contents-category {
+  margin-bottom: 1em;
+}
+
+.contents-category h4 {
+  margin: 0 0 0.35em 0;
+  color: #374151;
+  font-size: 0.95em;
+  font-weight: 600;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.2em;
+}
+
+.contents-category ul {
+  list-style-type: disc;
+  margin: 0;
+  padding-left: 1.5em;
+}
+
+.contents-category li {
+  margin: 0.1em 0;
+  line-height: 1.4;
+  padding-left: 0.25em;
+}
+
+.contents-move-link {
+  color: #1f2937; /* Dark gray instead of blue */
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.15em 0;
+  transition: color 0.2s, text-decoration 0.2s;
+}
+
+.contents-move-link:hover {
+  color: #3b82f6; /* Blue on hover */
+  text-decoration: underline;
+  text-decoration-color: #3b82f6;
+}
+
+.contents-move-link:active {
+  color: #2563eb; /* Darker blue when clicked */
+}
+
+/* Mobile adjustments */
+@media (max-width: 640px) {
+  .contents-modal .contents-content {
+    max-height: 85vh; /* More height on mobile */
+    padding: 16px; /* Less padding on mobile */
+  }
+}
+
 /* === ROLE DESCRIPTION MODAL === */
 .role-description-modal {
   position: fixed;

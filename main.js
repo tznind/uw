@@ -247,6 +247,100 @@
     }
 
     /**
+     * Show table of contents modal with all available moves
+     */
+    function showContentsModal() {
+        // Get current roles and their available moves
+        const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];
+        if (!currentRoles || currentRoles.length === 0 || !window.moves) {
+            alert('Please select a role first');
+            return;
+        }
+
+        // Get merged availability for current roles
+        const mergedAvailability = window.Utils ? window.Utils.mergeRoleAvailability(currentRoles) : {};
+
+        // Group moves by category (similar to how they're rendered)
+        const categorized = window.MovesCore ?
+            window.MovesCore.groupMovesByCategory(window.moves, mergedAvailability) :
+            new Map();
+
+        if (categorized.size === 0) {
+            alert('No moves available');
+            return;
+        }
+
+        // Sort categories
+        const sortedCategories = window.MovesCore ?
+            window.MovesCore.sortCategories(Array.from(categorized.keys())) :
+            Array.from(categorized.keys()).sort();
+
+        // Build the contents HTML
+        let contentsHTML = '<div class="contents-list">';
+        sortedCategories.forEach(categoryName => {
+            const moves = categorized.get(categoryName);
+            contentsHTML += `<div class="contents-category">`;
+            contentsHTML += `<h4>${categoryName}</h4>`;
+            contentsHTML += `<ul>`;
+            moves.forEach(move => {
+                // Strip HTML tags from title for display
+                const displayTitle = move.title.replace(/<[^>]*>/g, '');
+                contentsHTML += `<li><a href="#" class="contents-move-link" data-move-id="${move.id}" data-move-category="${categoryName}">${displayTitle}</a></li>`;
+            });
+            contentsHTML += `</ul>`;
+            contentsHTML += `</div>`;
+        });
+        contentsHTML += '</div>';
+
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'role-description-modal contents-modal';
+        modal.innerHTML = `
+            <div class="role-description-content contents-content">
+                <button class="role-description-close" aria-label="Close">&times;</button>
+                <h3>Table of Contents</h3>
+                ${contentsHTML}
+            </div>
+        `;
+
+        // Add click handlers for move links
+        modal.querySelectorAll('.contents-move-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const moveId = link.getAttribute('data-move-id');
+                const categoryName = link.getAttribute('data-move-category');
+                modal.remove();
+                navigateToMove(moveId, categoryName);
+            });
+        });
+
+        // Close on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.remove();
+            }
+        });
+
+        // Close on close button click
+        const closeBtn = modal.querySelector('.role-description-close');
+        closeBtn.addEventListener('click', () => {
+            modal.remove();
+        });
+
+        // Close on Escape key
+        const escapeHandler = (e) => {
+            if (e.key === 'Escape') {
+                modal.remove();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+
+        // Add to DOM
+        document.body.appendChild(modal);
+    }
+
+    /**
      * Show character count flash with color coding
      */
     function showCharacterCountFlash(button, charCount) {
@@ -339,6 +433,12 @@
                     window.Cards.expandAllCards();
                 }
             });
+        }
+
+        // Show contents button
+        const showContentsButton = document.getElementById('show-contents');
+        if (showContentsButton) {
+            showContentsButton.addEventListener('click', showContentsModal);
         }
 
         // Generic help button handler - automatically handles any .help-icon with data attributes
