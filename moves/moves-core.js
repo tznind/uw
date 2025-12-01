@@ -1199,10 +1199,19 @@ window.MovesCore = (function() {
         // Render categories in sorted order
         sortedCategories.forEach(categoryName => {
             const categoryMoves = categorized.get(categoryName);
-            const categoryHeader = createCategoryHeader(categoryName, categoryMoves.length);
+
+            // Sort moves by weight (stable sort - preserves original order for same weight)
+            // Default weight is 0 if not specified
+            const sortedMoves = categoryMoves.slice().sort((a, b) => {
+                const weightA = a.weight !== undefined ? a.weight : 0;
+                const weightB = b.weight !== undefined ? b.weight : 0;
+                return weightA - weightB;
+            });
+
+            const categoryHeader = createCategoryHeader(categoryName, sortedMoves.length);
             movesContainer.appendChild(categoryHeader);
-            
-            categoryMoves.forEach(move => {
+
+            sortedMoves.forEach(move => {
                 const moveElement = renderMove(move, mergedAvailability, urlParams);
                 // Hide moves initially since categories start collapsed
                 moveElement.style.display = 'none';

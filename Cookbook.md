@@ -369,6 +369,19 @@ Basic moves are actions that can have different outcomes based on dice rolls or 
 
 **Note:** The example above shows a common three-outcome structure, but you can use any number of outcomes or ranges that make sense for your game. You could have just two outcomes (success/failure), or more complex breakdowns. The `range` field is displayed as-is to players, so write it in whatever way makes sense for your system.
 
+**Move Ordering:**
+- `weight` (optional, default 0): Numeric value to control move ordering within a category. Moves are sorted by weight (lower values first), while preserving the original order for moves with the same weight. This allows fine-grained control over move presentation without requiring you to manually reorder the entire JSON file.
+
+Example with weight:
+```json
+{
+  "id": "situational_move",
+  "title": "Rare Action",
+  "weight": 10,
+  "description": "This move appears at the bottom due to positive weight"
+}
+```
+
 ---
 
 ## Advanced Move Types
