@@ -137,6 +137,11 @@
         "type": "string",
         "description": "Optional category for grouping moves (moves without a category appear first under 'Moves')"
       },
+      "weight": {
+        "type": "number",
+        "description": "Optional numeric value to control move ordering within a category. Moves are sorted by weight (lower values first), while preserving the original order for moves with the same weight. Default is 0.",
+        "default": 0
+      },
       "grantsCard": {
         "type": "string",
         "description": "Card name to grant when this move is selected"
