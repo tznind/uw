@@ -284,10 +284,18 @@
         let contentsHTML = '<div class="contents-list">';
         sortedCategories.forEach(categoryName => {
             const moves = categorized.get(categoryName);
+
+            // Sort moves by weight (same as rendering logic)
+            const sortedMoves = moves.slice().sort((a, b) => {
+                const weightA = a.weight !== undefined ? a.weight : 0;
+                const weightB = b.weight !== undefined ? b.weight : 0;
+                return weightA - weightB;
+            });
+
             contentsHTML += `<div class="contents-category">`;
             contentsHTML += `<h4>${categoryName}</h4>`;
             contentsHTML += `<ul>`;
-            moves.forEach(move => {
+            sortedMoves.forEach(move => {
                 // Strip HTML tags from title for display
                 const displayTitle = move.title.replace(/<[^>]*>/g, '');
                 contentsHTML += `<li><a href="#" class="contents-move-link" data-move-id="${move.id}" data-move-category="${categoryName}">${displayTitle}</a></li>`;
