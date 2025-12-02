@@ -565,6 +565,9 @@ window.MovesCore = (function() {
         const moveDiv = document.createElement("div");
         moveDiv.className = "move";
 
+        // Add data attribute to identify the move (needed for navigation)
+        moveDiv.setAttribute('data-move-id', move.id);
+
         // Find which roles grant this move (for styling purposes)
         const grantingRoles = [];
         const currentRoles = window.Utils ? window.Utils.getCurrentRoles() : [];

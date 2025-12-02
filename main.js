@@ -551,8 +551,8 @@
             }
         }
 
-        // Find the move element by looking for checkboxes with data-move-id attribute
-        const moveElement = movesContainer.querySelector(`.move input[data-move-id="${moveId}"]`)?.closest('.move');
+        // Find the move element by its data-move-id attribute
+        const moveElement = movesContainer.querySelector(`.move[data-move-id="${moveId}"]`);
 
         if (moveElement) {
             // Scroll to the move with smooth animation
