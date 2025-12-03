@@ -47,6 +47,23 @@
                 window.Clock.refreshClockDisplays();
             }
 
+            // Handle initial navigation from URL hash (e.g., shared links with #move-xxx)
+            if (window.location.hash.startsWith('#move-')) {
+                const moveId = window.location.hash.substring(6); // Remove '#move-' prefix
+                const moveElement = document.querySelector(`[data-move-id="${moveId}"]`);
+                if (moveElement) {
+                    const category = moveElement.closest('.move-category');
+                    if (category) {
+                        const categoryHeader = category.querySelector('.category-header-text');
+                        const categoryName = categoryHeader ? categoryHeader.textContent.trim() : '';
+                        if (categoryName) {
+                            // Don't update history since we're loading from an existing hash
+                            navigateToMove(moveId, categoryName, false);
+                        }
+                    }
+                }
+            }
+
             console.log('Application initialized successfully');
 
         } catch (error) {
@@ -521,6 +538,28 @@
             }
         });
 
+        // Browser back/forward navigation handler
+        window.addEventListener('popstate', function(e) {
+            if (e.state && e.state.moveId && e.state.categoryName) {
+                // Navigate to the move from history state (don't update history again)
+                navigateToMove(e.state.moveId, e.state.categoryName, false);
+            } else if (window.location.hash.startsWith('#move-')) {
+                // Handle direct navigation or fallback to hash
+                const moveId = window.location.hash.substring(6); // Remove '#move-' prefix
+                const moveElement = document.querySelector(`[data-move-id="${moveId}"]`);
+                if (moveElement) {
+                    const category = moveElement.closest('.move-category');
+                    if (category) {
+                        const categoryHeader = category.querySelector('.category-header-text');
+                        const categoryName = categoryHeader ? categoryHeader.textContent.trim() : '';
+                        if (categoryName) {
+                            navigateToMove(moveId, categoryName, false);
+                        }
+                    }
+                }
+            }
+        });
+
         // Note: Other event handlers (role changes, checkbox changes, etc.)
         // are now handled automatically by the persistence system
     }
@@ -529,8 +568,9 @@
      * Navigate to a specific move by expanding its category and scrolling to it
      * @param {string} moveId - The ID of the move to navigate to
      * @param {string} categoryName - The category containing the move
+     * @param {boolean} updateHistory - Whether to add this navigation to browser history (default: true)
      */
-    function navigateToMove(moveId, categoryName) {
+    function navigateToMove(moveId, categoryName, updateHistory = true) {
         const movesContainer = document.getElementById('moves');
         if (!movesContainer) {
             console.warn('Moves container not found');
@@ -555,6 +595,13 @@
         const moveElement = movesContainer.querySelector(`.move[data-move-id="${moveId}"]`);
 
         if (moveElement) {
+            // Add to browser history if requested
+            if (updateHistory) {
+                const url = new URL(window.location);
+                url.hash = `move-${moveId}`;
+                window.history.pushState({ moveId, categoryName }, '', url);
+            }
+
             // Scroll to the move with smooth animation
             moveElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
