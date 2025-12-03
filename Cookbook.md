@@ -328,7 +328,11 @@ Create alternative names for terms and moves using `data/aliases.json`. This let
 [
   {
     "alias": "battle",
-    "term": "Do Battle"
+    "move": "Attack Someone"
+  },
+  {
+    "alias": "debuff",
+    "term": "Debility"
   }
 ]
 ```
