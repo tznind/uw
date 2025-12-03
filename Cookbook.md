@@ -319,6 +319,33 @@ Now anywhere you write `**mark a Debility**` or `*suffer a Debility*`, the word 
 }
 ```
 
+### Aliases
+
+Create alternative names for terms and moves using `data/aliases.json`. This lets you use shorter or more thematic words that automatically link to the full term or move.
+
+**Example `data/aliases.json`:**
+```json
+[
+  {
+    "alias": "battle",
+    "term": "Do Battle"
+  }
+]
+```
+
+**How it works:**
+- **Term aliases:** Writing `**battle**` will link to the "Debility" term and show its definition
+- **Move aliases:** Writing `**navigate**` will link to the "Chart the Immaterium" move
+- Aliases are matched case-insensitively, just like regular terms and moves
+- Multiple aliases can point to the same term or move
+
+**Use cases:**
+- Shorter names: `**fight**` → "Combat Move"
+- Thematic variations: `**warp travel**` → "Chart the Immaterium"
+- Common abbreviations: `**XP**` → "Experience"
+
+The aliases file is optional - if it's missing or empty, the system works normally without aliases.
+
 ---
 
 ## Basic Moves

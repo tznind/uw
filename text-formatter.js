@@ -21,6 +21,21 @@ window.TextFormatter = (function() {
             });
         }
 
+        // Add aliases for terms
+        if (window.aliasesConfig && Array.isArray(window.aliasesConfig)) {
+            window.aliasesConfig.forEach(aliasDef => {
+                if (aliasDef.alias && aliasDef.term) {
+                    // Find the actual term definition
+                    const actualTerm = window.termsGlossary?.find(
+                        t => t.term.toLowerCase() === aliasDef.term.toLowerCase()
+                    );
+                    if (actualTerm) {
+                        lookup.set(aliasDef.alias.toLowerCase(), actualTerm);
+                    }
+                }
+            });
+        }
+
         return lookup;
     }
 
@@ -48,6 +63,27 @@ window.TextFormatter = (function() {
                     const titleWithoutStats = move.title.replace(/\s*\([^)]+\)\s*$/, '').trim();
                     if (titleWithoutStats !== move.title) {
                         lookup.set(titleWithoutStats.toLowerCase(), moveData);
+                    }
+                }
+            });
+        }
+
+        // Add aliases for moves
+        if (window.aliasesConfig && Array.isArray(window.aliasesConfig)) {
+            window.aliasesConfig.forEach(aliasDef => {
+                if (aliasDef.alias && aliasDef.move) {
+                    // Find the actual move
+                    const actualMove = window.moves?.find(
+                        m => m.title.toLowerCase() === aliasDef.move.toLowerCase() ||
+                             m.title.replace(/\s*\([^)]+\)\s*$/, '').trim().toLowerCase() === aliasDef.move.toLowerCase()
+                    );
+                    if (actualMove) {
+                        const moveData = {
+                            id: actualMove.id,
+                            title: actualMove.title,
+                            category: actualMove.category || "Moves"
+                        };
+                        lookup.set(aliasDef.alias.toLowerCase(), moveData);
                     }
                 }
             });
