@@ -241,6 +241,7 @@ window.TextFormatter = (function() {
      * Auto-format all elements with data-format-text attribute
      * Elements can either have text in the attribute value or in their textContent
      * After formatting, the attribute is set to "formatted" to avoid re-processing
+     * Preserves input elements (checkbox, radio, text, etc.) when formatting
      * @param {string} selector - CSS selector for elements to format (default: '[data-format-text]:not([data-format-text="formatted"])')
      */
     function formatElements(selector = '[data-format-text]:not([data-format-text="formatted"])') {
@@ -249,13 +250,46 @@ window.TextFormatter = (function() {
         elements.forEach(el => {
             // Get source text from attribute value or element's text content
             const sourceAttr = el.getAttribute('data-format-text');
-            const sourceText = sourceAttr && sourceAttr !== '' && sourceAttr !== 'formatted'
-                ? sourceAttr
-                : el.textContent;
+
+            // Check if element contains input elements that need to be preserved
+            const inputs = Array.from(el.querySelectorAll('input, select, textarea'));
+            const hasInputs = inputs.length > 0;
+
+            let sourceText;
+            if (sourceAttr && sourceAttr !== '' && sourceAttr !== 'formatted') {
+                // Use attribute value
+                sourceText = sourceAttr;
+            } else if (hasInputs) {
+                // If element has inputs, extract only text nodes to avoid including input values
+                sourceText = Array.from(el.childNodes)
+                    .filter(node => node.nodeType === Node.TEXT_NODE ||
+                           (node.nodeType === Node.ELEMENT_NODE && !['INPUT', 'SELECT', 'TEXTAREA'].includes(node.tagName)))
+                    .map(node => node.textContent)
+                    .join('');
+            } else {
+                // No inputs, use textContent as before
+                sourceText = el.textContent;
+            }
 
             // Format and update innerHTML
             if (sourceText) {
-                el.innerHTML = format(sourceText);
+                const formattedHTML = format(sourceText);
+
+                if (hasInputs) {
+                    // Preserve inputs by cloning them before innerHTML replacement
+                    const inputClones = inputs.map(input => input.cloneNode(true));
+
+                    // Set formatted content
+                    el.innerHTML = formattedHTML;
+
+                    // Re-insert inputs at the beginning (typical label pattern)
+                    inputClones.reverse().forEach(input => {
+                        el.insertBefore(input, el.firstChild);
+                    });
+                } else {
+                    // No inputs to preserve, just set innerHTML
+                    el.innerHTML = formattedHTML;
+                }
             }
 
             // Mark as formatted to avoid re-processing
