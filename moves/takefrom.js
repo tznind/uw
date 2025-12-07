@@ -19,10 +19,10 @@ window.TakeFrom = (function() {
         const originalId = clonedMove.id;
         clonedMove.id = `${originalId}_${suffix}`;
 
-        // Suffix grantsCard if present
-        if (clonedMove.grantsCard) {
-            clonedMove.grantsCard = `${clonedMove.grantsCard}_${suffix}`;
-        }
+        // DON'T suffix grantsCard - it should point to the actual card definition file
+        // The card system will use the suffixed move.id for unique container IDs
+        // (e.g., learned_granted_card_ac001_1, learned_granted_card_ac001_2)
+        // This allows multiple instances of the same card type, each with unique inputs
 
         // Note: tracks use the move ID in their persistence keys
         // The track names themselves are display labels and don't need suffixing

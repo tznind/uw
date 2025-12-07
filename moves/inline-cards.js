@@ -7,6 +7,49 @@ window.InlineCards = (function() {
     'use strict';
 
     /**
+     * Suffix all id and for attributes in HTML string
+     * @param {string} html - HTML string to transform
+     * @param {string} suffix - Suffix to append to IDs
+     * @returns {string} Transformed HTML
+     */
+    function suffixHTMLIds(html, suffix) {
+        if (!suffix) return html;
+
+        // Replace id="xxx" with id="xxx_suffix"
+        html = html.replace(/\bid="([^"]+)"/g, (match, id) => {
+            return `id="${id}_${suffix}"`;
+        });
+
+        // Replace for="xxx" with for="xxx_suffix" (for label elements)
+        html = html.replace(/\bfor="([^"]+)"/g, (match, forId) => {
+            return `for="${forId}_${suffix}"`;
+        });
+
+        // Also handle id='xxx' and for='xxx' (single quotes)
+        html = html.replace(/\bid='([^']+)'/g, (match, id) => {
+            return `id='${id}_${suffix}'`;
+        });
+
+        html = html.replace(/\bfor='([^']+)'/g, (match, forId) => {
+            return `for='${forId}_${suffix}'`;
+        });
+
+        return html;
+    }
+
+    /**
+     * Extract suffix from a learned move container ID
+     * @param {string} containerId - Container ID (e.g., "learned_granted_card_ac001_2")
+     * @returns {string|null} Suffix if found (e.g., "2"), null otherwise
+     */
+    function extractSuffixFromContainerId(containerId) {
+        // Pattern: learned_granted_card_{moveId}_{suffix}
+        // We want to extract the suffix at the end
+        const match = containerId.match(/^learned_granted_card_[^_]+_(\d+)$/);
+        return match ? match[1] : null;
+    }
+
+    /**
      * Display a card inline within a container
      * @param {string} containerId - ID of the container to render the card into
      * @param {string} cardId - ID of the card to display
@@ -36,7 +79,18 @@ window.InlineCards = (function() {
                 const cardDiv = document.createElement("div");
                 cardDiv.className = className;
                 cardDiv.setAttribute('data-card-id', cardId);
-                cardDiv.innerHTML = cardData.html;
+
+                // Check if this is a learned move with a suffix
+                const suffix = extractSuffixFromContainerId(containerId);
+                let cardHTML = cardData.html;
+
+                // If we have a suffix, transform all IDs in the card HTML
+                if (suffix) {
+                    console.log(`InlineCards.displayCard: Suffixing card IDs with: ${suffix}`);
+                    cardHTML = suffixHTMLIds(cardHTML, suffix);
+                }
+
+                cardDiv.innerHTML = cardHTML;
                 container.appendChild(cardDiv);
 
                 // Make sure the parent granted-card-options container is visible
