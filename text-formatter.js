@@ -265,7 +265,8 @@ window.TextFormatter = (function() {
                     .filter(node => node.nodeType === Node.TEXT_NODE ||
                            (node.nodeType === Node.ELEMENT_NODE && !['INPUT', 'SELECT', 'TEXTAREA'].includes(node.tagName)))
                     .map(node => node.textContent)
-                    .join('');
+                    .join('')
+                    .trim(); // Remove leading/trailing whitespace
             } else {
                 // No inputs, use textContent as before
                 sourceText = el.textContent;
@@ -285,6 +286,8 @@ window.TextFormatter = (function() {
                     // Re-insert inputs at the beginning (typical label pattern)
                     inputClones.reverse().forEach(input => {
                         el.insertBefore(input, el.firstChild);
+                        // Add a space after the input so text doesn't run directly into it
+                        el.insertBefore(document.createTextNode(' '), input.nextSibling);
                     });
                 } else {
                     // No inputs to preserve, just set innerHTML
