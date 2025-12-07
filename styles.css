@@ -507,6 +507,61 @@ button:focus {
   margin-top: -2px;
 }
 
+/* === VALIDATION WARNING BUTTON === */
+.validation-warning {
+  background: #dc3545;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+  animation: pulse-warning 2s ease-in-out infinite;
+}
+
+.validation-warning:hover {
+  background: #c82333;
+  transform: scale(1.05);
+}
+
+.validation-warning:active {
+  transform: scale(0.95);
+}
+
+.validation-warning:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.3);
+}
+
+.validation-warning .warning-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.validation-warning .warning-count {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Pulse animation for warning button */
+@keyframes pulse-warning {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(220, 53, 69, 0);
+  }
+}
+
 /* Character count flash */
 .char-count-flash {
   position: absolute;
