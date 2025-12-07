@@ -101,7 +101,8 @@ window.InlineCards = (function() {
                 }
 
                 // Try to initialize card-specific functionality
-                initializeCardFunctionality(cardId);
+                // Pass the cardDiv as container and suffix (if any) to the init function
+                initializeCardFunctionality(cardId, cardDiv, suffix);
 
                 // Format any elements with data-format-text attribute
                 setTimeout(() => {
@@ -173,39 +174,44 @@ window.InlineCards = (function() {
      * Initialize card-specific functionality after card HTML is inserted
      * Uses new CardInitializers export pattern with fallback to old convention
      * @param {string} cardId - ID of the card to initialize
+     * @param {HTMLElement} container - Container element for this card instance
+     * @param {string|null} suffix - Suffix for this instance (null for non-duplicates)
      */
-    function initializeCardFunctionality(cardId) {
+    function initializeCardFunctionality(cardId, container, suffix = null) {
         // Use a short timeout to ensure DOM is fully ready
         setTimeout(function() {
-            console.log(`Inline Cards: Attempting to initialize card functionality for: ${cardId}`);
-            
+            console.log(`Inline Cards: Attempting to initialize card functionality for: ${cardId} (suffix: ${suffix})`);
+
             // Ensure CardInitializers namespace exists
             window.CardInitializers = window.CardInitializers || {};
-            
+
             // Look for exported initialization function (new pattern)
             const initFunction = window.CardInitializers[cardId];
             if (typeof initFunction === 'function') {
                 try {
-                    console.log(`Inline Cards: Calling CardInitializers['${cardId}']()...`);
-                    initFunction();
+                    console.log(`Inline Cards: Calling CardInitializers['${cardId}'](container, suffix)...`);
+                    // Pass container and suffix to the init function
+                    // This allows the card JS to scope its queries and handle duplicates
+                    initFunction(container, suffix);
                     console.log(`Inline Cards: Card ${cardId} initialized successfully`);
                 } catch (error) {
                     console.error(`Inline Cards: Error initializing card ${cardId}:`, error);
                 }
             } else {
                 console.log(`Inline Cards: No new-style initialization function found for card: ${cardId}`);
-                
+
                 // Fallback to old convention-based approach for backwards compatibility
                 const functionName = 'initialize' + cardId
                     .split('-')
                     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
                     .join('');
-                
+
                 console.log(`Inline Cards: Looking for old-style function: ${functionName}`);
-                
+
                 if (typeof window[functionName] === 'function') {
-                    console.log(`Inline Cards: Falling back to old convention: ${functionName}()`);
-                    window[functionName]();
+                    console.log(`Inline Cards: Falling back to old convention: ${functionName}(container, suffix)`);
+                    // Pass parameters for backwards compatibility
+                    window[functionName](container, suffix);
                 } else {
                     console.log(`Inline Cards: No initialization needed for ${cardId}`);
                 }

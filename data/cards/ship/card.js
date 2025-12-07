@@ -1,13 +1,20 @@
 /**
  * Ship Card - Simplified using CardHelpers framework
+ * Supports duplicate instances via takeFromAllowsDuplicates
  */
 
 (function() {
     'use strict';
-    
-    function initializeShipCard() {
-        const { setupAutoFill, setupVisualValidation, setupDependency, 
-                ValidationPatterns, addEventListener } = window.CardHelpers;
+
+    function initializeShipCard(container, suffix) {
+        // Create scoped helpers for this specific card instance
+        // This allows the card to work correctly even when duplicated
+        const helpers = suffix ?
+            window.CardHelpers.createScopedHelpers(container, suffix) :
+            window.CardHelpers; // Use global helpers for backwards compatibility
+
+        const { setupAutoFill, setupVisualValidation, setupDependency,
+                ValidationPatterns, addEventListener } = helpers;
         
         // Ship class auto-fill
         const classDefaults = {
@@ -36,13 +43,13 @@
             }
         });
         
-        setupComponentDependencies();
-        
-        console.log('Ship card initialized with custom functionality');
+        setupComponentDependencies(helpers);
+
+        console.log(`Ship card initialized with custom functionality (suffix: ${suffix || 'none'})`);
     }
-    
-    function setupComponentDependencies() {
-        const { setupDependency } = window.CardHelpers;
+
+    function setupComponentDependencies(helpers) {
+        const { setupDependency } = helpers;
         
         // Void shields require plasma drive
         setupDependency('ship_void_shields', 'change', (element, helpers) => {
