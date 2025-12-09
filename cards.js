@@ -126,16 +126,21 @@ window.Cards = (function() {
     function initializeRenderedCards(cardDefs) {
         // Ensure CardInitializers namespace exists
         window.CardInitializers = window.CardInitializers || {};
-        
+
         cardDefs.forEach(cardDef => {
             const cardId = cardDef.id;
-            
+
+            // Find the rendered card element for this card
+            const cardWrapper = document.querySelector(`.card-wrapper[data-card-id="${cardId}"]`);
+            const cardElement = cardWrapper ? cardWrapper.querySelector('.card') : null;
+
             // Look for exported initialization function
             const initFunction = window.CardInitializers[cardId];
             if (typeof initFunction === 'function') {
                 try {
                     console.log(`Initializing card: ${cardId}`);
-                    initFunction();
+                    // Pass container and null suffix (regular cards don't have duplicates)
+                    initFunction(cardElement, null);
                     console.log(`Card ${cardId} initialized successfully`);
                 } catch (error) {
                     console.error(`Error initializing card ${cardId}:`, error);

@@ -14,6 +14,12 @@
     <span>Loading...</span>
   </div>
 
+  <!-- Validation warning indicator (upper right, subtle) -->
+  <button type="button" id="validation-warning" class="validation-warning" style="display: none;" title="Click to view validation errors">
+    <span class="warning-icon">⚠️</span>
+    <span class="warning-count">0</span>
+  </button>
+
   <form>
     <!-- Character Info Box -->
     <div class="character-info-box">
@@ -90,6 +96,7 @@
 <script src="json-loader.js"></script>
 <script src="data-loader.js"></script>
 <script src="persistence.js"></script>
+<script src="validation.js"></script>
 <script src="stats.js"></script>
 <script src="clock.js"></script>
 <script src="text-formatter.js"></script>

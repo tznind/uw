@@ -504,6 +504,47 @@ Beyond basic roll-based moves, the system supports several specialized move type
 - `takeFrom` lists roles this character can learn from
 - Creates dropdown menus populated with moves from those roles
 - Allows character versatility and cross-class abilities
+- By default, filters out moves you already have from current roles
+
+**Allow Duplicates:**
+
+Add `"takeFromAllowsDuplicates": true` to allow selecting the same move multiple times:
+
+```json
+{
+  "id": "versatile",
+  "title": "Versatile Training - Master multiple specializations",
+  "description": "Learn the same technique multiple times, adapting it to different situations.",
+  "multiple": 3,
+  "takeFrom": ["*"],
+  "takeFromAllowsDuplicates": true,
+  "takeCategory": ["Moves"]
+}
+```
+
+When `takeFromAllowsDuplicates` is enabled:
+- Dropdown shows ALL moves from selected role (including ones you already possess)
+- Each instance gets a unique ID suffix (`moveid_1`, `moveid_2`, etc.)
+- All IDs within the learned move are suffixed (including granted cards)
+- Each instance is completely independent for persistence
+- Perfect for learning powerful moves multiple times or acquiring multiple copies of equipment cards
+
+**Practical Example: Equipment Selection**
+
+Create a dedicated "Equipment" role with gear options, then allow players to select multiple pieces:
+
+```json
+{
+  "id": "ye",
+  "title": "Your Equipment",
+  "description": "You have lots of equipment, tick to add and detail",
+  "multiple": 10,
+  "takeFrom": ["Equipment"],
+  "takeFromAllowsDuplicates": true
+}
+```
+
+This creates a dropdown showing all Equipment moves (Weapon, Armor, Vehicle, etc.). Players can select the same item multiple times - perfect for tracking multiple weapons, armor sets, or other gear with individual customization.
 
 ### Move Categories
 

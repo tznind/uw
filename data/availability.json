@@ -26,16 +26,23 @@
   "Lord Commander": {
     "_movesFile": "data/moves/lord-commander.json",
     "description": "Natural leader who inspires the crew and makes crucial tactical decisions in combat and crisis.",
-    "cards": ["ship"],
+    "cards": ["ship", "dribble"],
     "l1a2b3": false,
     "l4c5d6": false,
     "l7e8f9": false,
     "lc001": true,
     "adapt1": false,
+    "versatile": false,
+    "dribbles": false,
     "is": false,
     "inspire1": false,
     "battlehard": false,
     "cmdstruct": false
+  },
+  "Dribbles": {
+    "_movesFile": "data/moves/dribbles.json",
+    "description": "Small fast-breeding alien creatures.",
+    "single-dribble": false
   },
   "Everyone": {
     "_movesFile": "data/moves/everyone.json",

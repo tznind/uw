@@ -127,6 +127,23 @@
 
   },
   {
+    "id": "versatile",
+    "title": "Versatile Training - Master multiple specializations",
+    "description": "Your diverse training allows you to learn the same technique multiple times, each time adapting it to different situations. Each instance is tracked separately.",
+    "multiple": 3,
+    "takeFrom": ["*"],
+    "takeFromAllowsDuplicates": true,
+    "takeCategory": ["Moves"]
+  },
+  {
+    "id": "dribbles",
+    "title": "Acquire Dribbles",
+    "description": "You have encountered and befriended small fast-breeding alien creatures called Dribbles. Each one is unique and makes soft cooo noises. You may acquire up to 10 Dribbles.",
+    "multiple": 10,
+    "takeFrom": ["Dribbles"],
+    "takeFromAllowsDuplicates": true
+  },
+  {
     "id": "inspire1",
     "title": "Inspiring Presence (+Influence)",
     "description": "When you rally your troops or inspire others through decisive action, roll **+Influence**. Twice per year you can Rally (hexagon) to prevent an ally dying. This move works well with **Rally the Cohort** when commanding larger forces.",

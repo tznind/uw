@@ -98,11 +98,64 @@ For cards that need custom initialization logic:
 ```javascript
 // Export your initialization function
 window.CardInitializers = window.CardInitializers || {};
-window.CardInitializers.mycard = function() {
-    // Your card initialization logic here
-    console.log('My card initialized!');
+window.CardInitializers.mycard = function(container, suffix) {
+    // container: DOM element containing this card instance
+    // suffix: "1", "2", "3" for duplicates (via takeFromAllowsDuplicates), null for originals
+
+    console.log('My card initialized!', { container, suffix });
+
+    // Basic approach: Manual ID handling
+    const fieldId = suffix ? `my_field_${suffix}` : 'my_field';
+    const field = document.getElementById(fieldId);
+
+    // Better approach: Use CardHelpers for duplicate support
+    const helpers = suffix ?
+        window.CardHelpers.createScopedHelpers(container, suffix) :
+        window.CardHelpers;
+
+    // Now all helpers automatically handle suffixes!
+    const myField = helpers.getElement('my_field');
+    helpers.addEventListener('my_field', 'input', function() {
+        console.log('Field changed!', this.value);
+    });
 };
 ```
+
+### Supporting Duplicate Cards
+
+**How to enable:** Set `takeFromAllowsDuplicates: true` on a `takeFrom` move. See [Cookbook.md](Cookbook.md#take-from-other-roles) for examples (Equipment selection, multiple gear, etc.).
+
+When a move with `takeFromAllowsDuplicates: true` is taken multiple times, each card instance gets unique IDs:
+
+**HTML IDs are auto-suffixed:**
+- Instance 1: `my_field_1`, `my_select_1`
+- Instance 2: `my_field_2`, `my_select_2`
+
+**Use CardHelpers for automatic scoping:**
+```javascript
+window.CardInitializers.ship = function(container, suffix) {
+    // Create scoped helpers that automatically handle IDs
+    const helpers = suffix ?
+        window.CardHelpers.createScopedHelpers(container, suffix) :
+        window.CardHelpers; // Backwards compatible
+
+    const { setupAutoFill, setupDependency } = helpers;
+
+    // These work correctly for BOTH duplicates and originals!
+    setupAutoFill('ship_class', classDefaults);
+    setupDependency('ship_void_shields', 'change', (element, helpers) => {
+        if (element.checked && !helpers.isChecked('ship_plasma_drive')) {
+            // ...
+        }
+    });
+};
+```
+
+**Key Points:**
+- **Parameters**: All init functions now receive `(container, suffix)`
+- **Backwards compatible**: Works with or without the new parameters
+- **CardHelpers**: Automatically scopes all element lookups
+- **Persistence**: Each instance saves independently to URL
 
 - **Simple export pattern**: No complex registration or lifecycle management
 - **System managed**: The card system calls your function when the card is rendered
