@@ -39,6 +39,11 @@
     "battlehard": false,
     "cmdstruct": false
   },
+  "Dribbles": {
+    "_movesFile": "data/moves/dribbles.json",
+    "description": "Small fast-breeding alien creatures.",
+    "single-dribble": false
+  },
   "Everyone": {
     "_movesFile": "data/moves/everyone.json",
     "description": "Universal moves available to all characters.",
