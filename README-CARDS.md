@@ -123,6 +123,8 @@ window.CardInitializers.mycard = function(container, suffix) {
 
 ### Supporting Duplicate Cards
 
+**How to enable:** Set `takeFromAllowsDuplicates: true` on a `takeFrom` move. See [Cookbook.md](Cookbook.md#take-from-other-roles) for examples (Equipment selection, multiple gear, etc.).
+
 When a move with `takeFromAllowsDuplicates: true` is taken multiple times, each card instance gets unique IDs:
 
 **HTML IDs are auto-suffixed:**

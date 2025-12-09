@@ -529,6 +529,23 @@ When `takeFromAllowsDuplicates` is enabled:
 - Each instance is completely independent for persistence
 - Perfect for learning powerful moves multiple times or acquiring multiple copies of equipment cards
 
+**Practical Example: Equipment Selection**
+
+Create a dedicated "Equipment" role with gear options, then allow players to select multiple pieces:
+
+```json
+{
+  "id": "ye",
+  "title": "Your Equipment",
+  "description": "You have lots of equipment, tick to add and detail",
+  "multiple": 10,
+  "takeFrom": ["Equipment"],
+  "takeFromAllowsDuplicates": true
+}
+```
+
+This creates a dropdown showing all Equipment moves (Weapon, Armor, Vehicle, etc.). Players can select the same item multiple times - perfect for tracking multiple weapons, armor sets, or other gear with individual customization.
+
 ### Move Categories
 
 **When to use:** To organize moves into logical groups on the character sheet.
