@@ -90,6 +90,30 @@ window.Validation = (function() {
     }
 
     /**
+     * Check for move IDs containing underscores (breaks suffix extraction)
+     * @returns {Array} Array of error objects
+     */
+    function checkMoveIdUnderscores() {
+        const errors = [];
+
+        if (!window.moves || !Array.isArray(window.moves)) {
+            return errors;
+        }
+
+        for (const move of window.moves) {
+            if (move.id && move.id.includes('_')) {
+                errors.push({
+                    type: 'invalid_move_id',
+                    message: `Move ID "${move.id}" contains underscores`,
+                    details: `Move IDs should use hyphens instead of underscores to ensure proper suffix extraction for duplicate cards. Change "${move.id}" to "${move.id.replace(/_/g, '-')}"`
+                });
+            }
+        }
+
+        return errors;
+    }
+
+    /**
      * Run all validation checks
      * @returns {Array} Combined array of all errors
      */
@@ -103,6 +127,10 @@ window.Validation = (function() {
         // Check for duplicate move IDs across files
         const duplicateMoveIdErrors = checkDuplicateMoveIds();
         allErrors.push(...duplicateMoveIdErrors);
+
+        // Check for move IDs with underscores
+        const underscoreErrors = checkMoveIdUnderscores();
+        allErrors.push(...underscoreErrors);
 
         // Future: Add more checks here
         // - Check for broken references
