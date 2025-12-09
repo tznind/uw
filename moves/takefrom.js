@@ -45,10 +45,6 @@ window.TakeFrom = (function() {
         const takeFromDiv = document.createElement("div");
         takeFromDiv.className = "takeFrom-options";
         
-        const heading = document.createElement("strong");
-        heading.textContent = "Learn from:";
-        takeFromDiv.appendChild(heading);
-        
         // Support multiple takeFrom instances
         const maxInstances = move.multiple || 1;
         const instancesContainer = document.createElement("div");
