@@ -136,6 +136,13 @@
     "takeCategory": ["Moves"]
   },
   {
+    "id": "dribbles",
+    "title": "Acquire Dribbles",
+    "description": "You have encountered and befriended small fast-breeding alien creatures called Dribbles. Each one is unique and makes soft cooing noises. You may acquire up to 10 Dribbles.",
+    "multiple": 10,
+    "grantsCard": "dribble"
+  },
+  {
     "id": "inspire1",
     "title": "Inspiring Presence (+Influence)",
     "description": "When you rally your troops or inspire others through decisive action, roll **+Influence**. Twice per year you can Rally (hexagon) to prevent an ally dying. This move works well with **Rally the Cohort** when commanding larger forces.",

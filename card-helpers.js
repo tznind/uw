@@ -39,7 +39,8 @@ window.CardHelpers = (function() {
                                 // Initialize after a short delay to ensure DOM is fully ready
                                 setTimeout(() => {
                                     try {
-                                        initFunction();
+                                        // Pass container and null suffix (registerCard is for regular cards, not duplicates)
+                                        initFunction(cardElement, null);
                                         console.log(`Card ${cardId} initialized via CardHelpers`);
                                     } catch (error) {
                                         console.error(`Error initializing card ${cardId}:`, error);
