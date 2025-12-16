@@ -69,6 +69,9 @@ window.InlineCards = (function() {
 
         console.log(`InlineCards.displayCard: Container found, attempting to load card ${cardId}`);
 
+        // Show loading state in the container
+        container.innerHTML = '<div class="card-loading">Loading card...</div>';
+
         try {
             if (window.Cards) {
                 console.log(`InlineCards.displayCard: Calling window.Cards.loadCard for ${cardId}`);
