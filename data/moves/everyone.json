@@ -1,6 +1,6 @@
 [
   {
-    "id": "face_adversity",
+    "id": "face-adversity",
     "title": "Face Adversity",
     "category": "Common Moves",
     "description": "When you overcome opposition or danger using stealth, piloting, accuracy, discipline (Roll+Mettle); knowledge, mechanics, first-aid (Roll+Expertise); athletics, endurance, strength, health (Roll+Physique); charm, diplomacy, bargaining, lies (Roll+Influence); or open computer systems and networks (Roll+Interface).",
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "id": "get_involved",
+    "id": "get-involved",
     "title": "Get Involved",
     "category": "Common Moves",
     "description": "When an ally makes a Move and you affect the result using stealth, piloting, accuracy, or bravery (Roll+Mettle); education, mechanics or first aid (Roll+Expertise); athletics, endurance, strength or health (Roll+Physique); charm, diplomacy, bargaining or lies (Roll+Influence); or open computer systems and networks (Roll+Interface).",
@@ -58,7 +58,7 @@
     ]
   },
   {
-    "id": "open_fire",
+    "id": "open-fire",
     "title": "Open Fire (+Mettle)",
     "category": "Common Moves",
     "description": "When you engage enemy forces in long ranged, cover-to-cover firefights, describe your tactics, primary targets and Roll+Mettle.",
@@ -80,7 +80,7 @@
     ]
   },
   {
-    "id": "launch_assault",
+    "id": "launch-assault",
     "title": "Launch Assault (+Physique)",
     "category": "Common Moves",
     "description": "When you engage enemy forces in chaotic close-quarters combat, describe your tactics and primary targets, then Roll+Physique.",
@@ -102,7 +102,7 @@
     ]
   },
   {
-    "id": "patch_up",
+    "id": "patch-up",
     "title": "Patch Up (+Expertise)",
     "category": "Common Moves",
     "description": "When using appropriate medical supplies/tools to repair harm to people or machinery, Roll+Expertise.",
@@ -156,7 +156,7 @@
     ]
   },
   {
-    "id": "brace_for_impact",
+    "id": "brace-for-impact",
     "title": "Brace for Impact (+Armor)",
     "category": "Common Moves",
     "description": "When you would suffer harm, the GM will tell you the Severity (Minor, Major, Severe, Critical or Fatal). Roll+Armor.",
@@ -180,7 +180,7 @@
     ]
   },
   {
-    "id": "shields_up",
+    "id": "shields-up",
     "title": "Shields Up",
     "category": "Enterprise Moves",
     "description": "When one of the starship sections would suffer damage from outside, the pilot Rolls 2d6. If a character is at the shield station, they Roll instead, and add their +Interface.",
@@ -200,7 +200,7 @@
     ]
   },
   {
-    "id": "wild_jump",
+    "id": "wild-jump",
     "title": "Wild Jump",
     "category": "Enterprise Moves",
     "description": "When you force your ship to make a Wild Jump, Roll 2d6.",
@@ -228,7 +228,7 @@
     ]
   },
   {
-    "id": "cramped_quarters",
+    "id": "cramped-quarters",
     "title": "Cramped Quarters",
     "category": "Enterprise Moves",
     "description": "When you've been trapped in cramped quarters with the same people for a significant amount of time (a leg of an interstellar journey, etc), choose a character trapped here with you and Roll 2d6.",
@@ -298,7 +298,7 @@
     ]
   },
   {
-    "id": "drastic_upheaval",
+    "id": "drastic-upheaval",
     "title": "Drastic Upheaval",
     "description": "Choose a new advancement from any career",
     "category": "Extra",
