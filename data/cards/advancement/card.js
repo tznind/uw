@@ -189,7 +189,10 @@ function initializeAdvancementCard() {
         availableContainer.parentElement.parentElement.appendChild(newHiddenContainer);
         hiddenContainerElement = newHiddenContainer;
     }
-    
+
+    // Clear existing hidden inputs to prevent duplicates when roles change
+    hiddenContainerElement.innerHTML = '';
+
     advancements.forEach((text, index) => {
         const item = document.createElement('div');
         item.className = 'advancement-item';
@@ -197,9 +200,9 @@ function initializeAdvancementCard() {
         item.id = `a${index}`;
         item.draggable = true;
         item.dataset.advancementId = `a${index}`;
-        
-        // Check if hidden input already exists (created by main persistence system)
-        let numberInput = document.querySelector(`input[name="a${index}"]`);
+
+        // Check if hidden input already exists (fix: use correct name with _s suffix)
+        let numberInput = document.querySelector(`input[name="a${index}_s"]`);
         
         if (!numberInput) {
             // Create hidden number input for URL persistence (0=available, 1=current, 2=achieved)
