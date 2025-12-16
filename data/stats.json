@@ -2,27 +2,12 @@
   {
     "id": "mettle",
     "title": "METTLE",
-    "shape": "hexagon",
-    "tracks": [
-      {
-        "name": "Armor",
-        "max": 3,
-        "shape": "hexagon"
-      }
-    ]
+    "shape": "hexagon"
   },
   {
     "id": "physique",
     "title": "PHYSIQUE",
-    "shape": "hexagon",
-    "tracks": [
-      {
-        "name": "Wounds",
-        "max": 6,
-        "shape": "circle",
-        "dynamic": true
-      }
-    ]
+    "shape": "hexagon"
   },
   {
     "id": "influence",
@@ -32,16 +17,11 @@
   {
     "id": "expertise",
     "title": "EXPERTISE",
-    "shape": "hexagon",
-    "tracks": [
-      {
-        "max": 4,
-        "shape": "circle"
-      }
-    ]
+    "shape": "hexagon"
   },
   {
     "id": "interface",
-    "title": "INTERFACE"
+    "title": "INTERFACE",
+    "shape": "hexagon"
   }
 ]
