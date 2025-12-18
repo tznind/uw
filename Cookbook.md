@@ -354,6 +354,20 @@ Create alternative names for terms and moves using `data/aliases.json`. This let
 
 The aliases file is optional - if it's missing or empty, the system works normally without aliases.
 
+### Using `data-format-text` Attribute
+
+While formatting is automatic for moves, help etc - you can also apply it arbitrarily through the `data-format-text` attribute to any HTML element.
+
+For example in [Cards](./README-CARDS.md) or in the main [cs.html](./cs.html) page.
+
+```html
+<div class="card mycard-card">
+  <h3>Card Title</h3>
+  <p data-format-text="Roll **Augury** to see the future. You gain **+1 forward**."></p>
+  <div data-format-text>Use **Rally the Cohort** to inspire your crew.</div>
+</div>
+```
+
 ---
 
 ## Basic Moves

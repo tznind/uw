@@ -1,8 +1,15 @@
 # Cards System - Quick Start
 
-> **For complete documentation, see [CARDS.md](CARDS.md)**
+The cards system allows for collapsable 'subpages' within your character sheet.  These can contain
+any html, css and javascript you want.
 
-Quick guide to get started with the card system.
+Use cards when you need to preciesely model an area of the character sheet that does not fit well into the
+moves system or requires multiple/variable inputs.
+
+Cards can either be top level (i.e. roles x,y.z get the card automatically) or granted by a move (e.g. when
+you take this move you get a vehicle - detail it below)
+
+All input elements in a card are automatically persisted to url.
 
 ## Try the Examples
 
@@ -163,27 +170,7 @@ window.CardInitializers.ship = function(container, suffix) {
 
 ## Text Formatting in Cards
 
-Card content can use **markdown-style formatting** with automatic move linking and glossary term highlighting.
-
-### Using `data-format-text` Attribute
-
-Add the `data-format-text` attribute to any element to enable automatic formatting:
-
-```html
-<div class="card mycard-card">
-  <h3>Card Title</h3>
-  <p data-format-text="Roll **Augury** to see the future. You gain **+1 forward**."></p>
-  <div data-format-text>Use **Rally the Cohort** to inspire your crew.</div>
-</div>
-```
-
-### Supported Formatting
-
-- **`**move name**`** → Clickable move reference (blue underline, navigates to move)
-- **Glossary terms** → Auto-detected, hoverable tooltips (dotted underline)
-- **`*italic*`** → Emphasized text
-- **`- bullet lists`** → Converted to HTML lists
-- **Line breaks** → Preserved as `<br>` tags
+Card content can use the [data-format-text](./Cookbook.md#using-data-format-text-attribute) attribute for **markdown-style formatting** with automatic move linking and glossary term highlighting.
 
 ## Next Steps
 
