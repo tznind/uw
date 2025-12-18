@@ -34,7 +34,9 @@ Add contextual help anywhere in your HTML with automatic popup modals:
         data-help-text="Disadvantage on Strength and Dexterity">?</button>
 ```
 
-The system automatically handles clicks, keyboard (Escape to close), and display. No additional JavaScript needed.
+The system automatically handles clicks, keyboard (Escape to close), and display.
+
+Title and help data attributes support [Text Formatting](#text-formatting) notation including [Terms](#glossary-terms),[bullet lists](#bullet-lists), italics etc.
 
 ---
 
