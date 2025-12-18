@@ -1,6 +1,8 @@
 # Cookbook
 
-This comprehensive guide covers creating roles, moves, and cards for the Rogue Trader character system.
+This comprehensive guide covers creating roles, moves, and cards for the character sheet system.
+
+All changes can be acomplished by modifying the [data](./data) directory and/or the main [cs.html](./cs.html) page.  Core javascript code of the application should not be modified.
 
 ## Table of Contents
 - [Help Buttons](#help-buttons)
