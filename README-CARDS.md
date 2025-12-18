@@ -35,13 +35,16 @@ All input elements in a card are automatically persisted to url.
 3. **Add template** (`card.html`):
 ```html
 <div class="card mycard-card">
-  <h3 class="card-title">My Card</h3>
+  <h3 class="card-title">⚙️ My Card</h3>
   <div class="form-field">
     <label for="my_field">Field:</label>
     <input type="text" id="my_field" placeholder="Enter value">
   </div>
 </div>
 ```
+
+> [!TIP]
+> **Emoji Convention**: Card titles typically start with a unicode emoji (🤖, 🚀, ⚙️, etc.) to make them visually distinctive. This is optional but recommended for consistency.
 
 4. **Assign to role** in `data/availability.json`:
 ```json
@@ -70,33 +73,35 @@ The "Everyone" role provides universal cards and moves available to all characte
 - **Not user-selectable**: "Everyone" never appears in role dropdowns or takeFrom lists
 - **Universal access**: Perfect for basic equipment, common knowledge, etc.
 
-## Card Collapse Functionality
-
-**All cards are collapsible by default**. For proper collapse behavior:
+## Card Structure
 
 ### Required Structure
+
 ```html
 <div class="card mycard-card">
-  <h3>Card Title</h3>  <!-- Will become collapsible title -->
-  <!-- All content below title will be collapsible -->
+  <h3 class="card-title">⚙️ Card Title</h3>
+  <!-- Card content goes here -->
   <div class="form-field">
-    <!-- Card content -->
+    <label for="my_field">Field:</label>
+    <input type="text" id="my_field" placeholder="Enter value">
   </div>
 </div>
 ```
 
-### CSS Support
-```css
-.card.mycard-card .card-content.collapsed {
-  display: none;  /* Hide content when collapsed */
-}
-```
+**Requirements:**
+- ✅ **REQUIRED**: Top-level `<div class="card ...">` wrapper
+- ✅ **REQUIRED**: An `<h3>` element (typically as the first child)
+- ⚙️ **RECOMMENDED**: `class="card-title"` on the h3
+- ⚙️ **RECOMMENDED**: Unicode emoji at start of title
 
-### Key Points
+### Collapsible Cards
+
+Role-based cards (in the main cards container) are automatically made collapsible:
 - Cards start **collapsed** by default
 - Click title or +/- button to toggle
 - Collapse state is preserved during re-renders
-- Use `class="card"` for auto-collapse functionality
+
+Cards granted by moves are displayed inline without collapse functionality.
 
 ## Card JavaScript Pattern
 
