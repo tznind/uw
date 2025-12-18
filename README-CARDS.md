@@ -112,7 +112,7 @@ For cards that need custom initialization logic:
 window.CardInitializers = window.CardInitializers || {};
 window.CardInitializers.mycard = function(container, suffix) {
     // container: DOM element containing this card instance
-    // suffix: "1", "2", "3" for duplicates (via takeFromAllowsDuplicates), null for originals
+    // suffix: "1", "2", "3", etc. when using takeFromAllowsDuplicates, null otherwise
 
     console.log('My card initialized!', { container, suffix });
 
@@ -182,6 +182,5 @@ Card content can use the [data-format-text](./Cookbook.md#using-data-format-text
 - **Styling**: Add `card.css` for custom themes
 - **Logic**: Add `card.js` with exported initialization function
 - **Examples**: Study `data/cards/ship/` and `data/cards/robotic-companion/`
-- **Full docs**: See [CARDS.md](CARDS.md) for complete reference
 
 Happy card building! 🚀
