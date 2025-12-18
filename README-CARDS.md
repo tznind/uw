@@ -6,7 +6,7 @@ any html, css and javascript you want.
 Use cards when you need to preciesely model an area of the character sheet that does not fit well into the
 moves system or requires multiple/variable inputs.
 
-Cards can either be top level (i.e. roles x,y.z get the card automatically) or granted by a move (e.g. when
+Cards can either be top level (i.e. roles x,y.z get the card automatically) or [granted by a move](./Cookbook.md#moves-that-grant-cards) (e.g. when
 you take this move you get a vehicle - detail it below)
 
 All input elements in a card are automatically persisted to url.
