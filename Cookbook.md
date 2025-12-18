@@ -7,20 +7,31 @@ All changes can be acomplished by modifying the [data](./data) directory and/or 
 ## Table of Contents
 - [Help Buttons](#help-buttons)
 - [Customizing Stats](#customizing-stats)
+  - [Modifying Stats](#modifying-stats)
+  - [Stat Shapes](#stat-shapes)
   - [Stat Track Counters](#stat-track-counters)
   - [Clock Stats](#clock-stats)
 - [Creating Roles](#creating-roles)
+  - [Role Descriptions](#role-descriptions)
 - [Text Formatting](#text-formatting)
+  - [Bullet Lists](#bullet-lists)
+  - [Glossary Terms](#glossary-terms)
+  - [Aliases](#aliases)
+  - [Using `data-format-text` Attribute](#using-data-format-text-attribute)
 - [Basic Moves](#basic-moves)
 - [Advanced Move Types](#advanced-move-types)
   - [Pick One Moves (Radio Buttons)](#pick-one-moves-radio-buttons)
   - [Pick Multiple Moves (Checkboxes)](#pick-multiple-moves-checkboxes)
   - [Take From Other Roles](#take-from-other-roles)
   - [Move Categories](#move-categories)
+    - [Category Display Order](#category-display-order)
+  - [Hidden Checkbox Moves](#hidden-checkbox-moves)
   - [Track Counter Moves](#track-counter-moves)
   - [Submoves](#submoves)
   - [Moves That Grant Cards](#moves-that-grant-cards)
 - [Cards System](#cards-system)
+  - [Everyone System - Universal Cards and Moves](#everyone-system---universal-cards-and-moves)
+- [Validation and Error Detection](#validation-and-error-detection)
 
 ---
 
@@ -252,6 +263,21 @@ You can start with an empty json file for the moves:
 ]
 ```
 _/data/moves/new-role.json_
+
+### Role Descriptions
+
+Add descriptive text to roles using the `description` field in `data/availability.json`:
+
+```json
+{
+  "Navigator": {
+    "_movesFile": "data/moves/navigator.json",
+    "description": "Expert in charting courses through unknown space.\n\nNavigators possess a **third eye** that allows them to perceive the warp."
+  }
+}
+```
+
+Descriptions support [text formatting](#text-formatting) including **bold**, *italic*, line breaks (`\n`), and clickable glossary terms.
 
 ---
 
@@ -583,6 +609,21 @@ This creates a dropdown showing all Equipment moves (Weapon, Armor, Vehicle, etc
 - Moves without `category` appear under the default "Moves" section
 - Categories appear as separate sections on the character sheet
 - Common categories: `"Advancement"`, `"Equipment"`, `"Companion"`
+
+#### Category Display Order
+
+Control the order categories appear on the character sheet using `data/categories.json`:
+
+```json
+{
+  "order": ["Moves", "Equipment", "Advancement", "Character Details"]
+}
+```
+
+**Key Features:**
+- Categories appear in the order specified in the `order` array
+- Categories not listed will appear alphabetically after the ordered categories
+- If `categories.json` is missing or has no `order` array, all categories are sorted alphabetically
 
 ### Hidden Checkbox Moves
 
@@ -1088,4 +1129,60 @@ data/
 - **Persistence Compatible**: All card inputs work with URL persistence and "Copy URL"
 - **Clear Button**: The "Clear" button removes all card data along with other form data
 - **Development Mode**: Use `window.Cards.clearCache()` to reload cards during development
+
+---
+
+## Validation and Error Detection
+
+The system automatically checks for common configuration errors and displays warnings to help you catch issues during development.
+
+### Validation Warning Button
+
+When validation errors are detected, a red warning button (⚠️) appears in the top-right corner of the page:
+
+- **Click the button** to view detailed error information
+- **Error count** is displayed on the button
+- Checks run automatically every 5 seconds
+
+### What Gets Validated
+
+**1. Duplicate HTML IDs**
+- Detects when multiple elements share the same `id` attribute
+- This can break form persistence and card functionality
+- **Fix**: Ensure all input IDs are unique across your entire sheet
+
+**2. Duplicate Move IDs Across Files**
+- Detects when the same move `id` appears in different move JSON files
+- This causes unpredictable behavior when loading moves
+- **Fix**: Give each move a unique ID, even across different role files
+
+**3. Move IDs with Underscores**
+- Detects move IDs containing `_` characters (e.g., `my_move_id`)
+- Underscores break the suffix extraction system used for duplicate cards
+- **Fix**: Use hyphens instead (e.g., `my-move-id`)
+
+### Example Errors
+
+```
+VALIDATION ERRORS (2):
+══════════════════════════════════════════════════
+
+1. Duplicate ID "ship_name" found 2 times
+  1. <input.form-control> in <div>
+  2. <input.form-control> in <div>
+
+2. Move ID "acquire-ship" contains underscores
+Move IDs should use hyphens instead of underscores to ensure
+proper suffix extraction for duplicate cards.
+Change "acquire_ship" to "acquire-ship"
+
+══════════════════════════════════════════════════
+```
+
+### Best Practices
+
+- **Run validation frequently** during development
+- **Fix errors immediately** - don't ignore the warning button
+- **Test with duplicate cards** if you use `takeFromAllowsDuplicates: true`
+- **Use consistent naming** - prefer hyphens over underscores in all IDs
 
