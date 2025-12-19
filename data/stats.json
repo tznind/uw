@@ -56,7 +56,14 @@
     "shape": "clock",
     "clock": {
       "type": "twelfths",
-      "faces": 12
+      "faces": 12,
+      "floatingInputs": [
+        {
+          "id": "blah",
+          "position": [30, 55],
+          "size": [70, 20]
+        }
+      ]
     },
     "tracks": [
       {
