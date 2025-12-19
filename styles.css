@@ -1003,17 +1003,20 @@ button:focus {
 }
 
 /* Clock floating inputs */
-.clock-floating-input {
+input.clock-floating-input {
   position: absolute;
   border: 1px solid #ccc;
   background: rgba(255, 255, 255, 0.9);
   font-size: 10px;
-  padding: 2px 4px;
+  padding: 0;
   box-sizing: border-box;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.clock-floating-input:focus {
+input.clock-floating-input:focus {
   outline: 1px solid #007bff;
   background: rgba(255, 255, 255, 1);
 }
