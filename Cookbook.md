@@ -881,6 +881,7 @@ Cards can also be added directly to roles (i.e. if a move is not required and ro
 - `grantsCard` references a card by its folder name
 - The card must exist in `data/cards/[card-name]/`
 - Cards appear inline when the move is selected
+- `grantsCardAllowsDuplicates: true` - Combined with `multiple`, creates separate card instances for each checkbox (e.g., `multiple: 2` creates two independent squad cards)
 
 ## Cards System
 
@@ -1036,6 +1037,101 @@ Edit `data/availability.json` and add a `cards` array to any role:
   }
 }
 ```
+
+### Dynamic Tables in Cards
+
+**When to use:** For tracking arbitrary rows of data (crew members, inventory, squad rosters, etc.).
+
+#### What to Add to Your Card
+
+**HTML** (`card.html`):
+```html
+<table id="members" data-dynamic-table data-table-max="10">
+  <thead>
+    <tr>
+      <th data-field="name">Name</th>
+      <th data-field="role">Role</th>
+      <th data-field="hp" data-type="number">HP</th>
+      <th data-field="status" data-options="Ready,Injured,Recovering">Status</th>
+      <th></th> <!-- Empty header for delete button column -->
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+<button type="button" data-table-add="members">+ Add Row</button>
+```
+
+**JavaScript** (`card.js`):
+```javascript
+window.CardInitializers.mycard = function(container, suffix) {
+  const helpers = window.CardHelpers.createScopedHelpers(container, suffix);
+
+  // Initialize dynamic tables
+  if (window.DynamicTable) {
+    window.DynamicTable.initializeInContainer(container, suffix);
+  }
+
+  // Example: Add helper functions for users
+  helpers.addEventListener('quick_add_btn', 'click', () => {
+    helpers.addTableRow('members', {
+      name: 'New Member',
+      role: 'Soldier',
+      hp: 10,
+      status: 'Ready'
+    });
+  });
+};
+```
+
+#### Attributes
+
+- `data-dynamic-table` - Enables automatic row management
+- `data-table-max="10"` - Optional max rows (default: unlimited)
+- `data-field="name"` - Column field name (required on each `<th>`)
+- `data-type="number"` - Input type: "text" (default), "number", or "checkbox"
+- `data-options="opt1,opt2"` - Creates dropdown with comma-separated options
+- `data-readonly` - Makes column read-only (for calculated fields)
+- `data-table-add="table_id"` - Links button to table for adding rows
+
+#### Helper Methods
+
+The scoped helpers object provides methods for programmatic table manipulation:
+
+```javascript
+const helpers = window.CardHelpers.createScopedHelpers(container, suffix);
+
+// Add a row with values
+helpers.addTableRow('members', {
+  name: 'John Doe',
+  role: 'Medic',
+  hp: 12,
+  status: 'Ready'
+});
+
+// Clear all rows
+helpers.clearTable('members');
+
+// Get all table data
+const data = helpers.getTableData('members');
+// Returns: [{name: 'John', role: 'Medic', hp: 12, status: 'Ready'}, ...]
+
+// Set table data (replaces all rows)
+helpers.setTableData('members', [
+  {name: 'Alice', role: 'Scout', hp: 10, status: 'Ready'},
+  {name: 'Bob', role: 'Heavy', hp: 15, status: 'Injured'}
+]);
+```
+
+All helpers automatically handle suffix for duplicate cards - just use the base table ID.
+
+#### Features
+
+- Automatic add/delete row buttons
+- URL persistence (each cell auto-saved)
+- Re-indexing when deleting from middle
+- Works with duplicate cards (both `takeFromAllowsDuplicates` and `grantsCardAllowsDuplicates`)
+- Multiple tables per card supported
+- Programmatic manipulation via helper methods
 
 ### Everyone System - Universal Cards and Moves
 
