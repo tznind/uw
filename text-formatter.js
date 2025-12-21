@@ -102,8 +102,8 @@ window.TextFormatter = (function() {
     }
 
     /**
-     * Replace glossary terms within HTML content
-     * Looks for whole words matching glossary terms and wraps them in spans
+     * Replace glossary terms within bold tags with clickable spans
+     * Only matches terms that are explicitly wrapped in <strong> tags
      * @param {string} html - HTML string with formatting already applied
      * @param {Map} termsLookup - Map of lowercase terms to definitions
      * @returns {string} HTML with glossary terms wrapped
@@ -123,16 +123,13 @@ window.TextFormatter = (function() {
             // Escape special regex characters in the term
             const escapedTerm = escapeRegex(term);
 
-            // Create a regex that matches the term as a whole word (case-insensitive)
-            // Use word boundaries to ensure we match whole words only
-            const regex = new RegExp(`\\b(${escapedTerm})\\b`, 'gi');
+            // Only match terms inside <strong> tags (explicitly bolded)
+            // This requires users to wrap terms in **term** to make them interactive
+            const regex = new RegExp(`<strong>(${escapedTerm})</strong>`, 'gi');
 
-            // Replace the term with a span wrapper, but only in text content (not in HTML tags)
-            // We need to be careful not to replace terms inside existing HTML attributes
-            html = html.replace(regex, function(match) {
-                // Check if this match is already inside a glossary-term span by looking backwards
-                // This is a simple heuristic - if we're already in a span, don't wrap again
-                return `<span class="glossary-term" data-term-title="${term}" data-term-text="${escapedDescription}">${match}</span>`;
+            // Replace with a span wrapper around the strong tag
+            html = html.replace(regex, function(match, capturedTerm) {
+                return `<span class="glossary-term" data-term-title="${term}" data-term-text="${escapedDescription}"><strong>${capturedTerm}</strong></span>`;
             });
         });
 
