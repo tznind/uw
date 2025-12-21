@@ -115,13 +115,17 @@ window.TextFormatter = (function() {
 
         // Process each term in the glossary
         termsLookup.forEach((termDef, termLower) => {
-            const term = termDef.term;
+            // Use the lookup key (could be an alias) for matching in HTML
+            const matchTerm = termLower;
+            // Use the actual term name for the popup title
+            const displayTerm = termDef.term;
+
             const escapedDescription = termDef.description
                 .replace(/&/g, '&amp;')
                 .replace(/"/g, '&quot;');
 
-            // Escape special regex characters in the term
-            const escapedTerm = escapeRegex(term);
+            // Escape special regex characters in the match term (handles + and other special chars)
+            const escapedTerm = escapeRegex(matchTerm);
 
             // Only match terms inside <strong> tags (explicitly bolded)
             // This requires users to wrap terms in **term** to make them interactive
@@ -129,7 +133,7 @@ window.TextFormatter = (function() {
 
             // Replace with a span wrapper around the strong tag
             html = html.replace(regex, function(match, capturedTerm) {
-                return `<span class="glossary-term" data-term-title="${term}" data-term-text="${escapedDescription}"><strong>${capturedTerm}</strong></span>`;
+                return `<span class="glossary-term" data-term-title="${displayTerm}" data-term-text="${escapedDescription}"><strong>${capturedTerm}</strong></span>`;
             });
         });
 
