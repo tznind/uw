@@ -25,7 +25,22 @@ window.InlineCards = (function() {
             return `for="${forId}_${suffix}"`;
         });
 
-        // Also handle id='xxx' and for='xxx' (single quotes)
+        // Replace name="xxx" with name="xxx_suffix" (for form controls, especially radio buttons)
+        html = html.replace(/\bname="([^"]+)"/g, (match, name) => {
+            return `name="${name}_${suffix}"`;
+        });
+
+        // Replace data-table-add="xxx" with data-table-add="xxx_suffix" (for dynamic tables)
+        html = html.replace(/\bdata-table-add="([^"]+)"/g, (match, tableId) => {
+            return `data-table-add="${tableId}_${suffix}"`;
+        });
+
+        // Replace data-hide-when-untaken="xxx" with data-hide-when-untaken="xxx_suffix"
+        html = html.replace(/\bdata-hide-when-untaken="([^"]+)"/g, (match, checkboxId) => {
+            return `data-hide-when-untaken="${checkboxId}_${suffix}"`;
+        });
+
+        // Also handle id='xxx', for='xxx', and name='xxx' (single quotes)
         html = html.replace(/\bid='([^']+)'/g, (match, id) => {
             return `id='${id}_${suffix}'`;
         });
@@ -34,19 +49,37 @@ window.InlineCards = (function() {
             return `for='${forId}_${suffix}'`;
         });
 
+        html = html.replace(/\bname='([^']+)'/g, (match, name) => {
+            return `name='${name}_${suffix}'`;
+        });
+
+        // Also handle data-table-add='xxx' and data-hide-when-untaken='xxx' (single quotes)
+        html = html.replace(/\bdata-table-add='([^']+)'/g, (match, tableId) => {
+            return `data-table-add='${tableId}_${suffix}'`;
+        });
+
+        html = html.replace(/\bdata-hide-when-untaken='([^']+)'/g, (match, checkboxId) => {
+            return `data-hide-when-untaken='${checkboxId}_${suffix}'`;
+        });
+
         return html;
     }
 
     /**
-     * Extract suffix from a learned move container ID
-     * @param {string} containerId - Container ID (e.g., "learned_granted_card_ac001_2")
+     * Extract suffix from a container ID
+     * @param {string} containerId - Container ID (e.g., "learned_granted_card_ac001_2" or "granted_card_squads_1")
      * @returns {string|null} Suffix if found (e.g., "2"), null otherwise
      */
     function extractSuffixFromContainerId(containerId) {
-        // Pattern: learned_granted_card_{moveId}_{suffix}
-        // We want to extract the suffix at the end
-        const match = containerId.match(/^learned_granted_card_[^_]+_(\d+)$/);
-        return match ? match[1] : null;
+        // Pattern 1: learned_granted_card_{moveId}_{suffix} (from takeFrom with duplicates)
+        let match = containerId.match(/^learned_granted_card_[^_]+_(\d+)$/);
+        if (match) return match[1];
+
+        // Pattern 2: granted_card_{moveId}_{suffix} (from grantsCard with duplicates)
+        match = containerId.match(/^granted_card_[^_]+_(\d+)$/);
+        if (match) return match[1];
+
+        return null;
     }
 
     /**
