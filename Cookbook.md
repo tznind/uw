@@ -1163,6 +1163,57 @@ All helpers automatically handle suffix for duplicate cards - just use the base 
 - Multiple tables per card supported
 - Programmatic manipulation via helper methods
 
+### Using the Wizard System in Cards
+
+The Wizard system provides an interactive modal popup for making selections. Available globally as `window.Wizard.show()`, returns a Promise.
+
+**Example:**
+
+```javascript
+window.CardInitializers.mycard = function(container, suffix) {
+  const helpers = window.CardHelpers.createScopedHelpers(container, suffix);
+
+  helpers.addEventListener('loadout_btn', 'click', async () => {
+    const wizardData = [
+      {
+        type: 'get',  // Auto-receive (displayed, not selectable)
+        options: ['Basic Armor', 'Radio']
+      },
+      {
+        type: 'pickOne',  // Radio buttons (pick exactly one)
+        title: 'Choose Primary Weapon:',
+        options: ['Lasgun', 'Bolter', 'Plasma Gun']
+      },
+      {
+        type: 'pick',  // Checkboxes (pick multiple)
+        title: 'Additional Gear:',
+        options: ['Grenades', 'Medkit', 'Ammunition']
+      }
+    ];
+
+    const result = await window.Wizard.show(wizardData, {
+      title: 'Squad Loadout'
+    });
+
+    if (result) {
+      // result = ['Basic Armor', 'Radio', 'Bolter', 'Grenades', ...]
+      result.forEach(item => {
+        helpers.addTableRow('equipment', { item: item });
+      });
+    }
+  });
+};
+```
+
+**Data Structure:**
+- `type`: `'get'`, `'pickOne'`, or `'pick'`
+- `title`: Optional heading
+- `options`: Array of strings
+
+**Return:** `null` if cancelled, or array of selected strings
+
+---
+
 ### Card Helper Functions
 
 The CardHelpers module provides utilities to make card development easier and reduce boilerplate code.
