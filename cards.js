@@ -122,13 +122,19 @@ window.Cards = (function() {
         try {
             const response = await fetch(`${cardPath}/${jsFile}`);
             if (response.ok) {
-                const script = document.createElement('script');
-                script.setAttribute('data-card', cardId);
-                script.src = `${cardPath}/${jsFile}`;
-                document.head.appendChild(script);
-                
-                loadedScripts.add(cardId);
-                console.log(`Loaded script for card: ${cardId}`);
+                // Wait for script to load AND execute before continuing
+                await new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.setAttribute('data-card', cardId);
+                    script.src = `${cardPath}/${jsFile}`;
+                    script.onload = () => {
+                        loadedScripts.add(cardId);
+                        console.log(`Loaded script for card: ${cardId}`);
+                        resolve();
+                    };
+                    script.onerror = () => reject(new Error(`Failed to load script: ${jsFile}`));
+                    document.head.appendChild(script);
+                });
             }
         } catch (error) {
             console.warn(`Failed to load script for card ${cardId}:`, error);
