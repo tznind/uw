@@ -1,6 +1,6 @@
 # UW
 
-This is an [Uncharted Worlds](https://uncharted-worlds.com/) implementation of [PbtA-style](https://en.wikipedia.org/wiki/Powered_by_the_Apocalypse?utm_source=chatgpt.com) character sheets.
+This is an [Uncharted Worlds](https://uncharted-worlds.com/) implementation of [LC Character Sheets](https://github.com/tznind/lc?tab=readme-ov-file#live-character-sheet).
 
 It is online at https://tznind.github.io/uw/cs.html
 
