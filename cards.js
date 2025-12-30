@@ -122,13 +122,19 @@ window.Cards = (function() {
         try {
             const response = await fetch(`${cardPath}/${jsFile}`);
             if (response.ok) {
-                const script = document.createElement('script');
-                script.setAttribute('data-card', cardId);
-                script.src = `${cardPath}/${jsFile}`;
-                document.head.appendChild(script);
-                
-                loadedScripts.add(cardId);
-                console.log(`Loaded script for card: ${cardId}`);
+                // Wait for script to load AND execute before continuing
+                await new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.setAttribute('data-card', cardId);
+                    script.src = `${cardPath}/${jsFile}`;
+                    script.onload = () => {
+                        loadedScripts.add(cardId);
+                        console.log(`Loaded script for card: ${cardId}`);
+                        resolve();
+                    };
+                    script.onerror = () => reject(new Error(`Failed to load script: ${jsFile}`));
+                    document.head.appendChild(script);
+                });
             }
         } catch (error) {
             console.warn(`Failed to load script for card ${cardId}:`, error);
@@ -150,20 +156,9 @@ window.Cards = (function() {
             const cardWrapper = document.querySelector(`.card-wrapper[data-card-id="${cardId}"]`);
             const cardElement = cardWrapper ? cardWrapper.querySelector('.card') : null;
 
-            // Look for exported initialization function
-            const initFunction = window.CardInitializers[cardId];
-            if (typeof initFunction === 'function') {
-                try {
-                    console.log(`Initializing card: ${cardId}`);
-                    // Pass container and null suffix (regular cards don't have duplicates)
-                    initFunction(cardElement, null);
-                    console.log(`Card ${cardId} initialized successfully`);
-                } catch (error) {
-                    console.error(`Error initializing card ${cardId}:`, error);
-                }
-            } else {
-                // No initialization function found - that's okay, not all cards need one
-                console.log(`No initialization function found for card: ${cardId} (this is fine if the card doesn't need custom logic)`);
+            // Use shared initialization function (handles tracks, tables, CardInitializers)
+            if (cardElement && window.CardHelpers && window.CardHelpers.initializeCard) {
+                window.CardHelpers.initializeCard(cardId, cardElement, null);
             }
         });
     }
@@ -234,6 +229,7 @@ window.Cards = (function() {
 
             // Initialize any cards that have initialization functions
             setTimeout(() => {
+                // Initialize each card (this handles tables, tracks, CardInitializers for each card)
                 initializeRenderedCards(cardDefs);
 
                 // Format any elements with data-format-text attribute
@@ -245,6 +241,8 @@ window.Cards = (function() {
                 if (window.CardHelpers && window.CardHelpers.initializeHideWhenUntaken) {
                     window.CardHelpers.initializeHideWhenUntaken();
                 }
+
+                // Note: Dynamic tables are initialized per-card in initializeRenderedCards
             }, 100);
 
             // Note: Persistence refresh is handled by the caller
