@@ -1536,9 +1536,10 @@ data/
   ├── stats.json                     (English - base)
   ├── cards/ship/                    (English - base)
   └── es/                            (Spanish translations)
-      ├── moves/lord-commander.json  (Spanish overlay)
-      ├── stats.json                 (Spanish overlay)
+      ├── moves/lord-commander.json  (Spanish overlay - optional)
+      ├── stats.json                 (Spanish overlay - optional)
       └── cards/ship/                (Spanish card folder)
+          └── card.html              (Translated HTML - required)
 ```
 
 ### Translation Behavior
@@ -1548,10 +1549,10 @@ data/
 - Missing translations fall back to English
 - Only translate what changes (title, description, outcomes, etc.)
 
-**Cards** (folder replacement):
-- Complete card folder with translated HTML
-- CSS/JS automatically fall back to English if not provided
-- Same IDs required for form compatibility
+**Cards** (automatic fallback):
+- **Only `card.html` is required** for a translated card
+- `card.json`, `card.css`, and `card.js` automatically use English versions if not provided
+- Same element IDs required for form compatibility
 
 > **Important**
 > Language codes must be exactly **2 lowercase letters** (e.g., `es`, `fr`, `de`).

@@ -29,9 +29,9 @@ window.Cards = (function() {
             }
 
             const cardDef = await definitionResponse.json();
-            
-            // Load HTML content
-            const htmlResponse = await fetch(`${cardDef.path}/${cardDef.files.html}`);
+
+            // Load HTML content (with translation fallback)
+            const htmlResponse = await window.JsonLoader.fetchWithTranslations(`${cardDef.path}/${cardDef.files.html}`);
             if (!htmlResponse.ok) {
                 throw new Error(`Failed to load card HTML: ${cardId}`);
             }
