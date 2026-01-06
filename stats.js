@@ -167,9 +167,11 @@ window.renderStats = function(containerSelector, hexStats) {
 
       const wrapper = document.createElement("div");
       wrapper.className = "hex-input-wrapper";
-      
+
       if (shape === "square") {
         wrapper.classList.add("shape-square");
+      } else if (shape === "circle") {
+        wrapper.classList.add("shape-circle");
       }
 
       const input = document.createElement("input");
