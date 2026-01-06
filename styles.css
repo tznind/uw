@@ -2261,6 +2261,25 @@ body > .track-counter {
   align-items: center;
 }
 
+/* Wrapper for shapes with start/end labels */
+.track-shapes-wrapper,
+.stat-track-shapes-wrapper {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* Start and end labels for tracks */
+.track-start-label,
+.track-end-label,
+.stat-track-start-label,
+.stat-track-end-label {
+  font-size: 11px;
+  color: #6c757d;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
 .track-dash {
   font-size: 18px;
   font-weight: bold;

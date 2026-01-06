@@ -179,9 +179,27 @@ Stats can include track counters that appear below the stat hexagon. These work 
 - `shape` options: "square" (default), "circle", "triangle", "hexagon"
 - `name` is optional - omit it to show just the shapes without a label
 - `max` defaults to 5 if not specified
+- `startLabel` and `endLabel` add text before/after the shapes (e.g., "0" and "max")
 - Click shapes to increment/decrement current value
 - Values persist in URL automatically
 - Appears centered below the stat title
+
+**Example with start/end labels:**
+```json
+{
+  "id": "conviction",
+  "title": "CONVICTION",
+  "tracks": [
+    {
+      "name": "Faith",
+      "max": 5,
+      "shape": "circle",
+      "startLabel": "0",
+      "endLabel": "max"
+    }
+  ]
+}
+```
 
 **Example without labels:**
 ```json
@@ -746,12 +764,36 @@ In `availability.json`, set the move to `true` to force it always on:
 - **Few tracks (1-3)**: Appear horizontally in the title area, right to left
 - **Many tracks (4+)**: Automatically switch to a flexible flow layout below the title, perfect for inventory-style moves
 - `shape` options: "square" (default), "circle", "triangle", "hexagon"
+- `startLabel` and `endLabel` add text before/after the shapes (e.g., "0" and "max")
 - `dynamic: true` adds a "max..." button to adjust maximum via prompt
 - Click shapes to increment/decrement current value
 - Values persist in URL (current value: `track_{id}`, max: `track_{id}_max`)
 - Max can be set via URL: `track_inspire1_0_max=5` shows 5 shapes
 - Values reset when move unchecked
 - Flow layout adapts to track size: items with 1-2 points are narrow, items with 6+ points are wider
+
+**Example with start/end labels:**
+```json
+{
+  "id": "gather_strength",
+  "title": "Gather Strength (+Mettle)",
+  "tracks": [
+    {
+      "name": "Power",
+      "max": 4,
+      "shape": "hexagon",
+      "startLabel": "weak",
+      "endLabel": "strong"
+    }
+  ],
+  "outcomes": [
+    {
+      "range": "≥ 10",
+      "text": "Gain 3 Power. Spend Power for special effects."
+    }
+  ]
+}
+```
 
 ### Submoves
 
@@ -1369,12 +1411,16 @@ window.CardInitializers.mycard = function(container, suffix) {
 - `data-track-max` (optional, default 5): Maximum number of points
 - `data-track-shape` (optional, default 'square'): Shape of track points
   - Options: `'square'`, `'circle'`, `'triangle'`, `'hexagon'`
+- `data-track-start-label` (optional): Label text displayed before shapes
+- `data-track-end-label` (optional): Label text displayed after shapes
 - `data-track-dynamic` (optional, default false): Add a "max..." button to adjust maximum
 
 **Programmatic (addTrack method):**
 - `name` (required): Display name for the track
 - `max` (optional, default 5): Maximum number of points
 - `shape` (optional, default 'square'): Shape of track points
+- `startLabel` (optional): Label text displayed before shapes
+- `endLabel` (optional): Label text displayed after shapes
 - `dynamic` (optional, default false): Add a "max..." button to adjust maximum
 
 **Features:**
@@ -1394,6 +1440,18 @@ window.CardInitializers.mycard = function(container, suffix) {
      data-track-max="5"
      data-track-shape="square"
      data-track-dynamic="true"></div>
+```
+
+**Example with start/end labels (data attributes):**
+
+```html
+<div id="stress_track"
+     data-track
+     data-track-name="Stress"
+     data-track-max="6"
+     data-track-shape="circle"
+     data-track-start-label="calm"
+     data-track-end-label="breaking"></div>
 ```
 
 #### Automatic Suffixing for Duplicate Cards
