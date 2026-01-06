@@ -27,7 +27,7 @@
   {
     "id": "influence",
     "title": "INFLUENCE",
-    "shape": "hexagon"
+    "shape": "circle"
   },
   {
     "id": "expertise",
