@@ -31,7 +31,7 @@ console.log('Unique Weapon card script is loading!');
         const heavyUpgradeCheckboxes = [
             'uw_h_bre', 'uw_h_chem', 'uw_h_con', 'uw_h_det', 'uw_h_imp', 'uw_h_key',
             'uw_h_las', 'uw_h_pen', 'uw_h_pla', 'uw_h_see', 'uw_h_sho', 'uw_h_shr',
-            'uw_h_spr', 'uw_h_stu', 'uw_h_sty', 'uw_h_sus', 'uw_h_cha', 'uw_h_dis',
+            'uw_h_spr', 'uw_h_stu', 'uw_h_sty', 'uw_h_sus', 'uw_h_cha', 'uw_h_cns', 'uw_h_dis',
             'uw_h_ipl', 'uw_h_liv', 'uw_h_ric', 'uw_h_sum', 'uw_h_swi', 'uw_h_tur',
             'uw_h_vir', 'uw_h_vol'
         ];
