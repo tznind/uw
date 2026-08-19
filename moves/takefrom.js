@@ -68,6 +68,30 @@ window.TakeFrom = (function() {
     }
     
     /**
+     * Get the roles a takeFrom move can currently pull moves from
+     */
+    function getMatchingRolesForMove(move) {
+        if (window.Utils && window.Utils.getMatchingRoles) {
+            const allAvailableRoles = window.Utils.getAllAvailableRoles();
+            const currentRoles = window.Utils.getCurrentRoles();
+            return window.Utils.getMatchingRoles(move.takeFrom, allAvailableRoles, currentRoles);
+        }
+        // Fallback to original behavior if Utils not available
+        return move.takeFrom || [];
+    }
+
+    /**
+     * If a takeFrom move has exactly one eligible source role, return it; otherwise null.
+     * Used to auto-select/restore that role (and re-enable the move dropdown) without
+     * requiring the user to interact with a role dropdown that is hidden in this case
+     * (see isSingleRole in createTakeFromInstance).
+     */
+    function getSingleMatchingRole(move) {
+        const matchingRoles = getMatchingRolesForMove(move);
+        return matchingRoles.length === 1 ? matchingRoles[0] : null;
+    }
+
+    /**
      * Create a single takeFrom instance (role + move dropdowns)
      */
     function createTakeFromInstance(move, urlParams, instance) {
@@ -97,16 +121,7 @@ window.TakeFrom = (function() {
         roleSelect.appendChild(defaultOption);
         
         // Get matching roles using pattern matching (supports wildcards)
-        let matchingRoles = [];
-        
-        if (window.Utils && window.Utils.getMatchingRoles) {
-            const allAvailableRoles = window.Utils.getAllAvailableRoles();
-            const currentRoles = window.Utils.getCurrentRoles();
-            matchingRoles = window.Utils.getMatchingRoles(move.takeFrom, allAvailableRoles, currentRoles);
-        } else {
-            // Fallback to original behavior if Utils not available
-            matchingRoles = move.takeFrom || [];
-        }
+        const matchingRoles = getMatchingRolesForMove(move);
         
         // Add role options (sorted and excluding current roles)
         matchingRoles.forEach(role => {
@@ -116,7 +131,14 @@ window.TakeFrom = (function() {
             option.textContent = window.availableMap[role]?.name || role;
             roleSelect.appendChild(option);
         });
-        
+
+        // If only one role available, auto-select it and hide the role dropdown
+        const isSingleRole = matchingRoles.length === 1;
+        if (isSingleRole) {
+            roleSelect.value = matchingRoles[0];
+            roleLabel.style.display = 'none';
+        }
+
         // Move selector (with instance number)
         const moveLabel = document.createElement("label");
         moveLabel.textContent = instance > 1 ? `Move ${instance}: ` : "Move: ";
@@ -135,18 +157,18 @@ window.TakeFrom = (function() {
         const roleParamKey = instance > 1 ? `takeFrom_${move.id}_${instance}_role` : `takeFrom_${move.id}_role`;
         const moveParamKey = instance > 1 ? `takeFrom_${move.id}_${instance}_move` : `takeFrom_${move.id}_move`;
         
-        if (urlParams.has(roleParamKey)) {
-            const savedRole = urlParams.get(roleParamKey);
-            const savedMove = urlParams.get(moveParamKey);
-            
+        const savedRole = urlParams.get(roleParamKey) || (isSingleRole ? matchingRoles[0] : null);
+        const savedMove = urlParams.get(moveParamKey);
+
+        if (savedRole) {
             roleSelect.value = savedRole;
             updateMoveOptions(roleSelect, moveSelect, move.id, instance);
-            
+
             // Use a delay to ensure options are populated before setting value
             setTimeout(() => {
                 if (savedMove) {
                     moveSelect.value = savedMove;
-                    
+
                     // Also update the learned move display after setting the value
                     setTimeout(() => {
                         updateAllLearnedMoveDisplays(move.id, urlParams);
@@ -574,11 +596,21 @@ window.TakeFrom = (function() {
         const roleSelect = document.getElementById(roleSelectId);
         const moveSelect = document.getElementById(moveSelectId);
         const learnedContainer = document.getElementById(`learned_move_${moveId}_${instance}`);
-        
-        if (roleSelect) roleSelect.value = '';
+
+        // Preserve single-role auto-selection (isSingleRole in createTakeFromInstance)
+        // instead of wiping it — its role dropdown is hidden, so there'd be no way
+        // to re-enable the move dropdown without a page reload.
+        const move = window.moves?.find(m => m.id === moveId);
+        const singleRole = move ? getSingleMatchingRole(move) : null;
+
+        if (roleSelect) roleSelect.value = singleRole || '';
         if (moveSelect) {
             moveSelect.value = '';
-            moveSelect.disabled = true;
+            if (singleRole) {
+                updateMoveOptions(roleSelect, moveSelect, moveId, instance);
+            } else {
+                moveSelect.disabled = true;
+            }
         }
         if (learnedContainer) learnedContainer.innerHTML = '';
         
